@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Traccia
 {
-    public partial class Form1: Form
+    public partial class FormMain: Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -27,8 +27,15 @@ namespace Traccia
             FormArchiviaEscursione dlg = new FormArchiviaEscursione();
             dlg.ShowDialog();
         }
-
-
-
+        /// <summary>
+        /// Crea un archivio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butCreaArchivio_Click(object sender, EventArgs e)
+        {
+            FormCreaArchivio dlg = new FormCreaArchivio();
+            dlg.ShowDialog();
+        }
     }
 }
