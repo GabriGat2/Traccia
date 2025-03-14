@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxDirectoryBase = new System.Windows.Forms.TextBox();
-            this.textBoxData = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrefisso = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,7 +36,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.richTextDescrizione = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.butDirectoryBase = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.butCrea = new System.Windows.Forms.Button();
+            this.butAggiorna = new System.Windows.Forms.Button();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.textBoxArchivio = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -51,28 +55,13 @@
             this.groupBoxDescrizione.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Directory base";
-            // 
             // textBoxDirectoryBase
             // 
             this.textBoxDirectoryBase.Location = new System.Drawing.Point(141, 12);
             this.textBoxDirectoryBase.Name = "textBoxDirectoryBase";
             this.textBoxDirectoryBase.Size = new System.Drawing.Size(627, 20);
             this.textBoxDirectoryBase.TabIndex = 1;
-            // 
-            // textBoxData
-            // 
-            this.textBoxData.Location = new System.Drawing.Point(141, 16);
-            this.textBoxData.Name = "textBoxData";
-            this.textBoxData.Size = new System.Drawing.Size(627, 20);
-            this.textBoxData.TabIndex = 3;
+            this.textBoxDirectoryBase.TextChanged += new System.EventHandler(this.textBoxDirectoryBase_TextChanged);
             // 
             // label2
             // 
@@ -89,6 +78,7 @@
             this.textBoxPrefisso.Name = "textBoxPrefisso";
             this.textBoxPrefisso.Size = new System.Drawing.Size(627, 20);
             this.textBoxPrefisso.TabIndex = 5;
+            this.textBoxPrefisso.TextChanged += new System.EventHandler(this.textBoxPrefisso_TextChanged);
             // 
             // label3
             // 
@@ -105,6 +95,7 @@
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(627, 20);
             this.textBoxNome.TabIndex = 7;
+            this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
             // label4
             // 
@@ -120,7 +111,7 @@
             this.richTextDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextDescrizione.Location = new System.Drawing.Point(3, 16);
             this.richTextDescrizione.Name = "richTextDescrizione";
-            this.richTextDescrizione.Size = new System.Drawing.Size(794, 168);
+            this.richTextDescrizione.Size = new System.Drawing.Size(794, 148);
             this.richTextDescrizione.TabIndex = 8;
             this.richTextDescrizione.Text = "";
             // 
@@ -133,7 +124,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.butDirectoryBase);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxDirectoryBase);
             // 
             // splitContainer1.Panel2
@@ -142,6 +133,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 75;
             this.splitContainer1.TabIndex = 9;
+            // 
+            // butDirectoryBase
+            // 
+            this.butDirectoryBase.Location = new System.Drawing.Point(24, 12);
+            this.butDirectoryBase.Name = "butDirectoryBase";
+            this.butDirectoryBase.Size = new System.Drawing.Size(95, 23);
+            this.butDirectoryBase.TabIndex = 2;
+            this.butDirectoryBase.Text = "Directory Base";
+            this.butDirectoryBase.UseVisualStyleBackColor = true;
+            this.butDirectoryBase.Click += new System.EventHandler(this.butDirectoryBase_Click);
             // 
             // splitContainer2
             // 
@@ -152,7 +153,11 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.textBoxData);
+            this.splitContainer2.Panel1.Controls.Add(this.butCrea);
+            this.splitContainer2.Panel1.Controls.Add(this.butAggiorna);
+            this.splitContainer2.Panel1.Controls.Add(this.Label5);
+            this.splitContainer2.Panel1.Controls.Add(this.textBoxArchivio);
+            this.splitContainer2.Panel1.Controls.Add(this.dateTimePicker1);
             this.splitContainer2.Panel1.Controls.Add(this.label4);
             this.splitContainer2.Panel1.Controls.Add(this.label2);
             this.splitContainer2.Panel1.Controls.Add(this.textBoxPrefisso);
@@ -163,8 +168,54 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.groupBoxDescrizione);
             this.splitContainer2.Size = new System.Drawing.Size(800, 371);
-            this.splitContainer2.SplitterDistance = 180;
+            this.splitContainer2.SplitterDistance = 200;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // butCrea
+            // 
+            this.butCrea.Location = new System.Drawing.Point(141, 156);
+            this.butCrea.Name = "butCrea";
+            this.butCrea.Size = new System.Drawing.Size(75, 23);
+            this.butCrea.TabIndex = 12;
+            this.butCrea.Text = "Crea";
+            this.butCrea.UseVisualStyleBackColor = true;
+            this.butCrea.Click += new System.EventHandler(this.butCrea_Click);
+            // 
+            // butAggiorna
+            // 
+            this.butAggiorna.Location = new System.Drawing.Point(24, 156);
+            this.butAggiorna.Name = "butAggiorna";
+            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
+            this.butAggiorna.TabIndex = 11;
+            this.butAggiorna.Text = "Aggiorna";
+            this.butAggiorna.UseVisualStyleBackColor = true;
+            this.butAggiorna.Click += new System.EventHandler(this.butAggiorna_Click);
+            // 
+            // Label5
+            // 
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(21, 122);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(45, 13);
+            this.Label5.TabIndex = 9;
+            this.Label5.Text = "Archivio";
+            // 
+            // textBoxArchivio
+            // 
+            this.textBoxArchivio.Location = new System.Drawing.Point(141, 115);
+            this.textBoxArchivio.Name = "textBoxArchivio";
+            this.textBoxArchivio.ReadOnly = true;
+            this.textBoxArchivio.Size = new System.Drawing.Size(627, 20);
+            this.textBoxArchivio.TabIndex = 10;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(141, 16);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // groupBoxDescrizione
             // 
@@ -172,7 +223,7 @@
             this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
             this.groupBoxDescrizione.Name = "groupBoxDescrizione";
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(800, 187);
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(800, 167);
             this.groupBoxDescrizione.TabIndex = 0;
             this.groupBoxDescrizione.TabStop = false;
             this.groupBoxDescrizione.Text = "Descrizione";
@@ -201,10 +252,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxDirectoryBase;
-        private System.Windows.Forms.TextBox textBoxData;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrefisso;
         private System.Windows.Forms.Label label3;
@@ -214,5 +262,11 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBoxDescrizione;
+        private System.Windows.Forms.Button butDirectoryBase;
+        private System.Windows.Forms.Label Label5;
+        private System.Windows.Forms.TextBox textBoxArchivio;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button butCrea;
+        private System.Windows.Forms.Button butAggiorna;
     }
 }

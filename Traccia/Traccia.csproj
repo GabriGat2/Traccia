@@ -64,6 +64,7 @@
     <Compile Include="FormArchiviaEscursione.Designer.cs">
       <DependentUpon>FormArchiviaEscursione.cs</DependentUpon>
     </Compile>
+    <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormCreaArchivio.resx">
