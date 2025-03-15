@@ -70,6 +70,12 @@
     <Compile Include="FormCreaArchivio.Designer.cs">
       <DependentUpon>FormCreaArchivio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreaAreaArchivio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreaAreaArchivio.Designer.cs">
+      <DependentUpon>FormCreaAreaArchivio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormCreaArchivio.resx">
       <DependentUpon>FormCreaArchivio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreaAreaArchivio.resx">
+      <DependentUpon>FormCreaAreaArchivio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

@@ -16,19 +16,10 @@ namespace Traccia
         /// </summary>
         private string DirArchvioBase = "ArchiviaTracce";
 
-
-        private string SeparaDir = "\\";
-
-
-
-        //List<string> [] DirSrcArchivio =
-        //[
-        //    "pippo" ,
-        //    "pluto" ,
-
-        //];
-
-
+        /// <summary>
+        /// Speratore per path
+        /// </summary>
+        private const string SeparaDir = "\\";
         /// <summary>
         /// Costruttore
         /// </summary>
@@ -42,9 +33,35 @@ namespace Traccia
         private List<DirectoryParziale> DirSrcArchivio = new List<DirectoryParziale>();
         private void PopolaDirSrcArchivio()
         {
-            DirSrcArchivio.Add(new DirectoryParziale("src","Src"));
-        }
+            DirSrcArchivio.Add(new DirectoryParziale("Base",    "01-Base"));
+            DirSrcArchivio.Add(new DirectoryParziale("Comune",  "02-Comune"));
 
+            DirSrcArchivio.Add(new DirectoryParziale("JPEG", "10-JPEG"));
+            DirSrcArchivio.Add(new DirectoryParziale("HEIC", "11-HEIC"));
+            DirSrcArchivio.Add(new DirectoryParziale("RAW", "12-RAW"));
+
+            DirSrcArchivio.Add(new DirectoryParziale("Altro", "20-Altro"));
+        }
+        /// <summary>
+        /// Crea l'archivio SRC
+        /// </summary>
+        /// <param name="pathArchivio"></param>
+        /// <param name="NomeArchivio"></param>
+        /// <returns></returns>
+        public bool CreaSrcArchivio(string pathArchivio, string NomeArchivio)
+        {
+            // Crea la directory Dell'archivo
+            CreaDirectory(pathArchivio);
+
+            // crea le directory sorgenti nell'archivio
+            foreach (var dir in DirArchivio)
+            {
+                string path = pathArchivio + SeparaDir + dir.Path;
+                CreaDirectory(path);
+            }
+
+            return true;
+        }
         /// <summary>
         /// Definizione Directory archivio
         /// </summary>
@@ -62,7 +79,6 @@ namespace Traccia
             DirArchivio.Add(new DirectoryParziale("RAW",          "12-RAW"));
 
             DirArchivio.Add(new DirectoryParziale("Altro",        "20-Altro"));
-
         }
         /// <summary>
         /// Crea un Archivio
