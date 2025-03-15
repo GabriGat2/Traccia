@@ -39,7 +39,7 @@ namespace Traccia
             E1200_UnaOperazioneInCorso,
 
             // Gestione directory
-            E1300_NomeArchivioIErrato,
+            E1300_NomeArchivioErrato,
             E1301_CreazioneDirectoryFallita,
             E1302_CreazioneArchivioFallita,
 

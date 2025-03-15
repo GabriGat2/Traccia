@@ -36,11 +36,13 @@ namespace Traccia
             DirSrcArchivio.Add(new DirectoryParziale("Base",    "01-Base"));
             DirSrcArchivio.Add(new DirectoryParziale("Comune",  "02-Comune"));
 
-            DirSrcArchivio.Add(new DirectoryParziale("JPEG", "10-JPEG"));
-            DirSrcArchivio.Add(new DirectoryParziale("HEIC", "11-HEIC"));
-            DirSrcArchivio.Add(new DirectoryParziale("RAW", "12-RAW"));
+            DirSrcArchivio.Add(new DirectoryParziale("JPEG",    "10-JPEG"));
+            DirSrcArchivio.Add(new DirectoryParziale("HEIC",    "11-HEIC"));
+            DirSrcArchivio.Add(new DirectoryParziale("RAW",     "12-RAW"));
 
-            DirSrcArchivio.Add(new DirectoryParziale("Altro", "20-Altro"));
+            DirSrcArchivio.Add(new DirectoryParziale("Altro",   "20-Altro"));
+
+            DirSrcArchivio.Add(new DirectoryParziale("Archivi", "30-Archivi"));
         }
         /// <summary>
         /// Crea l'archivio SRC
@@ -54,7 +56,7 @@ namespace Traccia
             CreaDirectory(pathArchivio);
 
             // crea le directory sorgenti nell'archivio
-            foreach (var dir in DirArchivio)
+            foreach (var dir in DirSrcArchivio)
             {
                 string path = pathArchivio + SeparaDir + dir.Path;
                 CreaDirectory(path);

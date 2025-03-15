@@ -284,8 +284,8 @@ namespace Traccia
         private GstErrori.EErrore CreaAreaArchivio()
         {
             // verifica che ci siano le condizioni per creare la directory
-            if (ArchivioStato != EArchivioStato.ArchivioNonEsiste)
-                return GstErrori.EErrore.E1300_NomeArchivioIErrato;
+            if (!((ArchivioStato == EArchivioStato.ArchivioNonEsiste) || (ArchivioStato == EArchivioStato.ArchivioEsiste)))
+                return GstErrori.EErrore.E1300_NomeArchivioErrato;
 
             CArchivio archivio = new CArchivio();
             archivio.CreaSrcArchivio(ArchivioPath, ArchivioNome);
