@@ -37,7 +37,9 @@ namespace Traccia
         public EArchivioStato ArchivioStato = EArchivioStato.Indefinito;
         public string ArchivioNome = string.Empty;
         public string ArchivioPath = string.Empty;
-
+        /// <summary>
+        /// Costruttore
+        /// </summary>
         public FormCreaArchivio()
         {
             InitializeComponent();
@@ -307,95 +309,98 @@ namespace Traccia
             if (ArchivioStato != EArchivioStato.ArchivioNonEsiste)
                 return GstErrori.EErrore.E1300_NomeArchivioIErrato;
 
-
-            // Crea la directory dell'archivio
-            if (! CreaDirectory(ArchivioPath))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            CArchivio archivio = new CArchivio();
+            archivio.CreaArchivio(ArchivioPath, ArchivioNome);
 
 
-            // crea la directory delle foto
-            // --------------------------------------------------------
-            path = ArchivioPath + '\\' + "Foto";
-            if (!CreaDirectory(path))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// Crea la directory dell'archivio
+            //if (! CreaDirectory(ArchivioPath))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
 
-            // archivio foto iPhoneX
-            path2 = path + '\\' + "iPhoneX";
-            if (!CreaDirectory(path2))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
-
-            path3 = path2 + '\\' + "HEIC";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
-
-            path3 = path2 + '\\' + "JPEG";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// crea la directory delle foto
+            //// --------------------------------------------------------
+            //path = ArchivioPath + '\\' + "Foto";
+            //if (!CreaDirectory(path))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
 
-            // archivio foto SonyAlfa6000L
-            path2 = path + '\\' + "SonyAlfa6000L";
-            if (!CreaDirectory(path2))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// archivio foto iPhoneX
+            //path2 = path + '\\' + "iPhoneX";
+            //if (!CreaDirectory(path2))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "JPEG";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //path3 = path2 + '\\' + "HEIC";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "RAW";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
-
-
-            // crea la directory delle informazioni
-            // --------------------------------------------------------
-            path = ArchivioPath + '\\' + "informazioni";
-            if (!CreaDirectory(path))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //path3 = path2 + '\\' + "JPEG";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
 
-            // crea la directory delle Tracce
-            // --------------------------------------------------------
-            path = ArchivioPath + '\\' + "Tracce";
-            if (!CreaDirectory(path))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// archivio foto SonyAlfa6000L
+            //path2 = path + '\\' + "SonyAlfa6000L";
+            //if (!CreaDirectory(path2))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            // archivio tracce OA
-            // ------------------
-            path2 = path + '\\' + "OA";
-            if (!CreaDirectory(path2))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //path3 = path2 + '\\' + "JPEG";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "PercorsoDiRiferimento";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //path3 = path2 + '\\' + "RAW";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "Resoconto";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "StampaTracce";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// crea la directory delle informazioni
+            //// --------------------------------------------------------
+            //path = ArchivioPath + '\\' + "informazioni";
+            //if (!CreaDirectory(path))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            // archivio tracce TerraMap
-            // ------------------------
-            path2 = path + '\\' + "TerraMap";
-            if (!CreaDirectory(path2))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "PercorsoDiRiferimento";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// crea la directory delle Tracce
+            //// --------------------------------------------------------
+            //path = ArchivioPath + '\\' + "Tracce";
+            //if (!CreaDirectory(path))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "Resoconto";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //// archivio tracce OA
+            //// ------------------
+            //path2 = path + '\\' + "OA";
+            //if (!CreaDirectory(path2))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
-            path3 = path2 + '\\' + "StampaTracce";
-            if (!CreaDirectory(path3))
-                return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+            //path3 = path2 + '\\' + "PercorsoDiRiferimento";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //path3 = path2 + '\\' + "Resoconto";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //path3 = path2 + '\\' + "StampaTracce";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //// archivio tracce TerraMap
+            //// ------------------------
+            //path2 = path + '\\' + "TerraMap";
+            //if (!CreaDirectory(path2))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //path3 = path2 + '\\' + "PercorsoDiRiferimento";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //path3 = path2 + '\\' + "Resoconto";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
+
+            //path3 = path2 + '\\' + "StampaTracce";
+            //if (!CreaDirectory(path3))
+            //    return GstErrori.EErrore.E1302_CreazioneArchivioFallita;
 
             return GstErrori.EErrore.E0000_OK;
         }
