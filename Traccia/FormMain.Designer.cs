@@ -40,6 +40,7 @@
             this.butSelezionaAreaArchivio = new System.Windows.Forms.Button();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,7 +73,7 @@
             // 
             // butCreaAreaArchivio
             // 
-            this.butCreaAreaArchivio.Location = new System.Drawing.Point(16, 23);
+            this.butCreaAreaArchivio.Location = new System.Drawing.Point(16, 81);
             this.butCreaAreaArchivio.Margin = new System.Windows.Forms.Padding(4);
             this.butCreaAreaArchivio.Name = "butCreaAreaArchivio";
             this.butCreaAreaArchivio.Size = new System.Drawing.Size(196, 28);
@@ -103,6 +104,7 @@
             // 
             // groupBoxAreaArchivio
             // 
+            this.groupBoxAreaArchivio.Controls.Add(this.button1);
             this.groupBoxAreaArchivio.Controls.Add(this.textBoxPathAreaArchivio);
             this.groupBoxAreaArchivio.Controls.Add(this.label2);
             this.groupBoxAreaArchivio.Controls.Add(this.textBoxNomeAreaArchivio);
@@ -121,7 +123,7 @@
             // 
             // textBoxPathAreaArchivio
             // 
-            this.textBoxPathAreaArchivio.Location = new System.Drawing.Point(229, 133);
+            this.textBoxPathAreaArchivio.Location = new System.Drawing.Point(229, 191);
             this.textBoxPathAreaArchivio.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPathAreaArchivio.Name = "textBoxPathAreaArchivio";
             this.textBoxPathAreaArchivio.ReadOnly = true;
@@ -131,7 +133,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 142);
+            this.label2.Location = new System.Drawing.Point(16, 200);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 16);
@@ -140,7 +142,7 @@
             // 
             // textBoxNomeAreaArchivio
             // 
-            this.textBoxNomeAreaArchivio.Location = new System.Drawing.Point(229, 101);
+            this.textBoxNomeAreaArchivio.Location = new System.Drawing.Point(229, 159);
             this.textBoxNomeAreaArchivio.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNomeAreaArchivio.Name = "textBoxNomeAreaArchivio";
             this.textBoxNomeAreaArchivio.ReadOnly = true;
@@ -150,7 +152,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 110);
+            this.label1.Location = new System.Drawing.Point(16, 168);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 16);
@@ -159,7 +161,7 @@
             // 
             // butSelezionaAreaArchivio
             // 
-            this.butSelezionaAreaArchivio.Location = new System.Drawing.Point(16, 59);
+            this.butSelezionaAreaArchivio.Location = new System.Drawing.Point(16, 117);
             this.butSelezionaAreaArchivio.Margin = new System.Windows.Forms.Padding(4);
             this.butSelezionaAreaArchivio.Name = "butSelezionaAreaArchivio";
             this.butSelezionaAreaArchivio.Size = new System.Drawing.Size(196, 28);
@@ -193,6 +195,16 @@
             this.butArchiviaTraccia.Text = "Archivia Traccia";
             this.butArchiviaTraccia.UseVisualStyleBackColor = true;
             this.butArchiviaTraccia.Click += new System.EventHandler(this.butArchiviaTraccia_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(19, 36);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(196, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Crea Area Archivio";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -228,6 +240,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxNomeAreaArchivio;
         private System.Windows.Forms.Button butArchiviaTraccia;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -67,7 +67,7 @@ namespace Traccia
         public void AssegnaPathBase(string value)
         {
             // assegna
-            path = value;
+            pathBase = value;
 
             // Aggiorna lo stato dei campi
             Aggiorna();
@@ -181,6 +181,14 @@ namespace Traccia
             }
 
             return colore;
+        }
+        /// <summary>
+        /// Torna vero se l'archivio esiste
+        /// </summary>
+        /// <returns></returns>
+        public bool StatoOk()
+        {
+            return stato == EArchivioStato.ArchivioEsiste;
         }
 
 

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CArchivio.cs" />
+    <Compile Include="CArchivioEscursione.cs" />
     <Compile Include="CAreaArchivio.cs" />
     <Compile Include="CMessaggio.cs" />
     <Compile Include="FormArchivaTraccia.cs">
