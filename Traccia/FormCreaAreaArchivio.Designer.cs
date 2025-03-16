@@ -34,6 +34,7 @@
             this.textBoxDirectoryBaseAreaArchivio = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupNomeAreaArchivio = new System.Windows.Forms.GroupBox();
+            this.butDefault = new System.Windows.Forms.Button();
             this.butCrea = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.Label5 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.textBoxPostfisso = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.butDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,6 +58,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -68,8 +69,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 75;
+            this.splitContainer1.Size = new System.Drawing.Size(1062, 701);
+            this.splitContainer1.SplitterDistance = 116;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBoxDirecoryAreaArchivio
@@ -78,17 +80,20 @@
             this.groupBoxDirecoryAreaArchivio.Controls.Add(this.textBoxDirectoryBaseAreaArchivio);
             this.groupBoxDirecoryAreaArchivio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxDirecoryAreaArchivio.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxDirecoryAreaArchivio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxDirecoryAreaArchivio.Name = "groupBoxDirecoryAreaArchivio";
-            this.groupBoxDirecoryAreaArchivio.Size = new System.Drawing.Size(800, 75);
+            this.groupBoxDirecoryAreaArchivio.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxDirecoryAreaArchivio.Size = new System.Drawing.Size(1062, 116);
             this.groupBoxDirecoryAreaArchivio.TabIndex = 0;
             this.groupBoxDirecoryAreaArchivio.TabStop = false;
             this.groupBoxDirecoryAreaArchivio.Text = "Selezione directory che contiene Area Archivio";
             // 
             // butDirectoryBaseAreaArchivio
             // 
-            this.butDirectoryBaseAreaArchivio.Location = new System.Drawing.Point(12, 30);
+            this.butDirectoryBaseAreaArchivio.Location = new System.Drawing.Point(16, 37);
+            this.butDirectoryBaseAreaArchivio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butDirectoryBaseAreaArchivio.Name = "butDirectoryBaseAreaArchivio";
-            this.butDirectoryBaseAreaArchivio.Size = new System.Drawing.Size(168, 23);
+            this.butDirectoryBaseAreaArchivio.Size = new System.Drawing.Size(224, 28);
             this.butDirectoryBaseAreaArchivio.TabIndex = 4;
             this.butDirectoryBaseAreaArchivio.Text = "Directory Base Area Archivio";
             this.butDirectoryBaseAreaArchivio.UseVisualStyleBackColor = true;
@@ -96,9 +101,10 @@
             // 
             // textBoxDirectoryBaseAreaArchivio
             // 
-            this.textBoxDirectoryBaseAreaArchivio.Location = new System.Drawing.Point(204, 30);
+            this.textBoxDirectoryBaseAreaArchivio.Location = new System.Drawing.Point(272, 37);
+            this.textBoxDirectoryBaseAreaArchivio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxDirectoryBaseAreaArchivio.Name = "textBoxDirectoryBaseAreaArchivio";
-            this.textBoxDirectoryBaseAreaArchivio.Size = new System.Drawing.Size(552, 20);
+            this.textBoxDirectoryBaseAreaArchivio.Size = new System.Drawing.Size(735, 22);
             this.textBoxDirectoryBaseAreaArchivio.TabIndex = 3;
             this.textBoxDirectoryBaseAreaArchivio.TextChanged += new System.EventHandler(this.textBoxDirectoryBaseAreaArchivio_TextChanged);
             // 
@@ -106,14 +112,16 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.groupNomeAreaArchivio);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 371);
-            this.splitContainer2.SplitterDistance = 311;
+            this.splitContainer2.Size = new System.Drawing.Size(1062, 580);
+            this.splitContainer2.SplitterDistance = 486;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
             // groupNomeAreaArchivio
@@ -129,17 +137,31 @@
             this.groupNomeAreaArchivio.Controls.Add(this.textBoxNome);
             this.groupNomeAreaArchivio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupNomeAreaArchivio.Location = new System.Drawing.Point(0, 0);
+            this.groupNomeAreaArchivio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupNomeAreaArchivio.Name = "groupNomeAreaArchivio";
-            this.groupNomeAreaArchivio.Size = new System.Drawing.Size(800, 311);
+            this.groupNomeAreaArchivio.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupNomeAreaArchivio.Size = new System.Drawing.Size(1062, 486);
             this.groupNomeAreaArchivio.TabIndex = 0;
             this.groupNomeAreaArchivio.TabStop = false;
             this.groupNomeAreaArchivio.Text = "Imposta nome Area Archivio";
             // 
+            // butDefault
+            // 
+            this.butDefault.Location = new System.Drawing.Point(872, 164);
+            this.butDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.butDefault.Name = "butDefault";
+            this.butDefault.Size = new System.Drawing.Size(136, 28);
+            this.butDefault.TabIndex = 21;
+            this.butDefault.Text = "Imposta Default";
+            this.butDefault.UseVisualStyleBackColor = true;
+            this.butDefault.Click += new System.EventHandler(this.butDefault_Click);
+            // 
             // butCrea
             // 
-            this.butCrea.Location = new System.Drawing.Point(172, 133);
+            this.butCrea.Location = new System.Drawing.Point(229, 164);
+            this.butCrea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butCrea.Name = "butCrea";
-            this.butCrea.Size = new System.Drawing.Size(75, 23);
+            this.butCrea.Size = new System.Drawing.Size(100, 28);
             this.butCrea.TabIndex = 20;
             this.butCrea.Text = "Crea";
             this.butCrea.UseVisualStyleBackColor = true;
@@ -147,9 +169,10 @@
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(12, 133);
+            this.butAggiorna.Location = new System.Drawing.Point(16, 164);
+            this.butAggiorna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
+            this.butAggiorna.Size = new System.Drawing.Size(100, 28);
             this.butAggiorna.TabIndex = 19;
             this.butAggiorna.Text = "Aggiorna";
             this.butAggiorna.UseVisualStyleBackColor = true;
@@ -158,70 +181,67 @@
             // Label5
             // 
             this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(9, 99);
+            this.Label5.Location = new System.Drawing.Point(12, 122);
+            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(70, 13);
+            this.Label5.Size = new System.Drawing.Size(87, 16);
             this.Label5.TabIndex = 17;
             this.Label5.Text = "Area Archivio";
             // 
             // textBoxArchivio
             // 
-            this.textBoxArchivio.Location = new System.Drawing.Point(204, 92);
+            this.textBoxArchivio.Location = new System.Drawing.Point(272, 113);
+            this.textBoxArchivio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxArchivio.Name = "textBoxArchivio";
             this.textBoxArchivio.ReadOnly = true;
-            this.textBoxArchivio.Size = new System.Drawing.Size(552, 20);
+            this.textBoxArchivio.Size = new System.Drawing.Size(735, 22);
             this.textBoxArchivio.TabIndex = 18;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 26);
+            this.label4.Location = new System.Drawing.Point(12, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 15;
             this.label4.Text = "Nome";
             // 
             // textBoxPostfisso
             // 
-            this.textBoxPostfisso.Location = new System.Drawing.Point(204, 54);
+            this.textBoxPostfisso.Location = new System.Drawing.Point(272, 66);
+            this.textBoxPostfisso.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPostfisso.Name = "textBoxPostfisso";
-            this.textBoxPostfisso.Size = new System.Drawing.Size(552, 20);
+            this.textBoxPostfisso.Size = new System.Drawing.Size(735, 22);
             this.textBoxPostfisso.TabIndex = 14;
             this.textBoxPostfisso.TextChanged += new System.EventHandler(this.textBoxPostfisso_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 61);
+            this.label3.Location = new System.Drawing.Point(12, 75);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(62, 16);
             this.label3.TabIndex = 13;
             this.label3.Text = "Postfisso";
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(204, 19);
+            this.textBoxNome.Location = new System.Drawing.Point(272, 23);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(552, 20);
+            this.textBoxNome.Size = new System.Drawing.Size(735, 22);
             this.textBoxNome.TabIndex = 16;
             this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
-            // butDefault
-            // 
-            this.butDefault.Location = new System.Drawing.Point(654, 133);
-            this.butDefault.Name = "butDefault";
-            this.butDefault.Size = new System.Drawing.Size(102, 23);
-            this.butDefault.TabIndex = 21;
-            this.butDefault.Text = "Imposta Default";
-            this.butDefault.UseVisualStyleBackColor = true;
-            this.butDefault.Click += new System.EventHandler(this.butDefault_Click);
-            // 
             // FormCreaAreaArchivio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1062, 701);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormCreaAreaArchivio";
             this.Text = "Crea Area Archivio";
             this.splitContainer1.Panel1.ResumeLayout(false);

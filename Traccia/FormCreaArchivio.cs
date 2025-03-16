@@ -38,15 +38,48 @@ namespace Traccia
         public string ArchivioNome = string.Empty;
         public string ArchivioPath = string.Empty;
         /// <summary>
+        /// Gestore per la stampa dei messaggi
+        /// </summary>
+        private CMessaggio msg = null;
+        /// <summary>
         /// Costruttore
         /// </summary>
         public FormCreaArchivio()
         {
             InitializeComponent();
+            InizializzaClasse();
 
             // Provvisosio
-            DirectoryBasePath = "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia";
+            DirectoryBasePath = "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTracciaXX";
             textBoxDirectoryBase.Text = DirectoryBasePath;
+        }
+        /// <summary>
+        /// Costruttore 2
+        /// </summary>
+        /// <param name="DirectoryBase"></param>
+        public FormCreaArchivio(string DirectoryBase)
+        {
+            InitializeComponent();
+            InizializzaClasse();
+
+            // Assegna DirectoryBase
+            textBoxDirectoryBase.Text = DirectoryBase;
+        }
+        /// <summary>
+        /// Inizilizzazione della classe
+        /// </summary>
+        private void InizializzaClasse()
+        {
+            // Definisce il gestore dei messaggi
+            msg = new CMessaggio(ref richTextBoxOutput);
+        }
+        /// <summary>
+        /// Assegna il path della directory base
+        /// </summary>
+        /// <param name="directoryBasePath"></param>
+        public void SetDirectoryBase(string directoryBasePath)
+        { 
+        
         }
         /// <summary>
         /// Seleziona la directory base di archiviazione
@@ -74,17 +107,25 @@ namespace Traccia
         {
             VerificaDirectoryBase();
         }
+        private void VerificaDirectoryBase()
+        {
+            // Recupera il path della directory base
+            string directoryBasePath = textBoxDirectoryBase.Text.Trim();
+
+            // verifica il nome del path
+            VerificaDirectoryBase(directoryBasePath);
+        }
         /// <summary>
         /// Verifica la directory base
         /// </summary>
-        private void VerificaDirectoryBase()
+        private void VerificaDirectoryBase(string directoryBasePath)
         {
             // Pone directory base falsa
             DirectoryBaseStato = false;
             DirectoryBasePath = string.Empty;
 
             // Recupera il path della directory base
-            string dirBase = textBoxDirectoryBase.Text.Trim();
+            string dirBase = directoryBasePath;
             if (dirBase.Length > 0)
             {
                 // verifica se la directory esiste
@@ -295,7 +336,11 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCrea_Click(object sender, EventArgs e)
         {
+            msg.Stampa("Genera l'archivio: " + ArchivioNome);
             GstErrori.EErrore esito = CreaArchivioClassio();
+            msg.Stampa("La generazione dell'archivio: " + ArchivioNome);
+            msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
+
         }
         /// <summary>
         /// Crea archivo nel Modo Classico
@@ -312,6 +357,35 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        ///// <summary>
+        ///// Stampa un massaggio
+        ///// </summary>
+        ///// <param name="messaggio"></param>
+        //private void StampaMessaggio(string messaggio, bool acapo= true, bool muto = false)
+        //{
+        //    if (muto)
+        //        return;
 
+        //    if (acapo)
+        //        richTextBoxOutput.AppendText("\n");
+
+        //    // stampa il messaggio
+        //    richTextBoxOutput.AppendText(messaggio);
+        //}
+        ///// <summary>
+        ///// Stampa un messaggio in funzione dell'esito
+        ///// </summary>
+        ///// <param name="messaggio"></param>
+        ///// <param name="messaggioNOK"></param>
+        ///// <param name="esito"></param>
+        ///// <param name="acapo"></param>
+        ///// <param name="muto"></param>
+        //private void StampaMessaggioEsito(string messaggio, string messaggioNOK, GstErrori.EErrore esito, bool acapo = true, bool muto = false)
+        //{
+        //    if (esito == GstErrori.EErrore.E0000_OK)
+        //        StampaMessaggio(messaggio, acapo, muto);
+        //    else
+        //        StampaMessaggio(messaggioNOK, acapo, muto);
+        //}
     }
 }

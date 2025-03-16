@@ -32,9 +32,24 @@ namespace Traccia
         /// <summary>
         /// Area Archivio
         /// </summary>
-        public EArchivioStato ArchivioStato = EArchivioStato.Indefinito;
+        public EArchivioStato AreaArchivioStato = EArchivioStato.Indefinito;
         public string AreaArchivioNome = string.Empty;
         public string AreaArchivioPath = string.Empty;
+
+        /// <summary>
+        /// Verifica l'sistenza della directory AreaArchivioPath
+        /// </summary>
+        /// <returns></returns>
+        public bool VerificaEsistenzaArchivioStato()
+        {
+            // verifica se lo stato è corretto
+            if (AreaArchivioStato != EArchivioStato.ArchivioEsiste)
+                return false;
+
+            // verifica se la directory esiste
+            DirectoryInfo dir = new DirectoryInfo(AreaArchivioPath);
+            return dir.Exists;
+        }
         /// <summary>
         /// Costruttore
         /// </summary>
@@ -65,8 +80,16 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCreaArchivio_Click(object sender, EventArgs e)
         {
-            FormCreaArchivio dlg = new FormCreaArchivio();
+            // verifica l'esistenza dell'Area Archivo
+            if (! VerificaEsistenzaArchivioStato())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, AreaArchivioPath);
+                return;
+            }
+
+            FormCreaArchivio dlg = new FormCreaArchivio(AreaArchivioPath);
             dlg.ShowDialog();
+            //dlg.Show();
         }
         /// <summary>
         /// Crea l'Area Archivio
@@ -117,9 +140,15 @@ namespace Traccia
             // verifica se la directory esiste
             DirectoryInfo dir = new DirectoryInfo(pathAreaArchivio);
             if (dir.Exists)
+            {
+                DirectoryBaseAreaArchivioStato = true;
                 SetStatoArchivio(EArchivioStato.ArchivioEsiste, nAreaArchivio, pathAreaArchivio);
+            }
             else
+            {
+                DirectoryBaseAreaArchivioStato = false;
                 SetStatoArchivio(EArchivioStato.ArchivioNonEsiste, nAreaArchivio, pathAreaArchivio);
+            }
 
             // pubblica lo stato di Area Archivio
             MostraAreaArchivio();
@@ -131,7 +160,7 @@ namespace Traccia
             textBoxPathAreaArchivio.Text = AreaArchivioPath;
 
             // colora il nome dell'archivio in funzione dell'esito della composizione
-            switch (ArchivioStato)
+            switch (AreaArchivioStato)
             {
                 default:
                 case EArchivioStato.Indefinito:
@@ -169,7 +198,7 @@ namespace Traccia
         /// <param name="path"></param>
         private void SetStatoArchivio(EArchivioStato stato, string nome = "", string path = "")
         {
-            ArchivioStato = stato;
+            AreaArchivioStato = stato;
 
             switch (stato)
             {

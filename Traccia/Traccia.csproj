@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CArchivio.cs" />
+    <Compile Include="CMessaggio.cs" />
     <Compile Include="FormCreaArchivio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +92,9 @@
     <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormArchiviaEscursione.resx">
+      <DependentUpon>FormArchiviaEscursione.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreaArchivio.resx">
       <DependentUpon>FormCreaArchivio.cs</DependentUpon>
     </EmbeddedResource>

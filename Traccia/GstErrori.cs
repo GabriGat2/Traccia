@@ -17,6 +17,7 @@ namespace Traccia
             E0000_OK = 0,
             E0001_NOK = 1,
             E0002_ValoreNonRichiesto,
+            E0003_FinestraDeiMessaggiNonDefinita,
 
             // Errori relativi alla gestione di una tabelle
             E1000_TabellaInesistente,
@@ -42,6 +43,7 @@ namespace Traccia
             E1300_NomeArchivioErrato,
             E1301_CreazioneDirectoryFallita,
             E1302_CreazioneArchivioFallita,
+            E1303_PathAreaArchivioErrata,
 
 
 
