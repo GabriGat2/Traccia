@@ -1,6 +1,6 @@
 ﻿namespace Traccia
 {
-    partial class FormCreaArchivio
+    partial class FormArchivaTraccia
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxDirectoryBase = new System.Windows.Forms.TextBox();
+            this.textBoxArchivioEscursione = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrefisso = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,7 +36,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.richTextDescrizione = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.butDirectoryBase = new System.Windows.Forms.Button();
+            this.groupBoxDirectoryArchivi = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxNomeEscursione = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxAreaBaseTraccia = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
@@ -46,15 +51,15 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.butCrea = new System.Windows.Forms.Button();
+            this.butArchiviaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butArchiviaTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBoxDirectoryArchivi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -73,14 +78,15 @@
             this.groupBoxOutput.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxDirectoryBase
+            // textBoxArchivioEscursione
             // 
-            this.textBoxDirectoryBase.Location = new System.Drawing.Point(188, 15);
-            this.textBoxDirectoryBase.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxDirectoryBase.Name = "textBoxDirectoryBase";
-            this.textBoxDirectoryBase.Size = new System.Drawing.Size(835, 22);
-            this.textBoxDirectoryBase.TabIndex = 1;
-            this.textBoxDirectoryBase.TextChanged += new System.EventHandler(this.textBoxDirectoryBase_TextChanged);
+            this.textBoxArchivioEscursione.Location = new System.Drawing.Point(188, 47);
+            this.textBoxArchivioEscursione.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxArchivioEscursione.Name = "textBoxArchivioEscursione";
+            this.textBoxArchivioEscursione.ReadOnly = true;
+            this.textBoxArchivioEscursione.Size = new System.Drawing.Size(835, 22);
+            this.textBoxArchivioEscursione.TabIndex = 1;
+            this.textBoxArchivioEscursione.TextChanged += new System.EventHandler(this.textBoxDirectoryBase_TextChanged);
             // 
             // label2
             // 
@@ -136,7 +142,7 @@
             this.richTextDescrizione.Location = new System.Drawing.Point(4, 19);
             this.richTextDescrizione.Margin = new System.Windows.Forms.Padding(4);
             this.richTextDescrizione.Name = "richTextDescrizione";
-            this.richTextDescrizione.Size = new System.Drawing.Size(1054, 144);
+            this.richTextDescrizione.Size = new System.Drawing.Size(1054, 146);
             this.richTextDescrizione.TabIndex = 8;
             this.richTextDescrizione.Text = "";
             // 
@@ -151,27 +157,76 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.butDirectoryBase);
-            this.splitContainer1.Panel1.Controls.Add(this.textBoxDirectoryBase);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBoxDirectoryArchivi);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1062, 701);
-            this.splitContainer1.SplitterDistance = 60;
+            this.splitContainer1.SplitterDistance = 90;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 9;
             // 
-            // butDirectoryBase
+            // groupBoxDirectoryArchivi
             // 
-            this.butDirectoryBase.Location = new System.Drawing.Point(32, 15);
-            this.butDirectoryBase.Margin = new System.Windows.Forms.Padding(4);
-            this.butDirectoryBase.Name = "butDirectoryBase";
-            this.butDirectoryBase.Size = new System.Drawing.Size(127, 28);
-            this.butDirectoryBase.TabIndex = 2;
-            this.butDirectoryBase.Text = "Directory Base";
-            this.butDirectoryBase.UseVisualStyleBackColor = true;
-            this.butDirectoryBase.Click += new System.EventHandler(this.butDirectoryBase_Click);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.label7);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxNomeEscursione);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.label6);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxAreaBaseTraccia);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.label1);
+            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxArchivioEscursione);
+            this.groupBoxDirectoryArchivi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxDirectoryArchivi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxDirectoryArchivi.Name = "groupBoxDirectoryArchivi";
+            this.groupBoxDirectoryArchivi.Size = new System.Drawing.Size(1062, 90);
+            this.groupBoxDirectoryArchivi.TabIndex = 0;
+            this.groupBoxDirectoryArchivi.TabStop = false;
+            this.groupBoxDirectoryArchivi.Text = "Directory Archivi";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 16);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Nome Escursione";
+            // 
+            // textBoxNomeEscursione
+            // 
+            this.textBoxNomeEscursione.Location = new System.Drawing.Point(188, 22);
+            this.textBoxNomeEscursione.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNomeEscursione.Name = "textBoxNomeEscursione";
+            this.textBoxNomeEscursione.ReadOnly = true;
+            this.textBoxNomeEscursione.Size = new System.Drawing.Size(835, 22);
+            this.textBoxNomeEscursione.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(28, 80);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 16);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Area Base Traccia";
+            // 
+            // textBoxAreaBaseTraccia
+            // 
+            this.textBoxAreaBaseTraccia.Location = new System.Drawing.Point(188, 77);
+            this.textBoxAreaBaseTraccia.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAreaBaseTraccia.Name = "textBoxAreaBaseTraccia";
+            this.textBoxAreaBaseTraccia.ReadOnly = true;
+            this.textBoxAreaBaseTraccia.Size = new System.Drawing.Size(835, 22);
+            this.textBoxAreaBaseTraccia.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Archivio Escursione";
             // 
             // splitContainer2
             // 
@@ -189,7 +244,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1062, 636);
+            this.splitContainer2.Size = new System.Drawing.Size(1062, 606);
             this.splitContainer2.SplitterDistance = 340;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
@@ -209,7 +264,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBoxDescrizione);
             this.splitContainer3.Size = new System.Drawing.Size(1062, 340);
-            this.splitContainer3.SplitterDistance = 169;
+            this.splitContainer3.SplitterDistance = 167;
             this.splitContainer3.TabIndex = 11;
             // 
             // groupBoxArchivio
@@ -225,7 +280,7 @@
             this.groupBoxArchivio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxArchivio.Location = new System.Drawing.Point(0, 0);
             this.groupBoxArchivio.Name = "groupBoxArchivio";
-            this.groupBoxArchivio.Size = new System.Drawing.Size(1062, 169);
+            this.groupBoxArchivio.Size = new System.Drawing.Size(1062, 167);
             this.groupBoxArchivio.TabIndex = 0;
             this.groupBoxArchivio.TabStop = false;
             this.groupBoxArchivio.Text = "Archivio";
@@ -267,7 +322,7 @@
             this.groupBoxDescrizione.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxDescrizione.Name = "groupBoxDescrizione";
             this.groupBoxDescrizione.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(1062, 167);
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(1062, 169);
             this.groupBoxDescrizione.TabIndex = 0;
             this.groupBoxDescrizione.TabStop = false;
             this.groupBoxDescrizione.Text = "Descrizione";
@@ -287,14 +342,13 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer4.Size = new System.Drawing.Size(1062, 291);
+            this.splitContainer4.Size = new System.Drawing.Size(1062, 261);
             this.splitContainer4.SplitterDistance = 60;
             this.splitContainer4.TabIndex = 0;
             // 
             // groupBoxComandi
             // 
             this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
-            this.groupBoxComandi.Controls.Add(this.butCrea);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
@@ -304,20 +358,20 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
-            // butCrea
+            // butArchiviaTraccia
             // 
-            this.butCrea.Location = new System.Drawing.Point(13, 22);
-            this.butCrea.Margin = new System.Windows.Forms.Padding(4);
-            this.butCrea.Name = "butCrea";
-            this.butCrea.Size = new System.Drawing.Size(184, 28);
-            this.butCrea.TabIndex = 12;
-            this.butCrea.Text = "Crea Archivio Escursione";
-            this.butCrea.UseVisualStyleBackColor = true;
-            this.butCrea.Click += new System.EventHandler(this.butCrea_Click);
+            this.butArchiviaTraccia.Location = new System.Drawing.Point(13, 22);
+            this.butArchiviaTraccia.Margin = new System.Windows.Forms.Padding(4);
+            this.butArchiviaTraccia.Name = "butArchiviaTraccia";
+            this.butArchiviaTraccia.Size = new System.Drawing.Size(135, 28);
+            this.butArchiviaTraccia.TabIndex = 12;
+            this.butArchiviaTraccia.Text = "Archivia Traccia";
+            this.butArchiviaTraccia.UseVisualStyleBackColor = true;
+            this.butArchiviaTraccia.Click += new System.EventHandler(this.butCrea_Click);
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(866, 22);
+            this.butAggiorna.Location = new System.Drawing.Point(949, 32);
             this.butAggiorna.Margin = new System.Windows.Forms.Padding(4);
             this.butAggiorna.Name = "butAggiorna";
             this.butAggiorna.Size = new System.Drawing.Size(100, 28);
@@ -332,7 +386,7 @@
             this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
             this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(1062, 227);
+            this.groupBoxOutput.Size = new System.Drawing.Size(1062, 197);
             this.groupBoxOutput.TabIndex = 0;
             this.groupBoxOutput.TabStop = false;
             this.groupBoxOutput.Text = "Output";
@@ -342,35 +396,25 @@
             this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxOutput.Location = new System.Drawing.Point(3, 18);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(1056, 206);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(1056, 176);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butArchiviaTraccia
-            // 
-            this.butArchiviaTraccia.Location = new System.Drawing.Point(215, 22);
-            this.butArchiviaTraccia.Margin = new System.Windows.Forms.Padding(4);
-            this.butArchiviaTraccia.Name = "butArchiviaTraccia";
-            this.butArchiviaTraccia.Size = new System.Drawing.Size(148, 28);
-            this.butArchiviaTraccia.TabIndex = 13;
-            this.butArchiviaTraccia.Text = "Archivia Traccia";
-            this.butArchiviaTraccia.UseVisualStyleBackColor = true;
-            this.butArchiviaTraccia.Click += new System.EventHandler(this.butArchiviaTraccia_Click);
-            // 
-            // FormCreaArchivio
+            // FormArchivaTraccia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 701);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormCreaArchivio";
-            this.Text = "Crea Archivio";
+            this.Name = "FormArchivaTraccia";
+            this.Text = "Archivia Traccia";
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBoxDirectoryArchivi.ResumeLayout(false);
+            this.groupBoxDirectoryArchivi.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -393,7 +437,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBoxDirectoryBase;
+        private System.Windows.Forms.TextBox textBoxArchivioEscursione;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrefisso;
         private System.Windows.Forms.Label label3;
@@ -403,11 +447,10 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBoxDescrizione;
-        private System.Windows.Forms.Button butDirectoryBase;
         private System.Windows.Forms.Label Label5;
         private System.Windows.Forms.TextBox textBoxArchivio;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button butCrea;
+        private System.Windows.Forms.Button butArchiviaTraccia;
         private System.Windows.Forms.Button butAggiorna;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.GroupBox groupBoxArchivio;
@@ -415,6 +458,11 @@
         private System.Windows.Forms.GroupBox groupBoxComandi;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
-        private System.Windows.Forms.Button butArchiviaTraccia;
+        private System.Windows.Forms.GroupBox groupBoxDirectoryArchivi;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxAreaBaseTraccia;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxNomeEscursione;
     }
 }

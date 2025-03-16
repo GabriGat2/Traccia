@@ -64,7 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CArchivio.cs" />
+    <Compile Include="CAreaArchivio.cs" />
     <Compile Include="CMessaggio.cs" />
+    <Compile Include="FormArchivaTraccia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchivaTraccia.Designer.cs">
+      <DependentUpon>FormArchivaTraccia.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreaArchivio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +99,9 @@
     <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormArchivaTraccia.resx">
+      <DependentUpon>FormArchivaTraccia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormArchiviaEscursione.resx">
       <DependentUpon>FormArchiviaEscursione.cs</DependentUpon>
     </EmbeddedResource>

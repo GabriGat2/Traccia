@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,39 @@ namespace Traccia
 {
     public partial class FormMain: Form
     {
+        /// <summary>
+        /// Organizzazione Ambienti
+        /// 
+        /// Area Archivio Escursioni
+        ///     Tipo
+        ///     Stato
+        ///     Path
+        ///     Nome
+        ///     Colore
+        /// 
+        /// Archivio Escursione
+        ///     Tipo
+        ///     Stato
+        ///     Path
+        ///     Nome
+        ///     Colore
+        ///  
+        /// Archivio traccia
+        ///     Tipo
+        ///     Stato
+        ///     Path
+        ///     Nome
+        ///     Colore
+        /// 
+        /// 
+        /// 
+        /// 
+        /// </summary>
+        private int pippo;
+
+
+
+
         /// <summary>
         /// Directory Base Area Archivo
         /// </summary>
@@ -35,7 +69,6 @@ namespace Traccia
         public EArchivioStato AreaArchivioStato = EArchivioStato.Indefinito;
         public string AreaArchivioNome = string.Empty;
         public string AreaArchivioPath = string.Empty;
-
         /// <summary>
         /// Verifica l'sistenza della directory AreaArchivioPath
         /// </summary>
@@ -89,7 +122,6 @@ namespace Traccia
 
             FormCreaArchivio dlg = new FormCreaArchivio(AreaArchivioPath);
             dlg.ShowDialog();
-            //dlg.Show();
         }
         /// <summary>
         /// Crea l'Area Archivio
@@ -218,6 +250,22 @@ namespace Traccia
 
             }
         }
+        /// <summary>
+        /// Apre la dialog per l'archiviazione di una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butArchiviaTraccia_Click(object sender, EventArgs e)
+        {
+            // verifica l'esistenza dell'Area Archivo
+            if (!VerificaEsistenzaArchivioStato())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, AreaArchivioPath);
+                return;
+            }
 
+            FormArchivaTraccia dlg = new FormArchivaTraccia(AreaArchivioPath);  
+            dlg.ShowDialog();
+        }
     }
 }

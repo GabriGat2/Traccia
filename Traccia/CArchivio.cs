@@ -65,6 +65,29 @@ namespace Traccia
             return true;
         }
         /// <summary>
+        /// Ricerca in SRC Archivio: Rende in path della key richiesta
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool GetSubPathSrcArchivio(string key, out string path)
+        {
+            // Esamina DirSrcArchivio
+            foreach (var dir in DirSrcArchivio)
+            {
+                if (dir.Key == key)
+                {
+                    path = dir.Path;
+                    return true;
+                }
+            }
+
+            // la chiav richiesta non esite
+            path = null;    
+            return false;
+
+        }
+        /// <summary>
         /// Definizione Directory archivio
         /// </summary>
         private List<DirectoryParziale> DirArchivio = new List<DirectoryParziale>();
@@ -83,12 +106,23 @@ namespace Traccia
             DirArchivio.Add(new DirectoryParziale("Altro",        "20-Altro"));
         }
         /// <summary>
-        /// Crea un Archivio
+        /// Crea L'archivio di una escursione
         /// </summary>
         /// <param name="pathArchivio"></param>
         /// <param name="NomeArchivio"></param>
         /// <returns></returns>
-        public bool CreaArchivio(string pathArchivio, string NomeArchivio)
+        public bool CreaArchivioEscursione(string pathArchivio, string NomeArchivio)
+        {
+            CreaDirectory(pathArchivio);
+            return true;
+        }
+        /// <summary>
+        /// Crea l'archivio di una traccia
+        /// </summary>
+        /// <param name="pathArchivio"></param>
+        /// <param name="NomeArchivio"></param>
+        /// <returns></returns>
+        public bool CreaArchivioTraccia(string pathArchivio, string NomeArchivio)
         {
             foreach (var dir in DirArchivio)
             {

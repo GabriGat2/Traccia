@@ -5,24 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Traccia
 {
-    public partial class FormCreaArchivio: Form
+    public partial class FormArchivaTraccia: Form
     {
-        /// <summary>
-        /// Speratore per path
-        /// </summary>
-        private const string SeparaDir = "\\";
-        /// <summary>
-        /// Subdirectory Archivi
-        /// </summary>
-        private string SubDirArchivi = "";
         /// <summary>
         /// Directory Base
         /// </summary>
@@ -52,26 +42,22 @@ namespace Traccia
         /// <summary>
         /// Costruttore
         /// </summary>
-        public FormCreaArchivio()
+        public FormArchivaTraccia()
         {
             InitializeComponent();
             InizializzaClasse();
-
-            // Provvisosio
-            DirectoryBasePath = "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTracciaXX";
-            textBoxDirectoryBase.Text = DirectoryBasePath;
         }
         /// <summary>
         /// Costruttore 2
         /// </summary>
         /// <param name="DirectoryBase"></param>
-        public FormCreaArchivio(string DirectoryBase)
+        public FormArchivaTraccia(string DirectoryBase)
         {
             InitializeComponent();
             InizializzaClasse();
 
             // Assegna DirectoryBase
-            textBoxDirectoryBase.Text = DirectoryBase;
+            textBoxArchivioEscursione.Text = DirectoryBase;
         }
         /// <summary>
         /// Inizilizzazione della classe
@@ -80,18 +66,14 @@ namespace Traccia
         {
             // Definisce il gestore dei messaggi
             msg = new CMessaggio(ref richTextBoxOutput);
-
-            // recupera la subdirectory di archiviazione escursioni
-            CArchivio archivio = new CArchivio();
-            archivio.GetSubPathSrcArchivio("Archivi", out SubDirArchivi);
         }
         /// <summary>
         /// Assegna il path della directory base
         /// </summary>
         /// <param name="directoryBasePath"></param>
         public void SetDirectoryBase(string directoryBasePath)
-        { 
-        
+        {
+
         }
         /// <summary>
         /// Il path della directory base è cambiato
@@ -105,7 +87,7 @@ namespace Traccia
         private void VerificaDirectoryBase()
         {
             // Recupera il path della directory base
-            string directoryBasePath = textBoxDirectoryBase.Text.Trim();
+            string directoryBasePath = textBoxArchivioEscursione.Text.Trim();
 
             // verifica il nome del path
             VerificaDirectoryBase(directoryBasePath);
@@ -135,31 +117,14 @@ namespace Traccia
             // colora il nome della directorybase
             if (DirectoryBaseStato)
             {
-                textBoxDirectoryBase.BackColor = Color.LightGreen;
+                textBoxArchivioEscursione.BackColor = Color.LightGreen;
             }
             else
-                textBoxDirectoryBase.BackColor = Color.LightPink;
+                textBoxArchivioEscursione.BackColor = Color.LightPink;
 
 
             // verifica Archivio
             VerificaPathArchivio();
-        }
-        /// <summary>
-        /// Seleziona la directory base di archiviazione
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void butDirectoryBase_Click(object sender, EventArgs e)
-        {
-            // seleziona la direcory base
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                textBoxDirectoryBase.Text = dlg.SelectedPath;
-            }
-
-            // verifica se la directory esiste
-            VerificaDirectoryBase();
         }
         /// <summary>
         /// Aggiorna il nome dell'archivio
@@ -176,7 +141,7 @@ namespace Traccia
         /// <param name="stato"></param>
         /// <param name="nome"></param>
         /// <param name="path"></param>
-        private void SetStatoArchivio(EArchivioStato stato, string nome = "", string path = "" )
+        private void SetStatoArchivio(EArchivioStato stato, string nome = "", string path = "")
         {
             ArchivioStato = stato;
 
@@ -201,7 +166,7 @@ namespace Traccia
         /// <summary>
         /// Verifica il path dell'archivio
         /// </summary>
-        private void VerificaPathArchivio ()
+        private void VerificaPathArchivio()
         {
             // resetta lo stato dell'archivio
             SetStatoArchivio(EArchivioStato.Indefinito);
@@ -269,7 +234,7 @@ namespace Traccia
                 if (DirectoryBaseStato)
                 {
                     // compone il path della directory
-                    string pathArchivio = DirectoryBasePath + SeparaDir + SubDirArchivi + SeparaDir + nArchivio;
+                    string pathArchivio = DirectoryBasePath + '\\' + nArchivio;
 
                     // verifica se la directory esiste
                     DirectoryInfo dir = new DirectoryInfo(pathArchivio);
@@ -282,7 +247,7 @@ namespace Traccia
                 }
                 else
                 {
-                    SetStatoArchivio(EArchivioStato.DirBaseNonEsiste); 
+                    SetStatoArchivio(EArchivioStato.DirBaseNonEsiste);
                 }
             }
             else
@@ -296,9 +261,9 @@ namespace Traccia
                 case EArchivioStato.Indefinito:
                     textBoxArchivio.BackColor = Color.White;
                     break;
-                    
+
                 case EArchivioStato.DirBaseNonEsiste:
-                    textBoxArchivio.BackColor = Color.Red;
+                    textBoxArchivio.BackColor = Color.Yellow;
                     break;
 
                 case EArchivioStato.NomeArchivioErrato:
@@ -306,11 +271,11 @@ namespace Traccia
                     break;
 
                 case EArchivioStato.ArchivioEsiste:
-                    textBoxArchivio.BackColor = Color.LightGreen;
+                    textBoxArchivio.BackColor = Color.Turquoise;
                     break;
 
                 case EArchivioStato.ArchivioNonEsiste:
-                    textBoxArchivio.BackColor = Color.Yellow;
+                    textBoxArchivio.BackColor = Color.LightGreen;
                     break;
             }
         }
@@ -348,62 +313,28 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCrea_Click(object sender, EventArgs e)
         {
-            // Crea l'archivio per un escursine
             msg.Stampa("Genera l'archivio: " + ArchivioNome);
 
-            GstErrori.EErrore esito = CreaArchivioEscursione();
+            GstErrori.EErrore esito = ArchiviaTraccia();
 
             msg.Stampa("La generazione dell'archivio: " + ArchivioNome);
-            msg.StampaConEsito(" è stata  eseguita", " è FALLITA!", esito, false);
+            msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
 
         }
         /// <summary>
-        /// Crea archivo dell'escursione
+        /// ArchiviaTraccia
         /// </summary>
-        private GstErrori.EErrore CreaArchivioEscursione()
+        private GstErrori.EErrore ArchiviaTraccia()
         {
             // verifica che ci siano le condizioni per creare la directory
             if (ArchivioStato != EArchivioStato.ArchivioNonEsiste)
                 return GstErrori.EErrore.E1300_NomeArchivioErrato;
 
             CArchivio archivio = new CArchivio();
-            archivio.CreaArchivioEscursione(ArchivioPath, ArchivioNome);
+            archivio.CreaArchivioTraccia(ArchivioPath, ArchivioNome);
 
-            // Verifica se l'archivio è stato creato correttamente
-            VerificaPathArchivio();
 
             return GstErrori.EErrore.E0000_OK;
-        }
-        /// <summary>
-        /// Apre la dialog per achiviare le tracce di una escursione
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void butArchiviaTraccia_Click(object sender, EventArgs e)
-        {
-            // verifica l'esistenza dell'Area Archivo
-            if (! VerificaEsistenzaArchivioStato())
-            {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, ArchivioPath);
-                return;
-            }
-
-            FormArchivaTraccia dlg = new FormArchivaTraccia(ArchivioPath);
-            dlg.ShowDialog();
-        }
-        /// <summary>
-        /// Verifica l'sistenza della directory AreaArchivioPath
-        /// </summary>
-        /// <returns></returns>
-        public bool VerificaEsistenzaArchivioStato()
-        {
-            // verifica se lo stato è corretto
-            if (ArchivioStato != EArchivioStato.ArchivioEsiste)
-                return false;
-
-            // verifica se la directory esiste
-            DirectoryInfo dir = new DirectoryInfo(ArchivioPath);
-            return dir.Exists;
         }
 
     }
