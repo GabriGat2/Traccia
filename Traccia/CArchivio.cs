@@ -1,173 +1,250 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Traccia
 {
     public class CArchivio
     {
-        /// <summary>
-        /// Directory base della archiviazione traccia
-        /// </summary>
-        private string DirArchvioBase = "ArchiviaTracce";
+        public enum EArchivioStato
+        {
+            Indefinito,                 // 0                       
+            DirBaseNonEsiste,           // 1
+            NomeArchivioErrato,         // 2     
+            ArchivioEsiste,             // 3   
+            ArchivioNonEsiste           // 4
+        };
 
         /// <summary>
         /// Speratore per path
         /// </summary>
-        private const string SeparaDir = "\\";
+        protected const string SeparaDir = "\\";
+        /// <summary>
+        /// Stato dell'archivio
+        /// </summary>
+        protected EArchivioStato stato = EArchivioStato.Indefinito;
+        //public EArchivioStato Stato { get => stato; }
+        public EArchivioStato Stato { get => Aggiorna(); }
+
+        /// <summary>
+        /// Colore dello stato dell'archivio
+        /// </summary>
+        public Color Colore { get => ColoreStato(Aggiorna()); }
+
+        /// <summary>
+        /// Nome dell'archivio
+        /// </summary>
+        protected string nome = string.Empty;
+        public string Nome {get => nome; set => AssegnaNome(value); }
+
+        /// <summary>
+        /// Path dell'archivio
+        /// </summary>
+        protected string path = string.Empty;
+        public string Path { get => path; }
+
+        /// <summary>
+        /// Path base dell'archivio
+        /// </summary>
+        private string pathBase = string.Empty;
+        public string PathBase { get => pathBase; set => AssegnaPathBase(value); }
+
+
         /// <summary>
         /// Costruttore
         /// </summary>
-        public CArchivio ()
+        public CArchivio() 
         {
-            PopolaDirSrcArchivio();
-            PopolaDirArchivio();
+            InizializzaClasse();
         }
-
-
-        private List<DirectoryParziale> DirSrcArchivio = new List<DirectoryParziale>();
-        private void PopolaDirSrcArchivio()
+        protected void InizializzaClasse ()
         {
-            DirSrcArchivio.Add(new DirectoryParziale("Base",    "01-Base"));
-            DirSrcArchivio.Add(new DirectoryParziale("Comune",  "02-Comune"));
-
-            DirSrcArchivio.Add(new DirectoryParziale("JPEG",    "10-JPEG"));
-            DirSrcArchivio.Add(new DirectoryParziale("HEIC",    "11-HEIC"));
-            DirSrcArchivio.Add(new DirectoryParziale("RAW",     "12-RAW"));
-
-            DirSrcArchivio.Add(new DirectoryParziale("Altro",   "20-Altro"));
-
-            DirSrcArchivio.Add(new DirectoryParziale("Archivi", "30-Archivi"));
+            // Estrae la subdirectory degli archivi
+            CArchivioDirectory Arch = new CArchivioDirectory();
+            Arch.GetSubPathSrcArchivio("Archivi", out string SubDirArchivi);
         }
         /// <summary>
-        /// Crea l'archivio SRC
+        /// Assegna il path base
         /// </summary>
-        /// <param name="pathArchivio"></param>
-        /// <param name="NomeArchivio"></param>
-        /// <returns></returns>
-        public bool CreaSrcArchivio(string pathArchivio, string NomeArchivio)
+        /// <param name="value"></param>
+        public void AssegnaPathBase(string value)
         {
-            // Crea la directory Dell'archivo
-            CreaDirectory(pathArchivio);
+            // assegna
+            pathBase = value;
 
-            // crea le directory sorgenti nell'archivio
-            foreach (var dir in DirSrcArchivio)
+            // Aggiorna lo stato dei campi
+            Aggiorna();
+        }
+        /// <summary>
+        /// assegna il nome dell'archivio
+        /// </summary>
+        /// <param name="value"></param>
+        public void AssegnaNome(string value)
+        {
+            // assegna il nome
+            nome = value;
+
+            // Aggiorna lo stato dei campi
+            Aggiorna();
+        }
+        /// <summary>
+        /// Aggiorna lo stato dei campi
+        /// </summary>
+        /// <returns></returns>
+        public virtual EArchivioStato Aggiorna()
+        {
+            // Verifica se esiste il pathBase
+            if (!VerificaEsistenzaDirectory(pathBase))
             {
-                string path = pathArchivio + SeparaDir + dir.Path;
-                CreaDirectory(path);
+                path = string.Empty;
+                stato = EArchivioStato.DirBaseNonEsiste;
+                return stato;
             }
 
-            return true;
+            // verifica il nome
+            if (!VerificaNome())
+                return stato;
+            
+            // Compone il path
+            ComponePath();
+
+            // verifica se la directory path esiste 
+            if (VerificaEsistenzaDirectory(path))
+                stato = EArchivioStato.ArchivioEsiste;
+            else
+                stato = EArchivioStato.ArchivioNonEsiste;
+
+            return stato; 
+        }   
+        /// <summary>
+        /// Compone la directory path
+        /// ATTENZIONE è obbligatorio fare l'override di questa funzione
+        /// </summary>
+        protected virtual void ComponePath()
+        {
+            GstErrori.StampaMessaggioErrore
+            (
+                GstErrori.EErrore.E0004_QuestaFunzioneNonPuoEssereChiamataFareOverride,
+                "E' obbligatorio fare l'override della funzione: ComponePath"
+            );
+
+            //path = pathBase + SeparaDir + nome;
         }
         /// <summary>
-        /// Ricerca in SRC Archivio: Rende in path della key richiesta
+        /// Verifica l'esitenza della directory
         /// </summary>
-        /// <param name="key"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public bool GetSubPathSrcArchivio(string key, out string path)
+        protected bool VerificaEsistenzaDirectory(string path)
         {
-            // Esamina DirSrcArchivio
-            foreach (var dir in DirSrcArchivio)
+            // verifica se la directory esiste
+            DirectoryInfo dir = new DirectoryInfo(path);
+            return dir.Exists;
+        }
+        /// <summary>
+        /// Rende il colore dello stato dell'archivio
+        /// </summary>
+        /// <returns></returns>
+        public Color ColoreStato(EArchivioStato lStato)
+        {
+            Color colore;
+
+            // colora il nome dell'archivio in funzione dell'esito della composizione
+            switch (lStato)
             {
-                if (dir.Key == key)
+                default:
+                case EArchivioStato.Indefinito:
+                    colore = Color.White;
+                    break;
+
+                case EArchivioStato.DirBaseNonEsiste:
+                    colore = Color.Red;
+                    break;
+
+                case EArchivioStato.NomeArchivioErrato:
+                    colore = Color.LightPink;
+                    break;
+
+                case EArchivioStato.ArchivioEsiste:
+                    colore = Color.LightGreen;
+                    break;
+
+                case EArchivioStato.ArchivioNonEsiste:
+                    colore = Color.Yellow;
+                    break;
+            }
+
+            return colore;
+        }
+        /// <summary>
+        /// Torna vero se l'archivio esiste
+        /// </summary>
+        /// <returns></returns>
+        public bool StatoOk()
+        {
+            return stato == EArchivioStato.ArchivioEsiste;
+        }
+        /// <summary>
+        /// Verifica la composizione del nome
+        /// </summary>
+        /// <returns></returns>
+        protected bool VerificaNome()
+        {
+            // verifica il nome
+            if (nome.Length == 0)
+            {
+                path = string.Empty;
+                stato = EArchivioStato.NomeArchivioErrato;
+                return false;
+            }
+            else
+            {
+                // verifica che nel nome non ci siano spazi o '?'
+                string[] campi = nome.Split(new char[] { ' ', '?' });
+                if (campi.Length != 1)
                 {
-                    path = dir.Path;
-                    return true;
+                    path = string.Empty;
+                    stato = EArchivioStato.NomeArchivioErrato;
+                    return false;
                 }
             }
 
-            // la chiav richiesta non esite
-            path = null;    
-            return false;
-
-        }
-        /// <summary>
-        /// Definizione Directory archivio
-        /// </summary>
-        private List<DirectoryParziale> DirArchivio = new List<DirectoryParziale>();
-        private void PopolaDirArchivio()
-        {
-            DirArchivio.Add(new DirectoryParziale("Stampe",       "01-Stampe"));
-            DirArchivio.Add(new DirectoryParziale("Resoconto",    "02-Resoconto"));
-            DirArchivio.Add(new DirectoryParziale("Tracce",       "03-Tracce"));
-            DirArchivio.Add(new DirectoryParziale("Info",         "04-Info"));
-            DirArchivio.Add(new DirectoryParziale("PerRifInfo",   "05-PercorsoDiRiferimento"));
-
-            DirArchivio.Add(new DirectoryParziale("JPEG",         "10-JPEG"));
-            DirArchivio.Add(new DirectoryParziale("HEIC",         "11-HEIC"));
-            DirArchivio.Add(new DirectoryParziale("RAW",          "12-RAW"));
-
-            DirArchivio.Add(new DirectoryParziale("Altro",        "20-Altro"));
-        }
-        /// <summary>
-        /// Crea L'archivio di una escursione
-        /// </summary>
-        /// <param name="pathArchivio"></param>
-        /// <param name="NomeArchivio"></param>
-        /// <returns></returns>
-        public bool CreaArchivioEscursione(string pathArchivio, string NomeArchivio)
-        {
-            CreaDirectory(pathArchivio);
             return true;
         }
         /// <summary>
-        /// Crea l'archivio di una traccia
+        /// Estra un campo dal nome
         /// </summary>
-        /// <param name="pathArchivio"></param>
-        /// <param name="NomeArchivio"></param>
+        /// <param name="indice"></param>
         /// <returns></returns>
-        public bool CreaArchivioTraccia(string pathArchivio, string NomeArchivio)
+        protected string GetCampo(int indice)
         {
-            foreach (var dir in DirArchivio)
-            {
-                string path = pathArchivio + SeparaDir + dir.Path;
-                CreaDirectory(path);
-            }
+            // scompone nome
+            string[] campi = nome.Split('_');
 
-            return true;
+            // verifica indice
+            if (indice < campi.Length)
+                return campi[indice];
+            else
+                return string.Empty;
         }
         /// <summary>
-        /// Crea una directory
+        /// Azzera il Nome e di conseguenza tutte le informazioni della traccia
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="muto"></param>
-        /// <returns></returns>
-        private bool CreaDirectory(string path, bool muto = false)
+        public void ClearNome()
         {
-            // crea la directory
-            DirectoryInfo dir = Directory.CreateDirectory(path);
-            if (dir.Exists)
-                return true;
-
-
-            // la creazione della directory è fallita stampa l'esito
-            if (!muto)
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1301_CreazioneDirectoryFallita, path);
-
-            return false;
+            Nome = string.Empty;
         }
-    }
-    // ======================================================================================================================
-    // ======================================================================================================================
-    // ======================================================================================================================
-    /// <summary>
-    /// Classe Directory parziale
-    /// </summary>
-    public class DirectoryParziale
-    {
-        public string Key { get; set; }
-        public string Path { get; set; }
-
-        public DirectoryParziale(string key, string path)
+        /// <summary>
+        /// Crea le directory dell'archivio
+        /// </summary>
+        /// <returns></returns>
+        public virtual GstErrori.EErrore CreaDirectoryArchivio()
         {
-            Key = key;
-            Path = path;
+            return GstErrori.EErrore.E0001_NOK;
         }
     }
 }

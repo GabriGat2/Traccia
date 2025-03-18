@@ -1,6 +1,6 @@
 ﻿namespace Traccia
 {
-    partial class FormArchivaTraccia
+    partial class FormArchivoTraccia
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxArchivioEscursione = new System.Windows.Forms.TextBox();
+            this.textBoxPathEscursione = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrefisso = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,21 +36,26 @@
             this.label4 = new System.Windows.Forms.Label();
             this.richTextDescrizione = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBoxDirectoryArchivi = new System.Windows.Forms.GroupBox();
+            this.groupBoxEscursione = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxNomeEscursione = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxAreaBaseTraccia = new System.Windows.Forms.TextBox();
+            this.textBoxPathInputDati = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
+            this.groupBoxTraccia = new System.Windows.Forms.GroupBox();
+            this.comboBoxMezzo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxLettera = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Label5 = new System.Windows.Forms.Label();
             this.textBoxArchivio = new System.Windows.Forms.TextBox();
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butCreaTraccia = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
@@ -59,7 +64,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBoxDirectoryArchivi.SuspendLayout();
+            this.groupBoxEscursione.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -68,7 +73,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.groupBoxArchivio.SuspendLayout();
+            this.groupBoxTraccia.SuspendLayout();
             this.groupBoxDescrizione.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
@@ -78,240 +83,271 @@
             this.groupBoxOutput.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxArchivioEscursione
+            // textBoxPathEscursione
             // 
-            this.textBoxArchivioEscursione.Location = new System.Drawing.Point(188, 47);
-            this.textBoxArchivioEscursione.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxArchivioEscursione.Name = "textBoxArchivioEscursione";
-            this.textBoxArchivioEscursione.ReadOnly = true;
-            this.textBoxArchivioEscursione.Size = new System.Drawing.Size(835, 22);
-            this.textBoxArchivioEscursione.TabIndex = 1;
-            this.textBoxArchivioEscursione.TextChanged += new System.EventHandler(this.textBoxDirectoryBase_TextChanged);
+            this.textBoxPathEscursione.Location = new System.Drawing.Point(141, 38);
+            this.textBoxPathEscursione.Name = "textBoxPathEscursione";
+            this.textBoxPathEscursione.ReadOnly = true;
+            this.textBoxPathEscursione.Size = new System.Drawing.Size(627, 20);
+            this.textBoxPathEscursione.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 30);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(21, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 16);
+            this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Data";
             // 
             // textBoxPrefisso
             // 
-            this.textBoxPrefisso.Location = new System.Drawing.Point(188, 54);
-            this.textBoxPrefisso.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPrefisso.Location = new System.Drawing.Point(141, 44);
             this.textBoxPrefisso.Name = "textBoxPrefisso";
-            this.textBoxPrefisso.Size = new System.Drawing.Size(835, 22);
+            this.textBoxPrefisso.Size = new System.Drawing.Size(627, 20);
             this.textBoxPrefisso.TabIndex = 5;
             this.textBoxPrefisso.TextChanged += new System.EventHandler(this.textBoxPrefisso_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 62);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(21, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 16);
+            this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Prefisso";
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(188, 86);
-            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNome.Location = new System.Drawing.Point(141, 70);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(835, 22);
+            this.textBoxNome.Size = new System.Drawing.Size(627, 20);
             this.textBoxNome.TabIndex = 7;
             this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 94);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(21, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 16);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Nome";
             // 
             // richTextDescrizione
             // 
             this.richTextDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextDescrizione.Location = new System.Drawing.Point(4, 19);
-            this.richTextDescrizione.Margin = new System.Windows.Forms.Padding(4);
+            this.richTextDescrizione.Location = new System.Drawing.Point(3, 16);
             this.richTextDescrizione.Name = "richTextDescrizione";
-            this.richTextDescrizione.Size = new System.Drawing.Size(1054, 146);
+            this.richTextDescrizione.Size = new System.Drawing.Size(790, 128);
             this.richTextDescrizione.TabIndex = 8;
             this.richTextDescrizione.Text = "";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBoxDirectoryArchivi);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBoxEscursione);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1062, 701);
+            this.splitContainer1.Size = new System.Drawing.Size(796, 570);
             this.splitContainer1.SplitterDistance = 90;
-            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 9;
             // 
-            // groupBoxDirectoryArchivi
+            // groupBoxEscursione
             // 
-            this.groupBoxDirectoryArchivi.Controls.Add(this.label7);
-            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxNomeEscursione);
-            this.groupBoxDirectoryArchivi.Controls.Add(this.label6);
-            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxAreaBaseTraccia);
-            this.groupBoxDirectoryArchivi.Controls.Add(this.label1);
-            this.groupBoxDirectoryArchivi.Controls.Add(this.textBoxArchivioEscursione);
-            this.groupBoxDirectoryArchivi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxDirectoryArchivi.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxDirectoryArchivi.Name = "groupBoxDirectoryArchivi";
-            this.groupBoxDirectoryArchivi.Size = new System.Drawing.Size(1062, 90);
-            this.groupBoxDirectoryArchivi.TabIndex = 0;
-            this.groupBoxDirectoryArchivi.TabStop = false;
-            this.groupBoxDirectoryArchivi.Text = "Directory Archivi";
+            this.groupBoxEscursione.Controls.Add(this.label7);
+            this.groupBoxEscursione.Controls.Add(this.textBoxNomeEscursione);
+            this.groupBoxEscursione.Controls.Add(this.label6);
+            this.groupBoxEscursione.Controls.Add(this.textBoxPathInputDati);
+            this.groupBoxEscursione.Controls.Add(this.label1);
+            this.groupBoxEscursione.Controls.Add(this.textBoxPathEscursione);
+            this.groupBoxEscursione.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxEscursione.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxEscursione.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxEscursione.Name = "groupBoxEscursione";
+            this.groupBoxEscursione.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxEscursione.Size = new System.Drawing.Size(796, 90);
+            this.groupBoxEscursione.TabIndex = 0;
+            this.groupBoxEscursione.TabStop = false;
+            this.groupBoxEscursione.Text = "Escursione";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 25);
+            this.label7.Location = new System.Drawing.Point(21, 20);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 16);
+            this.label7.Size = new System.Drawing.Size(90, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Nome Escursione";
             // 
             // textBoxNomeEscursione
             // 
-            this.textBoxNomeEscursione.Location = new System.Drawing.Point(188, 22);
-            this.textBoxNomeEscursione.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNomeEscursione.Location = new System.Drawing.Point(141, 18);
             this.textBoxNomeEscursione.Name = "textBoxNomeEscursione";
             this.textBoxNomeEscursione.ReadOnly = true;
-            this.textBoxNomeEscursione.Size = new System.Drawing.Size(835, 22);
+            this.textBoxNomeEscursione.Size = new System.Drawing.Size(627, 20);
             this.textBoxNomeEscursione.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 80);
+            this.label6.Location = new System.Drawing.Point(21, 65);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 16);
+            this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Area Base Traccia";
+            this.label6.Text = "Path Input Dati";
             // 
-            // textBoxAreaBaseTraccia
+            // textBoxPathInputDati
             // 
-            this.textBoxAreaBaseTraccia.Location = new System.Drawing.Point(188, 77);
-            this.textBoxAreaBaseTraccia.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxAreaBaseTraccia.Name = "textBoxAreaBaseTraccia";
-            this.textBoxAreaBaseTraccia.ReadOnly = true;
-            this.textBoxAreaBaseTraccia.Size = new System.Drawing.Size(835, 22);
-            this.textBoxAreaBaseTraccia.TabIndex = 3;
+            this.textBoxPathInputDati.Location = new System.Drawing.Point(141, 63);
+            this.textBoxPathInputDati.Name = "textBoxPathInputDati";
+            this.textBoxPathInputDati.ReadOnly = true;
+            this.textBoxPathInputDati.Size = new System.Drawing.Size(627, 20);
+            this.textBoxPathInputDati.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 50);
+            this.label1.Location = new System.Drawing.Point(21, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 16);
+            this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Archivio Escursione";
+            this.label1.Text = "Path Escursione";
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
+            this.splitContainer2.Panel1MinSize = 50;
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(1062, 606);
-            this.splitContainer2.SplitterDistance = 340;
-            this.splitContainer2.SplitterWidth = 5;
+            this.splitContainer2.Size = new System.Drawing.Size(796, 476);
+            this.splitContainer2.SplitterDistance = 290;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.groupBoxArchivio);
+            this.splitContainer3.Panel1.Controls.Add(this.groupBoxTraccia);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBoxDescrizione);
-            this.splitContainer3.Size = new System.Drawing.Size(1062, 340);
-            this.splitContainer3.SplitterDistance = 167;
+            this.splitContainer3.Size = new System.Drawing.Size(796, 290);
+            this.splitContainer3.SplitterDistance = 140;
+            this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 11;
             // 
-            // groupBoxArchivio
+            // groupBoxTraccia
             // 
-            this.groupBoxArchivio.Controls.Add(this.dateTimePicker1);
-            this.groupBoxArchivio.Controls.Add(this.Label5);
-            this.groupBoxArchivio.Controls.Add(this.textBoxPrefisso);
-            this.groupBoxArchivio.Controls.Add(this.label3);
-            this.groupBoxArchivio.Controls.Add(this.textBoxArchivio);
-            this.groupBoxArchivio.Controls.Add(this.label2);
-            this.groupBoxArchivio.Controls.Add(this.textBoxNome);
-            this.groupBoxArchivio.Controls.Add(this.label4);
-            this.groupBoxArchivio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxArchivio.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxArchivio.Name = "groupBoxArchivio";
-            this.groupBoxArchivio.Size = new System.Drawing.Size(1062, 167);
-            this.groupBoxArchivio.TabIndex = 0;
-            this.groupBoxArchivio.TabStop = false;
-            this.groupBoxArchivio.Text = "Archivio";
+            this.groupBoxTraccia.Controls.Add(this.comboBoxMezzo);
+            this.groupBoxTraccia.Controls.Add(this.label9);
+            this.groupBoxTraccia.Controls.Add(this.comboBoxLettera);
+            this.groupBoxTraccia.Controls.Add(this.label8);
+            this.groupBoxTraccia.Controls.Add(this.dateTimePicker1);
+            this.groupBoxTraccia.Controls.Add(this.Label5);
+            this.groupBoxTraccia.Controls.Add(this.textBoxPrefisso);
+            this.groupBoxTraccia.Controls.Add(this.label3);
+            this.groupBoxTraccia.Controls.Add(this.textBoxArchivio);
+            this.groupBoxTraccia.Controls.Add(this.label2);
+            this.groupBoxTraccia.Controls.Add(this.textBoxNome);
+            this.groupBoxTraccia.Controls.Add(this.label4);
+            this.groupBoxTraccia.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxTraccia.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxTraccia.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxTraccia.Name = "groupBoxTraccia";
+            this.groupBoxTraccia.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxTraccia.Size = new System.Drawing.Size(796, 140);
+            this.groupBoxTraccia.TabIndex = 0;
+            this.groupBoxTraccia.TabStop = false;
+            this.groupBoxTraccia.Text = "Traccia";
+            // 
+            // comboBoxMezzo
+            // 
+            this.comboBoxMezzo.FormattingEnabled = true;
+            this.comboBoxMezzo.Location = new System.Drawing.Point(471, 16);
+            this.comboBoxMezzo.Name = "comboBoxMezzo";
+            this.comboBoxMezzo.Size = new System.Drawing.Size(297, 21);
+            this.comboBoxMezzo.TabIndex = 14;
+            this.comboBoxMezzo.SelectedValueChanged += new System.EventHandler(this.comboBoxMezzo_SelectedValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(407, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "Mezzo";
+            // 
+            // comboBoxLettera
+            // 
+            this.comboBoxLettera.FormattingEnabled = true;
+            this.comboBoxLettera.Location = new System.Drawing.Point(340, 16);
+            this.comboBoxLettera.Name = "comboBoxLettera";
+            this.comboBoxLettera.Size = new System.Drawing.Size(46, 21);
+            this.comboBoxLettera.TabIndex = 12;
+            this.comboBoxLettera.SelectedIndexChanged += new System.EventHandler(this.comboBoxLettera_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(284, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Lettera";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(188, 22);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(141, 18);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(115, 20);
             this.dateTimePicker1.TabIndex = 8;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // Label5
             // 
             this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(28, 127);
-            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label5.Location = new System.Drawing.Point(21, 103);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(55, 16);
+            this.Label5.Size = new System.Drawing.Size(45, 13);
             this.Label5.TabIndex = 9;
             this.Label5.Text = "Archivio";
             // 
             // textBoxArchivio
             // 
-            this.textBoxArchivio.Location = new System.Drawing.Point(188, 127);
-            this.textBoxArchivio.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxArchivio.Location = new System.Drawing.Point(141, 96);
             this.textBoxArchivio.Name = "textBoxArchivio";
             this.textBoxArchivio.ReadOnly = true;
-            this.textBoxArchivio.Size = new System.Drawing.Size(835, 22);
+            this.textBoxArchivio.Size = new System.Drawing.Size(627, 20);
             this.textBoxArchivio.TabIndex = 10;
             // 
             // groupBoxDescrizione
@@ -319,10 +355,8 @@
             this.groupBoxDescrizione.Controls.Add(this.richTextDescrizione);
             this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxDescrizione.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxDescrizione.Name = "groupBoxDescrizione";
-            this.groupBoxDescrizione.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(1062, 169);
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 147);
             this.groupBoxDescrizione.TabIndex = 0;
             this.groupBoxDescrizione.TabStop = false;
             this.groupBoxDescrizione.Text = "Descrizione";
@@ -330,8 +364,8 @@
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -342,39 +376,50 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer4.Size = new System.Drawing.Size(1062, 261);
+            this.splitContainer4.Size = new System.Drawing.Size(796, 182);
             this.splitContainer4.SplitterDistance = 60;
+            this.splitContainer4.SplitterWidth = 3;
             this.splitContainer4.TabIndex = 0;
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
             this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxComandi.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Size = new System.Drawing.Size(1062, 60);
+            this.groupBoxComandi.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxComandi.Size = new System.Drawing.Size(796, 60);
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butCreaTraccia
+            // 
+            this.butCreaTraccia.Location = new System.Drawing.Point(10, 18);
+            this.butCreaTraccia.Name = "butCreaTraccia";
+            this.butCreaTraccia.Size = new System.Drawing.Size(145, 23);
+            this.butCreaTraccia.TabIndex = 13;
+            this.butCreaTraccia.Text = "Crea Archivio Traccia";
+            this.butCreaTraccia.UseVisualStyleBackColor = true;
+            this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
+            // 
             // butArchiviaTraccia
             // 
-            this.butArchiviaTraccia.Location = new System.Drawing.Point(13, 22);
-            this.butArchiviaTraccia.Margin = new System.Windows.Forms.Padding(4);
+            this.butArchiviaTraccia.Location = new System.Drawing.Point(214, 18);
             this.butArchiviaTraccia.Name = "butArchiviaTraccia";
-            this.butArchiviaTraccia.Size = new System.Drawing.Size(135, 28);
+            this.butArchiviaTraccia.Size = new System.Drawing.Size(101, 23);
             this.butArchiviaTraccia.TabIndex = 12;
             this.butArchiviaTraccia.Text = "Archivia Traccia";
             this.butArchiviaTraccia.UseVisualStyleBackColor = true;
-            this.butArchiviaTraccia.Click += new System.EventHandler(this.butCrea_Click);
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(949, 32);
-            this.butAggiorna.Margin = new System.Windows.Forms.Padding(4);
+            this.butAggiorna.Location = new System.Drawing.Point(712, 26);
             this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(100, 28);
+            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
             this.butAggiorna.TabIndex = 11;
             this.butAggiorna.Text = "Aggiorna";
             this.butAggiorna.UseVisualStyleBackColor = true;
@@ -385,8 +430,10 @@
             this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
             this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(1062, 197);
+            this.groupBoxOutput.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxOutput.Size = new System.Drawing.Size(796, 119);
             this.groupBoxOutput.TabIndex = 0;
             this.groupBoxOutput.TabStop = false;
             this.groupBoxOutput.Text = "Output";
@@ -394,27 +441,27 @@
             // richTextBoxOutput
             // 
             this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 18);
+            this.richTextBoxOutput.Location = new System.Drawing.Point(2, 15);
+            this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(1056, 176);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 102);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // FormArchivaTraccia
+            // FormArchivoTraccia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 701);
+            this.ClientSize = new System.Drawing.Size(796, 570);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormArchivaTraccia";
-            this.Text = "Archivia Traccia";
+            this.Name = "FormArchivoTraccia";
+            this.Text = "Archivio Traccia";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBoxDirectoryArchivi.ResumeLayout(false);
-            this.groupBoxDirectoryArchivi.PerformLayout();
+            this.groupBoxEscursione.ResumeLayout(false);
+            this.groupBoxEscursione.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -423,8 +470,8 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.groupBoxArchivio.ResumeLayout(false);
-            this.groupBoxArchivio.PerformLayout();
+            this.groupBoxTraccia.ResumeLayout(false);
+            this.groupBoxTraccia.PerformLayout();
             this.groupBoxDescrizione.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
@@ -437,7 +484,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBoxArchivioEscursione;
+        private System.Windows.Forms.TextBox textBoxPathEscursione;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrefisso;
         private System.Windows.Forms.Label label3;
@@ -453,16 +500,21 @@
         private System.Windows.Forms.Button butArchiviaTraccia;
         private System.Windows.Forms.Button butAggiorna;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.GroupBox groupBoxArchivio;
+        private System.Windows.Forms.GroupBox groupBoxTraccia;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.GroupBox groupBoxComandi;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
-        private System.Windows.Forms.GroupBox groupBoxDirectoryArchivi;
+        private System.Windows.Forms.GroupBox groupBoxEscursione;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxAreaBaseTraccia;
+        private System.Windows.Forms.TextBox textBoxPathInputDati;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxNomeEscursione;
+        private System.Windows.Forms.Button butCreaTraccia;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBoxLettera;
+        private System.Windows.Forms.ComboBox comboBoxMezzo;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -1,0 +1,246 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Security;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace Traccia
+{
+    public partial class FormArchivioEscursione: Form
+    {
+        /// <summary>
+        /// Archivio Traccia
+        /// </summary>
+        public CArchivioTraccia Traccia;
+        /// <summary>
+        /// Archivio Escursione
+        /// </summary>
+        public CArchivioEscursione Escursione;
+        /// <summary>
+        /// Speratore per path
+        /// </summary>
+        //private const string SeparaDir = "\\";
+        /// <summary>
+        /// Subdirectory Archivi
+        /// </summary>
+        private string SubDirArchivi = "";
+        /// <summary>
+        /// Gestore per la stampa dei messaggi
+        /// </summary>
+        private CMessaggio msg = null;
+        /// <summary>
+        /// Costruttore
+        /// </summary>
+        /// Costruttore 
+        /// </summary>
+        /// <param name="DirectoryBase"></param>
+        public FormArchivioEscursione(ref CArchivioTraccia traccia)
+        {
+            // Assegna Archivio traccia
+            Traccia = traccia;
+
+            // Assegna Archivio escursione
+            Escursione = Traccia.Escursione;
+            
+            InitializeComponent();
+            InizializzaClasse();
+        }
+
+        /// <summary>
+        /// Inizilizzazione della classe
+        /// </summary>
+        private void InizializzaClasse()
+        {
+            // Definisce il gestore dei messaggi
+            msg = new CMessaggio(ref richTextBoxOutput);
+
+            // Aggiorna la casella con il path dell'area archivio
+            textBoxDirectoryBase.Text = Escursione.AreaArchivio.PathBase;
+
+            // Controlla lo stato della Escursione
+            if (Escursione.StatoOk())
+            {
+                // disabilita in scittura del caselle di impostazione del nome dell'escursione
+                dateTimePicker1.Enabled = false;
+                textBoxPrefisso.Enabled = false;
+                textBoxNome.Enabled = false;
+
+                // aggiorna i campi
+                dateTimePicker1.Text = Escursione.Data;
+                textBoxPrefisso.Text = Escursione.Prefisso;
+                textBoxNome.Text = Escursione.NomeParziale;
+
+                // Aggiorna il nome dell'archivio
+                textBoxArchivio.Text = Escursione.Nome;
+                textBoxArchivio.BackColor = Escursione.Colore;
+
+                // Aggiorna il path dell'archivio
+                textBoxPathArchivio.Text = Escursione.Path;
+                textBoxPathArchivio.BackColor = Escursione.Colore;
+            }
+        }
+        /// <summary>
+        /// Aggiorna il nome dell'archivio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAggiorna_Click(object sender, EventArgs e)
+        {
+            VerificaPathArchivio();
+        }
+        /// <summary>
+        /// Verifica il path dell'archivio
+        /// </summary>
+        private void VerificaPathArchivio ()
+        {
+            // Recupera il valore della data
+            string data;
+            string nData;
+
+            data = dateTimePicker1.Text;
+            string[] campi = data.Split('/');
+            if (campi.Length == 3)
+            {
+                nData = campi[2] + '-' + campi[1] + '-' + campi[0];
+            }
+            else
+            {
+                nData = "??";
+            }
+
+            // Recupera il valore del prefisso
+            string prefisso;
+            string nPrefisso;
+
+            prefisso = textBoxPrefisso.Text.Trim();
+            string[] prefissi = prefisso.Split(' ', '?');
+            if ((prefisso.Length > 0) && (prefissi.Length == 1))
+            {
+                nPrefisso = prefisso;
+            }
+            else
+            {
+                nPrefisso = "??";
+            }
+
+            // Recupera il valore del nome
+            string nome;
+            string nNome;
+
+            nome = textBoxNome.Text.Trim();
+            string[] nomi = nome.Split(' ', '?');
+            if ((nome.Length > 0) && (nomi.Length == 1))
+            {
+                nNome = nome;
+            }
+            else
+            {
+                nNome = "??";
+            }
+
+
+            // compone il nome dell'Archivio
+            string nArchivio = nData + '_' + nPrefisso + '_' + nNome;
+
+            // Assegna il nome dell'archivio
+            Escursione.Nome = nArchivio;
+
+
+            // Stampa il nome dell'archivio
+            textBoxArchivio.Text = Escursione.Nome;
+            textBoxArchivio.BackColor = Escursione.Colore;
+
+            // Stampa il path dell'archivio
+            textBoxPathArchivio.Text = Escursione.Path;
+            textBoxPathArchivio.BackColor = Escursione.Colore;
+        }
+        /// <summary>
+        /// Il prefisso dell'archivio è cambiato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxPrefisso_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxPrefisso.Enabled)
+                VerificaPathArchivio();
+        }
+        /// <summary>
+        /// Il nome dell'archivio è cambiato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNome_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxNome.Enabled)
+                VerificaPathArchivio();
+        }
+        /// <summary>
+        /// La data dell'Archivio è cambiato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Enabled)
+                VerificaPathArchivio();
+        }
+        /// <summary>
+        /// Crea directory archivio 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butCrea_Click(object sender, EventArgs e)
+        {
+            // Crea l'archivio per un escursine
+            msg.Stampa("Genera l'archivio: " + Escursione.Nome);
+
+            GstErrori.EErrore esito = CreaArchivioEscursione();
+
+            msg.Stampa("La generazione dell'archivio: " + Escursione.Nome);
+            msg.StampaConEsito(" è stata  eseguita", " è FALLITA!", esito, false);
+
+        }
+        /// <summary>
+        /// Crea archivo dell'escursione
+        /// </summary>
+        private GstErrori.EErrore CreaArchivioEscursione()
+        {
+            // verifica che ci siano le condizioni per creare la directory
+            if (Escursione.Stato != CArchivio.EArchivioStato.ArchivioNonEsiste)
+                return GstErrori.EErrore.E1300_NomeArchivioErrato;
+
+            // crea l'archivio
+            CArchivioDirectory archivio = new CArchivioDirectory();
+            archivio.CreaArchivioEscursione(Escursione.Path, Escursione.Nome);
+
+            // Verifica se l'archivio è stato creato correttamente
+            VerificaPathArchivio();
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Apre la dialog per achiviare le tracce di una escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butArchiviaTraccia_Click(object sender, EventArgs e)
+        {
+            // verifica l'esistenza dell'Escursione
+            if (!Escursione.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1304_PathArchivioEscursioneErrato, Escursione.Path);
+                return;
+            }
+
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia);
+            dlg.ShowDialog();
+        }
+    }
+}

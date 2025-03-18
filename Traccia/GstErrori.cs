@@ -18,6 +18,7 @@ namespace Traccia
             E0001_NOK = 1,
             E0002_ValoreNonRichiesto,
             E0003_FinestraDeiMessaggiNonDefinita,
+            E0004_QuestaFunzioneNonPuoEssereChiamataFareOverride,
 
             // Errori relativi alla gestione di una tabelle
             E1000_TabellaInesistente,
@@ -44,8 +45,14 @@ namespace Traccia
             E1301_CreazioneDirectoryFallita,
             E1302_CreazioneArchivioFallita,
             E1303_PathAreaArchivioErrata,
+            E1304_PathArchivioEscursioneErrato,
+            E1305_PathArchivioTracciaErrato,
+            E1306_ArchivioEsiste,
+
+            E1315_CreazioneArchivioTracciaFallita,
 
 
+            E1324_EscursionePresente,
 
 
             // Errori relativi ad un tipo di dato
@@ -165,5 +172,60 @@ namespace Traccia
 
             return true;
         }
+        /// <summary>
+        /// Stampa un avviso
+        /// </summary>
+        /// <param name="esito"></param>
+        /// <param name="messaggio2"></param>
+        /// <param name="stampaMessaggio"></param>
+        /// <param name="continuo"></param>
+        /// <returns></returns>
+        public static bool StampaMessaggioAvviso(GstErrori.EErrore esito, string messaggio2 = "", bool stampaMessaggio = true, bool continuo = true)
+        {
+            // controlla l'esito del risultatao
+            if (esito != EErrore.E0000_OK)
+            {
+                if (stampaMessaggio)
+                {
+                    // compone il messaggio da stampare
+                    string titolo = "Attenzione";
+                    string messaggio = "Problema: \n" + messaggio2 + "\n\n" +
+                                       "ha generato l'avviso: \n\n" +
+                                       RestultToSting(esito);
+
+                    // Chiede la conferma per continuare                    
+                    if (continuo)
+                    {
+                        messaggio += "\n\n" + "Continuo?";
+
+                        //  stampa il messaggio con l'esito
+                        var result3 = MessageBox.Show(messaggio, titolo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result3 == DialogResult.Yes)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                    // Rende sempre FALSE
+                    if (!continuo)
+                    {
+                        //  stampa il messaggio con l'esito
+                        var result3 = MessageBox.Show(messaggio, titolo, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        return false;
+                    }
+
+                    return false;
+                }
+                else
+                    return false;
+            }
+
+            return true;
+        }
+
+
+
+
+
     }
 }

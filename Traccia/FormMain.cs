@@ -43,28 +43,53 @@ namespace Traccia
         /// 
         /// </summary>
         int pippo;
-        
+
 
         /// <summary>
         /// Area Archivio
         /// </summary>
-        public CAreaArchivio AreaArchivio = new CAreaArchivio();
+        public CAreaArchivio AreaArchivio = null;
         /// <summary>
         /// Archivio Escursione
         /// </summary>
-        public CArchivioEscursione ArchivioEscursione = new CArchivioEscursione();
+        public CArchivioEscursione ArchivioEscursione = null;
+        /// <summary>
+        /// Archivio Traccia
+        /// </summary>
+        public CArchivioTraccia Traccia = null;
+
         /// <summary>
         /// Costruttore
         /// </summary>
         public FormMain()
         {
             InitializeComponent();
-
+            InizializzaClasse();
 
             // Verifica Area Archivio
             AreaArchivio.PathBase = "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia";
             AreaArchivio.Nome = "ArchivioEscursioni";
             MostraAreaArchivio();
+        }
+        /// <summary>
+        /// Inizializza classe
+        /// </summary>
+        private void InizializzaClasse()
+        {
+            // Crea la classe AreaArchivio
+            AreaArchivio = new CAreaArchivio();
+
+            // Crea la classe Escursione
+            ArchivioEscursione = new CArchivioEscursione();
+
+            // Assegna AreaArchivio
+            ArchivioEscursione.AreaArchivio = AreaArchivio;
+
+            // Crea la classe Traccia
+            Traccia = new CArchivioTraccia();   
+
+            // Assegna Archivio Escursione
+            Traccia.Escursione = ArchivioEscursione;
         }
         /// <summary>
         /// Avvia la dialog per l'archiviazione di una escursione
@@ -73,8 +98,8 @@ namespace Traccia
         /// <param name="e"></param>
         private void butArchiviaEscursione_Click(object sender, EventArgs e)
         {
-            FormArchiviaEscursione dlg = new FormArchiviaEscursione();
-            dlg.ShowDialog();
+            //FormArchiviaEscursione dlg = new FormArchiviaEscursione();
+            //dlg.ShowDialog();
         }
         /// <summary>
         /// Crea un archivio
@@ -83,14 +108,40 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCreaArchivio_Click(object sender, EventArgs e)
         {
-            // verifica l'esistenza dell'Area Archivo
-            if (! AreaArchivio.StatoOk())
+            // Controlla c'è un escursione impostata
+            if (ArchivioEscursione.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, AreaArchivio.Path);
+                // Chiede se deve continuare
+                if  (!   GstErrori.StampaMessaggioAvviso
+                        (
+                            GstErrori.EErrore.E1324_EscursionePresente, 
+                            "Una escursione è il elaborazione, vuoi terminare l'elaborazione?"
+                        )
+                    )
+                    return;
+            }
+
+            // Ripulisce l'Escursione
+            ArchivioEscursione.ClearNome();
+
+            // Apre il form 
+            OpenArchivioEscursione();
+        }
+        /// <summary>
+        /// Apre il form Archivio escursione
+        /// </summary>
+        private void OpenArchivioEscursione()
+        {
+            ArchivioEscursione.AreaArchivio = AreaArchivio;
+
+            // verifica l'esistenza dell'Area Archivo
+            if (!ArchivioEscursione.AreaArchivio.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, ArchivioEscursione.AreaArchivio.Path);
                 return;
             }
 
-            FormCreaArchivio dlg = new FormCreaArchivio(AreaArchivio.Path);
+            FormArchivioEscursione dlg = new FormArchivioEscursione(ref Traccia);
             dlg.ShowDialog();
         }
         /// <summary>
@@ -100,14 +151,11 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCreaAreaArchivio_Click(object sender, EventArgs e)
         {
-            FormCreaAreaArchivio dlg = new FormCreaAreaArchivio(); 
+            FormAreaArchivio dlg = new FormAreaArchivio(ref AreaArchivio); 
             dlg.ShowDialog();
 
-            // estra il path dell'area archivio
-            string path = dlg.ArchivioPath;
-
             // verifica se la directory esiste
-            VerificaAreaArchivio(path);
+            VerificaAreaArchivio(AreaArchivio.Path);
         }
         /// <summary>
         /// Seleziona Area Archivio
@@ -163,9 +211,40 @@ namespace Traccia
                 return;
             }
 
-            FormArchivaTraccia dlg = new FormArchivaTraccia(ArchivioEscursione.Path);  
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia);  
             dlg.ShowDialog();
         }
+        /// <summary>
+        /// Selezione un escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butEscursione_Click(object sender, EventArgs e)
+        {
+            // seleziona la direcory base
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
 
+            // disabilita la possibilita di creare una nuova directory
+            dlg.ShowNewFolderButton = false;
+
+            // imposta la descrizione
+            dlg.Description = "Seleziona la direcory dell'escursione";
+
+            // imposta l'indirizzo dell'archivio escursioni
+            dlg.SelectedPath = ArchivioEscursione.GetPathArchivoEscursioni();
+
+            // esegue la dialog per selezionare il path dell'escursione
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+            
+            // salva il path reso
+            string path = dlg.SelectedPath;
+
+            // Assegna il nome della traccia
+            ArchivioEscursione.SetNome(path);
+
+            // Apre il form Archivio Escursione
+            OpenArchivioEscursione();
+        }
     }
 }

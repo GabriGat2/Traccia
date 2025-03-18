@@ -63,27 +63,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CArchivio.cs" />
-    <Compile Include="CArchivioEscursione.cs" />
     <Compile Include="CAreaArchivio.cs" />
+    <Compile Include="CArchivioDirectory.cs" />
+    <Compile Include="CArchivioEscursione.cs" />
+    <Compile Include="CArchivioTraccia.cs" />
+    <Compile Include="CArchivio.cs" />
     <Compile Include="CMessaggio.cs" />
-    <Compile Include="FormArchivaTraccia.cs">
+    <Compile Include="FormArchivoTraccia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormArchivaTraccia.Designer.cs">
-      <DependentUpon>FormArchivaTraccia.cs</DependentUpon>
+    <Compile Include="FormArchivoTraccia.Designer.cs">
+      <DependentUpon>FormArchivoTraccia.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreaArchivio.cs">
+    <Compile Include="FormArchivioEscursione.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreaArchivio.Designer.cs">
-      <DependentUpon>FormCreaArchivio.cs</DependentUpon>
+    <Compile Include="FormArchivioEscursione.Designer.cs">
+      <DependentUpon>FormArchivioEscursione.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreaAreaArchivio.cs">
+    <Compile Include="FormAreaArchivio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreaAreaArchivio.Designer.cs">
-      <DependentUpon>FormCreaAreaArchivio.cs</DependentUpon>
+    <Compile Include="FormAreaArchivio.Designer.cs">
+      <DependentUpon>FormAreaArchivio.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -91,26 +93,17 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormArchiviaEscursione.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormArchiviaEscursione.Designer.cs">
-      <DependentUpon>FormArchiviaEscursione.cs</DependentUpon>
-    </Compile>
     <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormArchivaTraccia.resx">
-      <DependentUpon>FormArchivaTraccia.cs</DependentUpon>
+    <EmbeddedResource Include="FormArchivoTraccia.resx">
+      <DependentUpon>FormArchivoTraccia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormArchiviaEscursione.resx">
-      <DependentUpon>FormArchiviaEscursione.cs</DependentUpon>
+    <EmbeddedResource Include="FormArchivioEscursione.resx">
+      <DependentUpon>FormArchivioEscursione.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCreaArchivio.resx">
-      <DependentUpon>FormCreaArchivio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormCreaAreaArchivio.resx">
-      <DependentUpon>FormCreaAreaArchivio.cs</DependentUpon>
+    <EmbeddedResource Include="FormAreaArchivio.resx">
+      <DependentUpon>FormAreaArchivio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
