@@ -45,6 +45,8 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTraccia = new System.Windows.Forms.GroupBox();
+            this.checkBoxSingola = new System.Windows.Forms.CheckBox();
+            this.checkBoxGiorno = new System.Windows.Forms.CheckBox();
             this.comboBoxMezzo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comboBoxLettera = new System.Windows.Forms.ComboBox();
@@ -56,10 +58,12 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
             this.butCreaTraccia = new System.Windows.Forms.Button();
-            this.butArchiviaTraccia = new System.Windows.Forms.Button();
+            this.butNuovaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -139,7 +143,7 @@
             this.richTextDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextDescrizione.Location = new System.Drawing.Point(3, 16);
             this.richTextDescrizione.Name = "richTextDescrizione";
-            this.richTextDescrizione.Size = new System.Drawing.Size(790, 128);
+            this.richTextDescrizione.Size = new System.Drawing.Size(790, 108);
             this.richTextDescrizione.TabIndex = 8;
             this.richTextDescrizione.Text = "";
             // 
@@ -260,12 +264,16 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBoxDescrizione);
             this.splitContainer3.Size = new System.Drawing.Size(796, 290);
-            this.splitContainer3.SplitterDistance = 140;
+            this.splitContainer3.SplitterDistance = 160;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 11;
             // 
             // groupBoxTraccia
             // 
+            this.groupBoxTraccia.Controls.Add(this.label10);
+            this.groupBoxTraccia.Controls.Add(this.textBoxPathArchivio);
+            this.groupBoxTraccia.Controls.Add(this.checkBoxSingola);
+            this.groupBoxTraccia.Controls.Add(this.checkBoxGiorno);
             this.groupBoxTraccia.Controls.Add(this.comboBoxMezzo);
             this.groupBoxTraccia.Controls.Add(this.label9);
             this.groupBoxTraccia.Controls.Add(this.comboBoxLettera);
@@ -283,24 +291,46 @@
             this.groupBoxTraccia.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxTraccia.Name = "groupBoxTraccia";
             this.groupBoxTraccia.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxTraccia.Size = new System.Drawing.Size(796, 140);
+            this.groupBoxTraccia.Size = new System.Drawing.Size(796, 160);
             this.groupBoxTraccia.TabIndex = 0;
             this.groupBoxTraccia.TabStop = false;
             this.groupBoxTraccia.Text = "Traccia";
             // 
+            // checkBoxSingola
+            // 
+            this.checkBoxSingola.AutoSize = true;
+            this.checkBoxSingola.Location = new System.Drawing.Point(707, 20);
+            this.checkBoxSingola.Name = "checkBoxSingola";
+            this.checkBoxSingola.Size = new System.Drawing.Size(61, 17);
+            this.checkBoxSingola.TabIndex = 16;
+            this.checkBoxSingola.Text = "Singola";
+            this.checkBoxSingola.UseVisualStyleBackColor = true;
+            this.checkBoxSingola.CheckedChanged += new System.EventHandler(this.checkBoxSingola_CheckedChanged);
+            // 
+            // checkBoxGiorno
+            // 
+            this.checkBoxGiorno.AutoSize = true;
+            this.checkBoxGiorno.Location = new System.Drawing.Point(633, 20);
+            this.checkBoxGiorno.Name = "checkBoxGiorno";
+            this.checkBoxGiorno.Size = new System.Drawing.Size(57, 17);
+            this.checkBoxGiorno.TabIndex = 15;
+            this.checkBoxGiorno.Text = "Giorno";
+            this.checkBoxGiorno.UseVisualStyleBackColor = true;
+            this.checkBoxGiorno.CheckedChanged += new System.EventHandler(this.checkBoxGiorno_CheckedChanged);
+            // 
             // comboBoxMezzo
             // 
             this.comboBoxMezzo.FormattingEnabled = true;
-            this.comboBoxMezzo.Location = new System.Drawing.Point(471, 16);
+            this.comboBoxMezzo.Location = new System.Drawing.Point(431, 16);
             this.comboBoxMezzo.Name = "comboBoxMezzo";
-            this.comboBoxMezzo.Size = new System.Drawing.Size(297, 21);
+            this.comboBoxMezzo.Size = new System.Drawing.Size(187, 21);
             this.comboBoxMezzo.TabIndex = 14;
             this.comboBoxMezzo.SelectedValueChanged += new System.EventHandler(this.comboBoxMezzo_SelectedValueChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(407, 16);
+            this.label9.Location = new System.Drawing.Point(387, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 13;
@@ -309,7 +339,7 @@
             // comboBoxLettera
             // 
             this.comboBoxLettera.FormattingEnabled = true;
-            this.comboBoxLettera.Location = new System.Drawing.Point(340, 16);
+            this.comboBoxLettera.Location = new System.Drawing.Point(321, 18);
             this.comboBoxLettera.Name = "comboBoxLettera";
             this.comboBoxLettera.Size = new System.Drawing.Size(46, 21);
             this.comboBoxLettera.TabIndex = 12;
@@ -318,7 +348,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(284, 24);
+            this.label8.Location = new System.Drawing.Point(275, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 11;
@@ -356,7 +386,7 @@
             this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
             this.groupBoxDescrizione.Name = "groupBoxDescrizione";
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 147);
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 127);
             this.groupBoxDescrizione.TabIndex = 0;
             this.groupBoxDescrizione.TabStop = false;
             this.groupBoxDescrizione.Text = "Descrizione";
@@ -384,7 +414,7 @@
             // groupBoxComandi
             // 
             this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
-            this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
+            this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
@@ -406,14 +436,15 @@
             this.butCreaTraccia.UseVisualStyleBackColor = true;
             this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
             // 
-            // butArchiviaTraccia
+            // butNuovaTraccia
             // 
-            this.butArchiviaTraccia.Location = new System.Drawing.Point(214, 18);
-            this.butArchiviaTraccia.Name = "butArchiviaTraccia";
-            this.butArchiviaTraccia.Size = new System.Drawing.Size(101, 23);
-            this.butArchiviaTraccia.TabIndex = 12;
-            this.butArchiviaTraccia.Text = "Archivia Traccia";
-            this.butArchiviaTraccia.UseVisualStyleBackColor = true;
+            this.butNuovaTraccia.Location = new System.Drawing.Point(214, 18);
+            this.butNuovaTraccia.Name = "butNuovaTraccia";
+            this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);
+            this.butNuovaTraccia.TabIndex = 12;
+            this.butNuovaTraccia.Text = "Nuova Traccia";
+            this.butNuovaTraccia.UseVisualStyleBackColor = true;
+            this.butNuovaTraccia.Click += new System.EventHandler(this.butNuovaTraccia_Click);
             // 
             // butAggiorna
             // 
@@ -447,6 +478,23 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(792, 102);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 129);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Path Archivio";
+            // 
+            // textBoxPathArchivio
+            // 
+            this.textBoxPathArchivio.Location = new System.Drawing.Point(141, 122);
+            this.textBoxPathArchivio.Name = "textBoxPathArchivio";
+            this.textBoxPathArchivio.ReadOnly = true;
+            this.textBoxPathArchivio.Size = new System.Drawing.Size(627, 20);
+            this.textBoxPathArchivio.TabIndex = 18;
             // 
             // FormArchivoTraccia
             // 
@@ -497,7 +545,7 @@
         private System.Windows.Forms.Label Label5;
         private System.Windows.Forms.TextBox textBoxArchivio;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button butArchiviaTraccia;
+        private System.Windows.Forms.Button butNuovaTraccia;
         private System.Windows.Forms.Button butAggiorna;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.GroupBox groupBoxTraccia;
@@ -516,5 +564,9 @@
         private System.Windows.Forms.ComboBox comboBoxLettera;
         private System.Windows.Forms.ComboBox comboBoxMezzo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkBoxGiorno;
+        private System.Windows.Forms.CheckBox checkBoxSingola;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxPathArchivio;
     }
 }

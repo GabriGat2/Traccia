@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using static Traccia.CArchivio;
 
 namespace Traccia
 {
@@ -28,47 +29,23 @@ namespace Traccia
             InizializzaClasse();
         }
         /// <summary>
-        /// Aggiorna lo stato dei campi
+        /// Verifica lo stato del parent
         /// </summary>
         /// <returns></returns>
-        public override EArchivioStato Aggiorna()
+        protected override EArchivioStato StatoParent()
         {
-            // verifica lo stato di Area Archivio
-            if (areaArchivio.Stato != EArchivioStato.ArchivioEsiste)
-                stato = areaArchivio.Stato;
-
-
-            // Verifica se esiste il path dell'area archivio 
-            if (!VerificaEsistenzaDirectory(AreaArchivio.Path))
-            {
-                path = string.Empty;
-                stato = EArchivioStato.DirBaseNonEsiste;
-                return stato;
-            }
-
-            // verifica il nome
-            if (!VerificaNome())
-                return stato;
-
-            // Compone il path
-            ComponePath();
-
-            // verifica se la directory path esiste 
-            if (VerificaEsistenzaDirectory(path))
-                stato = EArchivioStato.ArchivioEsiste;
-            else
-                stato = EArchivioStato.ArchivioNonEsiste;
-
-            return stato;
+            return AreaArchivio.Stato;
         }
         /// <summary>
         /// Compone la directory path
         /// </summary>
-        protected override void ComponePath()
+        protected override string ComponePath()
         {
+            // estrae la subdir Archivi
             string subPath = AreaArchivio.Directory.GetSubPathSrcArchivio("Archivi");
 
-            path = AreaArchivio.Path + SeparaDir + subPath + SeparaDir + nome;
+            // compone il path
+            return AreaArchivio.Path + SeparaDir + subPath + SeparaDir + nome;
         }
         /// <summary>
         /// Rende il path dell'archivio escursioni
@@ -103,5 +80,37 @@ namespace Traccia
                 Nome = campi[campi.Length - 1];
             }
         }
+        /// <summary>
+        /// Crea le directory dell'escursione
+        /// </summary>
+        /// <returns></returns>
+        public override GstErrori.EErrore CreaDirectoryArchivio()
+        {
+            // verifica che ci siano le condizioni per creare la directory
+            switch (Stato)
+            {
+                case EArchivioStato.ArchivioNonEsiste:
+                    break;
+
+                case EArchivioStato.ArchivioEsiste:
+                    return GstErrori.EErrore.E1306_ArchivioEsiste;
+
+                default:
+                    return GstErrori.EErrore.E1300_NomeArchivioErrato;
+            }
+
+            // Crea directory traccia
+            bool bEsito = AreaArchivio.Directory.CreaArchivioEscursione(Path, Nome);
+
+            // Aggiorna lo stato della traccia
+            EArchivioStato passa = Stato;
+
+            // Rende l'esito delle operazioni
+            if (bEsito)
+                return GstErrori.EErrore.E0000_OK;
+            else
+                return GstErrori.EErrore.E1314_CreazioneArchivioEscursioneFallita;
+        }
+
     }
 }

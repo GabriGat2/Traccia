@@ -26,8 +26,6 @@ namespace Traccia
         /// <summary>
         /// Stato dell'archivio
         /// </summary>
-        protected EArchivioStato stato = EArchivioStato.Indefinito;
-        //public EArchivioStato Stato { get => stato; }
         public EArchivioStato Stato { get => Aggiorna(); }
 
         /// <summary>
@@ -44,7 +42,7 @@ namespace Traccia
         /// <summary>
         /// Path dell'archivio
         /// </summary>
-        protected string path = string.Empty;
+        private string path;
         public string Path { get => path; }
 
         /// <summary>
@@ -95,36 +93,46 @@ namespace Traccia
         /// Aggiorna lo stato dei campi
         /// </summary>
         /// <returns></returns>
-        public virtual EArchivioStato Aggiorna()
+        public EArchivioStato Aggiorna()
         {
-            // Verifica se esiste il pathBase
-            if (!VerificaEsistenzaDirectory(pathBase))
-            {
-                path = string.Empty;
-                stato = EArchivioStato.DirBaseNonEsiste;
-                return stato;
-            }
+            // Verifica lo stato del parent
+            EArchivioStato statoParent = StatoParent();
+            if (statoParent != EArchivioStato.ArchivioEsiste)
+                return statoParent;
 
             // verifica il nome
             if (!VerificaNome())
-                return stato;
-            
-            // Compone il path
-            ComponePath();
+                return EArchivioStato.NomeArchivioErrato;
 
+            // compone il path
+            path = ComponePath();
+            
             // verifica se la directory path esiste 
             if (VerificaEsistenzaDirectory(path))
-                stato = EArchivioStato.ArchivioEsiste;
+                return EArchivioStato.ArchivioEsiste;
             else
-                stato = EArchivioStato.ArchivioNonEsiste;
+                return EArchivioStato.ArchivioNonEsiste;
+        }  
+        /// <summary>
+        /// Verifica lo stato del parent
+        /// Questa funzione DEVE avere un override
+        /// </summary>
+        /// <returns></returns>
+        protected virtual EArchivioStato StatoParent()
+        {
+            GstErrori.StampaMessaggioErrore
+            (
+                GstErrori.EErrore.E0004_QuestaFunzioneNonPuoEssereChiamataFareOverride,
+                "E' obbligatorio fare l'override della funzione: ParentOK"
+            );
 
-            return stato; 
-        }   
+            return EArchivioStato.Indefinito;
+        }
         /// <summary>
         /// Compone la directory path
         /// ATTENZIONE è obbligatorio fare l'override di questa funzione
         /// </summary>
-        protected virtual void ComponePath()
+        protected virtual string ComponePath()
         {
             GstErrori.StampaMessaggioErrore
             (
@@ -132,6 +140,7 @@ namespace Traccia
                 "E' obbligatorio fare l'override della funzione: ComponePath"
             );
 
+            return string.Empty;
             //path = pathBase + SeparaDir + nome;
         }
         /// <summary>
@@ -186,7 +195,17 @@ namespace Traccia
         /// <returns></returns>
         public bool StatoOk()
         {
+            EArchivioStato stato = Aggiorna();
             return stato == EArchivioStato.ArchivioEsiste;
+        }
+        /// <summary>
+        /// Torna vero se il nome dell'archivio è corretto
+        /// </summary>
+        /// <returns></returns>
+        public bool StatoOkNome()
+        {
+            EArchivioStato stato = Aggiorna();
+            return ((stato == EArchivioStato.ArchivioEsiste) || stato == (EArchivioStato.ArchivioNonEsiste));
         }
         /// <summary>
         /// Verifica la composizione del nome
@@ -197,8 +216,6 @@ namespace Traccia
             // verifica il nome
             if (nome.Length == 0)
             {
-                path = string.Empty;
-                stato = EArchivioStato.NomeArchivioErrato;
                 return false;
             }
             else
@@ -207,8 +224,6 @@ namespace Traccia
                 string[] campi = nome.Split(new char[] { ' ', '?' });
                 if (campi.Length != 1)
                 {
-                    path = string.Empty;
-                    stato = EArchivioStato.NomeArchivioErrato;
                     return false;
                 }
             }
@@ -231,6 +246,22 @@ namespace Traccia
             else
                 return string.Empty;
         }
+        protected string GetOnlyData()
+        {
+            // estrae la data con la lettera
+            string data1 = GetCampo(0);
+
+            // scompone la data
+            string[] campi = data1.Split(new char[] { '-' });
+
+            if (campi.Length <= 3)
+                return data1;
+            else
+                return campi[0] + '-' + campi[1] + '-' + campi[2];
+
+        }
+
+
         /// <summary>
         /// Azzera il Nome e di conseguenza tutte le informazioni della traccia
         /// </summary>

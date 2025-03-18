@@ -24,19 +24,13 @@ namespace Traccia
         /// </summary>
         public CArchivioEscursione Escursione;
         /// <summary>
-        /// Speratore per path
+        /// Abilita l'aggiornamento del nome dell'escursione'
         /// </summary>
-        //private const string SeparaDir = "\\";
-        /// <summary>
-        /// Subdirectory Archivi
-        /// </summary>
-        private string SubDirArchivi = "";
+        private bool AbilitazioneAggiornamentoEscursione;
         /// <summary>
         /// Gestore per la stampa dei messaggi
         /// </summary>
         private CMessaggio msg = null;
-        /// <summary>
-        /// Costruttore
         /// </summary>
         /// Costruttore 
         /// </summary>
@@ -67,6 +61,9 @@ namespace Traccia
             // Controlla lo stato della Escursione
             if (Escursione.StatoOk())
             {
+                // disabilita aggiornamento traccia
+                AbilitazioneAggiornamentoEscursione = false;
+
                 // disabilita in scittura del caselle di impostazione del nome dell'escursione
                 dateTimePicker1.Enabled = false;
                 textBoxPrefisso.Enabled = false;
@@ -84,7 +81,22 @@ namespace Traccia
                 // Aggiorna il path dell'archivio
                 textBoxPathArchivio.Text = Escursione.Path;
                 textBoxPathArchivio.BackColor = Escursione.Colore;
+
+                // Disabilita bottone crea escursione 
+                butCrea.Enabled = false;
+
+                // Abilita bottone archivia traccia
+                butArchiviaTraccia.Enabled = true;
             }
+            else
+            {
+                // disabilita aggiornamento traccia
+                AbilitazioneAggiornamentoEscursione = true;
+
+                // Abilita bottone archivia traccia
+                butArchiviaTraccia.Enabled = false;
+            }
+
         }
         /// <summary>
         /// Aggiorna il nome dell'archivio
@@ -93,13 +105,25 @@ namespace Traccia
         /// <param name="e"></param>
         private void butAggiorna_Click(object sender, EventArgs e)
         {
-            VerificaPathArchivio();
+            AggiornamentoEscursione();
         }
         /// <summary>
         /// Verifica il path dell'archivio
         /// </summary>
-        private void VerificaPathArchivio ()
+        private void AggiornamentoEscursione ()
         {
+            if (!AbilitazioneAggiornamentoEscursione)
+            {
+                // Stampa il nome dell'archivio
+                textBoxArchivio.Text = Escursione.Nome;
+                textBoxArchivio.BackColor = Escursione.Colore;
+
+                // Stampa il path dell'archivio
+                textBoxPathArchivio.Text = Escursione.Path;
+                textBoxPathArchivio.BackColor = Escursione.Colore;
+            }
+
+
             // Recupera il valore della data
             string data;
             string nData;
@@ -169,7 +193,7 @@ namespace Traccia
         private void textBoxPrefisso_TextChanged(object sender, EventArgs e)
         {
             if (textBoxPrefisso.Enabled)
-                VerificaPathArchivio();
+                AggiornamentoEscursione();
         }
         /// <summary>
         /// Il nome dell'archivio è cambiato
@@ -179,7 +203,7 @@ namespace Traccia
         private void textBoxNome_TextChanged(object sender, EventArgs e)
         {
             if (textBoxNome.Enabled)
-                VerificaPathArchivio();
+                AggiornamentoEscursione();
         }
         /// <summary>
         /// La data dell'Archivio è cambiato
@@ -189,7 +213,7 @@ namespace Traccia
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             if (dateTimePicker1.Enabled)
-                VerificaPathArchivio();
+                AggiornamentoEscursione();
         }
         /// <summary>
         /// Crea directory archivio 
@@ -212,16 +236,30 @@ namespace Traccia
         /// </summary>
         private GstErrori.EErrore CreaArchivioEscursione()
         {
-            // verifica che ci siano le condizioni per creare la directory
-            if (Escursione.Stato != CArchivio.EArchivioStato.ArchivioNonEsiste)
-                return GstErrori.EErrore.E1300_NomeArchivioErrato;
+            GstErrori.EErrore esito;
 
-            // crea l'archivio
-            CArchivioDirectory archivio = new CArchivioDirectory();
-            archivio.CreaArchivioEscursione(Escursione.Path, Escursione.Nome);
+            // crea l'archivio della traccia 
+            esito = Escursione.CreaDirectoryArchivio();
+
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // disabilita l'aggiornamento del nome della traccia
+            AbilitazioneAggiornamentoEscursione = false;
+
+            // disabilita i campi di impostazione del nome
+            dateTimePicker1.Enabled = false;
+            textBoxPrefisso.Enabled = false;
+            textBoxNome.Enabled = false;
+
+            // disabilita il bottone crea l'escursione 
+            butCrea.Enabled = false;
+
+            // abilita il bottone nuova traccia 
+            butArchiviaTraccia.Enabled = true;
 
             // Verifica se l'archivio è stato creato correttamente
-            VerificaPathArchivio();
+            AggiornamentoEscursione();
 
             return GstErrori.EErrore.E0000_OK;
         }

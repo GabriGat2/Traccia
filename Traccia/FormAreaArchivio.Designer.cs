@@ -137,7 +137,7 @@
             // 
             // butDefault
             // 
-            this.butDefault.Location = new System.Drawing.Point(654, 133);
+            this.butDefault.Location = new System.Drawing.Point(204, 133);
             this.butDefault.Name = "butDefault";
             this.butDefault.Size = new System.Drawing.Size(102, 23);
             this.butDefault.TabIndex = 21;
@@ -147,17 +147,17 @@
             // 
             // butCrea
             // 
-            this.butCrea.Location = new System.Drawing.Point(172, 133);
+            this.butCrea.Location = new System.Drawing.Point(12, 133);
             this.butCrea.Name = "butCrea";
-            this.butCrea.Size = new System.Drawing.Size(75, 23);
+            this.butCrea.Size = new System.Drawing.Size(130, 23);
             this.butCrea.TabIndex = 20;
-            this.butCrea.Text = "Crea";
+            this.butCrea.Text = "Crea Area Archivio";
             this.butCrea.UseVisualStyleBackColor = true;
             this.butCrea.Click += new System.EventHandler(this.butCrea_Click);
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(12, 133);
+            this.butAggiorna.Location = new System.Drawing.Point(681, 133);
             this.butAggiorna.Name = "butAggiorna";
             this.butAggiorna.Size = new System.Drawing.Size(75, 23);
             this.butAggiorna.TabIndex = 19;
@@ -223,7 +223,7 @@
             this.ClientSize = new System.Drawing.Size(796, 570);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormAreaArchivio";
-            this.Text = "Crea Area Archivio";
+            this.Text = "Area Archivio";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

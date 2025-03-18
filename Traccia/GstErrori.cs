@@ -49,6 +49,8 @@ namespace Traccia
             E1305_PathArchivioTracciaErrato,
             E1306_ArchivioEsiste,
 
+            E1313_CreazioneAreaArchivioFallita,
+            E1314_CreazioneArchivioEscursioneFallita,
             E1315_CreazioneArchivioTracciaFallita,
 
 

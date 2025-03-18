@@ -77,8 +77,38 @@ namespace Traccia
             butCreaTraccia.Enabled = true;
 
             // disabilita il bottone Archivia traccia 
-            butArchiviaTraccia.Enabled = false;
+            butNuovaTraccia.Enabled = false;
         }
+        /// <summary>
+        /// Aggiorna le caselle con la nuova traccia
+        /// </summary>
+        private void NuovaTraccia()
+        {
+            // abilita l'aggiornnamento del nome della traccia
+            AbilitazioneAggiornamentoTraccia = true;
+
+            // Inizializza la data come quella dell'escursione
+            dateTimePicker1.Text = Traccia.Escursione.Data;
+
+            // abilita il bottone crea traccia 
+            butCreaTraccia.Enabled = true;
+
+            // disabilita il bottone Archivia traccia 
+            butNuovaTraccia.Enabled = false;
+
+            // riabilita i campi di impostazione del nome
+            dateTimePicker1.Enabled = true;
+            comboBoxLettera.Enabled = true;
+            comboBoxMezzo.Enabled = true;
+            textBoxNome.Enabled = true;
+            checkBoxGiorno.Enabled = true;
+            checkBoxSingola.Enabled = true;
+        }
+
+
+        /// <summary>
+        /// Popola la combo box Mezzi
+        /// </summary>
         private void PopolaMezzi()
         {
             // recupera il path della directory comune e aggiunge il nome del filee
@@ -128,8 +158,8 @@ namespace Traccia
             // controlla se l'aggiornamento del nome della traccia è abilitato
             if (!AbilitazioneAggiornamentoTraccia)
             {
-                textBoxArchivio.Text = Traccia.Nome;
-                textBoxArchivio.BackColor = Traccia.Colore;
+                StampaNomeTraccia();
+
                 return; 
             }
 
@@ -195,10 +225,26 @@ namespace Traccia
             // Assegna il nome dell'archivio
             Traccia.Nome = nArchivio;
 
-            // Stampa il nome dell'archivio
+            // mostra il nome della traccia
+            StampaNomeTraccia();
+        }
+        /// <summary>
+        /// AStampa il nome della traccia
+        /// </summary>
+        /// <returns></returns>
+        private void StampaNomeTraccia()
+        {
+            // mostra il nome della traccia
             textBoxArchivio.Text = Traccia.Nome;
             textBoxArchivio.BackColor = Traccia.Colore;
+            // mostra il path della traccia
+            textBoxPathArchivio.Text = Traccia.Path; ;
+            textBoxPathArchivio.BackColor = Traccia.Colore;
+
+            if (Traccia.Path != null)
+                msg.Stampa(Traccia.Path);
         }
+
         /// <summary>
         /// Il prefisso dell'archivio è cambiato
         /// </summary>
@@ -247,8 +293,6 @@ namespace Traccia
             // crea l'archivio della traccia 
             esito = Traccia.CreaDirectoryArchivio();
 
-            // Aggiorna i colori
-            textBoxArchivio.BackColor = Traccia.Colore;
 
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
@@ -261,12 +305,17 @@ namespace Traccia
             comboBoxLettera.Enabled = false;
             comboBoxMezzo.Enabled = false;
             textBoxNome.Enabled = false;
+            checkBoxGiorno.Enabled = false;
+            checkBoxSingola.Enabled = false;
              
             // disabilita il bottone crea traccia 
             butCreaTraccia.Enabled = false;
 
             // abilita il bottone Archivia traccia 
-            butArchiviaTraccia.Enabled = true;
+            butNuovaTraccia.Enabled = true;
+
+            // Aggiornamento traccia
+            AggiornaNomeTraccia();
 
             return esito;
         }
@@ -287,6 +336,36 @@ namespace Traccia
         private void comboBoxLettera_SelectedIndexChanged(object sender, EventArgs e)
         {
             AggiornaNomeTraccia();
+        }
+        /// <summary>
+        /// Il valore dell'opzione giorno è cambiata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxGiorno_CheckedChanged(object sender, EventArgs e)
+        {
+            Traccia.OptGiorno = checkBoxGiorno.Checked;
+            AggiornaNomeTraccia();
+        }
+        /// <summary>
+        /// Il valore dell'opzione singola è cambiato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSingola_CheckedChanged(object sender, EventArgs e)
+        {
+            Traccia.OptSingola = checkBoxSingola.Checked;
+            AggiornaNomeTraccia();
+        }
+        /// <summary>
+        /// Crea una nuova traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butNuovaTraccia_Click(object sender, EventArgs e)
+        {
+            Traccia.ClearNome();
+            NuovaTraccia();
         }
     }
 }

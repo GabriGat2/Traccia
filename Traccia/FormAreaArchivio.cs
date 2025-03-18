@@ -18,7 +18,11 @@ namespace Traccia
         /// </summary>
         public CAreaArchivio AreaArchivio = null;
         /// <summary>
-        /// costruttore 2
+        /// Abilita l'aggiornamento del nome dell'areaa archivio
+        /// </summary>
+        private bool AbilitazioneAggiornamentoNomeAreaArchivio;
+        /// <summary>
+        /// costruttore 
         /// </summary>
         /// <param name="areaArchivio"></param>
         public FormAreaArchivio(ref CAreaArchivio areaArchivio)
@@ -59,11 +63,12 @@ namespace Traccia
         private void VerificaDirectoryBase()
         {
             // Recupera il path della directory base
-            AreaArchivio.PathBase = textBoxDirectoryBaseAreaArchivio.Text;
+            if (AbilitazioneAggiornamentoNomeAreaArchivio)
+                AreaArchivio.PathBase = textBoxDirectoryBaseAreaArchivio.Text;
             textBoxDirectoryBaseAreaArchivio.BackColor = AreaArchivio.Colore;
 
             // verifica Archivio
-            VerificaPathArchivio();
+            AggiornaNomeAreaArchivio();
         }
         /// <summary>
         /// Aggiorna il nome dell'area archivio
@@ -73,7 +78,7 @@ namespace Traccia
         private void butAggiorna_Click(object sender, EventArgs e)
         {
             // verifica Archivio
-            VerificaPathArchivio();
+            AggiornaNomeAreaArchivio();
         }
         /// <summary>
         /// Il nome dell'area Archivio è cambiata
@@ -83,7 +88,7 @@ namespace Traccia
         private void textBoxNome_TextChanged(object sender, EventArgs e)
         {
             // verifica Archivio
-            VerificaPathArchivio();
+            AggiornaNomeAreaArchivio();
         }
         /// <summary>
         /// Il nome del Postfisso dell'area Archivio è cambiato
@@ -93,17 +98,19 @@ namespace Traccia
         private void textBoxPostfisso_TextChanged(object sender, EventArgs e)
         {
             // verifica Archivio
-            VerificaPathArchivio();
+            AggiornaNomeAreaArchivio();
         }
         /// <summary>
         /// Verifica il path dell'area archivio
         /// </summary>
-        private void VerificaPathArchivio()
+        private void AggiornaNomeAreaArchivio()
         {
-            //// resetta lo stato dell'archivio
-            //SetStatoArchivio(EArchivioStato.Indefinito);
-
-            //bool ArchivioOk = true;
+            if (!AbilitazioneAggiornamentoNomeAreaArchivio)
+            {
+                // Stampa il nome dell'archivio
+                textBoxArchivio.Text = AreaArchivio.Nome;
+                textBoxArchivio.BackColor = AreaArchivio.Colore;
+            }
 
             // Recupera il valore del nome
             string nome;
@@ -143,13 +150,10 @@ namespace Traccia
             // Aeegna il nome dell'archivio
             AreaArchivio.Nome = nArchivio;
 
-
             // Stampa il nome dell'archivio
             textBoxArchivio.Text = AreaArchivio.Nome;
-
-
-            // colora il nome dell'archivio in funzione dello stato 
             textBoxArchivio.BackColor = AreaArchivio.Colore;
+
         }
         /// <summary>
         /// Imposta i valori di default
@@ -172,22 +176,29 @@ namespace Traccia
         /// <returns></returns>
         private GstErrori.EErrore CreaAreaArchivio()
         {
-            // verifica che ci siano le condizioni per creare la directory
-            if (AreaArchivio.Stato == CArchivio.EArchivioStato.ArchivioEsiste)
-            {
+            GstErrori.EErrore esito;
 
-            }
-            else if (AreaArchivio.Stato != CArchivio.EArchivioStato.ArchivioNonEsiste)
-            {
-                return GstErrori.EErrore.E1300_NomeArchivioErrato;
-            }
+            // crea l'archivio della traccia 
+            esito = AreaArchivio.CreaDirectoryArchivio();
 
-            // Crea l'archivio
-            CArchivioDirectory archivio = new CArchivioDirectory();
-            archivio.CreaSrcArchivio(AreaArchivio.Path, AreaArchivio.Nome);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
 
-            // colora il nome dell'archivio in funzione dello stato 
-            textBoxArchivio.BackColor = AreaArchivio.Colore;
+            // disabilita l'aggiornamento del nome dell'area archivio
+            AbilitazioneAggiornamentoNomeAreaArchivio = false;
+
+            // disabilita i campi di impostazione del nome
+            textBoxNome.Enabled = false;
+            textBoxPostfisso.Enabled = false;
+            textBoxDirectoryBaseAreaArchivio.Enabled = false;
+
+            // disabilita il bottoni 
+            butCrea.Enabled = false;
+            butDefault.Enabled = false;
+            butDirectoryBaseAreaArchivio.Enabled = false;
+
+            // Verifica se l'archivio è stato creato correttamente
+            AggiornaNomeAreaArchivio();
 
             return GstErrori.EErrore.E0000_OK;
         }

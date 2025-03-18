@@ -138,6 +138,12 @@ namespace Traccia
         public bool CreaArchivioEscursione(string pathArchivio, string NomeArchivio)
         {
             CreaDirectory(pathArchivio);
+            
+            foreach (var dir in DirArchivio)
+            {
+                string path = pathArchivio + SeparaDir + dir.Path;
+                CreaDirectory(path);
+            }
             return true;
         }
         /// <summary>
