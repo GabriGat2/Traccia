@@ -45,6 +45,11 @@ namespace Traccia
             optSingola = value;
             Aggiorna();
         }
+        /// <summary>
+        /// Mezzo
+        /// </summary>
+        public string mezzo;
+        public string Mezzo { get => mezzo; set => mezzo = value; }
 
 
 
@@ -156,11 +161,10 @@ namespace Traccia
             bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());
             bEsito = Escursione.Info.Traccia.Set("OptSingola", optSingola.ToString());
 
-            bEsito = Escursione.Info.Traccia.Set("Mezzo", "daAggiungere");
+            bEsito = Escursione.Info.Traccia.Set("Mezzo", Mezzo);
 
             return bEsito;
         }
-
         /// <summary>
         /// Scrive il file info Ttraccia
         /// </summary>
@@ -172,10 +176,86 @@ namespace Traccia
 
 
             // compone il path del file info
-            string pathInfo = Escursione.Path + SeparaDir + Escursione.AreaArchivio.Directory.Escursione.GetSubPath("InfoT") + SeparaDir + Nome + ".txt";
+            string pathInfo = GetPathInfo() + SeparaDir + Nome + ".txt";
 
 
             GstErrori.EErrore esito = Escursione.Info.ScriveFileInfoTraccia(pathInfo);
         }
+        /// <summary>
+        /// Rende il path della directory Info delle tracce
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathInfo ()
+        {
+            // compone il path del file info
+            return  Escursione.Path + SeparaDir + Escursione.AreaArchivio.Directory.Escursione.GetSubPath("InfoT");
+
+        }
+
+        /// <summary>
+        /// Legge un file info traccia
+        /// </summary>
+        /// <param name="pathFileInfo"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore LeggeFileInfo (string pathFileInfo)
+        {
+            // pulisce la traccia
+            ClearTraccia();
+            
+
+            // Legge il file info della traccia specificata
+            GstErrori.EErrore esito = Escursione.Info.LeggeFileInfoTraccia (pathFileInfo);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Assegna i valori letti
+            Mezzo = Escursione.Info.Traccia.Get("Mezzo");
+
+            optGiorno = Convert.ToBoolean(Escursione.Info.Traccia.Get("OptGiorno"));
+            optSingola = Convert.ToBoolean(Escursione.Info.Traccia.Get("OptSingola"));
+
+            Nome = Escursione.Info.Traccia.Get("Nome");
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// azzera tutti icampi della traccia
+        /// </summary>
+        public void ClearTraccia()
+        {
+            Mezzo = String.Empty;
+
+            optGiorno = false;
+            optSingola = false;
+
+            Nome = String.Empty;    
+        }
+        /// <summary>
+        /// Rende la lettera della data
+        /// </summary>
+        /// <returns></returns>
+        public char GetLettera()
+        {
+            // estrae la data
+            string data = GetCampo(0);
+
+            // scompone la data
+            string[] campo = data.Split('-');
+
+            // rende la letterea
+            if (campo.Length == 4)
+            {
+                if (campo[3].Length == 1)
+                    return campo[3].ElementAt(0);
+                else
+                    return 'Z';
+            }
+            else
+            {
+                return 'Z';
+            }
+
+        }
+        
     }
 }

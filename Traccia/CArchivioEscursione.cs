@@ -139,7 +139,6 @@ namespace Traccia
             // compone il path del file info
             string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
 
-
             GstErrori.EErrore esito = Info.ScriveFileInfoEscursione(pathInfo);
         }
     }

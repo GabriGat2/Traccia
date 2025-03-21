@@ -54,6 +54,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butModificaTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -314,6 +315,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
             this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
             this.groupBoxComandi.Controls.Add(this.butCrea);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
@@ -380,6 +382,16 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
+            // butModificaTraccia
+            // 
+            this.butModificaTraccia.Location = new System.Drawing.Point(343, 19);
+            this.butModificaTraccia.Name = "butModificaTraccia";
+            this.butModificaTraccia.Size = new System.Drawing.Size(111, 23);
+            this.butModificaTraccia.TabIndex = 14;
+            this.butModificaTraccia.Text = "Modifica Traccia";
+            this.butModificaTraccia.UseVisualStyleBackColor = true;
+            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
+            // 
             // FormArchivioEscursione
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,5 +453,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxPathArchivio;
+        private System.Windows.Forms.Button butModificaTraccia;
     }
 }

@@ -31,24 +31,24 @@ namespace Traccia
         /// Costruttore
         /// </summary>
         /// <param name="traccia"></param>
-        public FormArchivoTraccia(ref CArchivioTraccia traccia)
+        public FormArchivoTraccia(ref CArchivioTraccia traccia, bool modifica)
         {
             // Assegna Archivio traccia
             Traccia = traccia;
 
             InitializeComponent();
-            InizializzaClasse();
+            InizializzaClasse(modifica);
         }
         /// <summary>
         /// Inizilizzazione della classe
         /// </summary>
-        private void InizializzaClasse()
+        private void InizializzaClasse(bool modifica)
         {
             // Definisce il gestore dei messaggi
             msg = new CMessaggio(ref richTextBoxOutput);
 
-            // abilita l'aggiornnamento del nome della traccia
-            AbilitazioneAggiornamentoTraccia = true;
+            // abilita l'aggiornamento del nome della traccia
+            AbilitazioneAggiornamentoTraccia = !modifica;
 
             // Aggiorna l'area Escursione
             textBoxNomeEscursione.Text = Traccia.Escursione.Nome;
@@ -71,39 +71,79 @@ namespace Traccia
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
             textBoxPrefisso.Enabled = false;
 
-            // Inizializza la data come quella dell'escursione
-            dateTimePicker1.Text = Traccia.Escursione.Data;
+            // Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
+            AbilitaCampi(modifica);
+        }
+        /// <summary>
+        /// Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
+        /// </summary>
+        /// <param name="modifica"></param>
+        private void AbilitaCampi(bool tracciaEsiste)
+        {
+            // abilita l'aggiornnamento del nome della traccia
+            AbilitazioneAggiornamentoTraccia = !tracciaEsiste;
 
-            // abilita il bottone crea traccia 
-            butCreaTraccia.Enabled = true;
+            // Inizializza la data
+            if (tracciaEsiste)
+                dateTimePicker1.Text = Traccia.GetOnlyData();
+            else
+                dateTimePicker1.Text = Traccia.Escursione.Data;
 
-            // disabilita il bottone Archivia traccia 
-            butNuovaTraccia.Enabled = false;
+            // Inizializza lettera
+            if (tracciaEsiste)
+                comboBoxLettera.SelectedIndex = Traccia.GetLettera() - 'A';
+            else
+                comboBoxLettera.SelectedIndex = 'A';
+
+            // inizializza Mezzo
+
+
+            // inizializza opzioni
+            checkBoxGiorno.Checked = Traccia.OptGiorno;
+            checkBoxSingola.Checked = Traccia.OptSingola;
+
+            // bottone crea traccia 
+            butCreaTraccia.Enabled = !tracciaEsiste;
+
+            // bottone Archivia traccia 
+            butNuovaTraccia.Enabled = tracciaEsiste;
+
+            // Campi di impostazione del nome
+            dateTimePicker1.Enabled = !tracciaEsiste;
+            comboBoxLettera.Enabled = !tracciaEsiste;
+            comboBoxMezzo.Enabled = !tracciaEsiste;
+            textBoxNome.Enabled = !tracciaEsiste;
+            checkBoxGiorno.Enabled = !tracciaEsiste;
+            checkBoxSingola.Enabled = !tracciaEsiste;
+
         }
         /// <summary>
         /// Aggiorna le caselle con la nuova traccia
         /// </summary>
         private void NuovaTraccia()
         {
-            // abilita l'aggiornnamento del nome della traccia
-            AbilitazioneAggiornamentoTraccia = true;
+            AbilitaCampi(false);
 
-            // Inizializza la data come quella dell'escursione
-            dateTimePicker1.Text = Traccia.Escursione.Data;
 
-            // abilita il bottone crea traccia 
-            butCreaTraccia.Enabled = true;
+            //// abilita l'aggiornnamento del nome della traccia
+            //AbilitazioneAggiornamentoTraccia = true;
 
-            // disabilita il bottone Archivia traccia 
-            butNuovaTraccia.Enabled = false;
+            //// Inizializza la data come quella dell'escursione
+            //dateTimePicker1.Text = Traccia.Escursione.Data;
 
-            // riabilita i campi di impostazione del nome
-            dateTimePicker1.Enabled = true;
-            comboBoxLettera.Enabled = true;
-            comboBoxMezzo.Enabled = true;
-            textBoxNome.Enabled = true;
-            checkBoxGiorno.Enabled = true;
-            checkBoxSingola.Enabled = true;
+            //// abilita il bottone crea traccia 
+            //butCreaTraccia.Enabled = true;
+
+            //// disabilita il bottone Archivia traccia 
+            //butNuovaTraccia.Enabled = false;
+
+            //// riabilita i campi di impostazione del nome
+            //dateTimePicker1.Enabled = true;
+            //comboBoxLettera.Enabled = true;
+            //comboBoxMezzo.Enabled = true;
+            //textBoxNome.Enabled = true;
+            //checkBoxGiorno.Enabled = true;
+            //checkBoxSingola.Enabled = true;
         }
 
 

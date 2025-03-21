@@ -211,7 +211,7 @@ namespace Traccia
                 return;
             }
 
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia);  
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);  
             dlg.ShowDialog();
         }
         /// <summary>

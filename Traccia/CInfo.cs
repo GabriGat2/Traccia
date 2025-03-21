@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,16 @@ namespace Traccia
         /// Traccia
         /// </summary>
         public CInfoTraccia Traccia = new CInfoTraccia() ;  
-
+        /// <summary>
+        /// Gruppo Informazione
+        /// </summary>
+        private enum EGruppoInfo
+        {
+            Niente,
+            Area,
+            Escursione,
+            Traccia
+        }
         /// <summary>
         /// Costruttore
         /// </summary>
@@ -30,7 +40,7 @@ namespace Traccia
 
         }
         /// <summary>
-        /// Scrive il file info pre escursione
+        /// Scrive il file info dell'escursione
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -42,11 +52,11 @@ namespace Traccia
                 StreamWriter sw = new StreamWriter(path);
 
                 // stampa le informazioni dell'applicazione    
-                Area.ScriveGruppoInfo(ref sw, "Area");
+                Area.ScriveGruppoInfo(ref sw, EGruppoInfo.Area.ToString());
 
 
                 // stampa le informazioni dell'escursione    
-                Escursione.ScriveGruppoInfo(ref sw, "Escursione");
+                Escursione.ScriveGruppoInfo(ref sw, EGruppoInfo.Escursione.ToString());
 
 
                 //Close the file
@@ -62,7 +72,7 @@ namespace Traccia
         }
 
         /// <summary>
-        /// Scrive il file info pre escursione
+        /// Scrive il file info della traccia
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -74,14 +84,14 @@ namespace Traccia
                 StreamWriter sw = new StreamWriter(path);
 
                 // stampa le informazioni dell'applicazione    
-                Area.ScriveGruppoInfo(ref sw, "Area");
+                Area.ScriveGruppoInfo(ref sw, EGruppoInfo.Area.ToString());
 
                 // stampa le informazioni dell'escursione    
-                Escursione.ScriveGruppoInfo(ref sw, "Escursione");
+                Escursione.ScriveGruppoInfo(ref sw, EGruppoInfo.Escursione.ToString());
 
 
                 // stampa le informazioni della traccia    
-                Traccia.ScriveGruppoInfo(ref sw, "Traccia");
+                Traccia.ScriveGruppoInfo(ref sw, EGruppoInfo.Traccia.ToString());
 
 
                 //Close the file
@@ -96,8 +106,91 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
 
+        /// <summary>
+        /// Legge il file info della traccia
+        /// </summary>
+        /// <param name="pathFileInfo"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore LeggeFileInfoTraccia(string pathFileInfo)
+        {
+            string line = string.Empty;
+            try
+            {
+                // Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader(pathFileInfo);
+                // legge la prima linea del file
+                line = sr.ReadLine();
 
 
+                // Continue to read until you reach end of file
+                while (line != null)
+                {
+                    // scompone la riga letta
+                    string[] campo = line.Trim().Split('=');
+
+                    // verifica la dimensione di campi
+                    if (campo.Length != 3)
+                        continue;
+
+                    // analizza gruppo di informazione
+                    switch (AnalizzaGeuppoInfo(campo[0]))
+                    {
+                        case EGruppoInfo.Area:
+                            break;
+
+                        case EGruppoInfo.Escursione:
+                            break;
+
+                        case EGruppoInfo.Traccia:
+                            // Assegna l'informazione ricevuta
+                            Traccia.Set(campo[1], campo[2]); 
+                            break;
+
+                        default:
+                            continue;
+                    }
+
+                    // Read the next line
+                    line = sr.ReadLine();
+                }
+
+                // Chiude il file
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Determina il gruppo info specificato dalla stringa gruppo.
+        /// 
+        /// </summary>
+        /// <param name="gruppo"></param>
+        /// <returns></returns>
+
+        private EGruppoInfo AnalizzaGeuppoInfo(string gruppo)
+        {
+            // analizza gruppo di informazione
+            switch (gruppo)
+            {
+                case "Area":
+                    return EGruppoInfo.Area;
+
+                case "Escursione":
+                    return EGruppoInfo.Escursione;
+
+                case "Traccia":
+                    return EGruppoInfo.Traccia;
+
+                default:
+                    return EGruppoInfo.Niente;
+            }
+        }
 
     }
 

@@ -280,8 +280,50 @@ namespace Traccia
                 return;
             }
 
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia);
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);
             dlg.ShowDialog();
+        }
+        /// <summary>
+        /// Selezione e Modifica una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butModificaTraccia_Click(object sender, EventArgs e)
+        {
+            ModificaTraccia();
+        }
+        /// <summary>
+        /// Selezione e Modifica una traccia
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore ModificaTraccia()
+        {
+            // Seleziona una traccia
+            OpenFileDialog dlg = new OpenFileDialog(); 
+            dlg.InitialDirectory = Traccia.GetPathInfo();
+            dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dlg.FilterIndex = 1;
+            dlg.RestoreDirectory = true;
+
+            if (dlg.ShowDialog() != DialogResult.OK)
+            {
+                return GstErrori.EErrore.E0001_NOK;
+            }
+            
+            // Estrae il nome del file info
+            string pathFileInfo = dlg.FileName;
+
+            // Legge il file info della traccia
+            GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Apre la dialo della traccia
+            FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
+            dlgT.ShowDialog();
+
+
+            return GstErrori.EErrore.E0000_OK;
         }
     }
 }
