@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -180,7 +181,12 @@ namespace Traccia
             }
 
             // recupera il valore della lettera
-            string lettera = comboBoxLettera.Text;
+            string lettera = string.Empty;
+
+            if (comboBoxLettera.Text.Trim().Length > 0) 
+                lettera = comboBoxLettera.Text;
+            else
+                lettera = "?";
 
             // Recupera il valore del prefisso
             string prefisso;
@@ -219,12 +225,11 @@ namespace Traccia
             // compone il nome dell'Archivio
             string nArchivio = nData + '-' + lettera + '_' + nPrefisso + '_' + nNome;
             if (campiMezzo.Length > 0)
-                if (campiMezzo[0] != "Cammino")
+                if( (campiMezzo[0] != "Cammino") && (campiMezzo[0].Trim().Length > 0))
                     nArchivio = nArchivio + '_' + campiMezzo[0];
 
             // Assegna il nome dell'archivio
             Traccia.Nome = nArchivio;
-
             // mostra il nome della traccia
             StampaNomeTraccia();
         }
@@ -317,6 +322,9 @@ namespace Traccia
             // Aggiornamento traccia
             AggiornaNomeTraccia();
 
+            // Stampa il file delle Info
+            Traccia.ScriveFileInfo();
+
             return esito;
         }
         /// <summary>
@@ -366,6 +374,67 @@ namespace Traccia
         {
             Traccia.ClearNome();
             NuovaTraccia();
+        }
+        /// <summary>
+        /// Copia le foto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butCopiaFoto_Click(object sender, EventArgs e)
+        {
+            CopiaFoto();
+        }
+
+        private GstErrori.EErrore CopiaFoto ()
+        {
+            // recupera il path delle foto JPEG sorgente
+            string srcJpegPath = Traccia.Escursione.AreaArchivio.GetPathJPEG();
+
+            // Compone la lista delle foto JPEG
+            string [] srcJpegList = Directory.GetFiles(srcJpegPath, "*.*");
+
+            // Estra la data di ricerca
+            string dataTraccia = Traccia.GetOnlyData();
+
+
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcJpegList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(srcJpegPath.Length + 1);
+
+                // stampa il nome del file
+                msg.Stampa(srcFileName, false);
+
+                // Estrae la data di creazione
+                DateTime dataCreazione = File.GetCreationTime(srcFile);
+                DateTime dataCreazione2 = File.GetCreationTimeUtc(srcFile);
+                //msg.Stampa("    dataCreazione: " + dataCreazione.ToString(), false);
+
+                // Estrae la data di ultimo accesso
+                DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
+                DateTime dataUltimoAccesso2 = File.GetLastAccessTime(srcFile);
+                //msg.Stampa("    dataUltimo: " + dataUltimoAccesso.ToString(), false);
+
+                // Estrae la data di ultimo accesso
+                DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
+                DateTime dataUltimaScritta2 = File.GetLastAccessTimeUtc(srcFile);
+                msg.Stampa("    dataScrittura: " + dataUltimaScritta.ToString(), false);
+                string dataFile = dataUltimaScritta.Date.ToString();
+
+                if (dataTraccia == dataFile)
+                {
+
+                    msg.Stampa("    file trovato: " + srcFileName, true);
+
+                }
+
+
+            }
+
+
+            return GstErrori.EErrore.E0000_OK;
         }
     }
 }

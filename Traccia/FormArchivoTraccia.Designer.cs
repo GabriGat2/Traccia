@@ -45,6 +45,8 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTraccia = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
             this.checkBoxSingola = new System.Windows.Forms.CheckBox();
             this.checkBoxGiorno = new System.Windows.Forms.CheckBox();
             this.comboBoxMezzo = new System.Windows.Forms.ComboBox();
@@ -62,8 +64,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
+            this.butCopiaFoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -296,6 +297,23 @@
             this.groupBoxTraccia.TabStop = false;
             this.groupBoxTraccia.Text = "Traccia";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 129);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Path Archivio";
+            // 
+            // textBoxPathArchivio
+            // 
+            this.textBoxPathArchivio.Location = new System.Drawing.Point(141, 122);
+            this.textBoxPathArchivio.Name = "textBoxPathArchivio";
+            this.textBoxPathArchivio.ReadOnly = true;
+            this.textBoxPathArchivio.Size = new System.Drawing.Size(627, 20);
+            this.textBoxPathArchivio.TabIndex = 18;
+            // 
             // checkBoxSingola
             // 
             this.checkBoxSingola.AutoSize = true;
@@ -413,6 +431,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butCopiaFoto);
             this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
             this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
@@ -479,22 +498,15 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // label10
+            // butCopiaFoto
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 129);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Path Archivio";
-            // 
-            // textBoxPathArchivio
-            // 
-            this.textBoxPathArchivio.Location = new System.Drawing.Point(141, 122);
-            this.textBoxPathArchivio.Name = "textBoxPathArchivio";
-            this.textBoxPathArchivio.ReadOnly = true;
-            this.textBoxPathArchivio.Size = new System.Drawing.Size(627, 20);
-            this.textBoxPathArchivio.TabIndex = 18;
+            this.butCopiaFoto.Location = new System.Drawing.Point(505, 18);
+            this.butCopiaFoto.Name = "butCopiaFoto";
+            this.butCopiaFoto.Size = new System.Drawing.Size(101, 23);
+            this.butCopiaFoto.TabIndex = 14;
+            this.butCopiaFoto.Text = "Copia Foto";
+            this.butCopiaFoto.UseVisualStyleBackColor = true;
+            this.butCopiaFoto.Click += new System.EventHandler(this.butCopiaFoto_Click);
             // 
             // FormArchivoTraccia
             // 
@@ -568,5 +580,6 @@
         private System.Windows.Forms.CheckBox checkBoxSingola;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxPathArchivio;
+        private System.Windows.Forms.Button butCopiaFoto;
     }
 }

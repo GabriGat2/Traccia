@@ -75,16 +75,13 @@ namespace Traccia
             }
 
             // Crea directory traccia
-            bool bEsito = Escursione.AreaArchivio.Directory.CreaArchivioTraccia(Path, Nome);
+            GstErrori.EErrore esito = Escursione.AreaArchivio.Directory.Traccia.CreaArchivio(Path, Nome);
 
             // Aggiorna lo stato della traccia
             //EArchivioStato passa = Stato;
 
             // Rende l'esito delle operazioni
-            if (bEsito)
-                return GstErrori.EErrore.E0000_OK;
-            else
-                return GstErrori.EErrore.E1313_CreazioneAreaArchivioFallita;
+            return esito;
         }
         /// <summary>
         /// Compone la directory path
@@ -97,7 +94,7 @@ namespace Traccia
             string pathEscursione = Escursione.Path;
 
             // Estra la subdir Archivi di escursione
-            string subDirArchivio = Escursione.AreaArchivio.Directory.GetSubPathSrcArchivio("Archivi");
+            string subDirArchivio = Escursione.AreaArchivio.Directory.Escursione.GetSubPath("Archivi");
 
 
             switch (ModoArchiviazione())
@@ -143,8 +140,44 @@ namespace Traccia
 
             return modo;
         }
+        /// <summary>
+        /// Scrive le informazioni Info TRaccia
+        /// </summary>
+        public bool ScriveInfo()
+        {
+            bool bEsito;
+            bEsito = Escursione.Info.Traccia.Set("Nome", Nome);
+            bEsito = Escursione.Info.Traccia.Set("Path", Path);
+
+            // Estrae il nome path relativo del file
+            string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
+            bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
 
 
 
+            bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());
+            bEsito = Escursione.Info.Traccia.Set("OptSingola", optSingola.ToString());
+
+            bEsito = Escursione.Info.Traccia.Set("Mezzo", "daAggiungere");
+
+            return bEsito;
+        }
+
+        /// <summary>
+        /// Scrive il file info Ttraccia
+        /// </summary>
+        public void ScriveFileInfo()
+        {
+            // aggiorna le info
+            Escursione.ScriveInfo();
+            ScriveInfo();
+
+
+            // compone il path del file info
+            string pathInfo = Escursione.Path + SeparaDir + Escursione.AreaArchivio.Directory.Escursione.GetSubPath("InfoT") + SeparaDir + Nome + ".txt";
+
+
+            GstErrori.EErrore esito = Escursione.Info.ScriveFileInfoTraccia(pathInfo);
+        }
     }
 }

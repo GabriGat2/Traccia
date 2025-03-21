@@ -52,7 +52,7 @@ namespace Traccia
         /// <summary>
         /// Archivio Escursione
         /// </summary>
-        public CArchivioEscursione ArchivioEscursione = null;
+        public CArchivioEscursione Escursione = null;
         /// <summary>
         /// Archivio Traccia
         /// </summary>
@@ -80,16 +80,16 @@ namespace Traccia
             AreaArchivio = new CAreaArchivio();
 
             // Crea la classe Escursione
-            ArchivioEscursione = new CArchivioEscursione();
+            Escursione = new CArchivioEscursione();
 
             // Assegna AreaArchivio
-            ArchivioEscursione.AreaArchivio = AreaArchivio;
+            Escursione.AreaArchivio = AreaArchivio;
 
             // Crea la classe Traccia
             Traccia = new CArchivioTraccia();   
 
             // Assegna Archivio Escursione
-            Traccia.Escursione = ArchivioEscursione;
+            Traccia.Escursione = Escursione;
         }
         /// <summary>
         /// Avvia la dialog per l'archiviazione di una escursione
@@ -109,7 +109,7 @@ namespace Traccia
         private void butCreaArchivio_Click(object sender, EventArgs e)
         {
             // Controlla c'è un escursione impostata
-            if (ArchivioEscursione.StatoOk())
+            if (Escursione.StatoOk())
             {
                 // Chiede se deve continuare
                 if  (!   GstErrori.StampaMessaggioAvviso
@@ -122,7 +122,7 @@ namespace Traccia
             }
 
             // Ripulisce l'Escursione
-            ArchivioEscursione.ClearNome();
+            Escursione.ClearNome();
 
             // Apre il form 
             OpenArchivioEscursione();
@@ -132,12 +132,12 @@ namespace Traccia
         /// </summary>
         private void OpenArchivioEscursione()
         {
-            ArchivioEscursione.AreaArchivio = AreaArchivio;
+            Escursione.AreaArchivio = AreaArchivio;
 
             // verifica l'esistenza dell'Area Archivo
-            if (!ArchivioEscursione.AreaArchivio.StatoOk())
+            if (!Escursione.AreaArchivio.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, ArchivioEscursione.AreaArchivio.Path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, Escursione.AreaArchivio.Path);
                 return;
             }
 
@@ -205,9 +205,9 @@ namespace Traccia
         private void butArchiviaTraccia_Click(object sender, EventArgs e)
         {
             // verifica l'esistenza dell'Area Archivo
-            if (!ArchivioEscursione.StatoOk())
+            if (!Escursione.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, ArchivioEscursione.Path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, Escursione.Path);
                 return;
             }
 
@@ -231,7 +231,7 @@ namespace Traccia
             dlg.Description = "Seleziona la direcory dell'escursione";
 
             // imposta l'indirizzo dell'archivio escursioni
-            dlg.SelectedPath = ArchivioEscursione.GetPathArchivoEscursioni();
+            dlg.SelectedPath = Escursione.GetPathArchivoEscursioni();
 
             // esegue la dialog per selezionare il path dell'escursione
             if (dlg.ShowDialog() != DialogResult.OK)
@@ -241,7 +241,7 @@ namespace Traccia
             string path = dlg.SelectedPath;
 
             // Assegna il nome della traccia
-            ArchivioEscursione.SetNome(path);
+            Escursione.SetNome(path);
 
             // Apre il form Archivio Escursione
             OpenArchivioEscursione();

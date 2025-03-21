@@ -30,7 +30,7 @@ namespace Traccia
         /// <returns></returns>
         public string GetPathInput ()
         {
-            return Path + SeparaDir + Directory.GetSubPathSrcArchivio("Input");
+            return Path + SeparaDir + Directory.Area.GetSubPath("Input");
         }
         /// <summary>
         /// Rende il path dell'area comune
@@ -38,7 +38,15 @@ namespace Traccia
         /// <returns></returns>
         public string GetPathComune()
         {
-            return Path + SeparaDir + Directory.GetSubPathSrcArchivio("Comune");
+            return Path + SeparaDir + Directory.Area.GetSubPath("Comune");
+        }
+        /// <summary>
+        /// Rende il path dell'area comune
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathJPEG()
+        {
+            return Path + SeparaDir + Directory.Area.GetSubPath("JPEG");
         }
         /// <summary>
         /// Compone la directory path
@@ -68,16 +76,13 @@ namespace Traccia
             }
 
             // Crea directory traccia
-            bool bEsito = Directory.CreaSrcArchivio(Path, Nome);
+            GstErrori.EErrore esito = Directory.Area.CreaArchivio(Path, Nome);
 
             // Aggiorna lo stato della traccia
             EArchivioStato passa = Stato;
 
             // Rende l'esito delle operazioni
-            if (bEsito)
-                return GstErrori.EErrore.E0000_OK;
-            else
-                return GstErrori.EErrore.E1315_CreazioneArchivioTracciaFallita;
+            return esito;
         }
 
     }

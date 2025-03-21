@@ -63,11 +63,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CArchivioDirectoryArea.cs" />
+    <Compile Include="CArchivioDirectoryBase.cs" />
+    <Compile Include="CArchivioDirectoryEscursione.cs" />
+    <Compile Include="CArchivioDirectoryTraccia.cs" />
     <Compile Include="CAreaArchivio.cs" />
     <Compile Include="CArchivioDirectory.cs" />
     <Compile Include="CArchivioEscursione.cs" />
     <Compile Include="CArchivioTraccia.cs" />
     <Compile Include="CArchivio.cs" />
+    <Compile Include="CInfo.cs" />
     <Compile Include="CMessaggio.cs" />
     <Compile Include="FormArchivoTraccia.cs">
       <SubType>Form</SubType>

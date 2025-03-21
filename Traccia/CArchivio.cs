@@ -61,9 +61,9 @@ namespace Traccia
         }
         protected void InizializzaClasse ()
         {
-            // Estrae la subdirectory degli archivi
-            CArchivioDirectory Arch = new CArchivioDirectory();
-            Arch.GetSubPathSrcArchivio("Archivi", out string SubDirArchivi);
+            //// Estrae la subdirectory degli archivi
+            //CArchivioDirectory Arch = new CArchivioDirectory();
+            //Arch.GetSubPathAreaEscursioni("Archivi", out string SubDirArchivi);
         }
         /// <summary>
         /// Assegna il path base
@@ -246,7 +246,7 @@ namespace Traccia
             else
                 return string.Empty;
         }
-        protected string GetOnlyData()
+        public string GetOnlyData()
         {
             // estrae la data con la lettera
             string data1 = GetCampo(0);
@@ -260,8 +260,6 @@ namespace Traccia
                 return campi[0] + '-' + campi[1] + '-' + campi[2];
 
         }
-
-
         /// <summary>
         /// Azzera il Nome e di conseguenza tutte le informazioni della traccia
         /// </summary>

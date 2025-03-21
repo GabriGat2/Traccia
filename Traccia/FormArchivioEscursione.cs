@@ -261,6 +261,9 @@ namespace Traccia
             // Verifica se l'archivio è stato creato correttamente
             AggiornamentoEscursione();
 
+            // Stampa il file delle Info
+            Escursione.ScriveFileInfo();
+
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
