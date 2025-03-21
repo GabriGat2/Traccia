@@ -59,12 +59,15 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butCopiaFoto = new System.Windows.Forms.Button();
             this.butCreaTraccia = new System.Windows.Forms.Button();
             this.butNuovaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butCopiaFoto = new System.Windows.Forms.Button();
+            this.butExplorerTraccia = new System.Windows.Forms.Button();
+            this.butExploreEscursione = new System.Windows.Forms.Button();
+            this.butExplorerInputDati = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -168,6 +171,8 @@
             // 
             // groupBoxEscursione
             // 
+            this.groupBoxEscursione.Controls.Add(this.butExplorerInputDati);
+            this.groupBoxEscursione.Controls.Add(this.butExploreEscursione);
             this.groupBoxEscursione.Controls.Add(this.label7);
             this.groupBoxEscursione.Controls.Add(this.textBoxNomeEscursione);
             this.groupBoxEscursione.Controls.Add(this.label6);
@@ -271,6 +276,7 @@
             // 
             // groupBoxTraccia
             // 
+            this.groupBoxTraccia.Controls.Add(this.butExplorerTraccia);
             this.groupBoxTraccia.Controls.Add(this.label10);
             this.groupBoxTraccia.Controls.Add(this.textBoxPathArchivio);
             this.groupBoxTraccia.Controls.Add(this.checkBoxSingola);
@@ -445,6 +451,16 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butCopiaFoto
+            // 
+            this.butCopiaFoto.Location = new System.Drawing.Point(505, 18);
+            this.butCopiaFoto.Name = "butCopiaFoto";
+            this.butCopiaFoto.Size = new System.Drawing.Size(101, 23);
+            this.butCopiaFoto.TabIndex = 14;
+            this.butCopiaFoto.Text = "Copia Foto";
+            this.butCopiaFoto.UseVisualStyleBackColor = true;
+            this.butCopiaFoto.Click += new System.EventHandler(this.butCopiaFoto_Click);
+            // 
             // butCreaTraccia
             // 
             this.butCreaTraccia.Location = new System.Drawing.Point(10, 18);
@@ -498,15 +514,35 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butCopiaFoto
+            // butExplorerTraccia
             // 
-            this.butCopiaFoto.Location = new System.Drawing.Point(505, 18);
-            this.butCopiaFoto.Name = "butCopiaFoto";
-            this.butCopiaFoto.Size = new System.Drawing.Size(101, 23);
-            this.butCopiaFoto.TabIndex = 14;
-            this.butCopiaFoto.Text = "Copia Foto";
-            this.butCopiaFoto.UseVisualStyleBackColor = true;
-            this.butCopiaFoto.Click += new System.EventHandler(this.butCopiaFoto_Click);
+            this.butExplorerTraccia.Location = new System.Drawing.Point(774, 119);
+            this.butExplorerTraccia.Name = "butExplorerTraccia";
+            this.butExplorerTraccia.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerTraccia.TabIndex = 19;
+            this.butExplorerTraccia.Text = "E";
+            this.butExplorerTraccia.UseVisualStyleBackColor = true;
+            this.butExplorerTraccia.Click += new System.EventHandler(this.butExplorerTraccia_Click);
+            // 
+            // butExploreEscursione
+            // 
+            this.butExploreEscursione.Location = new System.Drawing.Point(774, 36);
+            this.butExploreEscursione.Name = "butExploreEscursione";
+            this.butExploreEscursione.Size = new System.Drawing.Size(17, 23);
+            this.butExploreEscursione.TabIndex = 20;
+            this.butExploreEscursione.Text = "E";
+            this.butExploreEscursione.UseVisualStyleBackColor = true;
+            this.butExploreEscursione.Click += new System.EventHandler(this.butExploreEscursione_Click);
+            // 
+            // butExplorerInputDati
+            // 
+            this.butExplorerInputDati.Location = new System.Drawing.Point(774, 61);
+            this.butExplorerInputDati.Name = "butExplorerInputDati";
+            this.butExplorerInputDati.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerInputDati.TabIndex = 21;
+            this.butExplorerInputDati.Text = "E";
+            this.butExplorerInputDati.UseVisualStyleBackColor = true;
+            this.butExplorerInputDati.Click += new System.EventHandler(this.butExplorerInputDati_Click);
             // 
             // FormArchivoTraccia
             // 
@@ -581,5 +617,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxPathArchivio;
         private System.Windows.Forms.Button butCopiaFoto;
+        private System.Windows.Forms.Button butExplorerInputDati;
+        private System.Windows.Forms.Button butExploreEscursione;
+        private System.Windows.Forms.Button butExplorerTraccia;
     }
 }

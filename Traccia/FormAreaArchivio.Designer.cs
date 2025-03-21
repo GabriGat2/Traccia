@@ -43,6 +43,8 @@
             this.textBoxPostfisso = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.butExplorerAreaBase = new System.Windows.Forms.Button();
+            this.buttonExplorerAreaArchivio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,6 +76,7 @@
             // 
             // groupBoxDirecoryAreaArchivio
             // 
+            this.groupBoxDirecoryAreaArchivio.Controls.Add(this.butExplorerAreaBase);
             this.groupBoxDirecoryAreaArchivio.Controls.Add(this.butDirectoryBaseAreaArchivio);
             this.groupBoxDirecoryAreaArchivio.Controls.Add(this.textBoxDirectoryBaseAreaArchivio);
             this.groupBoxDirecoryAreaArchivio.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -118,6 +121,7 @@
             // 
             // groupNomeAreaArchivio
             // 
+            this.groupNomeAreaArchivio.Controls.Add(this.buttonExplorerAreaArchivio);
             this.groupNomeAreaArchivio.Controls.Add(this.butDefault);
             this.groupNomeAreaArchivio.Controls.Add(this.butCrea);
             this.groupNomeAreaArchivio.Controls.Add(this.butAggiorna);
@@ -216,6 +220,26 @@
             this.textBoxNome.TabIndex = 16;
             this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
+            // butExplorerAreaBase
+            // 
+            this.butExplorerAreaBase.Location = new System.Drawing.Point(762, 30);
+            this.butExplorerAreaBase.Name = "butExplorerAreaBase";
+            this.butExplorerAreaBase.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerAreaBase.TabIndex = 14;
+            this.butExplorerAreaBase.Text = "E";
+            this.butExplorerAreaBase.UseVisualStyleBackColor = true;
+            this.butExplorerAreaBase.Click += new System.EventHandler(this.butExplorerAreaBase_Click);
+            // 
+            // buttonExplorerAreaArchivio
+            // 
+            this.buttonExplorerAreaArchivio.Location = new System.Drawing.Point(762, 92);
+            this.buttonExplorerAreaArchivio.Name = "buttonExplorerAreaArchivio";
+            this.buttonExplorerAreaArchivio.Size = new System.Drawing.Size(17, 23);
+            this.buttonExplorerAreaArchivio.TabIndex = 22;
+            this.buttonExplorerAreaArchivio.Text = "E";
+            this.buttonExplorerAreaArchivio.UseVisualStyleBackColor = true;
+            this.buttonExplorerAreaArchivio.Click += new System.EventHandler(this.buttonExplorerAreaArchivio_Click);
+            // 
             // FormAreaArchivio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,5 +280,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Button butDefault;
+        private System.Windows.Forms.Button butExplorerAreaBase;
+        private System.Windows.Forms.Button buttonExplorerAreaArchivio;
     }
 }

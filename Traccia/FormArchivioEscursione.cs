@@ -326,7 +326,7 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Attiva la finestra explorer, se esiste, all'indirizzo della traccia
+        /// Attiva la finestra explorer, se esiste, all'indirizzo della escursione
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -202,5 +202,54 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo dell'Area base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExplorerAreaBase_Click(object sender, EventArgs e)
+        {
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(AreaArchivio.PathBase);
+        }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo dell'Area Escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonExplorerAreaArchivio_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato dell'Area Archivio
+            if (!AreaArchivio.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1321_PathAreaArchivioNonEsiste);
+            }
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(AreaArchivio.Path);
+
+        }
+        /// <summary>
+        /// Avvia explorer dal path specificato
+        /// </summary>
+        /// <param name="path"></param>
+        private void ApreExplorer(string path)
+        {
+            string target = "Explorer";
+
+            try
+            {
+                System.Diagnostics.Process.Start(target, path);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
+
+        }
     }
 }

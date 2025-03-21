@@ -476,5 +476,77 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo della traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExplorerTraccia_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato della Escursione
+            if (!Traccia.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1323_PathTracciaNonEsiste);
+            }
+
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(Traccia.Path);
+        }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo dell'escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExploreEscursione_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato della Escursione
+            if (!Traccia.Escursione.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1322_PathEscursioneNonEsiste);
+            }
+
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(Traccia.Escursione.Path);
+        }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo dell'area input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExplorerInputDati_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato della Escursione
+            if (!Traccia.Escursione.AreaArchivio.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1321_PathAreaArchivioNonEsiste);
+            }
+
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(Traccia.Escursione.AreaArchivio.GetPathInput());
+
+        }
+        /// <summary>
+        /// Avvia explorer dal path specificato
+        /// </summary>
+        /// <param name="path"></param>
+        private void ApreExplorer(string path)
+        {
+            string target = "Explorer";
+
+            try
+            {
+                System.Diagnostics.Process.Start(target, path);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
+
+        }
     }
 }
