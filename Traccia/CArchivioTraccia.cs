@@ -147,12 +147,10 @@ namespace Traccia
         {
             bool bEsito;
             bEsito = Escursione.Info.Traccia.Set("Nome", Nome);
-            bEsito = Escursione.Info.Traccia.Set("Path", Path);
-
+ 
             // Estrae il nome path relativo del file
             string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
             bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
-
 
 
             bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());
