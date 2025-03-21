@@ -36,11 +36,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.richTextDescrizione = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.butExplorerArea = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
+            this.butExplorerEscursione = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -49,12 +51,12 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butModificaTraccia = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
             this.butCrea = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butModificaTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -147,6 +149,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.butExplorerArea);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxDirectoryBase);
@@ -157,6 +160,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(796, 681);
             this.splitContainer1.SplitterDistance = 60;
             this.splitContainer1.TabIndex = 9;
+            // 
+            // butExplorerArea
+            // 
+            this.butExplorerArea.Location = new System.Drawing.Point(774, 12);
+            this.butExplorerArea.Name = "butExplorerArea";
+            this.butExplorerArea.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerArea.TabIndex = 14;
+            this.butExplorerArea.Text = "E";
+            this.butExplorerArea.UseVisualStyleBackColor = true;
+            this.butExplorerArea.Click += new System.EventHandler(this.butExplorerArea_Click);
             // 
             // label6
             // 
@@ -218,6 +231,7 @@
             // 
             // groupBoxArchivio
             // 
+            this.groupBoxArchivio.Controls.Add(this.butExplorerEscursione);
             this.groupBoxArchivio.Controls.Add(this.label7);
             this.groupBoxArchivio.Controls.Add(this.textBoxPathArchivio);
             this.groupBoxArchivio.Controls.Add(this.dateTimePicker1);
@@ -237,6 +251,16 @@
             this.groupBoxArchivio.TabIndex = 0;
             this.groupBoxArchivio.TabStop = false;
             this.groupBoxArchivio.Text = "Archivio";
+            // 
+            // butExplorerEscursione
+            // 
+            this.butExplorerEscursione.Location = new System.Drawing.Point(774, 129);
+            this.butExplorerEscursione.Name = "butExplorerEscursione";
+            this.butExplorerEscursione.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerEscursione.TabIndex = 13;
+            this.butExplorerEscursione.Text = "E";
+            this.butExplorerEscursione.UseVisualStyleBackColor = true;
+            this.butExplorerEscursione.Click += new System.EventHandler(this.butExplorerEscursione_Click);
             // 
             // label7
             // 
@@ -329,6 +353,16 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butModificaTraccia
+            // 
+            this.butModificaTraccia.Location = new System.Drawing.Point(343, 19);
+            this.butModificaTraccia.Name = "butModificaTraccia";
+            this.butModificaTraccia.Size = new System.Drawing.Size(111, 23);
+            this.butModificaTraccia.TabIndex = 14;
+            this.butModificaTraccia.Text = "Modifica Traccia";
+            this.butModificaTraccia.UseVisualStyleBackColor = true;
+            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
+            // 
             // butArchiviaTraccia
             // 
             this.butArchiviaTraccia.Location = new System.Drawing.Point(564, 18);
@@ -381,16 +415,6 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(792, 193);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // butModificaTraccia
-            // 
-            this.butModificaTraccia.Location = new System.Drawing.Point(343, 19);
-            this.butModificaTraccia.Name = "butModificaTraccia";
-            this.butModificaTraccia.Size = new System.Drawing.Size(111, 23);
-            this.butModificaTraccia.TabIndex = 14;
-            this.butModificaTraccia.Text = "Modifica Traccia";
-            this.butModificaTraccia.UseVisualStyleBackColor = true;
-            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
             // 
             // FormArchivioEscursione
             // 
@@ -454,5 +478,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxPathArchivio;
         private System.Windows.Forms.Button butModificaTraccia;
+        private System.Windows.Forms.Button butExplorerEscursione;
+        private System.Windows.Forms.Button butExplorerArea;
     }
 }

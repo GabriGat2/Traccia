@@ -276,7 +276,7 @@ namespace Traccia
             // verifica l'esistenza dell'Escursione
             if (!Escursione.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1304_PathArchivioEscursioneErrato, Escursione.Path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1312_PathEscursioneErrato, Escursione.Path);
                 return;
             }
 
@@ -325,5 +325,60 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo della traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExplorerEscursione_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato della Escursione
+            if (! Escursione.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1332_PathEscursioneEsiste);
+            }
+
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(Escursione.Path);
+        }
+        /// <summary>
+        /// Attiva la finestra explorer, se esiste, all'indirizzo del'area escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butExplorerArea_Click(object sender, EventArgs e)
+        {
+            // Controlla lo stato dell'Area Archivio
+            if (!Escursione.AreaArchivio.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1321_PathAreaArchivioNonEsiste);
+            }
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(Escursione.AreaArchivio.Path);
+        }
+        /// <summary>
+        /// Avvia explorer dal path specificato
+        /// </summary>
+        /// <param name="path"></param>
+        private void ApreExplorer(string path)
+        {
+            string target = "Explorer";
+
+            try
+            {
+                System.Diagnostics.Process.Start(target, path);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
+
+        }
+
     }
 }

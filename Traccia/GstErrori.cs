@@ -42,16 +42,43 @@ namespace Traccia
 
             // Gestione directory
             E1300_NomeArchivioErrato,
-            E1301_CreazioneDirectoryFallita,
-            E1302_CreazioneArchivioFallita,
-            E1303_PathAreaArchivioErrata,
-            E1304_PathArchivioEscursioneErrato,
-            E1305_PathArchivioTracciaErrato,
-            E1306_ArchivioEsiste,
 
-            E1313_CreazioneAreaArchivioFallita,
-            E1314_CreazioneArchivioEscursioneFallita,
-            E1315_CreazioneArchivioTracciaFallita,
+            E1310_PathArchivioErrato,
+            E1311_PathAreaArchivioErrata,
+            E1312_PathEscursioneErrato,
+            E1313_PathTracciaErrato,
+
+            E1320_PathArchivioNonEsiste,
+            E1321_PathAreaArchivioNonEsiste,
+            E1322_PathEscursioneNonEsiste,
+            E1323_PathTracciaNonEsiste,
+
+            E1330_PathArchivioEsiste,
+            E1331_PathAreaArchivioEsiste,
+            E1332_PathEscursioneEsiste,
+            E1333_PathTracciaEsiste,
+
+            E1330_PathArchivioCreazioneFallita,
+            E1331_PathAreaArchivioCreazioneFallita,
+            E1332_PathEscursioneCreazioneFallita,
+            E1333_PathTracciaCreazioneFallita,
+            E1334_DirectoryCreazioneFallita,
+
+
+            //E1310_PathArchivioNonEsiste,
+            //E1310_PathAreaArchivioNonEsiste,
+            //E1310_PathEscursioneNonEsiste,
+            //E1310_PathTracciaNonEsiste,
+
+
+            //E1301_CreazioneDirectoryFallita,
+            //E1302_CreazioneArchivioFallita,
+            
+            //E1303_PathAreaArchivioErrata,
+            //E1304_PathArchivioEscursioneErrato,
+            //E1305_PathArchivioTracciaErrato,
+            //E1306_ArchivioEsiste,
+
 
 
             E1324_EscursionePresente,

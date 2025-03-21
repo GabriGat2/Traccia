@@ -39,8 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.butSelezionaAreaArchivio = new System.Windows.Forms.Button();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
-            this.butArchiviaTraccia = new System.Windows.Forms.Button();
             this.butEscursione = new System.Windows.Forms.Button();
+            this.butArchiviaTraccia = new System.Windows.Forms.Button();
+            this.butExplore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -160,6 +161,7 @@
             // 
             // groupBoxArchivio
             // 
+            this.groupBoxArchivio.Controls.Add(this.butExplore);
             this.groupBoxArchivio.Controls.Add(this.butEscursione);
             this.groupBoxArchivio.Controls.Add(this.butArchiviaTraccia);
             this.groupBoxArchivio.Controls.Add(this.butArchiviaEscursione);
@@ -172,6 +174,16 @@
             this.groupBoxArchivio.TabStop = false;
             this.groupBoxArchivio.Text = "Archivio";
             // 
+            // butEscursione
+            // 
+            this.butEscursione.Location = new System.Drawing.Point(12, 57);
+            this.butEscursione.Name = "butEscursione";
+            this.butEscursione.Size = new System.Drawing.Size(147, 23);
+            this.butEscursione.TabIndex = 3;
+            this.butEscursione.Text = "Escursione";
+            this.butEscursione.UseVisualStyleBackColor = true;
+            this.butEscursione.Click += new System.EventHandler(this.butEscursione_Click);
+            // 
             // butArchiviaTraccia
             // 
             this.butArchiviaTraccia.Enabled = false;
@@ -183,15 +195,15 @@
             this.butArchiviaTraccia.UseVisualStyleBackColor = true;
             this.butArchiviaTraccia.Click += new System.EventHandler(this.butArchiviaTraccia_Click);
             // 
-            // butEscursione
+            // butExplore
             // 
-            this.butEscursione.Location = new System.Drawing.Point(12, 57);
-            this.butEscursione.Name = "butEscursione";
-            this.butEscursione.Size = new System.Drawing.Size(147, 23);
-            this.butEscursione.TabIndex = 3;
-            this.butEscursione.Text = "Escursione";
-            this.butEscursione.UseVisualStyleBackColor = true;
-            this.butEscursione.Click += new System.EventHandler(this.butEscursione_Click);
+            this.butExplore.Location = new System.Drawing.Point(484, 18);
+            this.butExplore.Name = "butExplore";
+            this.butExplore.Size = new System.Drawing.Size(75, 23);
+            this.butExplore.TabIndex = 4;
+            this.butExplore.Text = "Explorer";
+            this.butExplore.UseVisualStyleBackColor = true;
+            this.butExplore.Click += new System.EventHandler(this.butExplore_Click);
             // 
             // FormMain
             // 
@@ -227,6 +239,7 @@
         private System.Windows.Forms.TextBox textBoxNomeAreaArchivio;
         private System.Windows.Forms.Button butArchiviaTraccia;
         private System.Windows.Forms.Button butEscursione;
+        private System.Windows.Forms.Button butExplore;
     }
 }
 

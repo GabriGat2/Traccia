@@ -98,10 +98,10 @@ namespace Traccia
                     break;
 
                 case EArchivioStato.ArchivioEsiste:
-                    return GstErrori.EErrore.E1306_ArchivioEsiste;
+                    return GstErrori.EErrore.E1332_PathEscursioneEsiste;
 
                 default:
-                    return GstErrori.EErrore.E1300_NomeArchivioErrato;
+                    return GstErrori.EErrore.E1312_PathEscursioneErrato;
             }
 
             // Crea directory traccia

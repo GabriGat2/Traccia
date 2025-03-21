@@ -139,7 +139,7 @@ namespace Traccia
 
             // la creazione della directory è fallita stampa l'esito
             if (!muto)
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1301_CreazioneDirectoryFallita, path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1334_DirectoryCreazioneFallita, path);
 
             return false;
         }

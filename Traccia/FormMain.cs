@@ -137,7 +137,7 @@ namespace Traccia
             // verifica l'esistenza dell'Area Archivo
             if (!Escursione.AreaArchivio.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, Escursione.AreaArchivio.Path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1311_PathAreaArchivioErrata, Escursione.AreaArchivio.Path);
                 return;
             }
 
@@ -207,7 +207,7 @@ namespace Traccia
             // verifica l'esistenza dell'Area Archivo
             if (!Escursione.StatoOk())
             {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1303_PathAreaArchivioErrata, Escursione.Path);
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1312_PathEscursioneErrato, Escursione.Path);
                 return;
             }
 
@@ -245,6 +245,27 @@ namespace Traccia
 
             // Apre il form Archivio Escursione
             OpenArchivioEscursione();
+        }
+
+        private void butExplore_Click(object sender, EventArgs e)
+        {
+            string target = "Explorer";
+            //Use no more than one assignment when you test this code.
+            //string target = "ftp://ftp.microsoft.com";
+            //string target = "C:\\Program Files\\Microsoft Visual Studio\\INSTALL.HTM";
+            try
+            {
+                System.Diagnostics.Process.Start(target, "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia\\ArchivioEscursioni\\30-Escursioni\\2025-03-20_01_Pluto\\30-Archivio");
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
         }
     }
 }
