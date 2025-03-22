@@ -37,14 +37,17 @@
             this.richTextDescrizione = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBoxEscursione = new System.Windows.Forms.GroupBox();
+            this.butExplorerInputDati = new System.Windows.Forms.Button();
+            this.butExploreEscursione = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxNomeEscursione = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxPathInputDati = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1B2A3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTraccia = new System.Windows.Forms.GroupBox();
+            this.butExplorerTraccia = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
             this.checkBoxSingola = new System.Windows.Forms.CheckBox();
@@ -56,8 +59,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Label5 = new System.Windows.Forms.Label();
             this.textBoxArchivio = new System.Windows.Forms.TextBox();
+            this.splitContainer1B2B3A4 = new System.Windows.Forms.SplitContainer();
+            this.groupBoxTool = new System.Windows.Forms.GroupBox();
+            this.buttonInternetTool = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxLink = new System.Windows.Forms.TextBox();
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
             this.butCopiaFoto = new System.Windows.Forms.Button();
             this.butCreaTraccia = new System.Windows.Forms.Button();
@@ -65,28 +73,30 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butExplorerTraccia = new System.Windows.Forms.Button();
-            this.butExploreEscursione = new System.Windows.Forms.Button();
-            this.butExplorerInputDati = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBoxEscursione.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2)).BeginInit();
+            this.splitContainer1B2.Panel1.SuspendLayout();
+            this.splitContainer1B2.Panel2.SuspendLayout();
+            this.splitContainer1B2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2A3)).BeginInit();
+            this.splitContainer1B2A3.Panel1.SuspendLayout();
+            this.splitContainer1B2A3.Panel2.SuspendLayout();
+            this.splitContainer1B2A3.SuspendLayout();
             this.groupBoxTraccia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3A4)).BeginInit();
+            this.splitContainer1B2B3A4.Panel1.SuspendLayout();
+            this.splitContainer1B2B3A4.Panel2.SuspendLayout();
+            this.splitContainer1B2B3A4.SuspendLayout();
+            this.groupBoxTool.SuspendLayout();
             this.groupBoxDescrizione.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).BeginInit();
+            this.splitContainer1B2B3.Panel1.SuspendLayout();
+            this.splitContainer1B2B3.Panel2.SuspendLayout();
+            this.splitContainer1B2B3.SuspendLayout();
             this.groupBoxComandi.SuspendLayout();
             this.groupBoxOutput.SuspendLayout();
             this.SuspendLayout();
@@ -147,13 +157,14 @@
             this.richTextDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextDescrizione.Location = new System.Drawing.Point(3, 16);
             this.richTextDescrizione.Name = "richTextDescrizione";
-            this.richTextDescrizione.Size = new System.Drawing.Size(790, 108);
+            this.richTextDescrizione.Size = new System.Drawing.Size(790, 39);
             this.richTextDescrizione.TabIndex = 8;
             this.richTextDescrizione.Text = "";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -164,9 +175,9 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer1B2);
             this.splitContainer1.Size = new System.Drawing.Size(796, 570);
-            this.splitContainer1.SplitterDistance = 90;
+            this.splitContainer1.SplitterDistance = 100;
             this.splitContainer1.TabIndex = 9;
             // 
             // groupBoxEscursione
@@ -184,10 +195,30 @@
             this.groupBoxEscursione.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxEscursione.Name = "groupBoxEscursione";
             this.groupBoxEscursione.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxEscursione.Size = new System.Drawing.Size(796, 90);
+            this.groupBoxEscursione.Size = new System.Drawing.Size(796, 100);
             this.groupBoxEscursione.TabIndex = 0;
             this.groupBoxEscursione.TabStop = false;
             this.groupBoxEscursione.Text = "Escursione";
+            // 
+            // butExplorerInputDati
+            // 
+            this.butExplorerInputDati.Location = new System.Drawing.Point(774, 61);
+            this.butExplorerInputDati.Name = "butExplorerInputDati";
+            this.butExplorerInputDati.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerInputDati.TabIndex = 21;
+            this.butExplorerInputDati.Text = "E";
+            this.butExplorerInputDati.UseVisualStyleBackColor = true;
+            this.butExplorerInputDati.Click += new System.EventHandler(this.butExplorerInputDati_Click);
+            // 
+            // butExploreEscursione
+            // 
+            this.butExploreEscursione.Location = new System.Drawing.Point(774, 36);
+            this.butExploreEscursione.Name = "butExploreEscursione";
+            this.butExploreEscursione.Size = new System.Drawing.Size(17, 23);
+            this.butExploreEscursione.TabIndex = 20;
+            this.butExploreEscursione.Text = "E";
+            this.butExploreEscursione.UseVisualStyleBackColor = true;
+            this.butExploreEscursione.Click += new System.EventHandler(this.butExploreEscursione_Click);
             // 
             // label7
             // 
@@ -235,44 +266,44 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Path Escursione";
             // 
-            // splitContainer2
+            // splitContainer1B2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1B2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2.Name = "splitContainer1B2";
+            this.splitContainer1B2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer2.Panel1
+            // splitContainer1B2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Panel1MinSize = 50;
+            this.splitContainer1B2.Panel1.Controls.Add(this.splitContainer1B2A3);
+            this.splitContainer1B2.Panel1MinSize = 50;
             // 
-            // splitContainer2.Panel2
+            // splitContainer1B2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(796, 476);
-            this.splitContainer2.SplitterDistance = 290;
-            this.splitContainer2.TabIndex = 0;
+            this.splitContainer1B2.Panel2.Controls.Add(this.splitContainer1B2B3);
+            this.splitContainer1B2.Size = new System.Drawing.Size(796, 466);
+            this.splitContainer1B2.SplitterDistance = 283;
+            this.splitContainer1B2.TabIndex = 0;
             // 
-            // splitContainer3
+            // splitContainer1B2A3
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1B2A3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2A3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2A3.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1B2A3.Name = "splitContainer1B2A3";
+            this.splitContainer1B2A3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer3.Panel1
+            // splitContainer1B2A3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.groupBoxTraccia);
+            this.splitContainer1B2A3.Panel1.Controls.Add(this.groupBoxTraccia);
             // 
-            // splitContainer3.Panel2
+            // splitContainer1B2A3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.groupBoxDescrizione);
-            this.splitContainer3.Size = new System.Drawing.Size(796, 290);
-            this.splitContainer3.SplitterDistance = 160;
-            this.splitContainer3.SplitterWidth = 3;
-            this.splitContainer3.TabIndex = 11;
+            this.splitContainer1B2A3.Panel2.Controls.Add(this.splitContainer1B2B3A4);
+            this.splitContainer1B2A3.Size = new System.Drawing.Size(796, 283);
+            this.splitContainer1B2A3.SplitterDistance = 156;
+            this.splitContainer1B2A3.SplitterWidth = 3;
+            this.splitContainer1B2A3.TabIndex = 11;
             // 
             // groupBoxTraccia
             // 
@@ -298,10 +329,20 @@
             this.groupBoxTraccia.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxTraccia.Name = "groupBoxTraccia";
             this.groupBoxTraccia.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxTraccia.Size = new System.Drawing.Size(796, 160);
+            this.groupBoxTraccia.Size = new System.Drawing.Size(796, 156);
             this.groupBoxTraccia.TabIndex = 0;
             this.groupBoxTraccia.TabStop = false;
             this.groupBoxTraccia.Text = "Traccia";
+            // 
+            // butExplorerTraccia
+            // 
+            this.butExplorerTraccia.Location = new System.Drawing.Point(774, 119);
+            this.butExplorerTraccia.Name = "butExplorerTraccia";
+            this.butExplorerTraccia.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerTraccia.TabIndex = 19;
+            this.butExplorerTraccia.Text = "E";
+            this.butExplorerTraccia.UseVisualStyleBackColor = true;
+            this.butExplorerTraccia.Click += new System.EventHandler(this.butExplorerTraccia_Click);
             // 
             // label10
             // 
@@ -404,36 +445,93 @@
             this.textBoxArchivio.Size = new System.Drawing.Size(627, 20);
             this.textBoxArchivio.TabIndex = 10;
             // 
+            // splitContainer1B2B3A4
+            // 
+            this.splitContainer1B2B3A4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2B3A4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2B3A4.Name = "splitContainer1B2B3A4";
+            this.splitContainer1B2B3A4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1B2B3A4.Panel1
+            // 
+            this.splitContainer1B2B3A4.Panel1.Controls.Add(this.groupBoxTool);
+            // 
+            // splitContainer1B2B3A4.Panel2
+            // 
+            this.splitContainer1B2B3A4.Panel2.Controls.Add(this.groupBoxDescrizione);
+            this.splitContainer1B2B3A4.Size = new System.Drawing.Size(796, 124);
+            this.splitContainer1B2B3A4.SplitterDistance = 62;
+            this.splitContainer1B2B3A4.TabIndex = 0;
+            // 
+            // groupBoxTool
+            // 
+            this.groupBoxTool.Controls.Add(this.buttonInternetTool);
+            this.groupBoxTool.Controls.Add(this.label11);
+            this.groupBoxTool.Controls.Add(this.textBoxLink);
+            this.groupBoxTool.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxTool.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxTool.Name = "groupBoxTool";
+            this.groupBoxTool.Size = new System.Drawing.Size(796, 62);
+            this.groupBoxTool.TabIndex = 0;
+            this.groupBoxTool.TabStop = false;
+            this.groupBoxTool.Text = "Tool";
+            // 
+            // buttonInternetTool
+            // 
+            this.buttonInternetTool.Location = new System.Drawing.Point(774, 17);
+            this.buttonInternetTool.Name = "buttonInternetTool";
+            this.buttonInternetTool.Size = new System.Drawing.Size(17, 23);
+            this.buttonInternetTool.TabIndex = 23;
+            this.buttonInternetTool.Text = "I";
+            this.buttonInternetTool.UseVisualStyleBackColor = true;
+            this.buttonInternetTool.Click += new System.EventHandler(this.buttonInternetTool_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(21, 22);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(27, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Link";
+            // 
+            // textBoxLink
+            // 
+            this.textBoxLink.Location = new System.Drawing.Point(141, 19);
+            this.textBoxLink.Name = "textBoxLink";
+            this.textBoxLink.Size = new System.Drawing.Size(627, 20);
+            this.textBoxLink.TabIndex = 21;
+            // 
             // groupBoxDescrizione
             // 
             this.groupBoxDescrizione.Controls.Add(this.richTextDescrizione);
             this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
             this.groupBoxDescrizione.Name = "groupBoxDescrizione";
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 127);
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 58);
             this.groupBoxDescrizione.TabIndex = 0;
             this.groupBoxDescrizione.TabStop = false;
             this.groupBoxDescrizione.Text = "Descrizione";
             // 
-            // splitContainer4
+            // splitContainer1B2B3
             // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2B3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2B3.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1B2B3.Name = "splitContainer1B2B3";
+            this.splitContainer1B2B3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer4.Panel1
+            // splitContainer1B2B3.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.groupBoxComandi);
+            this.splitContainer1B2B3.Panel1.Controls.Add(this.groupBoxComandi);
             // 
-            // splitContainer4.Panel2
+            // splitContainer1B2B3.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer4.Size = new System.Drawing.Size(796, 182);
-            this.splitContainer4.SplitterDistance = 60;
-            this.splitContainer4.SplitterWidth = 3;
-            this.splitContainer4.TabIndex = 0;
+            this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1B2B3.Size = new System.Drawing.Size(796, 179);
+            this.splitContainer1B2B3.SplitterWidth = 3;
+            this.splitContainer1B2B3.TabIndex = 0;
             // 
             // groupBoxComandi
             // 
@@ -446,14 +544,14 @@
             this.groupBoxComandi.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxComandi.Name = "groupBoxComandi";
             this.groupBoxComandi.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxComandi.Size = new System.Drawing.Size(796, 60);
+            this.groupBoxComandi.Size = new System.Drawing.Size(796, 50);
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
             // butCopiaFoto
             // 
-            this.butCopiaFoto.Location = new System.Drawing.Point(505, 18);
+            this.butCopiaFoto.Location = new System.Drawing.Point(263, 18);
             this.butCopiaFoto.Name = "butCopiaFoto";
             this.butCopiaFoto.Size = new System.Drawing.Size(101, 23);
             this.butCopiaFoto.TabIndex = 14;
@@ -463,7 +561,7 @@
             // 
             // butCreaTraccia
             // 
-            this.butCreaTraccia.Location = new System.Drawing.Point(10, 18);
+            this.butCreaTraccia.Location = new System.Drawing.Point(5, 18);
             this.butCreaTraccia.Name = "butCreaTraccia";
             this.butCreaTraccia.Size = new System.Drawing.Size(145, 23);
             this.butCreaTraccia.TabIndex = 13;
@@ -473,7 +571,7 @@
             // 
             // butNuovaTraccia
             // 
-            this.butNuovaTraccia.Location = new System.Drawing.Point(214, 18);
+            this.butNuovaTraccia.Location = new System.Drawing.Point(156, 18);
             this.butNuovaTraccia.Name = "butNuovaTraccia";
             this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);
             this.butNuovaTraccia.TabIndex = 12;
@@ -483,7 +581,7 @@
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(712, 26);
+            this.butAggiorna.Location = new System.Drawing.Point(370, 18);
             this.butAggiorna.Name = "butAggiorna";
             this.butAggiorna.Size = new System.Drawing.Size(75, 23);
             this.butAggiorna.TabIndex = 11;
@@ -499,7 +597,7 @@
             this.groupBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxOutput.Name = "groupBoxOutput";
             this.groupBoxOutput.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxOutput.Size = new System.Drawing.Size(796, 119);
+            this.groupBoxOutput.Size = new System.Drawing.Size(796, 126);
             this.groupBoxOutput.TabIndex = 0;
             this.groupBoxOutput.TabStop = false;
             this.groupBoxOutput.Text = "Output";
@@ -510,39 +608,9 @@
             this.richTextBoxOutput.Location = new System.Drawing.Point(2, 15);
             this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 102);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 109);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // butExplorerTraccia
-            // 
-            this.butExplorerTraccia.Location = new System.Drawing.Point(774, 119);
-            this.butExplorerTraccia.Name = "butExplorerTraccia";
-            this.butExplorerTraccia.Size = new System.Drawing.Size(17, 23);
-            this.butExplorerTraccia.TabIndex = 19;
-            this.butExplorerTraccia.Text = "E";
-            this.butExplorerTraccia.UseVisualStyleBackColor = true;
-            this.butExplorerTraccia.Click += new System.EventHandler(this.butExplorerTraccia_Click);
-            // 
-            // butExploreEscursione
-            // 
-            this.butExploreEscursione.Location = new System.Drawing.Point(774, 36);
-            this.butExploreEscursione.Name = "butExploreEscursione";
-            this.butExploreEscursione.Size = new System.Drawing.Size(17, 23);
-            this.butExploreEscursione.TabIndex = 20;
-            this.butExploreEscursione.Text = "E";
-            this.butExploreEscursione.UseVisualStyleBackColor = true;
-            this.butExploreEscursione.Click += new System.EventHandler(this.butExploreEscursione_Click);
-            // 
-            // butExplorerInputDati
-            // 
-            this.butExplorerInputDati.Location = new System.Drawing.Point(774, 61);
-            this.butExplorerInputDati.Name = "butExplorerInputDati";
-            this.butExplorerInputDati.Size = new System.Drawing.Size(17, 23);
-            this.butExplorerInputDati.TabIndex = 21;
-            this.butExplorerInputDati.Text = "E";
-            this.butExplorerInputDati.UseVisualStyleBackColor = true;
-            this.butExplorerInputDati.Click += new System.EventHandler(this.butExplorerInputDati_Click);
             // 
             // FormArchivoTraccia
             // 
@@ -558,21 +626,27 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBoxEscursione.ResumeLayout(false);
             this.groupBoxEscursione.PerformLayout();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer1B2.Panel1.ResumeLayout(false);
+            this.splitContainer1B2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2)).EndInit();
+            this.splitContainer1B2.ResumeLayout(false);
+            this.splitContainer1B2A3.Panel1.ResumeLayout(false);
+            this.splitContainer1B2A3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2A3)).EndInit();
+            this.splitContainer1B2A3.ResumeLayout(false);
             this.groupBoxTraccia.ResumeLayout(false);
             this.groupBoxTraccia.PerformLayout();
+            this.splitContainer1B2B3A4.Panel1.ResumeLayout(false);
+            this.splitContainer1B2B3A4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3A4)).EndInit();
+            this.splitContainer1B2B3A4.ResumeLayout(false);
+            this.groupBoxTool.ResumeLayout(false);
+            this.groupBoxTool.PerformLayout();
             this.groupBoxDescrizione.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
+            this.splitContainer1B2B3.Panel1.ResumeLayout(false);
+            this.splitContainer1B2B3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).EndInit();
+            this.splitContainer1B2B3.ResumeLayout(false);
             this.groupBoxComandi.ResumeLayout(false);
             this.groupBoxOutput.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -588,16 +662,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextDescrizione;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer1B2;
         private System.Windows.Forms.GroupBox groupBoxDescrizione;
         private System.Windows.Forms.Label Label5;
         private System.Windows.Forms.TextBox textBoxArchivio;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button butNuovaTraccia;
         private System.Windows.Forms.Button butAggiorna;
-        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer1B2A3;
         private System.Windows.Forms.GroupBox groupBoxTraccia;
-        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer splitContainer1B2B3;
         private System.Windows.Forms.GroupBox groupBoxComandi;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
@@ -620,5 +694,10 @@
         private System.Windows.Forms.Button butExplorerInputDati;
         private System.Windows.Forms.Button butExploreEscursione;
         private System.Windows.Forms.Button butExplorerTraccia;
+        private System.Windows.Forms.SplitContainer splitContainer1B2B3A4;
+        private System.Windows.Forms.GroupBox groupBoxTool;
+        private System.Windows.Forms.Button buttonInternetTool;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxLink;
     }
 }

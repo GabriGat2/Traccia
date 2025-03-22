@@ -93,7 +93,7 @@ namespace Traccia
             if (tracciaEsiste)
                 comboBoxLettera.SelectedIndex = Traccia.GetLettera() - 'A';
             else
-                comboBoxLettera.SelectedIndex = 'A';
+                comboBoxLettera.SelectedIndex = 'A' - 'A';
 
             // inizializza Mezzo
 
@@ -532,10 +532,43 @@ namespace Traccia
         private void ApreExplorer(string path)
         {
             string target = "Explorer";
+            EsegueProces(target, path);
 
+            //try
+            //{
+            //    System.Diagnostics.Process.Start(target, path);
+            //}
+            //catch (System.ComponentModel.Win32Exception noBrowser)
+            //{
+            //    if (noBrowser.ErrorCode == -2147467259)
+            //        MessageBox.Show(noBrowser.Message);
+            //}
+            //catch (System.Exception other)
+            //{
+            //    MessageBox.Show(other.Message);
+            //}
+
+        }
+        /// <summary>
+        /// Apre una pagina WEB
+        /// </summary>
+        /// <param name="link"></param>
+        private void AprePaginaWeb(string link)
+        {
+            string target = link;
+            string arg1 = string.Empty;
+            EsegueProces(target, arg1);
+        }
+        /// <summary>
+        /// Esegue un processo
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="arg1"></param>
+        private void EsegueProces(string target, string arg1)
+        {
             try
             {
-                System.Diagnostics.Process.Start(target, path);
+                System.Diagnostics.Process.Start(target, arg1);
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
@@ -546,7 +579,17 @@ namespace Traccia
             {
                 MessageBox.Show(other.Message);
             }
-
+        }
+        /// <summary>
+        /// Apre la pagina WEB specificata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonInternetTool_Click(object sender, EventArgs e)
+        {
+            // recupera il link
+            string link = textBoxLink.Text;
+            AprePaginaWeb(link);
         }
     }
 }
