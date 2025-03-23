@@ -20,7 +20,7 @@ namespace Traccia
         /// <summary>
         /// Ora Inizio
         /// </summary>
-        public string OraInizio { get => dateTimePicker_OraInizio.Text; set => dateTimePicker_OraInizio.Text = value; }
+        public DateTime OraInizio { get => dateTimePicker_OraInizio.Value; set => dateTimePicker_OraInizio.Value = value; }
         /// <summary>
         /// Data Fine
         /// </summary>
@@ -28,7 +28,7 @@ namespace Traccia
         /// <summary>
         /// Ora Fine
         /// </summary>
-        public string OraFine { get => dateTimePicker_OraFine.Text; set => dateTimePicker_OraFine.Text = value; }
+        public DateTime OraFine { get => dateTimePicker_OraFine.Value; set => dateTimePicker_OraFine.Value = value; }
 
 
         /// <summary>
@@ -46,30 +46,23 @@ namespace Traccia
         {
             // inizilizza data e ora di ricerca
             dateTimePicker_DataInizio.Value = new DateTime(2000, 1, 1);
-            dateTimePicker_OraInizio.Text= "00:00:00";
+            dateTimePicker_OraInizio.Value = new DateTime(2000, 1, 1, 0, 0 , 0);
             dateTimePicker_DataFine.Value = new DateTime(2001, 1, 1);
-            dateTimePicker_OraFine.Text = "00:00:00";
-        }
+            dateTimePicker_OraFine.Value = new DateTime(2000, 1, 1, 23, 59, 59);
 
-        private void dateTimePicker_DataInizio_ValueChanged(object sender, EventArgs e)
-        {
-            ///dateTimePicker_DataFine.Text = dateTimePicker_DataInizio.Text;
-            textBox1.Text = dateTimePicker_DataInizio.Text + " --- " + dateTimePicker_OraInizio.Text;
+            // inizializza il tipo di foto
+            checkBoxJPEG.Enabled = true;
+            checkBoxHEIC.Enabled = true;   
+            checkBoxRAW.Enabled = true;
         }
-
-        private void dateTimePicker_DataFine_ValueChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Analizza le foto selezionate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAnalizza_Click(object sender, EventArgs e)
         {
-            //textBox2.Text = dateTimePicker_DataFine.Text + " --- " + dateTimePicker_OraFine.Text;
-        }
 
-        private void dateTimePicker_OraInizio_ValueChanged(object sender, EventArgs e)
-        {
-            textBox1.Text = dateTimePicker_DataInizio.Text + " --- " + dateTimePicker_OraInizio.Text;
-        }
-
-        private void dateTimePicker_OraFine_ValueChanged(object sender, EventArgs e)
-        {
-            //TextBox2.Text = dateTimePicker_DataFine.Text + " --- " + dateTimePicker_OraFine.Text;
         }
     }
 }

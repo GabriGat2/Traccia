@@ -127,11 +127,13 @@ namespace Traccia
 
             // inizializza la dialog Copia Foto
             DlgCopiaFoto.DataInizio = dateTimePicker1.Value;
-            DlgCopiaFoto.OraInizio = "00:00:00";
+            DlgCopiaFoto.OraInizio = dateTimePicker1.Value;
 
             DlgCopiaFoto.DataFine = dateTimePicker1.Value;
-            DlgCopiaFoto.OraFine = "23:59:59";
-
+            DlgCopiaFoto.OraFine = new DateTime(dateTimePicker1.Value.Year,
+                                                dateTimePicker1.Value.Month,
+                                                dateTimePicker1.Value.Day,
+                                                23, 59, 59);
         }
         /// <summary>
         /// Aggiorna le caselle con la nuova traccia
@@ -139,27 +141,6 @@ namespace Traccia
         private void NuovaTraccia()
         {
             AbilitaCampi(false);
-
-
-            //// abilita l'aggiornnamento del nome della traccia
-            //AbilitazioneAggiornamentoTraccia = true;
-
-            //// Inizializza la data come quella dell'escursione
-            //dateTimePicker1.Text = Traccia.Escursione.Data;
-
-            //// abilita il bottone crea traccia 
-            //butCreaTraccia.Enabled = true;
-
-            //// disabilita il bottone Archivia traccia 
-            //butNuovaTraccia.Enabled = false;
-
-            //// riabilita i campi di impostazione del nome
-            //dateTimePicker1.Enabled = true;
-            //comboBoxLettera.Enabled = true;
-            //comboBoxMezzo.Enabled = true;
-            //textBoxNome.Enabled = true;
-            //checkBoxGiorno.Enabled = true;
-            //checkBoxSingola.Enabled = true;
         }
 
 
@@ -443,11 +424,7 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCopiaFoto_Click(object sender, EventArgs e)
         {
-            // Crea la dialo per copiare le foto
-            //FormCopiaFoto dlg = new FormCopiaFoto();    
-            //dlg.ShowDialog();
-            //DlgCopiaFoto.DataInizio = dateTimePicker1.Value;
-            //DlgCopiaFoto.DataFine = dateTimePicker1.Value;
+            // Apre la dialog per copiare le foto
             DlgCopiaFoto.ShowDialog(this);
 
 
