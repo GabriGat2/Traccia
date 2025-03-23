@@ -260,6 +260,20 @@ namespace Traccia
                 return campi[0] + '-' + campi[1] + '-' + campi[2];
 
         }
+        public DateTime GetData()
+        {
+            // estrae la data con la lettera
+            string sData = GetCampo(0);
+
+            // scompone la data
+            string[] cData = sData.Split('-');
+            if (cData.Length <= 3)
+                return new DateTime(1998, 1, 1);
+            else
+                return new DateTime(Convert.ToInt16(cData[0]), Convert.ToInt16(cData[1]), Convert.ToInt16(cData[2]));
+        }
+
+
         /// <summary>
         /// Azzera il Nome e di conseguenza tutte le informazioni della traccia
         /// </summary>

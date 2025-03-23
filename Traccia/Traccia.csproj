@@ -92,6 +92,12 @@
     <Compile Include="FormAreaArchivio.Designer.cs">
       <DependentUpon>FormAreaArchivio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCopiaFoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCopiaFoto.Designer.cs">
+      <DependentUpon>FormCopiaFoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAreaArchivio.resx">
       <DependentUpon>FormAreaArchivio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCopiaFoto.resx">
+      <DependentUpon>FormCopiaFoto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

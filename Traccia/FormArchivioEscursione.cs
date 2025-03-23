@@ -70,7 +70,7 @@ namespace Traccia
                 textBoxNome.Enabled = false;
 
                 // aggiorna i campi
-                dateTimePicker1.Text = Escursione.Data;
+                dateTimePicker1.Value = Escursione.GetData();
                 textBoxPrefisso.Text = Escursione.Prefisso;
                 textBoxNome.Text = Escursione.NomeParziale;
 

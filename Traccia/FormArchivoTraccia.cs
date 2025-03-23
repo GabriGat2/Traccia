@@ -24,6 +24,10 @@ namespace Traccia
         /// </summary>
         private CMessaggio msg = null;
         /// <summary>
+        /// Dichiara la dialog per copiare le foto
+        /// </summary>
+        private FormCopiaFoto DlgCopiaFoto = null;
+        /// <summary>
         /// Abilita l'aggiornamento del nome della traccia
         /// </summary>
         private bool AbilitazioneAggiornamentoTraccia;
@@ -71,6 +75,10 @@ namespace Traccia
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
             textBoxPrefisso.Enabled = false;
 
+            // Crea la dialog per copiare le foto
+            DlgCopiaFoto = new FormCopiaFoto();
+
+
             // Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
             AbilitaCampi(modifica);
         }
@@ -85,9 +93,9 @@ namespace Traccia
 
             // Inizializza la data
             if (tracciaEsiste)
-                dateTimePicker1.Text = Traccia.GetOnlyData();
+                dateTimePicker1.Value = Traccia.GetData();
             else
-                dateTimePicker1.Text = Traccia.Escursione.Data;
+                dateTimePicker1.Value = Traccia.Escursione.GetData();
 
             // Inizializza lettera
             if (tracciaEsiste)
@@ -115,6 +123,14 @@ namespace Traccia
             textBoxNome.Enabled = !tracciaEsiste;
             checkBoxGiorno.Enabled = !tracciaEsiste;
             checkBoxSingola.Enabled = !tracciaEsiste;
+
+
+            // inizializza la dialog Copia Foto
+            DlgCopiaFoto.DataInizio = dateTimePicker1.Value;
+            DlgCopiaFoto.OraInizio = "00:00:00";
+
+            DlgCopiaFoto.DataFine = dateTimePicker1.Value;
+            DlgCopiaFoto.OraFine = "23:59:59";
 
         }
         /// <summary>
@@ -315,6 +331,11 @@ namespace Traccia
         /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            //if (dateTimePicker1.Enabled)
+            //{
+            //    DlgCopiaFoto.DataInizio = dateTimePicker1.Text;
+            //    DlgCopiaFoto.DataFine = dateTimePicker1.Text;
+            //}
             AggiornaNomeTraccia();
         }
         private void butCreaTraccia_Click(object sender, EventArgs e)
@@ -422,7 +443,15 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCopiaFoto_Click(object sender, EventArgs e)
         {
-            CopiaFoto();
+            // Crea la dialo per copiare le foto
+            //FormCopiaFoto dlg = new FormCopiaFoto();    
+            //dlg.ShowDialog();
+            //DlgCopiaFoto.DataInizio = dateTimePicker1.Value;
+            //DlgCopiaFoto.DataFine = dateTimePicker1.Value;
+            DlgCopiaFoto.ShowDialog(this);
+
+
+            //CopiaFoto();
         }
 
         private GstErrori.EErrore CopiaFoto ()
