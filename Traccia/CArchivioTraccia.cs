@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,7 +74,12 @@ namespace Traccia
                     break;
 
                 case EArchivioStato.ArchivioEsiste:
-                    return GstErrori.EErrore.E1333_PathTracciaEsiste;
+                    // verifica se esite il file info della traccia
+                    string fileInfo = GetPathInfo() + SeparaDir + Nome;
+                    if (File.Exists(fileInfo))
+                        return GstErrori.EErrore.E1333_PathTracciaEsiste;
+                    else
+                        return GstErrori.EErrore.E0000_OK;
 
                 default:
                     return GstErrori.EErrore.E1313_PathTracciaErrato;
@@ -82,10 +88,7 @@ namespace Traccia
             // Crea directory traccia
             GstErrori.EErrore esito = Escursione.AreaArchivio.Directory.Traccia.CreaArchivio(Path, Nome);
 
-            // Aggiorna lo stato della traccia
-            //EArchivioStato passa = Stato;
-
-            // Rende l'esito delle operazioni
+             // Rende l'esito delle operazioni
             return esito;
         }
         /// <summary>
@@ -152,10 +155,11 @@ namespace Traccia
         {
             bool bEsito;
             bEsito = Escursione.Info.Traccia.Set("Nome", Nome);
- 
+
             // Estrae il nome path relativo del file
-            string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
-            bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
+            //string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
+            //bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
+            bEsito = Escursione.Info.Traccia.Set("Path", "Da Sistemare!!!, Non funziona capo optSingola e optGiorno falsi");
 
 
             bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());

@@ -76,7 +76,7 @@ namespace Traccia
             textBoxPrefisso.Enabled = false;
 
             // Crea la dialog per copiare le foto
-            DlgCopiaFoto = new FormCopiaFoto();
+            DlgCopiaFoto = new FormCopiaFoto(ref Traccia);
 
 
             // Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
@@ -340,7 +340,6 @@ namespace Traccia
             // crea l'archivio della traccia 
             esito = Traccia.CreaDirectoryArchivio();
 
-
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
@@ -434,7 +433,7 @@ namespace Traccia
         private GstErrori.EErrore CopiaFoto ()
         {
             // recupera il path delle foto JPEG sorgente
-            string srcJpegPath = Traccia.Escursione.AreaArchivio.GetPathJPEG();
+            string srcJpegPath = Traccia.Escursione.AreaArchivio.GetPathJpeg();
 
             // Compone la lista delle foto JPEG
             string [] srcJpegList = Directory.GetFiles(srcJpegPath, "*.*");

@@ -64,6 +64,16 @@ namespace Traccia
             E1333_PathTracciaCreazioneFallita,
             E1334_DirectoryCreazioneFallita,
 
+            E1350_FileNonEsiste,
+            E1351_FileEsiste,
+            E1355_FileNonSpostato,
+            E1356_FileSpostato,
+            E1357_FileNonCopiato,
+            E1358_FileCopiato,
+            E1359_FileNonCancellato,
+            E1360_FileCancellato,
+
+
 
             //E1310_PathArchivioNonEsiste,
             //E1310_PathAreaArchivioNonEsiste,
@@ -73,7 +83,7 @@ namespace Traccia
 
             //E1301_CreazioneDirectoryFallita,
             //E1302_CreazioneArchivioFallita,
-            
+
             //E1303_PathAreaArchivioErrata,
             //E1304_PathArchivioEscursioneErrato,
             //E1305_PathArchivioTracciaErrato,

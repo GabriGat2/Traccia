@@ -41,12 +41,28 @@ namespace Traccia
             return Path + SeparaDir + Directory.Area.GetSubPath("Comune");
         }
         /// <summary>
-        /// Rende il path dell'area comune
+        /// Rende il path dell'area comune JPEG
         /// </summary>
         /// <returns></returns>
-        public string GetPathJPEG()
+        public string GetPathJpeg()
         {
             return Path + SeparaDir + Directory.Area.GetSubPath("JPEG");
+        }
+        /// <summary>
+        /// Rende il path dell'area comune HEIC
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathHeic()
+        {
+            return Path + SeparaDir + Directory.Area.GetSubPath("HEIC");
+        }
+        /// <summary>
+        /// Rende il path dell'area comune RAW
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathRaw()
+        {
+            return Path + SeparaDir + Directory.Area.GetSubPath("RAW");
         }
         /// <summary>
         /// Compone la directory path
@@ -69,7 +85,8 @@ namespace Traccia
                     break;
 
                 case EArchivioStato.ArchivioEsiste:
-                    return GstErrori.EErrore.E1331_PathAreaArchivioEsiste;
+                    break;
+                    //return GstErrori.EErrore.E1331_PathAreaArchivioEsiste;
 
                 default:
                     return GstErrori.EErrore.E1311_PathAreaArchivioErrata;

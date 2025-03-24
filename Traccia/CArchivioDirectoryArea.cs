@@ -18,8 +18,17 @@ namespace Traccia
             DirArchivio.Add(new DirectoryParziale("Comune", "02-Comune"));
 
             DirArchivio.Add(new DirectoryParziale("JPEG", "10-JPEG"));
+            DirArchivio.Add(new DirectoryParziale("JpegCop", "10-JPEG\\01-Copiati"));
+            DirArchivio.Add(new DirectoryParziale("JpegSel", "10-JPEG\\02-Selezione"));
+
+
             DirArchivio.Add(new DirectoryParziale("HEIC", "11-HEIC"));
+            DirArchivio.Add(new DirectoryParziale("HeicCop", "11-HEIC\\01-Copiati"));
+            DirArchivio.Add(new DirectoryParziale("HeicSel", "11-HEIC\\02-Selezione"));
+
             DirArchivio.Add(new DirectoryParziale("RAW", "12-RAW"));
+            DirArchivio.Add(new DirectoryParziale("RawCop", "12-RAW\\01-Copiati"));
+            DirArchivio.Add(new DirectoryParziale("RawSel", "12-RAW\\02-Selezione"));
 
             DirArchivio.Add(new DirectoryParziale("Altro", "20-Altro"));
 
