@@ -74,6 +74,12 @@
     <Compile Include="CArchivio.cs" />
     <Compile Include="CInfo.cs" />
     <Compile Include="CMessaggio.cs" />
+    <Compile Include="CompCopiaFoto.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CompCopiaFoto.Designer.cs">
+      <DependentUpon>CompCopiaFoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormArchivoTraccia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,15 @@
     <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControlFoto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlFoto.Designer.cs">
+      <DependentUpon>UserControlFoto.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CompCopiaFoto.resx">
+      <DependentUpon>CompCopiaFoto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormArchivoTraccia.resx">
       <DependentUpon>FormArchivoTraccia.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +146,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControlFoto.resx">
+      <DependentUpon>UserControlFoto.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -38,14 +38,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTipoFoto = new System.Windows.Forms.GroupBox();
-            this.checkBoxRAW = new System.Windows.Forms.CheckBox();
-            this.checkBoxHEIC = new System.Windows.Forms.CheckBox();
-            this.checkBoxJPEG = new System.Windows.Forms.CheckBox();
+            this.ucFotoJpeg = new Traccia.UserControlFoto();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
             this.butAnalizza = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.ucFotoHeic = new Traccia.UserControlFoto();
+            this.ucFotoRaw = new Traccia.UserControlFoto();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -165,51 +165,29 @@
             // 
             this.splitContainer1B2.Panel2.Controls.Add(this.splitContainer1B2B3);
             this.splitContainer1B2.Size = new System.Drawing.Size(800, 376);
-            this.splitContainer1B2.SplitterDistance = 110;
+            this.splitContainer1B2.SplitterDistance = 200;
             this.splitContainer1B2.TabIndex = 0;
             // 
             // groupBoxTipoFoto
             // 
-            this.groupBoxTipoFoto.Controls.Add(this.checkBoxRAW);
-            this.groupBoxTipoFoto.Controls.Add(this.checkBoxHEIC);
-            this.groupBoxTipoFoto.Controls.Add(this.checkBoxJPEG);
+            this.groupBoxTipoFoto.Controls.Add(this.ucFotoRaw);
+            this.groupBoxTipoFoto.Controls.Add(this.ucFotoHeic);
+            this.groupBoxTipoFoto.Controls.Add(this.ucFotoJpeg);
             this.groupBoxTipoFoto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxTipoFoto.Location = new System.Drawing.Point(0, 0);
             this.groupBoxTipoFoto.Name = "groupBoxTipoFoto";
-            this.groupBoxTipoFoto.Size = new System.Drawing.Size(800, 110);
+            this.groupBoxTipoFoto.Size = new System.Drawing.Size(800, 200);
             this.groupBoxTipoFoto.TabIndex = 0;
             this.groupBoxTipoFoto.TabStop = false;
             this.groupBoxTipoFoto.Text = "Tipo foto";
             // 
-            // checkBoxRAW
+            // ucFotoJpeg
             // 
-            this.checkBoxRAW.AutoSize = true;
-            this.checkBoxRAW.Location = new System.Drawing.Point(49, 76);
-            this.checkBoxRAW.Name = "checkBoxRAW";
-            this.checkBoxRAW.Size = new System.Drawing.Size(48, 17);
-            this.checkBoxRAW.TabIndex = 3;
-            this.checkBoxRAW.Text = "RAV";
-            this.checkBoxRAW.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxHEIC
-            // 
-            this.checkBoxHEIC.AutoSize = true;
-            this.checkBoxHEIC.Location = new System.Drawing.Point(49, 53);
-            this.checkBoxHEIC.Name = "checkBoxHEIC";
-            this.checkBoxHEIC.Size = new System.Drawing.Size(51, 17);
-            this.checkBoxHEIC.TabIndex = 2;
-            this.checkBoxHEIC.Text = "HEIC";
-            this.checkBoxHEIC.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxJPEG
-            // 
-            this.checkBoxJPEG.AutoSize = true;
-            this.checkBoxJPEG.Location = new System.Drawing.Point(49, 30);
-            this.checkBoxJPEG.Name = "checkBoxJPEG";
-            this.checkBoxJPEG.Size = new System.Drawing.Size(53, 17);
-            this.checkBoxJPEG.TabIndex = 1;
-            this.checkBoxJPEG.Text = "JPEG";
-            this.checkBoxJPEG.UseVisualStyleBackColor = true;
+            this.ucFotoJpeg.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoJpeg.Location = new System.Drawing.Point(3, 16);
+            this.ucFotoJpeg.Name = "ucFotoJpeg";
+            this.ucFotoJpeg.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoJpeg.TabIndex = 6;
             // 
             // splitContainer1B2B3
             // 
@@ -225,8 +203,8 @@
             // splitContainer1B2B3.Panel2
             // 
             this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer1B2B3.Size = new System.Drawing.Size(800, 262);
-            this.splitContainer1B2B3.SplitterDistance = 70;
+            this.splitContainer1B2B3.Size = new System.Drawing.Size(800, 172);
+            this.splitContainer1B2B3.SplitterDistance = 60;
             this.splitContainer1B2B3.TabIndex = 0;
             // 
             // groupBoxComandi
@@ -235,7 +213,7 @@
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
             this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Size = new System.Drawing.Size(800, 70);
+            this.groupBoxComandi.Size = new System.Drawing.Size(800, 60);
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
@@ -256,7 +234,7 @@
             this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
             this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(800, 188);
+            this.groupBoxOutput.Size = new System.Drawing.Size(800, 108);
             this.groupBoxOutput.TabIndex = 0;
             this.groupBoxOutput.TabStop = false;
             this.groupBoxOutput.Text = "Output";
@@ -266,9 +244,25 @@
             this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(794, 169);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(794, 89);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // ucFotoHeic
+            // 
+            this.ucFotoHeic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoHeic.Location = new System.Drawing.Point(3, 81);
+            this.ucFotoHeic.Name = "ucFotoHeic";
+            this.ucFotoHeic.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoHeic.TabIndex = 7;
+            // 
+            // ucFotoRaw
+            // 
+            this.ucFotoRaw.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoRaw.Location = new System.Drawing.Point(3, 146);
+            this.ucFotoRaw.Name = "ucFotoRaw";
+            this.ucFotoRaw.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoRaw.TabIndex = 8;
             // 
             // FormCopiaFoto
             // 
@@ -289,7 +283,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2)).EndInit();
             this.splitContainer1B2.ResumeLayout(false);
             this.groupBoxTipoFoto.ResumeLayout(false);
-            this.groupBoxTipoFoto.PerformLayout();
             this.splitContainer1B2B3.Panel1.ResumeLayout(false);
             this.splitContainer1B2B3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).EndInit();
@@ -312,13 +305,13 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_OraFine;
         private System.Windows.Forms.SplitContainer splitContainer1B2;
         private System.Windows.Forms.GroupBox groupBoxTipoFoto;
-        private System.Windows.Forms.CheckBox checkBoxHEIC;
-        private System.Windows.Forms.CheckBox checkBoxJPEG;
-        private System.Windows.Forms.CheckBox checkBoxRAW;
         private System.Windows.Forms.SplitContainer splitContainer1B2B3;
         private System.Windows.Forms.GroupBox groupBoxComandi;
         private System.Windows.Forms.Button butAnalizza;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
+        private UserControlFoto ucFotoJpeg;
+        private UserControlFoto ucFotoRaw;
+        private UserControlFoto ucFotoHeic;
     }
 }

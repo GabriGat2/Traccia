@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,9 @@ namespace Traccia
 
         // path file sorgenti
         private string JpegSrcPath = string.Empty;
+        private string JpegSrcPathCopiati = string.Empty;
+        private string JpegSrcPathSelezione = string.Empty;
+
         private string HeicSrcPath = string.Empty;
         private string RawSrcPath  = string.Empty;
 
@@ -89,9 +93,48 @@ namespace Traccia
             dateTimePicker_OraFine.Value = new DateTime(2000, 1, 1, 23, 59, 59);
 
             // inizializza il tipo di foto
-            checkBoxJPEG.Enabled = true;
-            checkBoxHEIC.Enabled = true;   
-            checkBoxRAW.Enabled = true;
+            ucFotoJpeg.groupBoxTipo.Text = "JPEG";
+            ucFotoJpeg.checkBoxAbilita.Checked = true; ;
+
+            ucFotoHeic.groupBoxTipo.Text = "HEIC";
+            ucFotoHeic.checkBoxAbilita.Checked = true; ;
+
+            ucFotoRaw.groupBoxTipo.Text = "RAW";
+            ucFotoRaw.checkBoxAbilita.Checked = true; ;
+
+            // Aggiorna i contatori delle directory
+            AggiornaContatori();
+
+
+        }
+
+        /// <summary>
+        /// Aggiorna i contatori delle directory
+        /// </summary>
+        private GstErrori.EErrore AggiornaContatori()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+            string[] srcList = null;
+
+            // Compone i Path delle directory
+            esito = ComponePath();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // JPEG
+            srcList = Directory.GetFiles(JpegSrcPath, "*.*");
+            ucFotoJpeg.textBoxDisponibili.Text = srcList.Length.ToString();
+
+            srcList = Directory.GetFiles(JpegSrcPathSelezione, "*.*");
+            ucFotoJpeg.textBoxSelezionati.Text = srcList.Length.ToString();
+
+            srcList = Directory.GetFiles(JpegSrcPathCopiati, "*.*");
+            ucFotoJpeg.textBoxCopiati.Text = srcList.Length.ToString();
+
+
+
+            return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
         /// Attiva l'analisi delle foto selezionate
@@ -179,12 +222,42 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
+        /// Compone i path
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore ComponePath()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // compone path sorgente
+            esito = ComponePathSorgente();
+            if (esito != GstErrori.EErrore.E0000_OK)    
+                return esito;   
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
         /// Compone i path dell delle directory sorgente
         /// </summary>
         /// <returns></returns>
         private GstErrori.EErrore ComponePathSorgente()
         {
+            string[] campi;
+            string subPath;
+
+            // directory sorgente JPEG
             JpegSrcPath = Traccia.Escursione.AreaArchivio.GetPathJpeg();
+
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("JpegSel").Split('\\');
+            JpegSrcPathSelezione = JpegSrcPath + SeparaDir + campi[1];
+
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("JpegCop").Split('\\');
+            JpegSrcPathCopiati = JpegSrcPath + SeparaDir + campi[1];
+
+
+
+
+
             HeicSrcPath = Traccia.Escursione.AreaArchivio.GetPathHeic();
             RawSrcPath = Traccia.Escursione.AreaArchivio.GetPathRaw();
 
