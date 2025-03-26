@@ -1,6 +1,6 @@
 ﻿namespace Traccia
 {
-    partial class FormCopiaFoto
+    partial class FormFoto
     {
         /// <summary>
         /// Required designer variable.
@@ -38,17 +38,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTipoFoto = new System.Windows.Forms.GroupBox();
+            this.ucFotoRaw = new Traccia.UserControlFoto();
+            this.ucFotoHeic = new Traccia.UserControlFoto();
+            this.ucFotoJpeg = new Traccia.UserControlFoto();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.ButCopia = new System.Windows.Forms.Button();
+            this.butAnnullaCopia = new System.Windows.Forms.Button();
+            this.butCopia = new System.Windows.Forms.Button();
+            this.butAnnullaAssegna = new System.Windows.Forms.Button();
+            this.ButAssegna = new System.Windows.Forms.Button();
             this.butAnnulaSelezione = new System.Windows.Forms.Button();
             this.butSelezione = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butAnnullaCopia = new System.Windows.Forms.Button();
-            this.ucFotoRaw = new Traccia.UserControlFoto();
-            this.ucFotoHeic = new Traccia.UserControlFoto();
-            this.ucFotoJpeg = new Traccia.UserControlFoto();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -184,98 +186,6 @@
             this.groupBoxTipoFoto.TabStop = false;
             this.groupBoxTipoFoto.Text = "Tipo foto";
             // 
-            // splitContainer1B2B3
-            // 
-            this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1B2B3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1B2B3.Name = "splitContainer1B2B3";
-            this.splitContainer1B2B3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1B2B3.Panel1
-            // 
-            this.splitContainer1B2B3.Panel1.Controls.Add(this.groupBoxComandi);
-            // 
-            // splitContainer1B2B3.Panel2
-            // 
-            this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer1B2B3.Size = new System.Drawing.Size(800, 172);
-            this.splitContainer1B2B3.SplitterDistance = 60;
-            this.splitContainer1B2B3.TabIndex = 0;
-            // 
-            // groupBoxComandi
-            // 
-            this.groupBoxComandi.Controls.Add(this.butAnnullaCopia);
-            this.groupBoxComandi.Controls.Add(this.ButCopia);
-            this.groupBoxComandi.Controls.Add(this.butAnnulaSelezione);
-            this.groupBoxComandi.Controls.Add(this.butSelezione);
-            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Size = new System.Drawing.Size(800, 60);
-            this.groupBoxComandi.TabIndex = 0;
-            this.groupBoxComandi.TabStop = false;
-            this.groupBoxComandi.Text = "Comandi";
-            // 
-            // ButCopia
-            // 
-            this.ButCopia.Location = new System.Drawing.Point(494, 28);
-            this.ButCopia.Name = "ButCopia";
-            this.ButCopia.Size = new System.Drawing.Size(75, 23);
-            this.ButCopia.TabIndex = 2;
-            this.ButCopia.Text = "Copia";
-            this.ButCopia.UseVisualStyleBackColor = true;
-            this.ButCopia.Click += new System.EventHandler(this.ButCopia_Click);
-            // 
-            // butAnnulaSelezione
-            // 
-            this.butAnnulaSelezione.Location = new System.Drawing.Point(129, 29);
-            this.butAnnulaSelezione.Name = "butAnnulaSelezione";
-            this.butAnnulaSelezione.Size = new System.Drawing.Size(138, 23);
-            this.butAnnulaSelezione.TabIndex = 1;
-            this.butAnnulaSelezione.Text = "Annulla Selezione";
-            this.butAnnulaSelezione.UseVisualStyleBackColor = true;
-            this.butAnnulaSelezione.Click += new System.EventHandler(this.butAnnulaSelezione_Click);
-            // 
-            // butSelezione
-            // 
-            this.butSelezione.Location = new System.Drawing.Point(27, 29);
-            this.butSelezione.Name = "butSelezione";
-            this.butSelezione.Size = new System.Drawing.Size(75, 23);
-            this.butSelezione.TabIndex = 0;
-            this.butSelezione.Text = "Selezione";
-            this.butSelezione.UseVisualStyleBackColor = true;
-            this.butSelezione.Click += new System.EventHandler(this.butSelezione_Click);
-            // 
-            // groupBoxOutput
-            // 
-            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
-            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(800, 108);
-            this.groupBoxOutput.TabIndex = 0;
-            this.groupBoxOutput.TabStop = false;
-            this.groupBoxOutput.Text = "Output";
-            // 
-            // richTextBoxOutput
-            // 
-            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
-            this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(794, 89);
-            this.richTextBoxOutput.TabIndex = 0;
-            this.richTextBoxOutput.Text = "";
-            // 
-            // butAnnullaCopia
-            // 
-            this.butAnnullaCopia.Location = new System.Drawing.Point(575, 28);
-            this.butAnnullaCopia.Name = "butAnnullaCopia";
-            this.butAnnullaCopia.Size = new System.Drawing.Size(142, 23);
-            this.butAnnullaCopia.TabIndex = 3;
-            this.butAnnullaCopia.Text = "Annulla Copia";
-            this.butAnnullaCopia.UseVisualStyleBackColor = true;
-            this.butAnnullaCopia.Click += new System.EventHandler(this.butAnnullaCopia_Click);
-            // 
             // ucFotoRaw
             // 
             this.ucFotoRaw.Abilita = false;
@@ -318,13 +228,127 @@
             this.ucFotoJpeg.Size = new System.Drawing.Size(794, 65);
             this.ucFotoJpeg.TabIndex = 6;
             // 
-            // FormCopiaFoto
+            // splitContainer1B2B3
+            // 
+            this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2B3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2B3.Name = "splitContainer1B2B3";
+            this.splitContainer1B2B3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1B2B3.Panel1
+            // 
+            this.splitContainer1B2B3.Panel1.Controls.Add(this.groupBoxComandi);
+            // 
+            // splitContainer1B2B3.Panel2
+            // 
+            this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1B2B3.Size = new System.Drawing.Size(800, 172);
+            this.splitContainer1B2B3.SplitterDistance = 60;
+            this.splitContainer1B2B3.TabIndex = 0;
+            // 
+            // groupBoxComandi
+            // 
+            this.groupBoxComandi.Controls.Add(this.butAnnullaCopia);
+            this.groupBoxComandi.Controls.Add(this.butCopia);
+            this.groupBoxComandi.Controls.Add(this.butAnnullaAssegna);
+            this.groupBoxComandi.Controls.Add(this.ButAssegna);
+            this.groupBoxComandi.Controls.Add(this.butAnnulaSelezione);
+            this.groupBoxComandi.Controls.Add(this.butSelezione);
+            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxComandi.Name = "groupBoxComandi";
+            this.groupBoxComandi.Size = new System.Drawing.Size(800, 60);
+            this.groupBoxComandi.TabIndex = 0;
+            this.groupBoxComandi.TabStop = false;
+            this.groupBoxComandi.Text = "Comandi";
+            // 
+            // butAnnullaCopia
+            // 
+            this.butAnnullaCopia.Location = new System.Drawing.Point(688, 29);
+            this.butAnnullaCopia.Name = "butAnnullaCopia";
+            this.butAnnullaCopia.Size = new System.Drawing.Size(100, 23);
+            this.butAnnullaCopia.TabIndex = 5;
+            this.butAnnullaCopia.Text = "Annulla Copia";
+            this.butAnnullaCopia.UseVisualStyleBackColor = true;
+            this.butAnnullaCopia.Click += new System.EventHandler(this.butAnnullaCopia_Click);
+            // 
+            // butCopia
+            // 
+            this.butCopia.Location = new System.Drawing.Point(582, 29);
+            this.butCopia.Name = "butCopia";
+            this.butCopia.Size = new System.Drawing.Size(100, 23);
+            this.butCopia.TabIndex = 4;
+            this.butCopia.Text = "Copia";
+            this.butCopia.UseVisualStyleBackColor = true;
+            this.butCopia.Click += new System.EventHandler(this.butCopia_Click);
+            // 
+            // butAnnullaAssegna
+            // 
+            this.butAnnullaAssegna.Location = new System.Drawing.Point(395, 29);
+            this.butAnnullaAssegna.Name = "butAnnullaAssegna";
+            this.butAnnullaAssegna.Size = new System.Drawing.Size(100, 23);
+            this.butAnnullaAssegna.TabIndex = 3;
+            this.butAnnullaAssegna.Text = "Annulla Assegna";
+            this.butAnnullaAssegna.UseVisualStyleBackColor = true;
+            this.butAnnullaAssegna.Click += new System.EventHandler(this.butAnnullaAssegna_Click);
+            // 
+            // ButAssegna
+            // 
+            this.ButAssegna.Location = new System.Drawing.Point(289, 29);
+            this.ButAssegna.Name = "ButAssegna";
+            this.ButAssegna.Size = new System.Drawing.Size(100, 23);
+            this.ButAssegna.TabIndex = 2;
+            this.ButAssegna.Text = "Assegna";
+            this.ButAssegna.UseVisualStyleBackColor = true;
+            this.ButAssegna.Click += new System.EventHandler(this.ButAssegna_Click);
+            // 
+            // butAnnulaSelezione
+            // 
+            this.butAnnulaSelezione.Location = new System.Drawing.Point(121, 29);
+            this.butAnnulaSelezione.Name = "butAnnulaSelezione";
+            this.butAnnulaSelezione.Size = new System.Drawing.Size(100, 23);
+            this.butAnnulaSelezione.TabIndex = 1;
+            this.butAnnulaSelezione.Text = "Annulla Selezione";
+            this.butAnnulaSelezione.UseVisualStyleBackColor = true;
+            this.butAnnulaSelezione.Click += new System.EventHandler(this.butAnnulaSelezione_Click);
+            // 
+            // butSelezione
+            // 
+            this.butSelezione.Location = new System.Drawing.Point(15, 29);
+            this.butSelezione.Name = "butSelezione";
+            this.butSelezione.Size = new System.Drawing.Size(100, 23);
+            this.butSelezione.TabIndex = 0;
+            this.butSelezione.Text = "Selezione";
+            this.butSelezione.UseVisualStyleBackColor = true;
+            this.butSelezione.Click += new System.EventHandler(this.butSelezione_Click);
+            // 
+            // groupBoxOutput
+            // 
+            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
+            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxOutput.Name = "groupBoxOutput";
+            this.groupBoxOutput.Size = new System.Drawing.Size(800, 108);
+            this.groupBoxOutput.TabIndex = 0;
+            this.groupBoxOutput.TabStop = false;
+            this.groupBoxOutput.Text = "Output";
+            // 
+            // richTextBoxOutput
+            // 
+            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
+            this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.Size = new System.Drawing.Size(794, 89);
+            this.richTextBoxOutput.TabIndex = 0;
+            this.richTextBoxOutput.Text = "";
+            // 
+            // FormFoto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "FormCopiaFoto";
+            this.Name = "FormFoto";
             this.Text = "Copia Foto";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -368,7 +392,9 @@
         private UserControlFoto ucFotoRaw;
         private UserControlFoto ucFotoHeic;
         private System.Windows.Forms.Button butAnnulaSelezione;
-        private System.Windows.Forms.Button ButCopia;
+        private System.Windows.Forms.Button ButAssegna;
+        private System.Windows.Forms.Button butAnnullaAssegna;
+        private System.Windows.Forms.Button butCopia;
         private System.Windows.Forms.Button butAnnullaCopia;
     }
 }

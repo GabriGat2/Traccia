@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Traccia
 {
-    public partial class FormCopiaFoto: Form
+    public partial class FormFoto : Form
     {
         /// <summary>
         /// Archivio Traccia
@@ -83,7 +83,7 @@ namespace Traccia
         /// <summary>
         /// Costruttore
         /// </summary>
-        public FormCopiaFoto(ref CArchivioTraccia traccia)
+        public FormFoto(ref CArchivioTraccia traccia)
         {
             // Assegna Archivio traccia
             Traccia = traccia;
@@ -94,14 +94,14 @@ namespace Traccia
         /// <summary>
         /// Inizializza la classe
         /// </summary>
-        private void InizializzaClasse ()
+        private void InizializzaClasse()
         {
             // Definisce il gestore dei messaggi
             msg = new CMessaggio(ref richTextBoxOutput);
 
             // inizilizza data e ora di ricerca
             dateTimePicker_DataInizio.Value = new DateTime(2000, 1, 1);
-            dateTimePicker_OraInizio.Value = new DateTime(2000, 1, 1, 0, 0 , 0);
+            dateTimePicker_OraInizio.Value = new DateTime(2000, 1, 1, 0, 0, 0);
             dateTimePicker_DataFine.Value = new DateTime(2001, 1, 1);
             dateTimePicker_OraFine.Value = new DateTime(2000, 1, 1, 23, 59, 59);
 
@@ -158,7 +158,7 @@ namespace Traccia
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
             // Compone la data di inizio ricerca
-            DataInizioRicerca = new DateTime(  dateTimePicker_DataInizio.Value.Year,
+            DataInizioRicerca = new DateTime(dateTimePicker_DataInizio.Value.Year,
                                                 dateTimePicker_DataInizio.Value.Month,
                                                 dateTimePicker_DataInizio.Value.Day,
                                                 dateTimePicker_OraInizio.Value.Hour,
@@ -166,7 +166,7 @@ namespace Traccia
                                                 dateTimePicker_OraInizio.Value.Second);
 
             // Compone la data di fine ricerca
-            DataFineRicerca = new DateTime(    dateTimePicker_DataFine.Value.Year,
+            DataFineRicerca = new DateTime(dateTimePicker_DataFine.Value.Year,
                                                 dateTimePicker_DataFine.Value.Month,
                                                 dateTimePicker_DataFine.Value.Day,
                                                 dateTimePicker_OraFine.Value.Hour,
@@ -182,7 +182,7 @@ namespace Traccia
             // seleziona i file JPEG
             if (ucFotoJpeg.Abilita)
             {
-                esito = SelezionaFile(JpegPathDisponibili, JpegPathSelezionati,  "JPEG");
+                esito = SelezionaFile(JpegPathDisponibili, JpegPathSelezionati, "JPEG");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -198,7 +198,7 @@ namespace Traccia
             // seleziona i file RAW
             if (ucFotoRaw.Abilita)
             {
-                esito = SelezionaFile(RawPathDisponibili, RawPathSelezionati, "Raw");
+                esito = SelezionaFile(RawPathDisponibili, RawPathSelezionati, "RAW");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -269,22 +269,38 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
+        /// Seleziona i file dalla directory specificata, con stampa dei messaggi
+        /// </summary>
+        /// <param name="pathDisponibili"></param>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="operazione"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore SelezionaFile(string pathDisponibili, string pathSelezionati, string tipoFoto)
+        {
+            // compone operazione
+            string operazione = "selezione file " + tipoFoto;
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = SelezionaFile(pathDisponibili, pathSelezionati);
+
+            // stampa fine operazioni
+            StampaOperazione(false, operazione, esito);
+
+            return esito;
+        }
+        /// <summary>
         /// Seleziona i file dalla directory specificata
         /// </summary>
         /// <param name="pathDisponibili"></param>
         /// <param name="pathSelezionati"></param>
-        /// <param name="tipoFoto"></param>
         /// <returns></returns>
-        private GstErrori.EErrore SelezionaFile(string pathDisponibili, string pathSelezionati,  string tipoFoto)
+        private GstErrori.EErrore SelezionaFile(string pathDisponibili, string pathSelezionati)
         {
             // Compone la lista delle foto disponibili
             string[] srcList = Directory.GetFiles(pathDisponibili, "*.*");
-
-            // Stampa inizio selezione
-            msg.Stampa("");
-            msg.Stampa("=================================================================================================");
-            msg.Stampa("Inizio Selezione foto: " + tipoFoto);
-            msg.Stampa("");
 
             // loop di analisi della directory
             foreach (string srcFile in srcList)
@@ -397,14 +413,30 @@ namespace Traccia
         /// <returns></returns>
         private GstErrori.EErrore AnnullaSelezionaFile(string pathDisponibili, string pathSelezionati, string tipoFoto)
         {
+            // compone operazione
+            string operazione = "annulla Selezione foto " + tipoFoto;
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = AnnullaSelezionaFile(pathDisponibili, pathSelezionati);
+
+            // stampa fine operazioni
+            StampaOperazione(false, operazione, esito);
+
+            return esito;
+        }
+        /// <summary>
+        /// Annula la seleziona i file dalla directory specificata
+        /// </summary>
+        /// <param name="pathDisponibili"></param>
+        /// <param name="pathSelezionati"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaSelezionaFile(string pathDisponibili, string pathSelezionati)
+        {
             // Compone la lista delle foto selezionate
             string[] srcList = Directory.GetFiles(pathSelezionati, "*.*");
-
-            // Stampa inizio selezione
-            msg.Stampa("");
-            msg.Stampa("=================================================================================================");
-            msg.Stampa("Inizio Annulla Selezione foto: " + tipoFoto);
-            msg.Stampa("");
 
             // loop di analisi della directory
             foreach (string srcFile in srcList)
@@ -444,19 +476,19 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Attiva la copia dei file selezionati
+        /// Attiva l'assegnazione dei file selezionati
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButCopia_Click(object sender, EventArgs e)
+        private void ButAssegna_Click(object sender, EventArgs e)
         {
-            CopiaFoto();                     
+            AssegnaFoto();
         }
         /// <summary>
-        /// Copia le foto
+        /// Assegna le foto selezionate
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore CopiaFoto()
+        private GstErrori.EErrore AssegnaFoto()
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
@@ -470,7 +502,7 @@ namespace Traccia
             // Copia i file JPEG
             if (ucFotoJpeg.Abilita)
             {
-                esito = CopiaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
+                esito = AssegnaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -478,7 +510,7 @@ namespace Traccia
             // Copia i file HEIC
             if (ucFotoHeic.Abilita)
             {
-                esito = CopiaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
+                esito = AssegnaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -486,7 +518,7 @@ namespace Traccia
             // Copia i file RAW
             if (ucFotoRaw.Abilita)
             {
-                esito = CopiaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
+                esito = AssegnaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -497,23 +529,40 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Copia i file Selezionati directory della traccia corrispondente
+        /// Assegna i file Selezionati directory della traccia corrispondente
         /// </summary>
         /// <param name="pathSelezionati"></param>
         /// <param name="pathAssegnati"></param>
         /// <param name="pathCopiati"></param>
         /// <param name="tipoFoto"></param>
         /// <returns></returns>
-        private GstErrori.EErrore CopiaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        private GstErrori.EErrore AssegnaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        {
+            // compone operazione
+            string operazione = "assegna file " + tipoFoto;
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = AssegnaFile(pathSelezionati, pathAssegnati, pathCopiati);
+
+            // stampa fine operazioni
+            StampaOperazione(false, operazione, esito);
+
+            return esito;
+        }
+        /// <summary>
+        /// Assegna i file Selezionati directory della traccia corrispondente
+        /// </summary>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="pathAssegnati"></param>
+        /// <param name="pathCopiati"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AssegnaFile(string pathSelezionati, string pathAssegnati, string pathCopiati)
         {
             // Compone la lista delle foto disponibili
             string[] srcList = Directory.GetFiles(pathSelezionati, "*.*");
-
-            // Stampa inizio selezione
-            msg.Stampa("");
-            msg.Stampa("=================================================================================================");
-            msg.Stampa("Inizio copia foto: " + tipoFoto);
-            msg.Stampa("");
 
             // loop di analisi della directory
             foreach (string srcFile in srcList)
@@ -529,7 +578,7 @@ namespace Traccia
 
 
                 // stampa il nome del file selezionato
-                msg.Stampa("Selezionato: " + srcFileName, true);
+                msg.Stampa("Assegnato: " + srcFileName, true);
 
                 try
                 {
@@ -555,25 +604,25 @@ namespace Traccia
                 {
                     msg.Stampa("The process failed: {0}" + e.ToString());
                 }
-                
+
             }
 
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Attiva l'annulamento della copia
+        /// Attiva l'annulamento del'assegnazione dei file selezionati
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void butAnnullaCopia_Click(object sender, EventArgs e)
+        private void butAnnullaAssegna_Click(object sender, EventArgs e)
         {
-            AnnullaCopiaFoto();
+            AnnullaAssegnaFoto();
         }
         /// <summary>
         /// Annula la copia delle foto
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore AnnullaCopiaFoto()
+        private GstErrori.EErrore AnnullaAssegnaFoto()
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
@@ -587,7 +636,7 @@ namespace Traccia
             // Annula copia file JPEG
             if (ucFotoJpeg.Abilita)
             {
-                esito = AnnullaCopiaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
+                esito = AnnullaAssegnaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -595,7 +644,7 @@ namespace Traccia
             // Annula copia file HEIC
             if (ucFotoHeic.Abilita)
             {
-                esito = AnnullaCopiaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
+                esito = AnnullaAssegnaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -603,7 +652,7 @@ namespace Traccia
             // Annulla copia  file RAW
             if (ucFotoRaw.Abilita)
             {
-                esito = AnnullaCopiaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
+                esito = AnnullaAssegnaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
                 if (esito != GstErrori.EErrore.E0000_OK)
                     return esito;
             }
@@ -621,16 +670,34 @@ namespace Traccia
         /// <param name="pathCopiati"></param>
         /// <param name="tipoFoto"></param>
         /// <returns></returns>
-        private GstErrori.EErrore AnnullaCopiaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        private GstErrori.EErrore AnnullaAssegnaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        {
+            // compone operazione
+            string operazione = "annulla assegna file " + tipoFoto;
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = AnnullaAssegnaFile(pathSelezionati, pathAssegnati, pathCopiati);
+
+            // stampa fine operazioni
+            StampaOperazione(false, operazione, esito);
+
+            return esito;
+
+        }
+        /// <summary>
+        /// Annulla la copia dei file Assegnati directory della traccia corrispondente
+        /// </summary>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="pathAssegnati"></param>
+        /// <param name="pathCopiati"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaAssegnaFile(string pathSelezionati, string pathAssegnati, string pathCopiati)
         {
             // Compone la lista delle foto Assegnate
             string[] srcList = Directory.GetFiles(pathAssegnati, "*.*");
-
-            // Stampa inizio selezione
-            msg.Stampa("");
-            msg.Stampa("=================================================================================================");
-            msg.Stampa("Inizio annulla copia foto: " + tipoFoto);
-            msg.Stampa("");
 
             // loop di analisi della directory
             foreach (string srcFile in srcList)
@@ -678,8 +745,129 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Stampa l'operazione in corso
+        /// </summary>
+        /// <param name="inizio"></param>
+        /// <param name="operazione"></param>
+        /// <param name="esito"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
+        {
+            // stampa righe di separazione
+            msg.Stampa("");
 
+            // stampa operazione
+            if (inizio)
+            {
+                msg.Stampa("=================================================================================================");
+                msg.Stampa("Inizio " + operazione);
+                msg.Stampa("-------------------------------------------------------------------------------------------------");
 
+            }
+            else
+            {
+                msg.Stampa("-------------------------------------------------------------------------------------------------");
+                msg.Stampa("Fine " + operazione);
 
+                // stampa l'esito dell'operazione
+                if (esito == GstErrori.EErrore.E0000_OK)
+                    msg.Stampa("L'operazione è stata completata con successo");
+                else
+                    msg.Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
+
+                msg.Stampa("=================================================================================================");
+            }
+
+            // stampa righe di separazione
+            msg.Stampa("");
+
+            return esito;
+        }
+        /// <summary>
+        /// Attiva a copia delle foto da sorgente a traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butCopia_Click(object sender, EventArgs e)
+        {
+            Copia();
+        }
+        /// <summary>
+        /// Copia delle foto da sorgente a traccia
+        /// </summary>
+        private GstErrori.EErrore Copia()
+        {
+            GstErrori.EErrore esito; 
+            
+            // compone operazione
+            string operazione = "COPIA TUTTO";
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // Seleziona le foto
+            esito = SelezioneFoto();
+            if (esito != GstErrori.EErrore.E0000_OK)
+            {
+                // stampa fine operazioni
+                StampaOperazione(false, operazione, esito);
+                return esito;
+            }
+
+            // stampa fine operazioni
+            esito = AssegnaFoto();
+            if (esito != GstErrori.EErrore.E0000_OK)
+            {
+                // stampa fine operazioni
+                StampaOperazione(false, operazione, esito);
+                return esito;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Attiva l'annulamento delle copia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAnnullaCopia_Click(object sender, EventArgs e)
+        {
+            AnnullaCopia();
+        }
+        /// <summary>
+        /// Annula la copia delle foto
+        /// </summary>
+        private GstErrori.EErrore AnnullaCopia()
+        {
+            GstErrori.EErrore esito;
+
+            // compone operazione
+            string operazione = "ANNULLA COPIA TUTTO";
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // Seleziona le foto
+            esito = AnnullaAssegnaFoto();
+            if (esito != GstErrori.EErrore.E0000_OK)
+            {
+                // stampa fine operazioni
+                StampaOperazione(false, operazione, esito);
+                return esito;
+            }
+
+            // stampa fine operazioni
+            esito = AnnullaSelezioneFoto();
+            if (esito != GstErrori.EErrore.E0000_OK)
+            {
+                // stampa fine operazioni
+                StampaOperazione(false, operazione, esito);
+                return esito;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Traccia
         /// <summary>
         /// Dichiara la dialog per copiare le foto
         /// </summary>
-        private FormCopiaFoto DlgCopiaFoto = null;
+        private FormFoto DlgCopiaFoto = null;
         /// <summary>
         /// Abilita l'aggiornamento del nome della traccia
         /// </summary>
@@ -76,7 +76,7 @@ namespace Traccia
             textBoxPrefisso.Enabled = false;
 
             // Crea la dialog per copiare le foto
-            DlgCopiaFoto = new FormCopiaFoto(ref Traccia);
+            DlgCopiaFoto = new FormFoto(ref Traccia);
 
 
             // Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
@@ -418,11 +418,11 @@ namespace Traccia
             NuovaTraccia();
         }
         /// <summary>
-        /// Copia le foto
+        /// Attiva la dialog per la gestione delle foto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void butCopiaFoto_Click(object sender, EventArgs e)
+        private void butFoto_Click(object sender, EventArgs e)
         {
             // Apre la dialog per copiare le foto
             DlgCopiaFoto.AggiornaClasse();

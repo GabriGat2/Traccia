@@ -67,7 +67,7 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.butCopiaFoto = new System.Windows.Forms.Button();
+            this.butFoto = new System.Windows.Forms.Button();
             this.butCreaTraccia = new System.Windows.Forms.Button();
             this.butNuovaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
@@ -535,7 +535,7 @@
             // 
             // groupBoxComandi
             // 
-            this.groupBoxComandi.Controls.Add(this.butCopiaFoto);
+            this.groupBoxComandi.Controls.Add(this.butFoto);
             this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
             this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
             this.groupBoxComandi.Controls.Add(this.butAggiorna);
@@ -549,15 +549,15 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
-            // butCopiaFoto
+            // butFoto
             // 
-            this.butCopiaFoto.Location = new System.Drawing.Point(263, 18);
-            this.butCopiaFoto.Name = "butCopiaFoto";
-            this.butCopiaFoto.Size = new System.Drawing.Size(101, 23);
-            this.butCopiaFoto.TabIndex = 14;
-            this.butCopiaFoto.Text = "Copia Foto";
-            this.butCopiaFoto.UseVisualStyleBackColor = true;
-            this.butCopiaFoto.Click += new System.EventHandler(this.butCopiaFoto_Click);
+            this.butFoto.Location = new System.Drawing.Point(263, 18);
+            this.butFoto.Name = "butFoto";
+            this.butFoto.Size = new System.Drawing.Size(101, 23);
+            this.butFoto.TabIndex = 14;
+            this.butFoto.Text = "Foto";
+            this.butFoto.UseVisualStyleBackColor = true;
+            this.butFoto.Click += new System.EventHandler(this.butFoto_Click);
             // 
             // butCreaTraccia
             // 
@@ -690,7 +690,7 @@
         private System.Windows.Forms.CheckBox checkBoxSingola;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxPathArchivio;
-        private System.Windows.Forms.Button butCopiaFoto;
+        private System.Windows.Forms.Button butFoto;
         private System.Windows.Forms.Button butExplorerInputDati;
         private System.Windows.Forms.Button butExploreEscursione;
         private System.Windows.Forms.Button butExplorerTraccia;
