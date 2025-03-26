@@ -131,7 +131,7 @@ namespace Traccia
         /// </summary>
         private GstErrori.EErrore AggiornaContatori()
         {
-            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+            //GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
             // Aggiorna contatori foto
             ucFotoJpeg.Aggiorna();
@@ -196,7 +196,7 @@ namespace Traccia
             }
 
             // seleziona i file RAW
-            if (ucFotoHeic.Abilita)
+            if (ucFotoRaw.Abilita)
             {
                 esito = SelezionaFile(RawPathDisponibili, RawPathSelezionati, "Raw");
                 if (esito != GstErrori.EErrore.E0000_OK)
@@ -205,45 +205,6 @@ namespace Traccia
 
             // Agggiorna contatori
             AggiornaContatori();
-
-
-
-
-            //// Compone la lista delle foto JPEG
-            //string[] srcJpegList = Directory.GetFiles(JpegPathDisponibili, "*.*");
-
-
-            //// loop di analisi della directory
-            //foreach (string srcFile in srcJpegList)
-            //{
-            //    // Estrae il nome del file
-            //    string srcFileName = srcFile.Substring(JpegPathDisponibili.Length + 1);
-
-            //    // stampa il nome del file
-            //    //msg.Stampa(srcFileName, false);
-
-            //    // Estrae la data di creazione
-            //    DateTime dataCreazione = File.GetCreationTime(srcFile);
-            //    // Estrae la data di ultimo accesso
-            //    DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
-            //    // Estrae la data di ultimo accesso
-            //    DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
-
-            //    // verifica se la data del file è successiva alla data di inizio
-            //    int resultInizio = dataInizio.CompareTo(dataUltimaScritta);
-            //    int resultFine = dataFine.CompareTo(dataUltimaScritta);
-            //    if ((resultInizio <= 0) && (resultFine > 0))
-            //    {
-
-
-
-            //        // Sposta il file nella directory Selezione
-
-
-
-            //        msg.Stampa(srcFileName, true);
-            //    }
-            //}
 
             return GstErrori.EErrore.E0000_OK;
         }
@@ -415,7 +376,7 @@ namespace Traccia
             }
 
             // seleziona i file RAW
-            if (ucFotoHeic.Abilita)
+            if (ucFotoRaw.Abilita)
             {
                 esito = AnnullaSelezionaFile(RawPathDisponibili, RawPathSelezionati, "Raw");
                 if (esito != GstErrori.EErrore.E0000_OK)
@@ -424,45 +385,6 @@ namespace Traccia
 
             // Agggiorna contatori
             AggiornaContatori();
-
-
-
-
-            //// Compone la lista delle foto JPEG
-            //string[] srcJpegList = Directory.GetFiles(JpegPathDisponibili, "*.*");
-
-
-            //// loop di analisi della directory
-            //foreach (string srcFile in srcJpegList)
-            //{
-            //    // Estrae il nome del file
-            //    string srcFileName = srcFile.Substring(JpegPathDisponibili.Length + 1);
-
-            //    // stampa il nome del file
-            //    //msg.Stampa(srcFileName, false);
-
-            //    // Estrae la data di creazione
-            //    DateTime dataCreazione = File.GetCreationTime(srcFile);
-            //    // Estrae la data di ultimo accesso
-            //    DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
-            //    // Estrae la data di ultimo accesso
-            //    DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
-
-            //    // verifica se la data del file è successiva alla data di inizio
-            //    int resultInizio = dataInizio.CompareTo(dataUltimaScritta);
-            //    int resultFine = dataFine.CompareTo(dataUltimaScritta);
-            //    if ((resultInizio <= 0) && (resultFine > 0))
-            //    {
-
-
-
-            //        // Sposta il file nella directory Selezione
-
-
-
-            //        msg.Stampa(srcFileName, true);
-            //    }
-            //}
 
             return GstErrori.EErrore.E0000_OK;
         }
@@ -528,7 +450,236 @@ namespace Traccia
         /// <param name="e"></param>
         private void ButCopia_Click(object sender, EventArgs e)
         {
-                     
+            CopiaFoto();                     
         }
+        /// <summary>
+        /// Copia le foto
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore CopiaFoto()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+
+            // Compone i path sorgenti
+            esito = ComponePath();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Copia i file JPEG
+            if (ucFotoJpeg.Abilita)
+            {
+                esito = CopiaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Copia i file HEIC
+            if (ucFotoHeic.Abilita)
+            {
+                esito = CopiaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Copia i file RAW
+            if (ucFotoRaw.Abilita)
+            {
+                esito = CopiaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Agggiorna contatori
+            AggiornaContatori();
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Copia i file Selezionati directory della traccia corrispondente
+        /// </summary>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="pathAssegnati"></param>
+        /// <param name="pathCopiati"></param>
+        /// <param name="tipoFoto"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore CopiaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        {
+            // Compone la lista delle foto disponibili
+            string[] srcList = Directory.GetFiles(pathSelezionati, "*.*");
+
+            // Stampa inizio selezione
+            msg.Stampa("");
+            msg.Stampa("=================================================================================================");
+            msg.Stampa("Inizio copia foto: " + tipoFoto);
+            msg.Stampa("");
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(pathSelezionati.Length + 1);
+
+                // Compone il path dove copiare il file
+                string copiaFile = pathAssegnati + SeparaDir + srcFileName;
+
+                // Compone il path dove spostare il file
+                string muoveFile = pathCopiati + SeparaDir + srcFileName;
+
+
+                // stampa il nome del file selezionato
+                msg.Stampa("Selezionato: " + srcFileName, true);
+
+                try
+                {
+                    // Copia il file nella relativa directory della traccia
+                    File.Copy(srcFile, copiaFile);
+
+                    // Verifica che il file esista nella directory della traccia
+                    if (!File.Exists(copiaFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                    // Muove il file nella directory dei copiati
+                    File.Move(srcFile, muoveFile);
+
+                    // Verifica che il file esista dei copiati
+                    if (!File.Exists(muoveFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                    // Verifica che il file non esista nella directory sorgente
+                    if (File.Exists(srcFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+                }
+                catch (Exception e)
+                {
+                    msg.Stampa("The process failed: {0}" + e.ToString());
+                }
+                
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Attiva l'annulamento della copia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAnnullaCopia_Click(object sender, EventArgs e)
+        {
+            AnnullaCopiaFoto();
+        }
+        /// <summary>
+        /// Annula la copia delle foto
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaCopiaFoto()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+
+            // Compone i path sorgenti
+            esito = ComponePath();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Annula copia file JPEG
+            if (ucFotoJpeg.Abilita)
+            {
+                esito = AnnullaCopiaFile(JpegPathSelezionati, JpegPathAssegnati, JpegPathCopiati, "JPEG");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Annula copia file HEIC
+            if (ucFotoHeic.Abilita)
+            {
+                esito = AnnullaCopiaFile(HeicPathSelezionati, HeicPathAssegnati, HeicPathCopiati, "HEIC");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Annulla copia  file RAW
+            if (ucFotoRaw.Abilita)
+            {
+                esito = AnnullaCopiaFile(RawPathSelezionati, RawPathAssegnati, RawPathCopiati, "Raw");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Agggiorna contatori
+            AggiornaContatori();
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Annulla la copia dei file Assegnati directory della traccia corrispondente
+        /// </summary>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="pathAssegnati"></param>
+        /// <param name="pathCopiati"></param>
+        /// <param name="tipoFoto"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaCopiaFile(string pathSelezionati, string pathAssegnati, string pathCopiati, string tipoFoto)
+        {
+            // Compone la lista delle foto Assegnate
+            string[] srcList = Directory.GetFiles(pathAssegnati, "*.*");
+
+            // Stampa inizio selezione
+            msg.Stampa("");
+            msg.Stampa("=================================================================================================");
+            msg.Stampa("Inizio annulla copia foto: " + tipoFoto);
+            msg.Stampa("");
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(pathAssegnati.Length + 1);
+
+                // Compone il path dove spostare il file
+                string muoveFile = pathSelezionati + SeparaDir + srcFileName;
+
+                // Compone il path del file da cancellare
+                string cancellaFile = pathCopiati + SeparaDir + srcFileName;
+
+
+                // stampa il nome del file selezionato
+                msg.Stampa("Selezionato: " + srcFileName, true);
+
+                try
+                {
+                    // Sposta il file nei selezionati
+                    File.Move(srcFile, muoveFile);
+
+                    // Verifica che il file esista nella directory dei selezionati
+                    if (!File.Exists(muoveFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                    // Verifica che il file non esista nella directory degli assegnati della traccia
+                    if (File.Exists(srcFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+
+                    // cencella il file nella directory dei copiati
+                    File.Delete(cancellaFile);
+
+                    // Verifica che il file NON esista nei copiati
+                    if (File.Exists(cancellaFile))
+                        return GstErrori.EErrore.E1359_FileNonCancellato;
+                }
+                catch (Exception e)
+                {
+                    msg.Stampa("The process failed: {0}" + e.ToString());
+                }
+
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
+
+
     }
 }

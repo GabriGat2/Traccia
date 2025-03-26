@@ -60,11 +60,17 @@ namespace Traccia
             srcList = Directory.GetFiles(pathDisponibili, "*.*");
             textBoxDisponibili.Text = srcList.Length.ToString();
 
+            // Selezionati
             srcList = Directory.GetFiles(pathSelezionati, "*.*");
             textBoxSelezionati.Text = srcList.Length.ToString();
 
+            // Copiati
             srcList = Directory.GetFiles(pathCopiati, "*.*");
             textBoxCopiati.Text = srcList.Length.ToString();
+
+            // Assegnati
+            srcList = Directory.GetFiles(pathAssegnati, "*.*");
+            textBoxAssegnati.Text = srcList.Length.ToString();
         }
         /// <summary>
         /// Attiva la finestra explorer, se esiste, all'indirizzo path disponibili
