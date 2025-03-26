@@ -73,6 +73,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butNavigatore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -535,6 +536,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butNavigatore);
             this.groupBoxComandi.Controls.Add(this.butFoto);
             this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
             this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
@@ -581,7 +583,7 @@
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(370, 18);
+            this.butAggiorna.Location = new System.Drawing.Point(659, 18);
             this.butAggiorna.Name = "butAggiorna";
             this.butAggiorna.Size = new System.Drawing.Size(75, 23);
             this.butAggiorna.TabIndex = 11;
@@ -611,6 +613,16 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(792, 109);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // butNavigatore
+            // 
+            this.butNavigatore.Location = new System.Drawing.Point(370, 18);
+            this.butNavigatore.Name = "butNavigatore";
+            this.butNavigatore.Size = new System.Drawing.Size(101, 23);
+            this.butNavigatore.TabIndex = 15;
+            this.butNavigatore.Text = "Navigatore";
+            this.butNavigatore.UseVisualStyleBackColor = true;
+            this.butNavigatore.Click += new System.EventHandler(this.butNavigatore_Click);
             // 
             // FormArchivoTraccia
             // 
@@ -699,5 +711,6 @@
         private System.Windows.Forms.Button buttonInternetTool;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxLink;
+        private System.Windows.Forms.Button butNavigatore;
     }
 }

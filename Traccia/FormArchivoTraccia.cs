@@ -595,5 +595,16 @@ namespace Traccia
             string link = textBoxLink.Text;
             AprePaginaWeb(link);
         }
+        /// <summary>
+        /// Apre la dialog per la gestione del navigatore
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butNavigatore_Click(object sender, EventArgs e)
+        {
+            FormNavigatore dlg = new FormNavigatore(ref Traccia);
+            dlg.ShowDialog();
+
+        }
     }
 }
