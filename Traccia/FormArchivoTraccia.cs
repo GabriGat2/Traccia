@@ -322,7 +322,8 @@ namespace Traccia
         private void butCreaTraccia_Click(object sender, EventArgs e)
         {
             msg.Stampa("Genera l'archivio: " + Traccia.Nome);
-
+            
+            // Crea la traccia
             GstErrori.EErrore esito = CreaTraccia();
 
             msg.Stampa("La generazione dell'archivio: " + Traccia.Nome);
@@ -360,11 +361,11 @@ namespace Traccia
             // abilita il bottone Archivia traccia 
             butNuovaTraccia.Enabled = true;
 
-            // Aggiornamento traccia
-            AggiornaNomeTraccia();
-
             // Stampa il file delle Info
             Traccia.ScriveFileInfo();
+            
+            // Aggiornamento traccia
+            AggiornaNomeTraccia();
 
             return esito;
         }
@@ -424,10 +425,8 @@ namespace Traccia
         private void butCopiaFoto_Click(object sender, EventArgs e)
         {
             // Apre la dialog per copiare le foto
+            DlgCopiaFoto.AggiornaClasse();
             DlgCopiaFoto.ShowDialog(this);
-
-
-            //CopiaFoto();
         }
 
         private GstErrori.EErrore CopiaFoto ()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -158,7 +159,7 @@ namespace Traccia
         /// Rende il colore dello stato dell'archivio
         /// </summary>
         /// <returns></returns>
-        public Color ColoreStato(EArchivioStato lStato)
+        public virtual Color ColoreStato(EArchivioStato lStato)
         {
             Color colore;
 
@@ -231,7 +232,7 @@ namespace Traccia
             return true;
         }
         /// <summary>
-        /// Estra un campo dal nome
+        /// Estrae un campo dal nome
         /// </summary>
         /// <param name="indice"></param>
         /// <returns></returns>
@@ -246,6 +247,10 @@ namespace Traccia
             else
                 return string.Empty;
         }
+        /// <summary>
+        /// Rende la data senza la lettera
+        /// </summary>
+        /// <returns></returns>
         public string GetOnlyData()
         {
             // estrae la data con la lettera
@@ -260,17 +265,25 @@ namespace Traccia
                 return campi[0] + '-' + campi[1] + '-' + campi[2];
 
         }
-        public DateTime GetData()
+        /// <summary>
+        /// Rende la data in formato DataTIme
+        /// </summary>
+        /// <returns></returns>
+        public virtual DateTime GetData()
         {
             // estrae la data con la lettera
-            string sData = GetCampo(0);
+            string sData = GetOnlyData();
 
             // scompone la data
             string[] cData = sData.Split('-');
-            if (cData.Length <= 3)
-                return new DateTime(1998, 1, 1);
-            else
+            if (cData.Length == 3)
                 return new DateTime(Convert.ToInt16(cData[0]), Convert.ToInt16(cData[1]), Convert.ToInt16(cData[2]));
+            else if (cData.Length == 2)
+                return new DateTime(Convert.ToInt16(cData[0]), Convert.ToInt16(cData[1]), 1);
+            else if (cData.Length == 1)
+                return new DateTime(Convert.ToInt16(cData[0]), 1, 1);
+            else
+                return new DateTime(1998, 1, 1);
         }
 
 

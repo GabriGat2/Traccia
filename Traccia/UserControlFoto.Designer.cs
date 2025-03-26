@@ -184,6 +184,7 @@
             this.butDisponibili.TabIndex = 0;
             this.butDisponibili.Text = "E";
             this.butDisponibili.UseVisualStyleBackColor = true;
+            this.butDisponibili.Click += new System.EventHandler(this.butDisponibili_Click);
             // 
             // groupBoxCopiati
             // 
@@ -215,6 +216,7 @@
             this.butCopiati.TabIndex = 0;
             this.butCopiati.Text = "E";
             this.butCopiati.UseVisualStyleBackColor = true;
+            this.butCopiati.Click += new System.EventHandler(this.butCopiati_Click);
             // 
             // splitContainerV1B2B3
             // 
@@ -263,6 +265,7 @@
             this.butSelezionati.TabIndex = 0;
             this.butSelezionati.Text = "E";
             this.butSelezionati.UseVisualStyleBackColor = true;
+            this.butSelezionati.Click += new System.EventHandler(this.butSelezionati_Click);
             // 
             // groupBoxAssegnati
             // 
@@ -294,6 +297,7 @@
             this.butAssegnati.TabIndex = 0;
             this.butAssegnati.Text = "E";
             this.butAssegnati.UseVisualStyleBackColor = true;
+            this.butAssegnati.Click += new System.EventHandler(this.butAssegnati_Click);
             // 
             // UserControlFoto
             // 
@@ -335,24 +339,24 @@
 
         #endregion
 
-        public System.Windows.Forms.GroupBox groupBoxTipo;
-        public System.Windows.Forms.SplitContainer splitContainerV1;
-        public System.Windows.Forms.GroupBox groupBoxAbilita;
-        public System.Windows.Forms.CheckBox checkBoxAbilita;
-        public System.Windows.Forms.SplitContainer splitContainerV1B2;
-        public System.Windows.Forms.SplitContainer splitContainerV1B2A3;
-        public System.Windows.Forms.GroupBox groupBoxDisponibili;
-        public System.Windows.Forms.TextBox textBoxDisponibili;
-        public System.Windows.Forms.Button butDisponibili;
-        public System.Windows.Forms.GroupBox groupBoxCopiati;
-        public System.Windows.Forms.TextBox textBoxCopiati;
-        public System.Windows.Forms.Button butCopiati;
-        public System.Windows.Forms.SplitContainer splitContainerV1B2B3;
-        public System.Windows.Forms.GroupBox groupBoxSelezionati;
-        public System.Windows.Forms.TextBox textBoxSelezionati;
-        public System.Windows.Forms.Button butSelezionati;
-        public System.Windows.Forms.GroupBox groupBoxAssegnati;
-        public System.Windows.Forms.TextBox textBoxAssegnati;
-        public System.Windows.Forms.Button butAssegnati;
+        private System.Windows.Forms.GroupBox groupBoxTipo;
+        private System.Windows.Forms.SplitContainer splitContainerV1;
+        private System.Windows.Forms.GroupBox groupBoxAbilita;
+        private System.Windows.Forms.CheckBox checkBoxAbilita;
+        private System.Windows.Forms.SplitContainer splitContainerV1B2;
+        private System.Windows.Forms.SplitContainer splitContainerV1B2A3;
+        private System.Windows.Forms.GroupBox groupBoxDisponibili;
+        private System.Windows.Forms.TextBox textBoxDisponibili;
+        private System.Windows.Forms.Button butDisponibili;
+        private System.Windows.Forms.GroupBox groupBoxCopiati;
+        private System.Windows.Forms.TextBox textBoxCopiati;
+        private System.Windows.Forms.Button butCopiati;
+        private System.Windows.Forms.SplitContainer splitContainerV1B2B3;
+        private System.Windows.Forms.GroupBox groupBoxSelezionati;
+        private System.Windows.Forms.TextBox textBoxSelezionati;
+        private System.Windows.Forms.Button butSelezionati;
+        private System.Windows.Forms.GroupBox groupBoxAssegnati;
+        private System.Windows.Forms.TextBox textBoxAssegnati;
+        private System.Windows.Forms.Button butAssegnati;
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,19 +69,18 @@ namespace Traccia
         /// <returns></returns>
         public override GstErrori.EErrore CreaDirectoryArchivio()
         {
-            // verifica che ci siano le condizioni per creare la directory
+            // Verifica se esiste una traccia con questo nome
+            if (FileInfoEsiste())
+                return GstErrori.EErrore.E1347_TracciaEsiste;
+
+            // veriifca se la directory base esiste
             switch (Stato)
             {
                 case EArchivioStato.ArchivioNonEsiste:
                     break;
 
                 case EArchivioStato.ArchivioEsiste:
-                    // verifica se esite il file info della traccia
-                    string fileInfo = GetPathInfo() + SeparaDir + Nome;
-                    if (File.Exists(fileInfo))
-                        return GstErrori.EErrore.E1333_PathTracciaEsiste;
-                    else
-                        return GstErrori.EErrore.E0000_OK;
+                    break;
 
                 default:
                     return GstErrori.EErrore.E1313_PathTracciaErrato;
@@ -109,7 +110,7 @@ namespace Traccia
             {
                 default:
                 case EModoArchiviazione.Base:
-                    path = pathEscursione;
+                    path = pathEscursione + SeparaDir + subDirArchivio;
                     break;
 
                 case EModoArchiviazione.Singola:
@@ -157,9 +158,9 @@ namespace Traccia
             bEsito = Escursione.Info.Traccia.Set("Nome", Nome);
 
             // Estrae il nome path relativo del file
-            //string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
-            //bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
-            bEsito = Escursione.Info.Traccia.Set("Path", "Da Sistemare!!!, Non funziona capo optSingola e optGiorno falsi");
+            string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
+            bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
+            //bEsito = Escursione.Info.Traccia.Set("Path", "Da Sistemare!!!, Non funziona capo optSingola e optGiorno falsi");
 
 
             bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());
@@ -195,7 +196,16 @@ namespace Traccia
             return  Escursione.Path + SeparaDir + Escursione.AreaArchivio.Directory.Escursione.GetSubPath("InfoT");
 
         }
+        /// <summary>
+        /// Rende il nome del file info della traccia
+        /// </summary>
+        /// <returns></returns>
+        public string GetFileNameInfo()
+        {
+            // compone il path del file info
+            return GetPathInfo() + SeparaDir + Nome + ".txt";
 
+        }
         /// <summary>
         /// Legge un file info traccia
         /// </summary>
@@ -260,6 +270,35 @@ namespace Traccia
             }
 
         }
-        
+        /// <summary>
+        /// Rende il colore dello stato dell'archivio
+        /// </summary>
+        /// <returns></returns>
+        public override Color ColoreStato(EArchivioStato lStato)
+        {
+            Color colore = base.ColoreStato(lStato);
+
+            // Controlla il colore reso
+            if (colore == Color.LightGreen)
+            {
+                // verifica se esite il file info della traccia
+                string fileName = GetFileNameInfo();
+                if (!File.Exists(fileName))
+                    colore = Color.LightSalmon;
+            }
+
+            return colore;
+        }
+
+        /// <summary>
+        /// Verifica se il file info esiste
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool FileInfoEsiste()
+        {
+            string fileInfo = GetPathInfo() + SeparaDir + Nome;
+            return File.Exists(fileInfo);
+        }
+
     }
 }

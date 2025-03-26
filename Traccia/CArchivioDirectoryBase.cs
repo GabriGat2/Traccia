@@ -82,7 +82,7 @@ namespace Traccia
                 }
             }
 
-            // la chiav richiesta non esite
+            // la chiave richiesta non esite
             return false;
         }
         /// <summary>

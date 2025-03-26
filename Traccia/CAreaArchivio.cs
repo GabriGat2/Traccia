@@ -101,6 +101,14 @@ namespace Traccia
             // Rende l'esito delle operazioni
             return esito;
         }
+        /// <summary>
+        /// Verifica se il file info esiste
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool FileInfoEsiste()
+        {
+            return false;
+        }
 
     }
 }

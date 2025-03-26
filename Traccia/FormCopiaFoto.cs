@@ -53,18 +53,31 @@ namespace Traccia
         private DateTime DataFineRicerca;
 
 
-        // path file sorgenti
-        private string JpegSrcPath = string.Empty;
-        private string JpegSrcPathCopiati = string.Empty;
-        private string JpegSrcPathSelezione = string.Empty;
+        // path file sorgenti JPEG 
+        private string JpegPathDisponibili = string.Empty;
+        private string JpegPathCopiati = string.Empty;
+        private string JpegPathSelezionati = string.Empty;
+        private string JpegPathAssegnati = string.Empty;
 
-        private string HeicSrcPath = string.Empty;
-        private string RawSrcPath  = string.Empty;
+        // path file sorgenti HEIC
+        private string HeicPathDisponibili = string.Empty;
+        private string HeicPathCopiati = string.Empty;
+        private string HeicPathSelezionati = string.Empty;
+        private string HeicPathAssegnati = string.Empty;
 
-        // path file destinazione
-        private string JpegDstPath = string.Empty;
-        private string HeicDstPath = string.Empty;
-        private string RawDstPath = string.Empty;
+        // path file sorgenti RAW
+        private string RawPathDisponibili = string.Empty;
+        private string RawPathCopiati = string.Empty;
+        private string RawPathSelezionati = string.Empty;
+        private string RawPathAssegnati = string.Empty;
+
+
+        //private string RawPathDisponibili  = string.Empty;
+
+        //// path file destinazione
+        //private string JpegDstPath = string.Empty;
+        //private string HeicDstPath = string.Empty;
+        //private string RawDstPath = string.Empty;
 
 
         /// <summary>
@@ -93,63 +106,54 @@ namespace Traccia
             dateTimePicker_OraFine.Value = new DateTime(2000, 1, 1, 23, 59, 59);
 
             // inizializza il tipo di foto
-            ucFotoJpeg.groupBoxTipo.Text = "JPEG";
-            ucFotoJpeg.checkBoxAbilita.Checked = true; ;
+            ucFotoJpeg.Nome = "JPEG";
+            ucFotoJpeg.Abilita = true; ;
 
-            ucFotoHeic.groupBoxTipo.Text = "HEIC";
-            ucFotoHeic.checkBoxAbilita.Checked = true; ;
+            ucFotoHeic.Nome = "HEIC";
+            ucFotoHeic.Abilita = true; ;
 
-            ucFotoRaw.groupBoxTipo.Text = "RAW";
-            ucFotoRaw.checkBoxAbilita.Checked = true; ;
+            ucFotoRaw.Nome = "RAW";
+            ucFotoRaw.Abilita = true; ;
+        }
+        /// <summary>
+        /// Aggiorna la classe
+        /// </summary>
+        public void AggiornaClasse()
+        {
+            // compone i path delle directory
+            ComponePath();
 
             // Aggiorna i contatori delle directory
             AggiornaContatori();
-
-
         }
-
         /// <summary>
         /// Aggiorna i contatori delle directory
         /// </summary>
         private GstErrori.EErrore AggiornaContatori()
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
-            string[] srcList = null;
 
-            // Compone i Path delle directory
-            esito = ComponePath();
-            if (esito != GstErrori.EErrore.E0000_OK)
-                return esito;
-
-
-            // JPEG
-            srcList = Directory.GetFiles(JpegSrcPath, "*.*");
-            ucFotoJpeg.textBoxDisponibili.Text = srcList.Length.ToString();
-
-            srcList = Directory.GetFiles(JpegSrcPathSelezione, "*.*");
-            ucFotoJpeg.textBoxSelezionati.Text = srcList.Length.ToString();
-
-            srcList = Directory.GetFiles(JpegSrcPathCopiati, "*.*");
-            ucFotoJpeg.textBoxCopiati.Text = srcList.Length.ToString();
-
-
+            // Aggiorna contatori foto
+            ucFotoJpeg.Aggiorna();
+            ucFotoHeic.Aggiorna();
+            ucFotoRaw.Aggiorna();
 
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Attiva l'analisi delle foto selezionate
+        /// Attiva la selezione delle foto selezionate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void butAnalizza_Click(object sender, EventArgs e)
+        private void butSelezione_Click(object sender, EventArgs e)
         {
-            GstErrori.EErrore esito = Analizza();
+            GstErrori.EErrore esito = SelezioneFoto();
         }
         /// <summary>
-        /// Analizza le foto selezionate
+        /// Seleziona le foto
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore Analizza()
+        private GstErrori.EErrore SelezioneFoto()
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
@@ -171,27 +175,49 @@ namespace Traccia
 
 
             // Compone i path sorgenti
-            esito = ComponePathSorgente();
+            esito = ComponePath();
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
-            // selezioan i file compresi nelle date di ricerca
-            esito = SelezionaFile(JpegSrcPath, "JpegSel");
-            if (esito != GstErrori.EErrore.E0000_OK)
-                return esito;
+            // seleziona i file JPEG
+            if (ucFotoJpeg.Abilita)
+            {
+                esito = SelezionaFile(JpegPathDisponibili, JpegPathSelezionati,  "JPEG");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // seleziona i file HEIC
+            if (ucFotoHeic.Abilita)
+            {
+                esito = SelezionaFile(HeicPathDisponibili, HeicPathSelezionati, "HEIC");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // seleziona i file RAW
+            if (ucFotoHeic.Abilita)
+            {
+                esito = SelezionaFile(RawPathDisponibili, RawPathSelezionati, "Raw");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Agggiorna contatori
+            AggiornaContatori();
 
 
 
 
             //// Compone la lista delle foto JPEG
-            //string[] srcJpegList = Directory.GetFiles(JpegSrcPath, "*.*");
+            //string[] srcJpegList = Directory.GetFiles(JpegPathDisponibili, "*.*");
 
 
             //// loop di analisi della directory
             //foreach (string srcFile in srcJpegList)
             //{
             //    // Estrae il nome del file
-            //    string srcFileName = srcFile.Substring(JpegSrcPath.Length + 1);
+            //    string srcFileName = srcFile.Substring(JpegPathDisponibili.Length + 1);
 
             //    // stampa il nome del file
             //    //msg.Stampa(srcFileName, false);
@@ -225,69 +251,85 @@ namespace Traccia
         /// Compone i path
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore ComponePath()
-        {
-            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
-
-            // compone path sorgente
-            esito = ComponePathSorgente();
-            if (esito != GstErrori.EErrore.E0000_OK)    
-                return esito;   
-
-            return GstErrori.EErrore.E0000_OK;
-        }
-        /// <summary>
-        /// Compone i path dell delle directory sorgente
-        /// </summary>
-        /// <returns></returns>
-        private GstErrori.EErrore ComponePathSorgente()
+        public GstErrori.EErrore ComponePath()
         {
             string[] campi;
-            string subPath;
 
-            // directory sorgente JPEG
-            JpegSrcPath = Traccia.Escursione.AreaArchivio.GetPathJpeg();
+            //GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // directory JPEG
+            JpegPathDisponibili = Traccia.Escursione.AreaArchivio.GetPathJpeg();
+            ucFotoJpeg.PathDisponibili = JpegPathDisponibili;
 
             campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("JpegSel").Split('\\');
-            JpegSrcPathSelezione = JpegSrcPath + SeparaDir + campi[1];
+            JpegPathSelezionati = JpegPathDisponibili + SeparaDir + campi[1];
+            ucFotoJpeg.PathSelezionati = JpegPathSelezionati;
 
             campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("JpegCop").Split('\\');
-            JpegSrcPathCopiati = JpegSrcPath + SeparaDir + campi[1];
+            JpegPathCopiati = JpegPathDisponibili + SeparaDir + campi[1];
+            ucFotoJpeg.PathCopiati = JpegPathCopiati;
+
+            JpegPathAssegnati = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("JPEG");
+            ucFotoJpeg.PathAssegnati = JpegPathAssegnati;
 
 
+            // directory HEIC
+            HeicPathDisponibili = Traccia.Escursione.AreaArchivio.GetPathHeic();
+            ucFotoHeic.PathDisponibili = HeicPathDisponibili;
+
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("HeicSel").Split('\\');
+            HeicPathSelezionati = HeicPathDisponibili + SeparaDir + campi[1];
+            ucFotoHeic.PathSelezionati = HeicPathSelezionati;
+
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("HeicCop").Split('\\');
+            HeicPathCopiati = HeicPathDisponibili + SeparaDir + campi[1];
+            ucFotoHeic.PathCopiati = HeicPathCopiati;
+
+            HeicPathAssegnati = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("HEIC");
+            ucFotoHeic.PathAssegnati = HeicPathAssegnati;
 
 
+            // directory RAW
+            RawPathDisponibili = Traccia.Escursione.AreaArchivio.GetPathRaw();
+            ucFotoRaw.PathDisponibili = RawPathDisponibili;
 
-            HeicSrcPath = Traccia.Escursione.AreaArchivio.GetPathHeic();
-            RawSrcPath = Traccia.Escursione.AreaArchivio.GetPathRaw();
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("RawSel").Split('\\');
+            RawPathSelezionati = RawPathDisponibili + SeparaDir + campi[1];
+            ucFotoRaw.PathSelezionati = RawPathSelezionati;
+
+            campi = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath("RawCop").Split('\\');
+            RawPathCopiati = RawPathDisponibili + SeparaDir + campi[1];
+            ucFotoRaw.PathCopiati = RawPathCopiati;
+
+            RawPathAssegnati = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("RAW");
+            ucFotoRaw.PathAssegnati = RawPathAssegnati;
+
 
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// seleziona i file dalla directory specificata
+        /// Seleziona i file dalla directory specificata
         /// </summary>
-        /// <param name="fileSrcPath"></param>
+        /// <param name="pathDisponibili"></param>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="tipoFoto"></param>
         /// <returns></returns>
-        private GstErrori.EErrore SelezionaFile(string fileSrcPath, string keySeleziona)
+        private GstErrori.EErrore SelezionaFile(string pathDisponibili, string pathSelezionati,  string tipoFoto)
         {
-            // Compone la lista delle foto
-            string[] srcList = Directory.GetFiles(fileSrcPath, "*.*");
+            // Compone la lista delle foto disponibili
+            string[] srcList = Directory.GetFiles(pathDisponibili, "*.*");
 
-            // Recupera il subPath di selezione 
-            string[] cSelezionaSubPath = Traccia.Escursione.AreaArchivio.Directory.Area.GetSubPath(keySeleziona).Split('\\');
-            string selezionaSubPath = cSelezionaSubPath[1];
-
-            // Stampa inizio slelezione
+            // Stampa inizio selezione
             msg.Stampa("");
             msg.Stampa("=================================================================================================");
-            msg.Stampa("Inizio Selezione foto: " + cSelezionaSubPath[0]);
+            msg.Stampa("Inizio Selezione foto: " + tipoFoto);
             msg.Stampa("");
 
             // loop di analisi della directory
             foreach (string srcFile in srcList)
             {
                 // Estrae il nome del file
-                string srcFileName = srcFile.Substring(fileSrcPath.Length + 1);
+                string srcFileName = srcFile.Substring(pathDisponibili.Length + 1);
 
                 // Estrae la data di creazione
                 DateTime dataCreazione = File.GetCreationTime(srcFile);
@@ -302,7 +344,7 @@ namespace Traccia
                 if ((resultInizio <= 0) && (resultFine > 0))
                 {
                     // crea il path di destinazione in selezione
-                    string dstFile = fileSrcPath + SeparaDir + selezionaSubPath + SeparaDir + srcFileName;
+                    string dstFile = pathSelezionati + SeparaDir + srcFileName;
 
                     // stampa il nome del file selezionato
                     msg.Stampa("Selezionato: " + srcFileName, true);
@@ -332,6 +374,161 @@ namespace Traccia
             }
 
             return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Attiva l'annullamento della selezione delle foto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAnnulaSelezione_Click(object sender, EventArgs e)
+        {
+            AnnullaSelezioneFoto();
+        }
+        /// <summary>
+        /// Annulla la selezione delle foto
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaSelezioneFoto()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+
+            // Compone i path sorgenti
+            esito = ComponePath();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Annulla selezione i file JPEG
+            if (ucFotoJpeg.Abilita)
+            {
+                esito = AnnullaSelezionaFile(JpegPathDisponibili, JpegPathSelezionati, "JPEG");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // seleziona i file HEIC
+            if (ucFotoHeic.Abilita)
+            {
+                esito = AnnullaSelezionaFile(HeicPathDisponibili, HeicPathSelezionati, "HEIC");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // seleziona i file RAW
+            if (ucFotoHeic.Abilita)
+            {
+                esito = AnnullaSelezionaFile(RawPathDisponibili, RawPathSelezionati, "Raw");
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+            }
+
+            // Agggiorna contatori
+            AggiornaContatori();
+
+
+
+
+            //// Compone la lista delle foto JPEG
+            //string[] srcJpegList = Directory.GetFiles(JpegPathDisponibili, "*.*");
+
+
+            //// loop di analisi della directory
+            //foreach (string srcFile in srcJpegList)
+            //{
+            //    // Estrae il nome del file
+            //    string srcFileName = srcFile.Substring(JpegPathDisponibili.Length + 1);
+
+            //    // stampa il nome del file
+            //    //msg.Stampa(srcFileName, false);
+
+            //    // Estrae la data di creazione
+            //    DateTime dataCreazione = File.GetCreationTime(srcFile);
+            //    // Estrae la data di ultimo accesso
+            //    DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
+            //    // Estrae la data di ultimo accesso
+            //    DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
+
+            //    // verifica se la data del file è successiva alla data di inizio
+            //    int resultInizio = dataInizio.CompareTo(dataUltimaScritta);
+            //    int resultFine = dataFine.CompareTo(dataUltimaScritta);
+            //    if ((resultInizio <= 0) && (resultFine > 0))
+            //    {
+
+
+
+            //        // Sposta il file nella directory Selezione
+
+
+
+            //        msg.Stampa(srcFileName, true);
+            //    }
+            //}
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Annula la seleziona i file dalla directory specificata
+        /// </summary>
+        /// <param name="pathDisponibili"></param>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="tipoFoto"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AnnullaSelezionaFile(string pathDisponibili, string pathSelezionati, string tipoFoto)
+        {
+            // Compone la lista delle foto selezionate
+            string[] srcList = Directory.GetFiles(pathSelezionati, "*.*");
+
+            // Stampa inizio selezione
+            msg.Stampa("");
+            msg.Stampa("=================================================================================================");
+            msg.Stampa("Inizio Annulla Selezione foto: " + tipoFoto);
+            msg.Stampa("");
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(pathSelezionati.Length + 1);
+
+                // crea il path di destinazione in selezione
+                string dstFile = pathDisponibili + SeparaDir + srcFileName;
+
+                // stampa il nome del file selezionato
+                msg.Stampa("Selezionato: " + srcFileName, true);
+
+                try
+                {
+                    // Sposta il file nella directory disponibili
+                    //======================================
+
+                    // Sposta il file nella directory Selezione
+                    File.Move(srcFile, dstFile);
+
+
+                    // Verifica che il file esista nella directory destinazione
+                    if (!File.Exists(dstFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                    // Verifica che il file non esista nella directory sorgente
+                    if (File.Exists(srcFile))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+                }
+                catch (Exception e)
+                {
+                    msg.Stampa("The process failed: {0}" + e.ToString());
+                }
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Attiva la copia dei file selezionati
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButCopia_Click(object sender, EventArgs e)
+        {
+                     
         }
     }
 }
