@@ -17,6 +17,7 @@ namespace Traccia
             DirArchivio.Add(new DirectoryParziale("Stampe", "01-Stampe"));
             DirArchivio.Add(new DirectoryParziale("Resoconto", "02-Resoconto"));
             DirArchivio.Add(new DirectoryParziale("Tracce", "03-Tracce"));
+            DirArchivio.Add(new DirectoryParziale("Info", "04-Info"));
             DirArchivio.Add(new DirectoryParziale("PerRifInfo", "05-PercorsoDiRiferimento"));
 
             DirArchivio.Add(new DirectoryParziale("JPEG", "10-JPEG"));

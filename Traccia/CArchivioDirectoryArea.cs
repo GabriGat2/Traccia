@@ -14,7 +14,7 @@ namespace Traccia
         private List<DirectoryParziale> DirArchivio = new List<DirectoryParziale>();
         protected override void Popola()
         {
-            DirArchivio.Add(new DirectoryParziale("Input", "00-InputDatiTraccia"));
+            DirArchivio.Add(new DirectoryParziale("Input", "01-Navigatore"));
             DirArchivio.Add(new DirectoryParziale("Comune", "02-Comune"));
 
             DirArchivio.Add(new DirectoryParziale("JPEG", "10-JPEG"));

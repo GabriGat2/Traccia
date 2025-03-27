@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,15 @@ namespace Traccia
         /// Speratore per path
         /// </summary>
         protected const string SeparaDir = "\\";
+
+        // path directory
+        private string PathDisponibili = string.Empty;
+        private string PathStampe = string.Empty;
+        private string PathTracce = string.Empty;
+        private string PathResoconto = string.Empty;
+        private string PathInfo = string.Empty;
+
+
         /// <summary>
         /// Costruttore
         /// </summary>
@@ -40,14 +50,60 @@ namespace Traccia
         private void InizializzaClasse()
         {
             // Definisce il gestore dei messaggi
-            //msg = new CMessaggio(ref richTextBoxOutput);
+            msg = new CMessaggio(ref richTextBoxOutput);
 
             // Stampa Nome e path della traccia
             textBoxNomeTraccia.Text = Traccia.Nome;
             textBoxPathTraccia.Text = Traccia.Path;
+        }
+        /// <summary>
+        /// Aggiorna la classe
+        /// </summary>
+        public void AggiornaClasse()
+        {
+            // compone i path delle directory
+            ComponePath();
 
+            // Aggiorna i contatori delle directory
+            AggiornaContatori();
+        }
+        /// <summary>
+        /// Compone i path
+        /// </summary>
+        /// <returns></returns>
+        public GstErrori.EErrore ComponePath()
+        {
+            // disponibili
+            PathDisponibili = Traccia.Escursione.AreaArchivio.GetPathInput();
+            ucFiles.PathDisponibili = PathDisponibili;
 
+            // Stampe
+            PathStampe = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Stampe");
+            ucFiles.PathStampe = PathStampe;
 
+            // Tracce
+            PathTracce = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Tracce");
+            ucFiles.PathTracce = PathTracce;
+
+            // Resoconto
+            PathResoconto = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Resoconto");
+            ucFiles.PathResoconto = PathResoconto;
+
+            // Info
+            PathInfo = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Aggiorna i contatori delle directory
+        /// </summary>
+        private GstErrori.EErrore AggiornaContatori()
+        {
+            string[] srcList = null;
+
+            ucFiles.Aggiorna();
+
+            return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
         /// Attiva la finestra explorer, se esiste, al path della traccia
@@ -88,7 +144,5 @@ namespace Traccia
                 MessageBox.Show(other.Message);
             }
         }
-
-
     }
 }

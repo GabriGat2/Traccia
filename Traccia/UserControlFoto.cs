@@ -22,25 +22,24 @@ namespace Traccia
         /// </summary>
         public bool Abilita { get => checkBoxAbilita.Checked; set => checkBoxAbilita.Checked = value; }
         /// <summary>
-        /// path directory file disponibili
+        /// Path directory file disponibili
         /// </summary>
         public string PathDisponibili { get => pathDisponibili; set => pathDisponibili = value; }
         private string pathDisponibili = String.Empty;
         /// <summary>
-        /// path directory file copiati
+        /// Path directory file copiati
         /// </summary>
         public string PathCopiati { get => pathCopiati; set => pathCopiati = value; }        
         private string pathCopiati = String.Empty;
         /// <summary>
-        /// path directory file selezionati
+        /// Path directory file selezionati
         /// </summary>
         public string PathSelezionati { get => pathSelezionati; set => pathSelezionati = value; }
         private string pathSelezionati = String.Empty;
         /// <summary>
-        /// path directory file assegnati
+        /// Path directory file assegnati
         /// </summary>
         public string PathAssegnati { get => pathAssegnati; set => pathAssegnati = value; }
- 
         private string pathAssegnati = String.Empty;
 
 
@@ -142,7 +141,6 @@ namespace Traccia
                 MessageBox.Show(other.Message);
             }
         }
-
 
     }
 }

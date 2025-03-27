@@ -113,6 +113,12 @@
     <Compile Include="GstErrori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UContrFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UContrFiles.Designer.cs">
+      <DependentUpon>UContrFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlFoto.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +152,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UContrFiles.resx">
+      <DependentUpon>UContrFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlFoto.resx">
       <DependentUpon>UserControlFoto.cs</DependentUpon>
     </EmbeddedResource>

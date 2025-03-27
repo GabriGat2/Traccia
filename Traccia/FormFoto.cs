@@ -71,15 +71,6 @@ namespace Traccia
         private string RawPathSelezionati = string.Empty;
         private string RawPathAssegnati = string.Empty;
 
-
-        //private string RawPathDisponibili  = string.Empty;
-
-        //// path file destinazione
-        //private string JpegDstPath = string.Empty;
-        //private string HeicDstPath = string.Empty;
-        //private string RawDstPath = string.Empty;
-
-
         /// <summary>
         /// Costruttore
         /// </summary>
