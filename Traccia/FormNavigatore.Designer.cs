@@ -48,7 +48,7 @@
             this.ucFiles = new Traccia.UContrFiles();
             this.splitContainer1B2B3B4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.butAssegna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -296,7 +296,7 @@
             // 
             // groupBoxComandi
             // 
-            this.groupBoxComandi.Controls.Add(this.button1);
+            this.groupBoxComandi.Controls.Add(this.butAssegna);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
             this.groupBoxComandi.Name = "groupBoxComandi";
@@ -305,14 +305,15 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
-            // button1
+            // butAssegna
             // 
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.butAssegna.Location = new System.Drawing.Point(6, 19);
+            this.butAssegna.Name = "butAssegna";
+            this.butAssegna.Size = new System.Drawing.Size(75, 23);
+            this.butAssegna.TabIndex = 0;
+            this.butAssegna.Text = "Assegna";
+            this.butAssegna.UseVisualStyleBackColor = true;
+            this.butAssegna.Click += new System.EventHandler(this.butAssegna_Click);
             // 
             // groupBoxOutput
             // 
@@ -389,7 +390,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1B2B3;
         private System.Windows.Forms.SplitContainer splitContainer1B2B3B4;
         private System.Windows.Forms.GroupBox groupBoxComandi;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button butAssegna;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private UContrFiles ucFiles;

@@ -52,6 +52,9 @@ namespace Traccia
             // Definisce il gestore dei messaggi
             msg = new CMessaggio(ref richTextBoxOutput);
 
+            // Abilita files
+            ucFiles.Abilita = true;
+
             // Stampa Nome e path della traccia
             textBoxNomeTraccia.Text = Traccia.Nome;
             textBoxPathTraccia.Text = Traccia.Path;
@@ -144,5 +147,187 @@ namespace Traccia
                 MessageBox.Show(other.Message);
             }
         }
+        /// <summary>
+        /// Attiva la rinomina e l'assegnazione dei file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAssegna_Click(object sender, EventArgs e)
+        {
+            AssegnaFile();
+        }
+        /// <summary>
+        /// Rinomina e assegna i file
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore AssegnaFile()
+        {
+            // compone operazione
+            string operazione = "assegna file";
+
+            // stampa inizio operazioni
+            StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = AssegnaFile2();
+
+            // stampa fine operazioni
+            StampaOperazione(false, operazione, esito);
+
+            // Aggiorna la classe
+            AggiornaClasse();
+
+            return esito;
+        }
+        /// <summary>
+        /// Assegna i file Selezionati directory della traccia corrispondente
+        /// </summary>
+        /// <param name="pathSelezionati"></param>
+        /// <param name="pathAssegnati"></param>
+        /// <param name="pathCopiati"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AssegnaFile2()
+        {
+            string dstDir = string.Empty;
+
+            // Compone la lista dei file disponibili
+            string[] srcList = Directory.GetFiles(PathDisponibili, "*.*");
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(PathDisponibili.Length + 1);
+
+                // Estrae l'estensione del file
+                string[] campi = srcFileName.Split('.');
+                string estensione = campi[1].Trim().ToLower();
+
+                // sceglie la directory di destinazione
+                switch (estensione)
+                {
+
+                    case "bmp":
+                    case "gif":
+                    case "heic":
+                    case "jpe": 
+                    case "jpeg":  
+                    case "jpg":
+                    case "png":    
+                    case "tiff":
+                        dstDir = PathStampe;
+                        break;
+
+                    case "gpx":
+                    case "kml":
+                    case "fit":
+                        dstDir = PathTracce;
+                        break;
+
+                    case "doc":
+                    case "docx":
+                    case "pdf":
+                        dstDir = PathResoconto;
+                        break;
+
+                    default:
+                        continue;
+                }
+
+                // compone il nuovo nome
+                string nuovoNome = Traccia.Nome + "." + estensione;
+                // compone path nome nuovo
+                string pathNuovoNome = dstDir + SeparaDir + nuovoNome;
+                // dichiara la lettera di postfisso
+                char lettera = 'a';
+
+                // Trova la lettera di postifisso
+                bool cercaLettera = true;
+                while (cercaLettera)
+                {
+                    // controlla se esiste un file con questo nome
+                    if (!File.Exists(pathNuovoNome))
+                        break;
+
+                    // Incrementa la lettera di postfisso
+                    lettera++;
+
+                    // ricompone il nuovo nome
+                    nuovoNome = Traccia.Nome + "_" + lettera + "." + estensione;
+                    // ricompone il path del nome nuovo
+                    pathNuovoNome = dstDir + SeparaDir + nuovoNome;
+                }
+
+                // stampa il nome del file selezionato
+                msg.Stampa("Rinominato: >" + srcFileName + "< in >" + nuovoNome + "<");
+
+                try
+                {
+                    // Copia e rinomina il file nella directory di destinazione
+                    File.Copy(srcFile, pathNuovoNome);
+
+                    // Verifica che il file esista nella directory destinazione
+                    if (!File.Exists(pathNuovoNome))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                    // Elimina il file nella directory dei disponibili
+                    File.Delete(srcFile);
+
+                    // Verifica che il file sia stato cancellato dai file disponibili
+                    if (File.Exists(srcFile))
+                        return GstErrori.EErrore.E1359_FileNonCancellato;
+                }
+                catch (Exception e)
+                {
+                    msg.Stampa("The process failed: {0}" + e.ToString());
+                }
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
+
+
+
+        /// <summary>
+        /// Stampa l'operazione in corso
+        /// </summary>
+        /// <param name="inizio"></param>
+        /// <param name="operazione"></param>
+        /// <param name="esito"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
+        {
+            // stampa righe di separazione
+            msg.Stampa("");
+
+            // stampa operazione
+            if (inizio)
+            {
+                msg.Stampa("=================================================================================================");
+                msg.Stampa("Inizio " + operazione);
+                msg.Stampa("-------------------------------------------------------------------------------------------------");
+
+            }
+            else
+            {
+                msg.Stampa("-------------------------------------------------------------------------------------------------");
+                msg.Stampa("Fine " + operazione);
+
+                // stampa l'esito dell'operazione
+                if (esito == GstErrori.EErrore.E0000_OK)
+                    msg.Stampa("L'operazione è stata completata con successo");
+                else
+                    msg.Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
+
+                msg.Stampa("=================================================================================================");
+            }
+
+            // stampa righe di separazione
+            msg.Stampa("");
+
+            return esito;
+        }
+
     }
 }

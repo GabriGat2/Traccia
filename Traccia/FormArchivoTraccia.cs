@@ -537,21 +537,6 @@ namespace Traccia
         {
             string target = "Explorer";
             EsegueProces(target, path);
-
-            //try
-            //{
-            //    System.Diagnostics.Process.Start(target, path);
-            //}
-            //catch (System.ComponentModel.Win32Exception noBrowser)
-            //{
-            //    if (noBrowser.ErrorCode == -2147467259)
-            //        MessageBox.Show(noBrowser.Message);
-            //}
-            //catch (System.Exception other)
-            //{
-            //    MessageBox.Show(other.Message);
-            //}
-
         }
         /// <summary>
         /// Apre una pagina WEB
@@ -603,6 +588,7 @@ namespace Traccia
         private void butNavigatore_Click(object sender, EventArgs e)
         {
             FormNavigatore dlg = new FormNavigatore(ref Traccia);
+            dlg.AggiornaClasse();
             dlg.ShowDialog();
 
         }

@@ -61,7 +61,7 @@ namespace Traccia
 
             // Stampe
             srcList = Directory.GetFiles(pathStampe, "*.*");
-            textBoxTracce.Text = srcList.Length.ToString();
+            textBoxStampe.Text = srcList.Length.ToString();
 
             // Tracce
             srcList = Directory.GetFiles(pathTracce, "*.*");
