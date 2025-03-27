@@ -67,13 +67,14 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butNavigatore = new System.Windows.Forms.Button();
             this.butFoto = new System.Windows.Forms.Button();
             this.butCreaTraccia = new System.Windows.Forms.Button();
             this.butNuovaTraccia = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butNavigatore = new System.Windows.Forms.Button();
+            this.butModificaTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -536,6 +537,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
             this.groupBoxComandi.Controls.Add(this.butNavigatore);
             this.groupBoxComandi.Controls.Add(this.butFoto);
             this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
@@ -551,9 +553,19 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butNavigatore
+            // 
+            this.butNavigatore.Location = new System.Drawing.Point(583, 18);
+            this.butNavigatore.Name = "butNavigatore";
+            this.butNavigatore.Size = new System.Drawing.Size(101, 23);
+            this.butNavigatore.TabIndex = 15;
+            this.butNavigatore.Text = "Navigatore";
+            this.butNavigatore.UseVisualStyleBackColor = true;
+            this.butNavigatore.Click += new System.EventHandler(this.butNavigatore_Click);
+            // 
             // butFoto
             // 
-            this.butFoto.Location = new System.Drawing.Point(263, 18);
+            this.butFoto.Location = new System.Drawing.Point(476, 18);
             this.butFoto.Name = "butFoto";
             this.butFoto.Size = new System.Drawing.Size(101, 23);
             this.butFoto.TabIndex = 14;
@@ -565,15 +577,15 @@
             // 
             this.butCreaTraccia.Location = new System.Drawing.Point(5, 18);
             this.butCreaTraccia.Name = "butCreaTraccia";
-            this.butCreaTraccia.Size = new System.Drawing.Size(145, 23);
+            this.butCreaTraccia.Size = new System.Drawing.Size(101, 23);
             this.butCreaTraccia.TabIndex = 13;
-            this.butCreaTraccia.Text = "Crea Archivio Traccia";
+            this.butCreaTraccia.Text = "Crea Traccia";
             this.butCreaTraccia.UseVisualStyleBackColor = true;
             this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
             // 
             // butNuovaTraccia
             // 
-            this.butNuovaTraccia.Location = new System.Drawing.Point(156, 18);
+            this.butNuovaTraccia.Location = new System.Drawing.Point(112, 18);
             this.butNuovaTraccia.Name = "butNuovaTraccia";
             this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);
             this.butNuovaTraccia.TabIndex = 12;
@@ -583,9 +595,9 @@
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(659, 18);
+            this.butAggiorna.Location = new System.Drawing.Point(690, 18);
             this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
+            this.butAggiorna.Size = new System.Drawing.Size(101, 23);
             this.butAggiorna.TabIndex = 11;
             this.butAggiorna.Text = "Aggiorna";
             this.butAggiorna.UseVisualStyleBackColor = true;
@@ -614,15 +626,15 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butNavigatore
+            // butModificaTraccia
             // 
-            this.butNavigatore.Location = new System.Drawing.Point(370, 18);
-            this.butNavigatore.Name = "butNavigatore";
-            this.butNavigatore.Size = new System.Drawing.Size(101, 23);
-            this.butNavigatore.TabIndex = 15;
-            this.butNavigatore.Text = "Navigatore";
-            this.butNavigatore.UseVisualStyleBackColor = true;
-            this.butNavigatore.Click += new System.EventHandler(this.butNavigatore_Click);
+            this.butModificaTraccia.Location = new System.Drawing.Point(219, 18);
+            this.butModificaTraccia.Name = "butModificaTraccia";
+            this.butModificaTraccia.Size = new System.Drawing.Size(101, 23);
+            this.butModificaTraccia.TabIndex = 16;
+            this.butModificaTraccia.Text = "Modifica Traccia";
+            this.butModificaTraccia.UseVisualStyleBackColor = true;
+            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
             // 
             // FormArchivoTraccia
             // 
@@ -712,5 +724,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxLink;
         private System.Windows.Forms.Button butNavigatore;
+        private System.Windows.Forms.Button butModificaTraccia;
     }
 }

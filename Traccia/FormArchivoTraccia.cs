@@ -67,9 +67,12 @@ namespace Traccia
                 "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
             };
             comboBoxLettera.Items.AddRange(lettere);
+            comboBoxLettera.SelectedIndex = 0;
 
             // Popola la combobox dei mezzi
             PopolaMezzi();
+            comboBoxMezzo.SelectedIndex = 0;
+
 
             // Impone il prefisso dell'escursione
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
@@ -103,18 +106,27 @@ namespace Traccia
             else
                 comboBoxLettera.SelectedIndex = 'A' - 'A';
 
-            // inizializza Mezzo
-
-
             // inizializza opzioni
             checkBoxGiorno.Checked = Traccia.OptGiorno;
             checkBoxSingola.Checked = Traccia.OptSingola;
 
-            // bottone crea traccia 
+            // Bottoni abilitati quando la traccia NON esiste
             butCreaTraccia.Enabled = !tracciaEsiste;
+            butCreaTraccia.Visible = !tracciaEsiste;
 
-            // bottone Archivia traccia 
+            // Bottoni abilitati quando la traccia esiste
             butNuovaTraccia.Enabled = tracciaEsiste;
+            butNuovaTraccia.Visible = tracciaEsiste;
+
+            butFoto.Enabled = tracciaEsiste;
+            butNavigatore.Enabled = tracciaEsiste;
+
+            butFoto.Visible = tracciaEsiste;
+            butNavigatore.Visible = tracciaEsiste;
+
+            // Bottoni sempre abilitati
+            butModificaTraccia.Enabled = true;
+            butModificaTraccia.Visible = true;
 
             // Campi di impostazione del nome
             dateTimePicker1.Enabled = !tracciaEsiste;
@@ -142,8 +154,6 @@ namespace Traccia
         {
             AbilitaCampi(false);
         }
-
-
         /// <summary>
         /// Popola la combo box Mezzi
         /// </summary>
@@ -344,22 +354,8 @@ namespace Traccia
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
-            // disabilita l'aggiornamento del nome della traccia
-            AbilitazioneAggiornamentoTraccia = false;
-
-            // disabilita i campi di impostazione del nome
-            dateTimePicker1.Enabled = false;
-            comboBoxLettera.Enabled = false;
-            comboBoxMezzo.Enabled = false;
-            textBoxNome.Enabled = false;
-            checkBoxGiorno.Enabled = false;
-            checkBoxSingola.Enabled = false;
-             
-            // disabilita il bottone crea traccia 
-            butCreaTraccia.Enabled = false;
-
-            // abilita il bottone Archivia traccia 
-            butNuovaTraccia.Enabled = true;
+            // Abilita i campi segnalando che la traccia esiste
+            AbilitaCampi(true);
 
             // Stampa il file delle Info
             Traccia.ScriveFileInfo();
@@ -367,7 +363,7 @@ namespace Traccia
             // Aggiornamento traccia
             AggiornaNomeTraccia();
 
-            return esito;
+            return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
         /// Il valore selezionato in Combobox mezzo è cambiato, aggiorna il nome della traccia
@@ -592,5 +588,50 @@ namespace Traccia
             dlg.ShowDialog();
 
         }
+        /// <summary>
+        /// Attiva la selezione e la modifica di una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butModificaTraccia_Click(object sender, EventArgs e)
+        {
+            ModificaTraccia();
+        }
+        /// <summary>
+        /// Selezione e Modifica una traccia
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore ModificaTraccia()
+        {
+            // Seleziona una traccia
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = Traccia.GetPathInfo();
+            dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            dlg.FilterIndex = 1;
+            dlg.RestoreDirectory = true;
+
+            if (dlg.ShowDialog() != DialogResult.OK)
+            {
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            // Estrae il nome del file info
+            string pathFileInfo = dlg.FileName;
+
+            // Legge il file info della traccia
+            GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Abilita i campi segnalando che la traccia esiste
+            AbilitaCampi(true);
+
+            // Aggiornamento traccia
+            AggiornaNomeTraccia();
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
+
     }
 }

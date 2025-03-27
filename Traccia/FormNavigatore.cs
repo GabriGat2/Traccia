@@ -52,6 +52,10 @@ namespace Traccia
             // Definisce il gestore dei messaggi
             msg = new CMessaggio(ref richTextBoxOutput);
 
+            // Popola la combo box Navigatore
+            PopolaNavigatore();
+            comboBoxNavigatore.SelectedIndex = 0;
+
             // Abilita files
             ucFiles.Abilita = true;
 
@@ -285,10 +289,43 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Popola la combo box Navigatore
+        /// </summary>
+        private void PopolaNavigatore()
+        {
+            // recupera il path della directory comune e aggiunge il nome del filee
+            string pathNavigatore = Traccia.Escursione.AreaArchivio.GetPathComune() + "\\" + "Navigatore.txt";
 
+            String line;
+            try
+            {
+                //Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader(pathNavigatore);
 
+                //Read the first line of text
+                line = sr.ReadLine();
 
+                //Continue to read until you reach end of file
+                while (line != null)
+                {
+                    //write the line to console window
+                    msg.Stampa(line);
 
+                    // Aggiunge line a combobox
+                    comboBoxNavigatore.Items.Add(line);
+
+                    //Read the next line
+                    line = sr.ReadLine();
+                }
+                //close the file
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                msg.Stampa("Exception: " + e.Message);
+            }
+        }
         /// <summary>
         /// Stampa l'operazione in corso
         /// </summary>
