@@ -197,6 +197,16 @@ namespace Traccia
 
         }
         /// <summary>
+        /// Rende il path specifico della directory Info della traccia
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathTracciaInfo()
+        {
+            // compone il path del file info
+            return Path + SeparaDir + Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
+
+        }
+        /// <summary>
         /// Rende il nome del file info della traccia
         /// </summary>
         /// <returns></returns>

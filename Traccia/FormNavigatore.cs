@@ -62,6 +62,9 @@ namespace Traccia
             // Stampa Nome e path della traccia
             textBoxNomeTraccia.Text = Traccia.Nome;
             textBoxPathTraccia.Text = Traccia.Path;
+
+            // verifica se il file info della traccia esiste
+            //GstErrori.EErrore esito = LeggeFileInfoTraccia(comboBoxNavigatore.Text);
         }
         /// <summary>
         /// Aggiorna la classe
@@ -365,6 +368,180 @@ namespace Traccia
 
             return esito;
         }
+        /// <summary>
+        /// Genera il file info del navigatore
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butGenera_Click(object sender, EventArgs e)
+        {
+            ScriveFileInfoNavigatore(comboBoxNavigatore.Text);
+        }
+        /// <summary>
+        /// legge il file info del navigatore
+        /// </summary>
+        /// <param name="navigatore"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore LeggeFileInfoNavigatore(string navigatore)
+        {
+            //// Compone il nome del file info del navigatore
+            //string nomeFileNav = Traccia.Nome + "_" + navigatore + ".txt";
 
+            ////  Compone il path nome del file info del navigatore
+            //string pathFileNav = Traccia.GetPathTracciaInfo() + SeparaDir + nomeFile;
+
+            //string line = string.Empty;
+            //try
+            //{
+            //    // Pass the file path and file name to the StreamReader constructor
+            //    StreamReader sr = new StreamReader(pathFileNav);
+            //    // legge la prima linea del file
+            //    line = sr.ReadLine();
+
+
+            //    // Continue to read until you reach end of file
+            //    while (line != null)
+            //    {
+            //        // scompone la riga letta
+            //        string[] campo = line.Trim().Split('=');
+
+            //        // verifica la dimensione di campi
+            //        if (campo.Length != 3)
+            //            continue;
+
+            //        // analizza gruppo di informazione
+            //        switch (AnalizzaGeuppoInfo(campo[0]))
+            //        {
+            //            case EGruppoInfo.Area:
+            //                break;
+
+            //            case EGruppoInfo.Escursione:
+            //                break;
+
+            //            case EGruppoInfo.Traccia:
+            //                // Assegna l'informazione ricevuta
+            //                Traccia.Set(campo[1], campo[2]);
+            //                break;
+
+            //            default:
+            //                continue;
+            //        }
+
+            //        // Read the next line
+            //        line = sr.ReadLine();
+            //    }
+
+            //    // Chiude il file
+            //    sr.Close();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Exception: " + e.Message);
+            //    return GstErrori.EErrore.E0001_NOK;
+            //}
+
+
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Scrive il file info del navigatore
+        /// </summary>
+        /// <param name="navigatore"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore ScriveFileInfoNavigatore(string navigatore)
+        {
+            // Compone il nome del file info del navigatore
+            string nomeFileNav = "Nav" + "_" + Traccia.Nome;
+
+            //  Compone il path nome del file info del navigatore
+            string pathFileNav = Traccia.GetPathTracciaInfo() + SeparaDir + nomeFileNav + ".txt";
+
+            //  Compone il path nome del file info temporaneo del navigatore
+            string pathFileTmp = Traccia.GetPathTracciaInfo() + SeparaDir + "Nav_tmp.txt";
+
+            //  Compone il path nome del file info temporaneo del navigatore
+            string pathFileBak = Traccia.GetPathTracciaInfo() + SeparaDir + nomeFileNav + ".bak";
+
+            string lineaInfo;
+            try
+            {
+                //File.Replace()
+
+                // Apre lo il file da scrivere
+                StreamWriter sw = new StreamWriter(pathFileTmp);
+
+                // stampa il nome del navigatore                    
+                lineaInfo = navigatore + "=" + "Nome" + "=" + navigatore;
+                sw.WriteLine(lineaInfo);
+
+                // Stampa il link al navigatore
+                lineaInfo = navigatore + "=" + "Link" + "=" + textBoxLink.Text;
+                sw.WriteLine(lineaInfo);
+
+                // Stampa la descrizione
+                string descrizione = richTextBoxDescrizione.Text;
+                string [] righe = descrizione.Split('\n');
+                for (int i = 0; i < righe.Length; i++)
+                {
+                    lineaInfo = navigatore + "=" + "Descrizione" + "=" + righe[i];
+                    sw.WriteLine(lineaInfo);
+                }
+
+                // legge il file info esistente
+                if (File.Exists(pathFileNav))
+                {
+                    // apre il file info esistente
+                    StreamReader sr = new StreamReader(pathFileNav);
+
+                    // legge la prima linea del file
+                    lineaInfo = sr.ReadLine();
+
+                    // continua a leggere finchè non ragiunge EOF
+                    while (lineaInfo != null)
+                    {
+                        // scompone la riga letta
+                        string[] campo = lineaInfo.Trim().Split('=');
+
+                        // verifica la dimensione di campo
+                        if (campo.Length > 0)
+                        {
+                            // verifica il gruppo navigatore
+                            if (navigatore != campo[0])
+                                sw.WriteLine(lineaInfo);
+                        }
+
+                        // legg una nuova linea
+                        lineaInfo = sr.ReadLine();
+                    }
+
+                    // Chiude il file in lettura
+                    sr.Close();
+
+                    // Chiude il file in scrittura
+                    sw.Close();
+
+                    // sostituisci il file info di navigazione
+                    File.Replace(pathFileTmp, pathFileNav, pathFileBak);
+                }
+                else
+                {
+                    // Chiude il file in scrittura
+                    sw.Close();
+
+                    // Rinomina il file info tmp
+                    File.Move(pathFileTmp, pathFileNav);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
     }
 }

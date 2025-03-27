@@ -133,7 +133,7 @@ namespace Traccia
                         continue;
 
                     // analizza gruppo di informazione
-                    switch (AnalizzaGeuppoInfo(campo[0]))
+                    switch (AnalizzaGruppoInfo(campo[0]))
                     {
                         case EGruppoInfo.Area:
                             break;
@@ -173,7 +173,7 @@ namespace Traccia
         /// <param name="gruppo"></param>
         /// <returns></returns>
 
-        private EGruppoInfo AnalizzaGeuppoInfo(string gruppo)
+        private EGruppoInfo AnalizzaGruppoInfo(string gruppo)
         {
             // analizza gruppo di informazione
             switch (gruppo)
