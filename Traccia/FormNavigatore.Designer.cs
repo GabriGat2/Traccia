@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTraccia = new System.Windows.Forms.GroupBox();
+            this.butCBCopiaNomeTraccia = new System.Windows.Forms.Button();
             this.butExplorerTraccia = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxPathTraccia = new System.Windows.Forms.TextBox();
@@ -37,6 +38,7 @@
             this.textBoxNomeTraccia = new System.Windows.Forms.TextBox();
             this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxNaviagtore = new System.Windows.Forms.GroupBox();
+            this.butCBIncollaLink = new System.Windows.Forms.Button();
             this.richTextBoxDescrizione = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buInternetNavigatore = new System.Windows.Forms.Button();
@@ -45,13 +47,14 @@
             this.comboBoxNavigatore = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
-            this.ucFiles = new Traccia.UContrFiles();
             this.splitContainer1B2B3B4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butGenera = new System.Windows.Forms.Button();
             this.butAssegna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butGenera = new System.Windows.Forms.Button();
+            this.butCBIncollaDescrizione = new System.Windows.Forms.Button();
+            this.ucFiles = new Traccia.UContrFiles();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,6 +97,7 @@
             // 
             // groupBoxTraccia
             // 
+            this.groupBoxTraccia.Controls.Add(this.butCBCopiaNomeTraccia);
             this.groupBoxTraccia.Controls.Add(this.butExplorerTraccia);
             this.groupBoxTraccia.Controls.Add(this.label10);
             this.groupBoxTraccia.Controls.Add(this.textBoxPathTraccia);
@@ -106,6 +110,17 @@
             this.groupBoxTraccia.TabIndex = 0;
             this.groupBoxTraccia.TabStop = false;
             this.groupBoxTraccia.Text = "Traccia";
+            // 
+            // butCBCopiaNomeTraccia
+            // 
+            this.butCBCopiaNomeTraccia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.butCBCopiaNomeTraccia.Location = new System.Drawing.Point(106, 16);
+            this.butCBCopiaNomeTraccia.Name = "butCBCopiaNomeTraccia";
+            this.butCBCopiaNomeTraccia.Size = new System.Drawing.Size(17, 23);
+            this.butCBCopiaNomeTraccia.TabIndex = 25;
+            this.butCBCopiaNomeTraccia.Text = "c";
+            this.butCBCopiaNomeTraccia.UseVisualStyleBackColor = false;
+            this.butCBCopiaNomeTraccia.Click += new System.EventHandler(this.butCBCopiaNomeTraccia_Click);
             // 
             // butExplorerTraccia
             // 
@@ -171,6 +186,8 @@
             // 
             // groupBoxNaviagtore
             // 
+            this.groupBoxNaviagtore.Controls.Add(this.butCBIncollaDescrizione);
+            this.groupBoxNaviagtore.Controls.Add(this.butCBIncollaLink);
             this.groupBoxNaviagtore.Controls.Add(this.richTextBoxDescrizione);
             this.groupBoxNaviagtore.Controls.Add(this.label3);
             this.groupBoxNaviagtore.Controls.Add(this.buInternetNavigatore);
@@ -185,6 +202,17 @@
             this.groupBoxNaviagtore.TabIndex = 0;
             this.groupBoxNaviagtore.TabStop = false;
             this.groupBoxNaviagtore.Text = "Navigatore";
+            // 
+            // butCBIncollaLink
+            // 
+            this.butCBIncollaLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.butCBIncollaLink.Location = new System.Drawing.Point(106, 54);
+            this.butCBIncollaLink.Name = "butCBIncollaLink";
+            this.butCBIncollaLink.Size = new System.Drawing.Size(17, 23);
+            this.butCBIncollaLink.TabIndex = 28;
+            this.butCBIncollaLink.Text = "i";
+            this.butCBIncollaLink.UseVisualStyleBackColor = false;
+            this.butCBIncollaLink.Click += new System.EventHandler(this.butCBIncollaLink_Click);
             // 
             // richTextBoxDescrizione
             // 
@@ -209,8 +237,9 @@
             this.buInternetNavigatore.Name = "buInternetNavigatore";
             this.buInternetNavigatore.Size = new System.Drawing.Size(17, 23);
             this.buInternetNavigatore.TabIndex = 25;
-            this.buInternetNavigatore.Text = "E";
+            this.buInternetNavigatore.Text = "I";
             this.buInternetNavigatore.UseVisualStyleBackColor = true;
+            this.buInternetNavigatore.Click += new System.EventHandler(this.buInternetNavigatore_Click);
             // 
             // textBoxLink
             // 
@@ -235,6 +264,7 @@
             this.comboBoxNavigatore.Name = "comboBoxNavigatore";
             this.comboBoxNavigatore.Size = new System.Drawing.Size(627, 21);
             this.comboBoxNavigatore.TabIndex = 1;
+            this.comboBoxNavigatore.SelectedIndexChanged += new System.EventHandler(this.comboBoxNavigatore_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -262,20 +292,6 @@
             this.splitContainer1B2B3.Size = new System.Drawing.Size(800, 333);
             this.splitContainer1B2B3.SplitterDistance = 60;
             this.splitContainer1B2B3.TabIndex = 0;
-            // 
-            // ucFiles
-            // 
-            this.ucFiles.Abilita = false;
-            this.ucFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucFiles.Location = new System.Drawing.Point(0, 0);
-            this.ucFiles.Name = "ucFiles";
-            this.ucFiles.Nome = "Files navigatore";
-            this.ucFiles.PathDisponibili = "";
-            this.ucFiles.PathResoconto = "";
-            this.ucFiles.PathStampe = "";
-            this.ucFiles.PathTracce = "";
-            this.ucFiles.Size = new System.Drawing.Size(800, 60);
-            this.ucFiles.TabIndex = 0;
             // 
             // splitContainer1B2B3B4
             // 
@@ -307,6 +323,16 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butGenera
+            // 
+            this.butGenera.Location = new System.Drawing.Point(87, 19);
+            this.butGenera.Name = "butGenera";
+            this.butGenera.Size = new System.Drawing.Size(75, 23);
+            this.butGenera.TabIndex = 1;
+            this.butGenera.Text = "Genera";
+            this.butGenera.UseVisualStyleBackColor = true;
+            this.butGenera.Click += new System.EventHandler(this.butGenera_Click);
+            // 
             // butAssegna
             // 
             this.butAssegna.Location = new System.Drawing.Point(6, 19);
@@ -337,15 +363,30 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butGenera
+            // butCBIncollaDescrizione
             // 
-            this.butGenera.Location = new System.Drawing.Point(87, 19);
-            this.butGenera.Name = "butGenera";
-            this.butGenera.Size = new System.Drawing.Size(75, 23);
-            this.butGenera.TabIndex = 1;
-            this.butGenera.Text = "Genera";
-            this.butGenera.UseVisualStyleBackColor = true;
-            this.butGenera.Click += new System.EventHandler(this.butGenera_Click);
+            this.butCBIncollaDescrizione.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.butCBIncollaDescrizione.Location = new System.Drawing.Point(106, 83);
+            this.butCBIncollaDescrizione.Name = "butCBIncollaDescrizione";
+            this.butCBIncollaDescrizione.Size = new System.Drawing.Size(17, 23);
+            this.butCBIncollaDescrizione.TabIndex = 29;
+            this.butCBIncollaDescrizione.Text = "i";
+            this.butCBIncollaDescrizione.UseVisualStyleBackColor = false;
+            this.butCBIncollaDescrizione.Click += new System.EventHandler(this.butCBIncollaDescrizione_Click);
+            // 
+            // ucFiles
+            // 
+            this.ucFiles.Abilita = false;
+            this.ucFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucFiles.Location = new System.Drawing.Point(0, 0);
+            this.ucFiles.Name = "ucFiles";
+            this.ucFiles.Nome = "Files navigatore";
+            this.ucFiles.PathDisponibili = "";
+            this.ucFiles.PathResoconto = "";
+            this.ucFiles.PathStampe = "";
+            this.ucFiles.PathTracce = "";
+            this.ucFiles.Size = new System.Drawing.Size(800, 60);
+            this.ucFiles.TabIndex = 0;
             // 
             // FormNavigatore
             // 
@@ -407,5 +448,8 @@
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private UContrFiles ucFiles;
         private System.Windows.Forms.Button butGenera;
+        private System.Windows.Forms.Button butCBCopiaNomeTraccia;
+        private System.Windows.Forms.Button butCBIncollaLink;
+        private System.Windows.Forms.Button butCBIncollaDescrizione;
     }
 }

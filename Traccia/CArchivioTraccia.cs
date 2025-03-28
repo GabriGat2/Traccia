@@ -160,8 +160,6 @@ namespace Traccia
             // Estrae il nome path relativo del file
             string pathRealtivo = Path.Substring(Escursione.Path.Length + 1);
             bEsito = Escursione.Info.Traccia.Set("Path", pathRealtivo);
-            //bEsito = Escursione.Info.Traccia.Set("Path", "Da Sistemare!!!, Non funziona capo optSingola e optGiorno falsi");
-
 
             bEsito = Escursione.Info.Traccia.Set("OptGiorno", optGiorno.ToString());
             bEsito = Escursione.Info.Traccia.Set("OptSingola", optSingola.ToString());

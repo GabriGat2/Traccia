@@ -21,7 +21,11 @@ namespace Traccia
         /// <summary>
         /// Traccia
         /// </summary>
-        public CInfoTraccia Traccia = new CInfoTraccia() ;  
+        public CInfoTraccia Traccia = new CInfoTraccia() ;
+        /// <summary>
+        /// Navigatore
+        /// </summary>
+        public CInfoNavigatore Navigatore = new CInfoNavigatore();
         /// <summary>
         /// Gruppo Informazione
         /// </summary>
@@ -30,7 +34,8 @@ namespace Traccia
             Niente,
             Area,
             Escursione,
-            Traccia
+            Traccia,
+            Navigatore
         }
         /// <summary>
         /// Costruttore
@@ -70,7 +75,6 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
-
         /// <summary>
         /// Scrive il file info della traccia
         /// </summary>
@@ -105,7 +109,42 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Scrive il file info del navigatore
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore ScriveFileInfoNavigatore(string path)
+        {
+            try
+            {
+                // Apre lo il file da scrivere
+                StreamWriter sw = new StreamWriter(path);
 
+                // stampa le informazioni dell'applicazione    
+                Area.ScriveGruppoInfo(ref sw, EGruppoInfo.Area.ToString());
+
+                //// stampa le informazioni dell'escursione    
+                //Escursione.ScriveGruppoInfo(ref sw, EGruppoInfo.Escursione.ToString());
+
+
+                //// stampa le informazioni della traccia    
+                //Traccia.ScriveGruppoInfo(ref sw, EGruppoInfo.Traccia.ToString());
+
+                //// stampa le informazioni del navigatore    
+                //Traccia.ScriveGruppoInfo(ref sw, EGruppoInfo.Navigatore.ToString());
+
+                //Close the file
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
         /// <summary>
         /// Legge il file info della traccia
         /// </summary>
@@ -167,12 +206,96 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
+        /// Legge il file info della traccia
+        /// </summary>
+        /// <param name="pathFileInfo"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore LeggeFileInfoNavigatore(string pathFileInfo)
+        {
+            string line = string.Empty;
+            try
+            {
+                // Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader(pathFileInfo);
+                // legge la prima linea del file
+                line = sr.ReadLine();
+
+
+                // Continue to read until you reach end of file
+                while (line != null)
+                {
+                    // scompone la riga letta
+                    string[] campo = line.Trim().Split('=');
+
+                    // verifica la dimensione di campi
+                    if (campo.Length != 3)
+                        continue;
+
+                    // analizza gruppo di informazione
+                    switch (AnalizzaGruppoInfo(campo[0]))
+                    {
+                        //case EGruppoInfo.Area:
+                        //    break;
+
+                        //case EGruppoInfo.Escursione:
+                        //    break;
+
+                        //case EGruppoInfo.Traccia:
+                        //    // Assegna l'informazione ricevuta
+                        //    Traccia.Set(campo[1], campo[2]);
+                        //    break;
+
+                        case EGruppoInfo.Navigatore:
+                            // Assegna l'informazione ricevuta
+                            Navigatore.Set(campo[1], campo[2]);
+                            break;
+
+                        default:
+                            continue;
+                    }
+
+                    // Read the next line
+                    line = sr.ReadLine();
+                }
+
+                // Chiude il file
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Rende vero se non è un gruppo base
+        /// </summary>
+        /// <param name="gruppo"></param>
+        /// <returns></returns>
+        public bool VerificaGruppoNavigatore(string gruppo)
+        {
+            // analizza gruppo di informazione
+            switch (AnalizzaGruppoInfo(gruppo))
+            {
+                case EGruppoInfo.Area:
+                case EGruppoInfo.Escursione:
+                case EGruppoInfo.Traccia:
+                case EGruppoInfo.Navigatore:
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
+        /// <summary>
         /// Determina il gruppo info specificato dalla stringa gruppo.
         /// 
         /// </summary>
         /// <param name="gruppo"></param>
         /// <returns></returns>
-
         private EGruppoInfo AnalizzaGruppoInfo(string gruppo)
         {
             // analizza gruppo di informazione
@@ -186,6 +309,9 @@ namespace Traccia
 
                 case "Traccia":
                     return EGruppoInfo.Traccia;
+
+                case "Navigatore":
+                    return EGruppoInfo.Navigatore;
 
                 default:
                     return EGruppoInfo.Niente;
@@ -371,6 +497,7 @@ namespace Traccia
             GruppoInfo.Add(new CInfoCampo("Applicazione", "Traccia"));
             GruppoInfo.Add(new CInfoCampo("Versione", "1"));
             GruppoInfo.Add(new CInfoCampo("Revisione", "0"));
+            GruppoInfo.Add(new CInfoCampo("Data", ""));
         }
         /// <summary>
         /// Recupera il gruppo delle informazioni
@@ -465,6 +592,44 @@ namespace Traccia
             Popola();
         }
     }
+
+
+    // ======================================================================================================================
+    // ======================================================================================================================
+    // ======================================================================================================================
+
+
+    public class CInfoNavigatore : CInfoBase
+    {
+        /// <summary>
+        /// Definizione Informazioni Traccia
+        /// </summary>
+        private List<CInfoCampo> GruppoInfo = new List<CInfoCampo>();
+        protected override void Popola()
+        {
+            GruppoInfo.Add(new CInfoCampo("Nome", ""));
+            GruppoInfo.Add(new CInfoCampo("Link", ""));
+            GruppoInfo.Add(new CInfoCampo("Descrizione", ""));
+        }
+        /// Recupera il gruppo delle informazioni
+        /// </summary>
+        /// <param name="gruppoInfo"></param>
+        /// <returns></returns>
+        protected override bool GetGruppoInfo(out List<CInfoCampo> gruppoInfo)
+        {
+            gruppoInfo = GruppoInfo;
+            return true;
+        }
+        /// <summary>
+        /// Costruttore
+        /// </summary>
+        public CInfoNavigatore()
+        {
+            Popola();
+        }
+    }
+
+
 
     // ======================================================================================================================
     // ======================================================================================================================

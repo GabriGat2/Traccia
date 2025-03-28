@@ -125,7 +125,11 @@ namespace Traccia
         /// </summary>
         public bool ScriveInfo()
         {
-            bool bEsito = Info.Escursione.Set("Nome", Nome);
+            bool bEsito;
+
+            bEsito = Info.Area.Set("Data", DateTime.Now.ToString());
+
+            bEsito = Info.Escursione.Set("Nome", Nome);
             return bEsito;
         }
         /// <summary>
