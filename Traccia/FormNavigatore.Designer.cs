@@ -38,6 +38,7 @@
             this.textBoxNomeTraccia = new System.Windows.Forms.TextBox();
             this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxNaviagtore = new System.Windows.Forms.GroupBox();
+            this.butCBIncollaDescrizione = new System.Windows.Forms.Button();
             this.butCBIncollaLink = new System.Windows.Forms.Button();
             this.richTextBoxDescrizione = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,12 +49,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1B2B3B4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1B2B3B4A5 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.butGenera = new System.Windows.Forms.Button();
+            this.butPreleva = new System.Windows.Forms.Button();
+            this.butResoconto = new System.Windows.Forms.Button();
             this.butAssegna = new System.Windows.Forms.Button();
+            this.groupBoxAgggiorna = new System.Windows.Forms.GroupBox();
+            this.checkBoxAggiorna = new System.Windows.Forms.CheckBox();
+            this.butGenera = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butCBIncollaDescrizione = new System.Windows.Forms.Button();
             this.ucFiles = new Traccia.UContrFiles();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -73,7 +78,12 @@
             this.splitContainer1B2B3B4.Panel1.SuspendLayout();
             this.splitContainer1B2B3B4.Panel2.SuspendLayout();
             this.splitContainer1B2B3B4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4A5)).BeginInit();
+            this.splitContainer1B2B3B4A5.Panel1.SuspendLayout();
+            this.splitContainer1B2B3B4A5.Panel2.SuspendLayout();
+            this.splitContainer1B2B3B4A5.SuspendLayout();
             this.groupBoxComandi.SuspendLayout();
+            this.groupBoxAgggiorna.SuspendLayout();
             this.groupBoxOutput.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,6 +213,17 @@
             this.groupBoxNaviagtore.TabStop = false;
             this.groupBoxNaviagtore.Text = "Navigatore";
             // 
+            // butCBIncollaDescrizione
+            // 
+            this.butCBIncollaDescrizione.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.butCBIncollaDescrizione.Location = new System.Drawing.Point(106, 83);
+            this.butCBIncollaDescrizione.Name = "butCBIncollaDescrizione";
+            this.butCBIncollaDescrizione.Size = new System.Drawing.Size(17, 23);
+            this.butCBIncollaDescrizione.TabIndex = 29;
+            this.butCBIncollaDescrizione.Text = "i";
+            this.butCBIncollaDescrizione.UseVisualStyleBackColor = false;
+            this.butCBIncollaDescrizione.Click += new System.EventHandler(this.butCBIncollaDescrizione_Click);
+            // 
             // butCBIncollaLink
             // 
             this.butCBIncollaLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -221,6 +242,7 @@
             this.richTextBoxDescrizione.Size = new System.Drawing.Size(627, 40);
             this.richTextBoxDescrizione.TabIndex = 27;
             this.richTextBoxDescrizione.Text = "";
+            this.richTextBoxDescrizione.TextChanged += new System.EventHandler(this.richTextBoxDescrizione_TextChanged);
             // 
             // label3
             // 
@@ -247,6 +269,7 @@
             this.textBoxLink.Name = "textBoxLink";
             this.textBoxLink.Size = new System.Drawing.Size(627, 20);
             this.textBoxLink.TabIndex = 3;
+            this.textBoxLink.TextChanged += new System.EventHandler(this.textBoxLink_TextChanged);
             // 
             // label2
             // 
@@ -302,7 +325,7 @@
             // 
             // splitContainer1B2B3B4.Panel1
             // 
-            this.splitContainer1B2B3B4.Panel1.Controls.Add(this.groupBoxComandi);
+            this.splitContainer1B2B3B4.Panel1.Controls.Add(this.splitContainer1B2B3B4A5);
             // 
             // splitContainer1B2B3B4.Panel2
             // 
@@ -311,37 +334,98 @@
             this.splitContainer1B2B3B4.SplitterDistance = 60;
             this.splitContainer1B2B3B4.TabIndex = 0;
             // 
+            // splitContainer1B2B3B4A5
+            // 
+            this.splitContainer1B2B3B4A5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2B3B4A5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2B3B4A5.Name = "splitContainer1B2B3B4A5";
+            // 
+            // splitContainer1B2B3B4A5.Panel1
+            // 
+            this.splitContainer1B2B3B4A5.Panel1.Controls.Add(this.groupBoxComandi);
+            // 
+            // splitContainer1B2B3B4A5.Panel2
+            // 
+            this.splitContainer1B2B3B4A5.Panel2.Controls.Add(this.groupBoxAgggiorna);
+            this.splitContainer1B2B3B4A5.Size = new System.Drawing.Size(800, 60);
+            this.splitContainer1B2B3B4A5.SplitterDistance = 550;
+            this.splitContainer1B2B3B4A5.TabIndex = 0;
+            // 
             // groupBoxComandi
             // 
-            this.groupBoxComandi.Controls.Add(this.butGenera);
+            this.groupBoxComandi.Controls.Add(this.butPreleva);
+            this.groupBoxComandi.Controls.Add(this.butResoconto);
             this.groupBoxComandi.Controls.Add(this.butAssegna);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
             this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Size = new System.Drawing.Size(800, 60);
+            this.groupBoxComandi.Size = new System.Drawing.Size(550, 60);
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
-            // butGenera
+            // butPreleva
             // 
-            this.butGenera.Location = new System.Drawing.Point(87, 19);
-            this.butGenera.Name = "butGenera";
-            this.butGenera.Size = new System.Drawing.Size(75, 23);
-            this.butGenera.TabIndex = 1;
-            this.butGenera.Text = "Genera";
-            this.butGenera.UseVisualStyleBackColor = true;
-            this.butGenera.Click += new System.EventHandler(this.butGenera_Click);
+            this.butPreleva.Location = new System.Drawing.Point(12, 18);
+            this.butPreleva.Name = "butPreleva";
+            this.butPreleva.Size = new System.Drawing.Size(75, 23);
+            this.butPreleva.TabIndex = 2;
+            this.butPreleva.Text = "Preleva";
+            this.butPreleva.UseVisualStyleBackColor = true;
+            this.butPreleva.Click += new System.EventHandler(this.butPreleva_Click);
+            // 
+            // butResoconto
+            // 
+            this.butResoconto.Location = new System.Drawing.Point(174, 18);
+            this.butResoconto.Name = "butResoconto";
+            this.butResoconto.Size = new System.Drawing.Size(75, 23);
+            this.butResoconto.TabIndex = 1;
+            this.butResoconto.Text = "Resoconto";
+            this.butResoconto.UseVisualStyleBackColor = true;
+            this.butResoconto.Click += new System.EventHandler(this.butResoconto_Click);
             // 
             // butAssegna
             // 
-            this.butAssegna.Location = new System.Drawing.Point(6, 19);
+            this.butAssegna.Location = new System.Drawing.Point(93, 18);
             this.butAssegna.Name = "butAssegna";
             this.butAssegna.Size = new System.Drawing.Size(75, 23);
             this.butAssegna.TabIndex = 0;
             this.butAssegna.Text = "Assegna";
             this.butAssegna.UseVisualStyleBackColor = true;
             this.butAssegna.Click += new System.EventHandler(this.butAssegna_Click);
+            // 
+            // groupBoxAgggiorna
+            // 
+            this.groupBoxAgggiorna.Controls.Add(this.checkBoxAggiorna);
+            this.groupBoxAgggiorna.Controls.Add(this.butGenera);
+            this.groupBoxAgggiorna.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxAgggiorna.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxAgggiorna.Name = "groupBoxAgggiorna";
+            this.groupBoxAgggiorna.Size = new System.Drawing.Size(246, 60);
+            this.groupBoxAgggiorna.TabIndex = 0;
+            this.groupBoxAgggiorna.TabStop = false;
+            this.groupBoxAgggiorna.Text = "File info navigatore";
+            // 
+            // checkBoxAggiorna
+            // 
+            this.checkBoxAggiorna.AutoSize = true;
+            this.checkBoxAggiorna.Location = new System.Drawing.Point(87, 27);
+            this.checkBoxAggiorna.Name = "checkBoxAggiorna";
+            this.checkBoxAggiorna.Size = new System.Drawing.Size(152, 17);
+            this.checkBoxAggiorna.TabIndex = 2;
+            this.checkBoxAggiorna.Text = "Aggiornamento automatico";
+            this.checkBoxAggiorna.UseVisualStyleBackColor = true;
+            this.checkBoxAggiorna.CheckedChanged += new System.EventHandler(this.checkBoxAggiorna_CheckedChanged);
+            // 
+            // butGenera
+            // 
+            this.butGenera.Location = new System.Drawing.Point(6, 23);
+            this.butGenera.Name = "butGenera";
+            this.butGenera.Size = new System.Drawing.Size(75, 23);
+            this.butGenera.TabIndex = 1;
+            this.butGenera.Text = "Aggiorna";
+            this.butGenera.UseVisualStyleBackColor = true;
+            this.butGenera.Click += new System.EventHandler(this.butGenera_Click);
             // 
             // groupBoxOutput
             // 
@@ -362,17 +446,6 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(794, 186);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // butCBIncollaDescrizione
-            // 
-            this.butCBIncollaDescrizione.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.butCBIncollaDescrizione.Location = new System.Drawing.Point(106, 83);
-            this.butCBIncollaDescrizione.Name = "butCBIncollaDescrizione";
-            this.butCBIncollaDescrizione.Size = new System.Drawing.Size(17, 23);
-            this.butCBIncollaDescrizione.TabIndex = 29;
-            this.butCBIncollaDescrizione.Text = "i";
-            this.butCBIncollaDescrizione.UseVisualStyleBackColor = false;
-            this.butCBIncollaDescrizione.Click += new System.EventHandler(this.butCBIncollaDescrizione_Click);
             // 
             // ucFiles
             // 
@@ -396,6 +469,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormNavigatore";
             this.Text = "Navigatore";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNavigatore_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -416,7 +490,13 @@
             this.splitContainer1B2B3B4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4)).EndInit();
             this.splitContainer1B2B3B4.ResumeLayout(false);
+            this.splitContainer1B2B3B4A5.Panel1.ResumeLayout(false);
+            this.splitContainer1B2B3B4A5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4A5)).EndInit();
+            this.splitContainer1B2B3B4A5.ResumeLayout(false);
             this.groupBoxComandi.ResumeLayout(false);
+            this.groupBoxAgggiorna.ResumeLayout(false);
+            this.groupBoxAgggiorna.PerformLayout();
             this.groupBoxOutput.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -451,5 +531,10 @@
         private System.Windows.Forms.Button butCBCopiaNomeTraccia;
         private System.Windows.Forms.Button butCBIncollaLink;
         private System.Windows.Forms.Button butCBIncollaDescrizione;
+        private System.Windows.Forms.SplitContainer splitContainer1B2B3B4A5;
+        private System.Windows.Forms.GroupBox groupBoxAgggiorna;
+        private System.Windows.Forms.CheckBox checkBoxAggiorna;
+        private System.Windows.Forms.Button butResoconto;
+        private System.Windows.Forms.Button butPreleva;
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +33,26 @@ namespace Traccia
         private string PathResoconto = string.Empty;
         private string PathInfo = string.Empty;
 
+        ///// <summary>
+        ///// Stati dell'aggiornamento automatico del file info
+        ///// </summary>
+        //private enum EAggiornamentoInfo 
+        //{
+        //    Disabilitato,
+        //    Sospeso,
+        //    Libero,
+        //    prenotato
+        //};
+        ///// <summary>
+        ///// Gestione aggiornamento automatico file info
+        ///// </summary>
+        //private EAggiornamentoInfo aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
+        ///// <summary>
+        ///// Tipo di navigatore che ha prenotato l'aggiornamento
+        ///// </summary>
+        //private string aggiornamentoNavigatore = string.Empty;
+
+        private CAggiornamentoInfo AggiornamentoInfo = new CAggiornamentoInfo();
 
         /// <summary>
         /// Costruttore
@@ -63,8 +84,8 @@ namespace Traccia
             textBoxNomeTraccia.Text = Traccia.Nome;
             textBoxPathTraccia.Text = Traccia.Path;
 
-            // Apre il file info del navigatore, se non esite lo crea
-            ApreFileInfoNavigatore();
+            // abilita aggiornamento automatico
+            checkBoxAggiorna.Checked = true;
         }
         /// <summary>
         /// Aggiorna la classe
@@ -183,13 +204,13 @@ namespace Traccia
             string operazione = "assegna file";
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
             GstErrori.EErrore esito = AssegnaFile2();
 
             // stampa fine operazioni
-            StampaOperazione(false, operazione, esito);
+            msg.StampaOperazione(false, operazione, esito);
 
             // Aggiorna la classe
             AggiornaClasse();
@@ -297,6 +318,7 @@ namespace Traccia
                 catch (Exception e)
                 {
                     msg.Stampa("The process failed: {0}" + e.ToString());
+                    return GstErrori.EErrore.E0001_NOK;
                 }
             }
 
@@ -338,45 +360,6 @@ namespace Traccia
             {
                 msg.Stampa("Exception: " + e.Message);
             }
-        }
-        /// <summary>
-        /// Stampa l'operazione in corso
-        /// </summary>
-        /// <param name="inizio"></param>
-        /// <param name="operazione"></param>
-        /// <param name="esito"></param>
-        /// <returns></returns>
-        private GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
-        {
-            // stampa righe di separazione
-            msg.Stampa("");
-
-            // stampa operazione
-            if (inizio)
-            {
-                msg.Stampa("=================================================================================================");
-                msg.Stampa("Inizio " + operazione);
-                msg.Stampa("-------------------------------------------------------------------------------------------------");
-
-            }
-            else
-            {
-                msg.Stampa("-------------------------------------------------------------------------------------------------");
-                msg.Stampa("Fine " + operazione);
-
-                // stampa l'esito dell'operazione
-                if (esito == GstErrori.EErrore.E0000_OK)
-                    msg.Stampa("L'operazione è stata completata con successo");
-                else
-                    msg.Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
-
-                msg.Stampa("=================================================================================================");
-            }
-
-            // stampa righe di separazione
-            msg.Stampa("");
-
-            return esito;
         }
         /// <summary>
         /// Genera il file info del navigatore
@@ -508,6 +491,28 @@ namespace Traccia
         /// <param name="navigatore"></param>
         /// <returns></returns>
         private GstErrori.EErrore ScriveFileInfoNavigatore(string navigatore)
+        {
+            // compone operazione
+            string operazione = "scrive file info del navigatore ";
+
+            // stampa inizio operazioni
+            msg.StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = ScriveFileInfoNavigatore2(navigatore);
+
+            // stampa fine operazioni
+            msg.StampaOperazione(false, operazione, esito);
+
+            return esito;
+
+        }
+        /// <summary>
+        /// Scrive il file info del navigatore
+        /// </summary>
+        /// <param name="navigatore"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore ScriveFileInfoNavigatore2(string navigatore)
         {
             // Compone il nome del file info del navigatore
             string nomeFileNav = "Nav" + "_" + Traccia.Nome;
@@ -669,7 +674,6 @@ namespace Traccia
         {
             ApreFileInfoNavigatore();
         }
-
         /// <summary>
         /// Apre il file info del navigtore selezionato,
         /// se non esiste lo crea.
@@ -677,7 +681,43 @@ namespace Traccia
         /// <returns></returns>
         private GstErrori.EErrore ApreFileInfoNavigatore()
         {
+            // compone operazione
+            string operazione = "legge file info navigatore ";
+
+            // stampa inizio operazioni
+            msg.StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = ApreFileInfoNavigatore2();
+
+            // stampa fine operazioni
+            msg.StampaOperazione(false, operazione, esito);
+
+            return esito;
+
+        }
+        /// <summary>
+        /// Apre il file info del navigtore selezionato,
+        /// se non esiste lo crea.
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore ApreFileInfoNavigatore2()
+        {
             GstErrori.EErrore esito;
+
+            // controlla se c'è una prenotazione 
+            esito = AggiornaFileInfo();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Sospende aggiornamento automatico file info
+            AggiornamentoInfo.Sospende(true);
+            //if (aggiornamentoInfo != EAggiornamentoInfo.Disabilitato)
+            //    aggiornamentoInfo = EAggiornamentoInfo.Sospeso;
+
+            // inizializza i cmapi link e destrizione
+            textBoxLink.Text = "";
+            richTextBoxDescrizione.Clear();
 
             // estra il nome del navigatore
             string navigatore = comboBoxNavigatore.Text;
@@ -688,14 +728,372 @@ namespace Traccia
             {
                 // inizializza i cmapi link e destrizione
                 textBoxLink.Text = "";
-                richTextBoxDescrizione.Text = "";
+                richTextBoxDescrizione.Clear();
 
                 // il file non esite quidi lo crea
                 esito = ScriveFileInfoNavigatore(navigatore);
             }
 
+            // Rimuove la sospensione dell'aggiornamento automatico
+            AggiornamentoInfo.Sospende(false);
+            //if (aggiornamentoInfo != EAggiornamentoInfo.Disabilitato)
+            //    aggiornamentoInfo = EAggiornamentoInfo.Libero;
+
             return esito;
+        }
+        /// <summary>
+        /// Il campo link è cambiato 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxLink_TextChanged(object sender, EventArgs e)
+        {
+            // prenota l'aggiornamento del file info del navigatore
+            AggiornamentoInfo.Prenota(comboBoxNavigatore.Text);
+            //PrenotaAggiornamentoFileInfo();
+        }
+        ///// <summary>
+        ///// Il campo link ha perso il focus
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void textBoxLink_Leave(object sender, EventArgs e)
+        //{
+        //    AggiornaFileInfo();
+        //}
+        /// <summary>
+        /// Aggiorna l'abilitazione all'aggiornamento del file info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxAggiorna_CheckedChanged(object sender, EventArgs e)
+        {
+            AggiornamentoInfo.Abilita(checkBoxAggiorna.Checked);
+            //if (checkBoxAggiorna.Checked)
+            //    aggiornamentoInfo = EAggiornamentoInfo.Libero;
+            //else
+            //    aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
+        }
+        ///// <summary>
+        ///// Prenota l'aggiornamento del file info
+        ///// </summary>
+        //private void PrenotaAggiornamentoFileInfo()
+        //{
+        //    // prenota l'aggiornamento del file info del navigatore
+        //    if (aggiornamentoInfo == EAggiornamentoInfo.Libero)
+        //    {
+        //        aggiornamentoInfo = EAggiornamentoInfo.prenotato;
+        //        aggiornamentoNavigatore = comboBoxNavigatore.Text;
+        //    }
+        //}
+        /// <summary>
+        /// Esegue aggiornamento file info
+        /// </summary>
+        private GstErrori.EErrore AggiornaFileInfo()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK;
+
+            // controlla se è prenotato l'aggiornamento del file info del navigatore
+            if (AggiornamentoInfo.Prenotato)
+            {
+                // rimuove la prenotazione
+                AggiornamentoInfo.Libera();
+
+                // esegue aggiornamento
+                esito = ScriveFileInfoNavigatore(AggiornamentoInfo.Navigatore);
+            }
+
+
+            //if (aggiornamentoInfo == EAggiornamentoInfo.prenotato)
+            //{
+            //    aggiornamentoInfo = EAggiornamentoInfo.Libero;
+
+            //    // esegue aggiornamento
+            //    esito = ScriveFileInfoNavigatore(aggiornamentoNavigatore);
+            //}
+
+            return esito;
+        }
+        /// <summary>
+        /// Generato quando si sta chiudendo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormNavigatore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AggiornaFileInfo();
+        }
+        /// <summary>
+        /// Crea e apre il file resoconto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butResoconto_Click(object sender, EventArgs e)
+        {
+            ApreFileResoconto();
+        }
+        /// <summary>
+        /// Apre il file resoconto, se non c'è lo crea
+        /// </summary>
+        /// <returns></returns>
+
+        private GstErrori.EErrore ApreFileResoconto()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // compone il nome del file resoconto
+            string resocontoFileName = Traccia.Nome + ".odt";
+
+            // compone il path del nome del file resoconto
+            string resocontoPathName = PathResoconto + SeparaDir + resocontoFileName;
+
+            // verifica se il file resoconto esiste
+            if (!File.Exists(resocontoPathName))
+            {
+                // Il file resoconto non esiste lo copia
+
+                // Crea il path dei file resocondo modello
+                string resocontoPathModello = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + "Resoconto.odt";
+
+                // copia il file modello e rinominalo
+                try
+                {
+                    // Copia e rinomina il file nella directory di destinazione
+                    File.Copy(resocontoPathModello, resocontoPathName);
+
+                    // Verifica che il file esista nella directory destinazione
+                    if (!File.Exists(resocontoPathName))
+                        return GstErrori.EErrore.E1355_FileNonSpostato;
+                }
+                catch (Exception e)
+                {
+                    msg.Stampa("The process failed: {0}" + e.ToString());
+                    return GstErrori.EErrore.E0001_NOK;
+                }
+            }
+
+
+            // apre il dile resoconto
+            ApreWord(resocontoPathName);
+
+
+
+            return esito;
+        }
+        /// <summary>
+        /// Apre word
+        /// </summary>
+        /// <param name="link"></param>
+        private void ApreWord(string pathName)
+        {
+            string target = "winword";
+            string arg1 = "/t " + pathName;
+            EsegueProces(target, arg1);
+        }
+
+        private void butPreleva_Click(object sender, EventArgs e)
+        {
+            PrelevaDaDownload();
+        }
+        /// <summary>
+        /// Preleva i file disponibili nella directory dowload
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore PrelevaDaDownload()
+        {
+            // compone operazione
+            string operazione = "preleva file dalla directory download ";
+
+            // stampa inizio operazioni
+            msg.StampaOperazione(true, operazione);
+
+            // esegue la selezine
+            GstErrori.EErrore esito = PrelevaDaDowload2();
+
+            // stampa fine operazioni
+            msg.StampaOperazione(false, operazione, esito);
+
+            return esito;
+
+        }
+        /// <summary>
+        /// Preleva i file disponibili nella directory download
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore PrelevaDaDowload2()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // compone il path della directory dowload
+            string pathDownloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+            // definisce il delta di minuti di ricenrca
+            double minuti = 5;
+
+            // Compone la data di inizio ricerca
+            DateTime DataInizioRicerca = DateTime.Now.AddMinutes(-minuti);
+
+            // Compone la data di fine ricerca
+            DateTime DataFineRicerca = DateTime.Now.AddMinutes(minuti);
+
+            // Compone la lista delle foto disponibili
+            string[] srcList = Directory.GetFiles(pathDownloads, "*.*");
+
+            // loop di analisi della directory
+            foreach (string srcFile in srcList)
+            {
+                // Estrae il nome del file
+                string srcFileName = srcFile.Substring(pathDownloads.Length + 1);
+
+                //// Estrae la data di creazione
+                //DateTime dataCreazione = File.GetCreationTime(srcFile);
+                //// Estrae la data di ultimo accesso
+                //DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
+                // Estrae la data di ultimo accesso
+                DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
+
+                // verifica se la data del file è compresa nel temop di ricerca
+                int resultInizio = DataInizioRicerca.CompareTo(dataUltimaScritta);
+                int resultFine = DataFineRicerca.CompareTo(dataUltimaScritta);
+                if ((resultInizio <= 0) && (resultFine > 0))
+                {
+                    // crea il path di destinazione in Disponibili
+                    string dstFile = PathDisponibili + SeparaDir + srcFileName;
+
+                    // stampa il nome del file selezionato
+                    msg.Stampa("Selezionato: " + srcFileName, true);
+
+                    try
+                    {
+                        // Sposta il file nella directory Selezione
+                        //======================================
+
+                        // Sposta il file nella directory disponibile
+                        File.Move(srcFile, dstFile);
+
+
+                        // Verifica che il file esista nella directory destinazione
+                        if (!File.Exists(dstFile))
+                            return GstErrori.EErrore.E1355_FileNonSpostato;
+
+                        // Verifica che il file non esista nella directory sorgente
+                        if (File.Exists(srcFile))
+                            return GstErrori.EErrore.E1355_FileNonSpostato;
+                    }
+                    catch (Exception e)
+                    {
+                        msg.Stampa("The process failed: {0}" + e.ToString());
+                        return GstErrori.EErrore.E0001_NOK;
+                    }
+                }
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Il campo descrizione è cambiato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void richTextBoxDescrizione_TextChanged(object sender, EventArgs e)
+        {
+            // prenota l'aggiornamento del file info del navigatore
+            AggiornamentoInfo.Prenota(comboBoxNavigatore.Text);
+            //PrenotaAggiornamentoFileInfo();
+        }
+    }
+
+
+    // ======================================================================================================================
+    // ======================================================================================================================
+    // ======================================================================================================================
+
+    public class CAggiornamentoInfo
+    {
+        /// <summary>
+        /// Stati dell'aggiornamento automatico del file info
+        /// </summary>
+        private enum EAggiornamentoInfo
+        {
+            Disabilitato,
+            Sospeso,
+            Libero,
+            prenotato
+        };
+        /// <summary>
+        /// Gestione aggiornamento automatico file info
+        /// </summary>
+        private EAggiornamentoInfo aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
+        /// <summary>
+        /// Tipo del navigatore che ha prenotato l'aggiornamento
+        /// </summary>
+        public string Navigatore { get => navigatore;}
+        private string navigatore = string.Empty;
+        /// <summary>
+        /// Stato della prenotazione
+        /// </summary>
+        public bool Prenotato { get => (aggiornamentoInfo == EAggiornamentoInfo.prenotato); }
+
+
+        /// <summary>
+        /// Costruttore
+        /// </summary>
+        public CAggiornamentoInfo()
+        {
+            Abilita(false);
+        }
+        /// <summary>
+        /// Abilita / disabilita l'aggiornamento automatico del file info
+        /// </summary>
+        /// <param name="abilita"></param>
+        public void Abilita (bool abilita)
+        {
+            if (abilita)
+                aggiornamentoInfo = EAggiornamentoInfo.Libero;
+            else
+                aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
+        }
+        /// <summary>
+        /// Prenota l'aggiornamento del file info
+        /// </summary>
+        /// <param name="tipoNavigatore"></param>
+        public void Prenota(string tipoNavigatore)
+        {
+            // prenota l'aggiornamento del file info del navigatore
+            if (aggiornamentoInfo == EAggiornamentoInfo.Libero)
+            {
+                aggiornamentoInfo = EAggiornamentoInfo.prenotato;
+                navigatore = tipoNavigatore;
+            }
+        }
+        /// <summary>
+        /// Abilita / disabilita la sospensione del file info
+        /// </summary>
+        public void Sospende(bool abilita)
+        {
+            // Sospende aggiornamento automatico file info
+            if (aggiornamentoInfo != EAggiornamentoInfo.Disabilitato)
+            {
+                if (abilita)
+                    aggiornamentoInfo = EAggiornamentoInfo.Sospeso;
+                else
+                    aggiornamentoInfo = EAggiornamentoInfo.Libero;
+
+            }
+        }
+        /// <summary>
+        /// Abilita l'aggiornamento del file info
+        /// </summary>
+        public void Libera()
+        {
+            // Attiva aggiornamento automatico file info
+            if (aggiornamentoInfo == EAggiornamentoInfo.prenotato)
+                aggiornamentoInfo = EAggiornamentoInfo.Libero;
         }
 
     }
+
+
+
+
 }

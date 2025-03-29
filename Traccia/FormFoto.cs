@@ -272,13 +272,13 @@ namespace Traccia
             string operazione = "selezione file " + tipoFoto;
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
             GstErrori.EErrore esito = SelezionaFile(pathDisponibili, pathSelezionati);
 
             // stampa fine operazioni
-            StampaOperazione(false, operazione, esito);
+            msg.StampaOperazione(false, operazione, esito);
 
             return esito;
         }
@@ -408,13 +408,13 @@ namespace Traccia
             string operazione = "annulla Selezione foto " + tipoFoto;
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
             GstErrori.EErrore esito = AnnullaSelezionaFile(pathDisponibili, pathSelezionati);
 
             // stampa fine operazioni
-            StampaOperazione(false, operazione, esito);
+            msg.StampaOperazione(false, operazione, esito);
 
             return esito;
         }
@@ -533,13 +533,13 @@ namespace Traccia
             string operazione = "assegna file " + tipoFoto;
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
             GstErrori.EErrore esito = AssegnaFile(pathSelezionati, pathAssegnati, pathCopiati);
 
             // stampa fine operazioni
-            StampaOperazione(false, operazione, esito);
+            msg.StampaOperazione(false, operazione, esito);
 
             return esito;
         }
@@ -667,13 +667,13 @@ namespace Traccia
             string operazione = "annulla assegna file " + tipoFoto;
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
             GstErrori.EErrore esito = AnnullaAssegnaFile(pathSelezionati, pathAssegnati, pathCopiati);
 
             // stampa fine operazioni
-            StampaOperazione(false, operazione, esito);
+            msg.StampaOperazione(false, operazione, esito);
 
             return esito;
 
@@ -743,38 +743,38 @@ namespace Traccia
         /// <param name="operazione"></param>
         /// <param name="esito"></param>
         /// <returns></returns>
-        private GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
-        {
-            // stampa righe di separazione
-            msg.Stampa("");
+        //private GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
+        //{
+        //    // stampa righe di separazione
+        //    msg.Stampa("");
 
-            // stampa operazione
-            if (inizio)
-            {
-                msg.Stampa("=================================================================================================");
-                msg.Stampa("Inizio " + operazione);
-                msg.Stampa("-------------------------------------------------------------------------------------------------");
+        //    // stampa operazione
+        //    if (inizio)
+        //    {
+        //        msg.Stampa("=================================================================================================");
+        //        msg.Stampa("Inizio " + operazione);
+        //        msg.Stampa("-------------------------------------------------------------------------------------------------");
 
-            }
-            else
-            {
-                msg.Stampa("-------------------------------------------------------------------------------------------------");
-                msg.Stampa("Fine " + operazione);
+        //    }
+        //    else
+        //    {
+        //        msg.Stampa("-------------------------------------------------------------------------------------------------");
+        //        msg.Stampa("Fine " + operazione);
 
-                // stampa l'esito dell'operazione
-                if (esito == GstErrori.EErrore.E0000_OK)
-                    msg.Stampa("L'operazione è stata completata con successo");
-                else
-                    msg.Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
+        //        // stampa l'esito dell'operazione
+        //        if (esito == GstErrori.EErrore.E0000_OK)
+        //            msg.Stampa("L'operazione è stata completata con successo");
+        //        else
+        //            msg.Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
 
-                msg.Stampa("=================================================================================================");
-            }
+        //        msg.Stampa("=================================================================================================");
+        //    }
 
-            // stampa righe di separazione
-            msg.Stampa("");
+        //    // stampa righe di separazione
+        //    msg.Stampa("");
 
-            return esito;
-        }
+        //    return esito;
+        //}
         /// <summary>
         /// Attiva a copia delle foto da sorgente a traccia
         /// </summary>
@@ -795,14 +795,14 @@ namespace Traccia
             string operazione = "COPIA TUTTO";
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // Seleziona le foto
             esito = SelezioneFoto();
             if (esito != GstErrori.EErrore.E0000_OK)
             {
                 // stampa fine operazioni
-                StampaOperazione(false, operazione, esito);
+                msg.StampaOperazione(false, operazione, esito);
                 return esito;
             }
 
@@ -811,7 +811,7 @@ namespace Traccia
             if (esito != GstErrori.EErrore.E0000_OK)
             {
                 // stampa fine operazioni
-                StampaOperazione(false, operazione, esito);
+                msg.StampaOperazione(false, operazione, esito);
                 return esito;
             }
 
@@ -837,14 +837,14 @@ namespace Traccia
             string operazione = "ANNULLA COPIA TUTTO";
 
             // stampa inizio operazioni
-            StampaOperazione(true, operazione);
+            msg.StampaOperazione(true, operazione);
 
             // Seleziona le foto
             esito = AnnullaAssegnaFoto();
             if (esito != GstErrori.EErrore.E0000_OK)
             {
                 // stampa fine operazioni
-                StampaOperazione(false, operazione, esito);
+                msg.StampaOperazione(false, operazione, esito);
                 return esito;
             }
 
@@ -853,7 +853,7 @@ namespace Traccia
             if (esito != GstErrori.EErrore.E0000_OK)
             {
                 // stampa fine operazioni
-                StampaOperazione(false, operazione, esito);
+                msg.StampaOperazione(false, operazione, esito);
                 return esito;
             }
 

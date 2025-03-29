@@ -66,5 +66,45 @@ namespace Traccia
             else
                 Stampa(messaggioNOK, acapo, muto);
         }
+        /// <summary>
+        /// Stampa l'operazione in corso
+        /// </summary>
+        /// <param name="inizio"></param>
+        /// <param name="operazione"></param>
+        /// <param name="esito"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore StampaOperazione(bool inizio, string operazione, GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK)
+        {
+            // stampa righe di separazione
+            Stampa("");
+
+            // stampa operazione
+            if (inizio)
+            {
+                Stampa("=================================================================================================");
+                Stampa("Inizio " + operazione);
+                Stampa("-------------------------------------------------------------------------------------------------");
+
+            }
+            else
+            {
+                Stampa("-------------------------------------------------------------------------------------------------");
+                Stampa("Fine " + operazione);
+
+                // stampa l'esito dell'operazione
+                if (esito == GstErrori.EErrore.E0000_OK)
+                    Stampa("L'operazione è stata completata con successo");
+                else
+                    Stampa("L'operazione è FALLITA a causa dell'errore: " + esito.ToString());
+
+                Stampa("=================================================================================================");
+            }
+
+            // stampa righe di separazione
+            Stampa("");
+
+            return esito;
+        }
+
     }
 }
