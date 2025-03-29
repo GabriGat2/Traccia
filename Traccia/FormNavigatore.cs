@@ -33,25 +33,9 @@ namespace Traccia
         private string PathResoconto = string.Empty;
         private string PathInfo = string.Empty;
 
-        ///// <summary>
-        ///// Stati dell'aggiornamento automatico del file info
-        ///// </summary>
-        //private enum EAggiornamentoInfo 
-        //{
-        //    Disabilitato,
-        //    Sospeso,
-        //    Libero,
-        //    prenotato
-        //};
-        ///// <summary>
-        ///// Gestione aggiornamento automatico file info
-        ///// </summary>
-        //private EAggiornamentoInfo aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
-        ///// <summary>
-        ///// Tipo di navigatore che ha prenotato l'aggiornamento
-        ///// </summary>
-        //private string aggiornamentoNavigatore = string.Empty;
-
+        /// <summary>
+        /// Oggetto per gestire l'aggiornamento automatico del file info del navigatore
+        /// </summary>
         private CAggiornamentoInfo AggiornamentoInfo = new CAggiornamentoInfo();
 
         /// <summary>
@@ -368,7 +352,14 @@ namespace Traccia
         /// <param name="e"></param>
         private void butGenera_Click(object sender, EventArgs e)
         {
+            // sospende l'aggiornamento automatico
+            AggiornamentoInfo.Sospende(true);
+
             ScriveFileInfoNavigatore(comboBoxNavigatore.Text);
+
+            // ripristina l'aggiornamento automatico
+            AggiornamentoInfo.Sospende(false);
+
         }
         /// <summary>
         /// legge il file info del navigatore
@@ -752,15 +743,6 @@ namespace Traccia
             AggiornamentoInfo.Prenota(comboBoxNavigatore.Text);
             //PrenotaAggiornamentoFileInfo();
         }
-        ///// <summary>
-        ///// Il campo link ha perso il focus
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void textBoxLink_Leave(object sender, EventArgs e)
-        //{
-        //    AggiornaFileInfo();
-        //}
         /// <summary>
         /// Aggiorna l'abilitazione all'aggiornamento del file info
         /// </summary>
@@ -774,18 +756,6 @@ namespace Traccia
             //else
             //    aggiornamentoInfo = EAggiornamentoInfo.Disabilitato;
         }
-        ///// <summary>
-        ///// Prenota l'aggiornamento del file info
-        ///// </summary>
-        //private void PrenotaAggiornamentoFileInfo()
-        //{
-        //    // prenota l'aggiornamento del file info del navigatore
-        //    if (aggiornamentoInfo == EAggiornamentoInfo.Libero)
-        //    {
-        //        aggiornamentoInfo = EAggiornamentoInfo.prenotato;
-        //        aggiornamentoNavigatore = comboBoxNavigatore.Text;
-        //    }
-        //}
         /// <summary>
         /// Esegue aggiornamento file info
         /// </summary>
@@ -802,15 +772,6 @@ namespace Traccia
                 // esegue aggiornamento
                 esito = ScriveFileInfoNavigatore(AggiornamentoInfo.Navigatore);
             }
-
-
-            //if (aggiornamentoInfo == EAggiornamentoInfo.prenotato)
-            //{
-            //    aggiornamentoInfo = EAggiornamentoInfo.Libero;
-
-            //    // esegue aggiornamento
-            //    esito = ScriveFileInfoNavigatore(aggiornamentoNavigatore);
-            //}
 
             return esito;
         }
@@ -872,11 +833,8 @@ namespace Traccia
                 }
             }
 
-
-            // apre il dile resoconto
+            // apre il file resoconto
             ApreWord(resocontoPathName);
-
-
 
             return esito;
         }
@@ -945,14 +903,10 @@ namespace Traccia
                 // Estrae il nome del file
                 string srcFileName = srcFile.Substring(pathDownloads.Length + 1);
 
-                //// Estrae la data di creazione
-                //DateTime dataCreazione = File.GetCreationTime(srcFile);
-                //// Estrae la data di ultimo accesso
-                //DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
                 // Estrae la data di ultimo accesso
                 DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
 
-                // verifica se la data del file è compresa nel temop di ricerca
+                // verifica se la data del file è compresa nel tempo di ricerca
                 int resultInizio = DataInizioRicerca.CompareTo(dataUltimaScritta);
                 int resultFine = DataFineRicerca.CompareTo(dataUltimaScritta);
                 if ((resultInizio <= 0) && (resultFine > 0))
