@@ -15,37 +15,6 @@ namespace Traccia
     public partial class FormMain: Form
     {
         /// <summary>
-        /// Organizzazione Ambienti
-        /// 
-        /// Area Archivio Escursioni
-        ///     Tipo
-        ///     Stato
-        ///     Path
-        ///     Nome
-        ///     Colore
-        /// 
-        /// Archivio Escursione
-        ///     Tipo
-        ///     Stato
-        ///     Path
-        ///     Nome
-        ///     Colore
-        ///  
-        /// Archivio traccia
-        ///     Tipo
-        ///     Stato
-        ///     Path
-        ///     Nome
-        ///     Colore
-        /// 
-        /// 
-        /// 
-        /// 
-        /// </summary>
-        int pippo;
-
-
-        /// <summary>
         /// Area Archivio
         /// </summary>
         public CAreaArchivio AreaArchivio = null;
@@ -266,6 +235,16 @@ namespace Traccia
             {
                 MessageBox.Show(other.Message);
             }
+        }
+        /// <summary>
+        /// Attiva il form per la gestione dei prefissi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butIdentita_Click(object sender, EventArgs e)
+        {
+            FormIdentita dlg = new FormIdentita(ref Traccia);  
+            dlg.ShowDialog();   
         }
     }
 }

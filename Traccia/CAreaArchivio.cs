@@ -13,6 +13,10 @@ namespace Traccia
         /// </summary>
         public CArchivioDirectory Directory = new CArchivioDirectory();
         /// <summary>
+        /// Identità
+        /// </summary>
+        public CIdentita Identita = new CIdentita();
+        /// <summary>
         /// Verifica lo stato del parent
         /// </summary>
         /// <returns></returns>

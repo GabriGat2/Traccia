@@ -19,6 +19,8 @@ namespace Traccia
             E0002_ValoreNonRichiesto,
             E0003_FinestraDeiMessaggiNonDefinita,
             E0004_QuestaFunzioneNonPuoEssereChiamataFareOverride,
+            E0005_Exception,
+
 
             // Errori relativi alla gestione di una tabelle
             E1000_TabellaInesistente,
@@ -82,6 +84,8 @@ namespace Traccia
             E1359_FileNonCancellato,
             E1360_FileCancellato,
 
+            E1360_IstruzioneErrata,
+            E1360_IstruzioneSconosciuta,
 
 
             //E1310_PathArchivioNonEsiste,
