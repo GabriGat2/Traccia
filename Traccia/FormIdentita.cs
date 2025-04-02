@@ -64,7 +64,13 @@ namespace Traccia
             // compone il file name da leggere
             filename = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + "identita.csv";
 
+            //msg.Stampa("dimensione identita : ", sizeof(Traccia.Escursione.AreaArchivio.Identita));
+
             LeggeFile(filename, ref Traccia.Escursione.AreaArchivio.Identita);
+
+
+            // Aggiorna tree view identita
+            AggiornaAlberoIdentita();
         }
         /// <summary>
         /// Legge un file di indentità
@@ -190,6 +196,95 @@ namespace Traccia
                 GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E0005_Exception, "Exception: " + e.Message);
                 return GstErrori.EErrore.E0005_Exception;
             }
+        }
+        /// <summary>
+        /// Aggiorna l'albero delle identità
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore AggiornaAlberoIdentita()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK;
+
+            // inizia aggiornamnto
+            treeViewIdentita.BeginUpdate();
+
+            // Azzeera Tree view
+            treeViewIdentita.Nodes.Clear();
+
+            // estrae identita
+            CIdentita identita = Traccia.Escursione.AreaArchivio.Identita;
+
+
+            // Aggiunge il primo nodo
+            TreeNode nodo = new TreeNode(identita.Nome);
+            treeViewIdentita.Nodes.Add(nodo);
+
+            // Aggiunge i nodi figli
+            foreach (var identitaFiglio in identita.Gruppo)
+            {
+                AggiornaIdentita(identitaFiglio, ref nodo);
+            }
+
+
+
+            // termina aggiornamnto
+            treeViewIdentita.EndUpdate();
+
+            return esito;
+        }
+        /// <summary>
+        /// Aggiorna un blocco identita figlio
+        /// </summary>
+        /// <param name="identita"></param>
+        /// <param name="nodo"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore AggiornaIdentita (CIdentita identita, ref TreeNode nodo)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK;
+
+            // Aggiunge il nodo figlio
+            TreeNode nodoFiglio = new TreeNode(identita.Nome);
+            nodo.Nodes.Add(nodoFiglio);
+
+            // Aggiunge Sigla
+            TreeNode nodoSigla = new TreeNode("Sigla: " + identita.Sigla);
+            nodoFiglio.Nodes.Add(nodoSigla);
+
+            // Aggiunge Livello
+            TreeNode nodoLivello = new TreeNode("Livello: " + identita.Livello.ToString());
+            nodoFiglio.Nodes.Add(nodoLivello);
+
+            // Aggiunge Gruppo
+            TreeNode nodoGruppo = new TreeNode("Gruppo: " + identita.Gruppo.Count.ToString());
+            nodoFiglio.Nodes.Add(nodoGruppo);
+
+
+
+            // Aggiunge i nodi nipote
+            foreach (var identitaFiglio in identita.Gruppo)
+            {
+                AggiornaIdentita(identitaFiglio, ref nodoGruppo);
+            }
+
+            return esito;
+        }
+
+        private void treeViewIdentita_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ;
+        }
+
+        private void treeViewIdentita_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            string nodo = e.Node.Text;
+        }
+
+        private void treeViewIdentita_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeNode nodo = (TreeNode)e.Node;
+            string sNodo = nodo.Text;
+
+
         }
     }
 }

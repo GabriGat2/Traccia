@@ -29,13 +29,18 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeViewIdentita = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -47,8 +52,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
             // splitContainer1.Panel2
             // 
@@ -57,22 +61,26 @@
             this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 0;
             // 
+            // treeViewIdentita
+            // 
+            this.treeViewIdentita.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewIdentita.Location = new System.Drawing.Point(0, 0);
+            this.treeViewIdentita.Name = "treeViewIdentita";
+            this.treeViewIdentita.Size = new System.Drawing.Size(530, 266);
+            this.treeViewIdentita.TabIndex = 0;
+            this.treeViewIdentita.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewIdentita_AfterSelect);
+            this.treeViewIdentita.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseDoubleClick);
+            this.treeViewIdentita.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewIdentita_MouseDoubleClick);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(29, 24);
+            this.button1.Location = new System.Drawing.Point(95, 111);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(563, 77);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(121, 97);
-            this.treeView1.TabIndex = 0;
             // 
             // richTextBoxOutput
             // 
@@ -82,6 +90,23 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(800, 180);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.button1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.treeViewIdentita);
+            this.splitContainer2.Size = new System.Drawing.Size(800, 266);
+            this.splitContainer2.SplitterDistance = 266;
+            this.splitContainer2.TabIndex = 0;
             // 
             // FormIdentita
             // 
@@ -95,6 +120,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -103,7 +132,8 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewIdentita;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
