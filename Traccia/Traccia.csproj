@@ -74,6 +74,7 @@
     <Compile Include="CArchivio.cs" />
     <Compile Include="CGestoreIdentita.cs" />
     <Compile Include="CInfo.cs" />
+    <Compile Include="CIstruzione.cs" />
     <Compile Include="CMessaggio.cs" />
     <Compile Include="CIdentita.cs" />
     <Compile Include="FormArchivoTraccia.cs">

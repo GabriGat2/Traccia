@@ -21,7 +21,7 @@ namespace Traccia
 
         public string Data { get => GetCampo(0); }
         /// <summary>
-        /// Prefisso
+        /// Sigla
         /// </summary>
         public string Prefisso { get => GetCampo(1); }
         /// <summary>

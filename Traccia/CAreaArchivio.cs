@@ -15,7 +15,7 @@ namespace Traccia
         /// <summary>
         /// Identità
         /// </summary>
-        public CIdentita Identita = new CIdentita();
+        public CIdentita Identita = new CIdentita("Identita");
         /// <summary>
         /// Verifica lo stato del parent
         /// </summary>

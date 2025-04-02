@@ -87,6 +87,13 @@ namespace Traccia
             E1360_IstruzioneErrata,
             E1360_IstruzioneSconosciuta,
 
+            E1370_IdentitaOK,
+            E1371_IdentitaNOK,
+            E1372_IdentitaEsiste,
+            E1373_IdentitaNonEsiste,
+            E1374_IdentitaGenitore,
+            E1375_IdentitaParente,
+
 
             //E1310_PathArchivioNonEsiste,
             //E1310_PathAreaArchivioNonEsiste,
@@ -274,10 +281,5 @@ namespace Traccia
 
             return true;
         }
-
-
-
-
-
     }
 }

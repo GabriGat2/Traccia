@@ -139,7 +139,7 @@ namespace Traccia
                 nData = "??";
             }
 
-            // Recupera il valore del prefisso
+            // Recupera il valore del sigla
             string prefisso;
             string nPrefisso;
 
@@ -186,7 +186,7 @@ namespace Traccia
             textBoxPathArchivio.BackColor = Escursione.Colore;
         }
         /// <summary>
-        /// Il prefisso dell'archivio è cambiato
+        /// Il sigla dell'archivio è cambiato
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

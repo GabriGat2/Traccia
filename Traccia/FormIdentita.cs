@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,14 +64,15 @@ namespace Traccia
             // compone il file name da leggere
             filename = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + "identita.csv";
 
-            LeggeFile(filename);
+            LeggeFile(filename, ref Traccia.Escursione.AreaArchivio.Identita);
         }
         /// <summary>
         /// Legge un file di indentità
         /// </summary>
         /// <param name="filename"></param>
+        /// <param name="identita"></param>
         /// <returns></returns>
-        public GstErrori.EErrore LeggeFile(string filename)
+        public GstErrori.EErrore LeggeFile(string filename, ref CIdentita identita)
         {
             // compone operazione
             string operazione = "legge file " + filename;
@@ -78,7 +81,7 @@ namespace Traccia
             msg.StampaOperazione(true, operazione);
 
             // esegue la selezine
-            GstErrori.EErrore esito = LeggeFile2(filename);
+            GstErrori.EErrore esito = LeggeFile2(filename, ref identita);
 
             // stampa fine operazioni
             msg.StampaOperazione(false, operazione, esito);
@@ -89,8 +92,9 @@ namespace Traccia
         /// Legge un file di identità
         /// </summary>
         /// <param name="pathFileIdentita"></param>
+        /// <param name="identita"></param>
         /// <returns></returns>
-        public GstErrori.EErrore LeggeFile2(string pathFileIdentita)
+        public GstErrori.EErrore LeggeFile2(string pathFileIdentita, ref CIdentita identita)
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
             string linea = string.Empty;
@@ -109,7 +113,7 @@ namespace Traccia
                 linea = sr.ReadLine();
 
                 // decodifica il file
-                esito = DecodificaFile(ref sr);
+                esito = DecodificaFile(ref sr, ref identita);
 
                 // Chiude il file in lettura
                 sr.Close();
@@ -121,8 +125,9 @@ namespace Traccia
         /// decodifica le linee del file identità
         /// </summary>
         /// <param name="sr"></param>
+        /// <param name="identita"></param>
         /// <returns></returns>
-        private GstErrori.EErrore DecodificaFile(ref StreamReader sr)
+        private GstErrori.EErrore DecodificaFile(ref StreamReader sr, ref CIdentita identita)
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
@@ -134,46 +139,49 @@ namespace Traccia
                 // continua a leggere finchè non ragiunge EOF
                 while (linea != null)
                 {
-                    // scompone la linea letta
-                    string[] campo = linea.Trim().Split(';');
+                    // assegna la linea all'istruzione
+                    CIstruzione istruzione = new CIstruzione(linea);
 
                     // verifica che ci sia almeno un campo
-                    if (campo.Length > 0)
+                    if (istruzione.Campi > 0)
                     {
                         // analizza il primo campo che indica il tipo di istruzione
-                        switch (campo[0].ToLower())
+                        switch (istruzione.Operatore)
                         {
-                            case "commento":
+                            case CIstruzione.EOperatore.Commento:
+                                esito = GstErrori.EErrore.E0000_OK;
                                 break;
 
-                            case "link":
-                                // verifica che i campi siano sufficineti
-                                if (campo.Length < 1)
-                                {
-                                    // stampa la linea
-                                    msg.Stampa(linea);
-                                    return GstErrori.EErrore.E1360_IstruzioneErrata;
-                                }
-                                
-                                // compone il nome del file da leggere
-                                string pathFileIdentita2 = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + campo[1];
-                                // legge il file
-                                esito = LeggeFile(pathFileIdentita2);
-                                if (esito != GstErrori.EErrore.E0000_OK)
-                                    return esito;
+
+                            case CIstruzione.EOperatore.Campo:
+                                esito = istruzione.AssegnaIdentita(ref identita);
                                 break;
+
+                            case CIstruzione.EOperatore.Link:
+                                // compone il file name da leggere
+                                string pathFileName = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + istruzione.Link;
+                                esito = LeggeFile(pathFileName, ref identita);
+                                break;
+
 
                             default:
-                                // stampa la linea
-                                msg.Stampa(linea);
-                                msg.Stampa(campo[0]);
-                                return GstErrori.EErrore.E1360_IstruzioneSconosciuta;
+                                // stampa l'operatore sconosciuto
+                                msg.Stampa(istruzione.GetCampo((CIstruzione.EIstruzione.Operatore)));
+                                esito =  GstErrori.EErrore.E1360_IstruzioneSconosciuta;
+                                break;
                         }
                     }
 
-                    // legg una nuova linea
+                    // varifica esito
+                    if (esito != GstErrori.EErrore.E0000_OK)
+                    {
+                        msg.Stampa(linea);
+                        return esito;
+                    }
+
+                    // legge una nuova linea
                     linea = sr.ReadLine();
-                }
+                } // end while
 
                 return GstErrori.EErrore.E0000_OK;
             }
@@ -182,11 +190,6 @@ namespace Traccia
                 GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E0005_Exception, "Exception: " + e.Message);
                 return GstErrori.EErrore.E0005_Exception;
             }
-
-
-            return esito;
         }
-
-
     }
 }

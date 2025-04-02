@@ -74,7 +74,7 @@ namespace Traccia
             comboBoxMezzo.SelectedIndex = 0;
 
 
-            // Impone il prefisso dell'escursione
+            // Impone il sigla dell'escursione
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
             textBoxPrefisso.Enabled = false;
 
@@ -235,7 +235,7 @@ namespace Traccia
             else
                 lettera = "?";
 
-            // Recupera il valore del prefisso
+            // Recupera il valore del sigla
             string prefisso;
             string nPrefisso;
 
@@ -298,7 +298,7 @@ namespace Traccia
         }
 
         /// <summary>
-        /// Il prefisso dell'archivio è cambiato
+        /// Il sigla dell'archivio è cambiato
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
