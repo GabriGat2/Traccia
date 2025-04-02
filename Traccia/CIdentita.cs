@@ -32,7 +32,7 @@ namespace Traccia
         /// <summary>
         /// Sigla associato al nome
         /// </summary>
-        public string Sigla { get => sigla; set => sigla = value; }
+        public string Sigla { get => sigla; }
         private string sigla = string.Empty;
         /// <summary>
         /// Parenti del nome
@@ -45,6 +45,11 @@ namespace Traccia
         public string Tipo { get => tipo; set => tipo = value; }
         private string tipo = string.Empty;
         /// <summary>
+        /// Nome del gruppo
+        /// </summary>
+        public string NomeGruppo { get => nomeGruppo;} 
+        private string nomeGruppo = string.Empty;
+        /// <summary>
         /// Gruppo figli
         /// </summary>
         public List<CIdentita> Gruppo { get => gruppo; set => gruppo = value; }
@@ -54,6 +59,8 @@ namespace Traccia
         /// Esito operazioni esguite da costruttore
         /// </summary>
         public GstErrori.EErrore EsitoCostruttore { get => esitoCostruttore; }
+
+
         private GstErrori.EErrore esitoCostruttore = GstErrori.EErrore.E0001_NOK;
 
         /// <summary>
@@ -76,6 +83,7 @@ namespace Traccia
             this.genitore = genitore;
 
             this.sigla = istruzione.Sigla;
+            this.nomeGruppo = istruzione.NomeGruppo;
 
 
             this.esitoCostruttore = GstErrori.EErrore.E0000_OK;

@@ -47,6 +47,10 @@ namespace Traccia
         /// </summary>
         public string Link { get => GetCampo((EIstruzione) EIstruzioneLink.Link); }
         /// <summary>
+        /// Nome del gruppo contenuto
+        /// </summary>
+        public string NomeGruppo { get => GetCampo(EIstruzione.NomeGruppo); }
+        /// <summary>
         /// campi istruzione base
         /// </summary>
         public enum EIstruzione
@@ -62,11 +66,12 @@ namespace Traccia
             Sigla,                      // 08
             ID,                         // 09    
             Descrizione,                // 10
-            Tag1,                       // 11
-            Tag2,                       // 12
-            Tag3,                       // 13
-            Tag4,                       // 14                                    
-            Tag5                        // 15
+            NomeGruppo,                 // 11
+            Tag1,                       // 12
+            Tag2,                       // 13
+            Tag3,                       // 14
+            Tag4,                       // 15                                   
+            Tag5                        // 16
         }
         /// <summary>
         /// Campi istruzione link
@@ -84,11 +89,12 @@ namespace Traccia
             Sigla,                      // 08
             ID,                         // 09    
             Descrizione,                // 10
-            Tag1,                       // 11
-            Tag2,                       // 12
-            Tag3,                       // 13
-            Tag4,                       // 14                                    
-            Tag5                        // 15
+            NomeGruppo,                 // 11
+            Tag1,                       // 12
+            Tag2,                       // 13
+            Tag3,                       // 14
+            Tag4,                       // 15                                   
+            Tag5                        // 16
         }
         /// <summary>
         /// Campo istruzione luogo
@@ -106,11 +112,12 @@ namespace Traccia
             Sigla,                      // 08
             ID,                         // 09    
             Descrizione,                // 10
-            Tag1,                       // 11
-            Tag2,                       // 12
-            Tag3,                       // 13
-            Tag4,                       // 14                                    
-            Tag5                        // 15
+            NomeGruppo,                 // 11
+            Tag1,                       // 12
+            Tag2,                       // 13
+            Tag3,                       // 14
+            Tag4,                       // 15                                   
+            Tag5                        // 16
         }
         /// <summary>
         /// Costruttore

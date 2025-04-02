@@ -255,7 +255,7 @@ namespace Traccia
             nodoFiglio.Nodes.Add(nodoLivello);
 
             // Aggiunge Gruppo
-            TreeNode nodoGruppo = new TreeNode("Gruppo: " + identita.Gruppo.Count.ToString());
+            TreeNode nodoGruppo = new TreeNode(identita.NomeGruppo + " ("  + identita.Gruppo.Count.ToString() + ")");
             nodoFiglio.Nodes.Add(nodoGruppo);
 
 
