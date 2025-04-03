@@ -43,9 +43,14 @@ namespace Traccia
         /// </summary>
         public string Sigla { get => GetCampo(EIstruzione.Sigla);}
         /// <summary>
+        /// ID identificativo unico del blocco
+        /// </summary>
+        public UInt64 ID { get => Convert.ToUInt64(GetCampo(EIstruzione.ID)); } 
+        /// <summary>
         /// Link
         /// </summary>
         public string Link { get => GetCampo((EIstruzione) EIstruzioneLink.Link); }
+
         /// <summary>
         /// Nome del gruppo contenuto
         /// </summary>
@@ -282,7 +287,9 @@ namespace Traccia
 
             // verifica se ha trovato l'identità ricercata
            
-            if ((identitaParente.Nome == GetUltimoNome(0)) && (identitaParente.Livello == GetIndiceUltimoNome(0)))
+            if ((identitaParente.Nome == GetUltimoNome(0)) && 
+                (identitaParente.Livello == GetIndiceUltimoNome(0)) &&
+                (identitaParente.ID == ID))
                 return GstErrori.EErrore.E0000_OK;
 
             // controlla se è sul livello base cioè, 0

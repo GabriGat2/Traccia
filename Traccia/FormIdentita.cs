@@ -250,6 +250,10 @@ namespace Traccia
             TreeNode nodoSigla = new TreeNode("Sigla: " + identita.Sigla);
             nodoFiglio.Nodes.Add(nodoSigla);
 
+            // Aggiunge ID
+            TreeNode nodoID = new TreeNode("ID: " + identita.ID.ToString());
+            nodoFiglio.Nodes.Add(nodoID);
+
             // Aggiunge Livello
             TreeNode nodoLivello = new TreeNode("Livello: " + identita.Livello.ToString());
             nodoFiglio.Nodes.Add(nodoLivello);

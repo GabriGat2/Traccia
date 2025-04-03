@@ -35,6 +35,11 @@ namespace Traccia
         public string Sigla { get => sigla; }
         private string sigla = string.Empty;
         /// <summary>
+        /// ID identificatore unico dell'identità
+        /// </summary>
+        public UInt64 ID { get => iD; }
+        private UInt64 iD = 0;
+        /// <summary>
         /// Parenti del nome
         /// </summary>
         public string Parenti { get => parenti; set => parenti = value; }
@@ -79,6 +84,7 @@ namespace Traccia
         public CIdentita(ref CIdentita genitore, CIstruzione istruzione)
         {
             this.nome = istruzione.GetUltimoNome(0);
+            this.iD = Convert.ToUInt64(istruzione.ID);
             this.livello = genitore.livello + 1;
             this.genitore = genitore;
 
