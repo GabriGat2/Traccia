@@ -246,5 +246,11 @@ namespace Traccia
             FormIdentita dlg = new FormIdentita(ref Traccia);  
             dlg.ShowDialog();   
         }
+
+        private void butLuogo_Click(object sender, EventArgs e)
+        {
+            FormLuogo dlg = new FormLuogo();
+            dlg.ShowDialog();   
+        }
     }
 }

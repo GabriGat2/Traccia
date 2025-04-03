@@ -43,6 +43,7 @@
             this.butExplore = new System.Windows.Forms.Button();
             this.butEscursione = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
+            this.butLuogo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -162,6 +163,7 @@
             // 
             // groupBoxArchivio
             // 
+            this.groupBoxArchivio.Controls.Add(this.butLuogo);
             this.groupBoxArchivio.Controls.Add(this.butIdentita);
             this.groupBoxArchivio.Controls.Add(this.butExplore);
             this.groupBoxArchivio.Controls.Add(this.butEscursione);
@@ -217,6 +219,16 @@
             this.butArchiviaTraccia.UseVisualStyleBackColor = true;
             this.butArchiviaTraccia.Click += new System.EventHandler(this.butArchiviaTraccia_Click);
             // 
+            // butLuogo
+            // 
+            this.butLuogo.Location = new System.Drawing.Point(507, 128);
+            this.butLuogo.Name = "butLuogo";
+            this.butLuogo.Size = new System.Drawing.Size(75, 23);
+            this.butLuogo.TabIndex = 6;
+            this.butLuogo.Text = "Luogo";
+            this.butLuogo.UseVisualStyleBackColor = true;
+            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,6 +265,7 @@
         private System.Windows.Forms.Button butEscursione;
         private System.Windows.Forms.Button butExplore;
         private System.Windows.Forms.Button butIdentita;
+        private System.Windows.Forms.Button butLuogo;
     }
 }
 

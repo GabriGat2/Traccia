@@ -107,6 +107,12 @@
     <Compile Include="FormIdentita.Designer.cs">
       <DependentUpon>FormIdentita.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLuogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLuogo.Designer.cs">
+      <DependentUpon>FormLuogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,12 @@
     </Compile>
     <Compile Include="UContrFiles.Designer.cs">
       <DependentUpon>UContrFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UContrLuogo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UContrLuogo.Designer.cs">
+      <DependentUpon>UContrLuogo.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlFoto.cs">
       <SubType>UserControl</SubType>
@@ -149,6 +161,9 @@
     <EmbeddedResource Include="FormIdentita.resx">
       <DependentUpon>FormIdentita.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormLuogo.resx">
+      <DependentUpon>FormLuogo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +181,9 @@
     </Compile>
     <EmbeddedResource Include="UContrFiles.resx">
       <DependentUpon>UContrFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UContrLuogo.resx">
+      <DependentUpon>UContrLuogo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlFoto.resx">
       <DependentUpon>UserControlFoto.cs</DependentUpon>
