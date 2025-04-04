@@ -12,9 +12,25 @@ namespace Traccia
 {
     public partial class UContrLuogo: UserControl
     {
+        /// <summary>
+        /// Nome del controllo
+        /// </summary>
+        private string nome;
+        public string Nome { get => groupBoxLuogo.Text; set => groupBoxLuogo.Text = value; }
+        /// <summary>
+        /// Costruttore
+        /// </summary>
         public UContrLuogo()
         {
             InitializeComponent();
+            InizializzaClasse();
+        }
+        /// <summary>
+        /// Inizializzazione della classe
+        /// </summary>
+        private void InizializzaClasse()
+        {
+
         }
     }
 }

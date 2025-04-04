@@ -48,6 +48,7 @@
             this.comboBoxNavigatore = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
+            this.ucFiles = new Traccia.UContrFiles();
             this.splitContainer1B2B3B4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1B2B3B4A5 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
@@ -59,7 +60,6 @@
             this.butGenera = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.ucFiles = new Traccia.UContrFiles();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -316,6 +316,20 @@
             this.splitContainer1B2B3.SplitterDistance = 60;
             this.splitContainer1B2B3.TabIndex = 0;
             // 
+            // ucFiles
+            // 
+            this.ucFiles.Abilita = false;
+            this.ucFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucFiles.Location = new System.Drawing.Point(0, 0);
+            this.ucFiles.Name = "ucFiles";
+            this.ucFiles.Nome = "Files navigatore";
+            this.ucFiles.PathDisponibili = "";
+            this.ucFiles.PathResoconto = "";
+            this.ucFiles.PathStampe = "";
+            this.ucFiles.PathTracce = "";
+            this.ucFiles.Size = new System.Drawing.Size(800, 60);
+            this.ucFiles.TabIndex = 0;
+            // 
             // splitContainer1B2B3B4
             // 
             this.splitContainer1B2B3B4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -446,20 +460,6 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(794, 186);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // ucFiles
-            // 
-            this.ucFiles.Abilita = false;
-            this.ucFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucFiles.Location = new System.Drawing.Point(0, 0);
-            this.ucFiles.Name = "ucFiles";
-            this.ucFiles.Nome = "Files navigatore";
-            this.ucFiles.PathDisponibili = "";
-            this.ucFiles.PathResoconto = "";
-            this.ucFiles.PathStampe = "";
-            this.ucFiles.PathTracce = "";
-            this.ucFiles.Size = new System.Drawing.Size(800, 60);
-            this.ucFiles.TabIndex = 0;
             // 
             // FormNavigatore
             // 

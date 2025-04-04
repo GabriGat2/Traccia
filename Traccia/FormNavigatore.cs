@@ -955,6 +955,7 @@ namespace Traccia
             AggiornamentoInfo.Prenota(comboBoxNavigatore.Text);
             //PrenotaAggiornamentoFileInfo();
         }
+
     }
 
 
