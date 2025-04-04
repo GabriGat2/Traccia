@@ -45,15 +45,19 @@
             this.tabTag3 = new System.Windows.Forms.TabPage();
             this.tabTag4 = new System.Windows.Forms.TabPage();
             this.tabTag5 = new System.Windows.Forms.TabPage();
+            this.groupBoxOutput = new System.Windows.Forms.GroupBox();
+            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.groupBoxIdentità = new System.Windows.Forms.GroupBox();
+            this.splitContainer1A2B3B4 = new System.Windows.Forms.SplitContainer();
+            this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.uContrLuogo1 = new Traccia.UContrLuogo();
             this.uContrLuogoTag1 = new Traccia.UContrLuogo();
             this.uContrLuogoTag2 = new Traccia.UContrLuogo();
             this.uContrLuogoTag3 = new Traccia.UContrLuogo();
             this.uContrLuogoTag4 = new Traccia.UContrLuogo();
             this.uContrLuogoTag5 = new Traccia.UContrLuogo();
-            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.groupBoxOutput = new System.Windows.Forms.GroupBox();
+            this.treeViewIdentita = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,6 +82,12 @@
             this.tabTag4.SuspendLayout();
             this.tabTag5.SuspendLayout();
             this.groupBoxOutput.SuspendLayout();
+            this.groupBoxIdentità.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1A2B3B4)).BeginInit();
+            this.splitContainer1A2B3B4.Panel1.SuspendLayout();
+            this.splitContainer1A2B3B4.Panel2.SuspendLayout();
+            this.splitContainer1A2B3B4.SuspendLayout();
+            this.groupBoxComandi.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -93,7 +103,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBoxIdentità);
-            this.splitContainer1.Size = new System.Drawing.Size(984, 450);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 561);
             this.splitContainer1.SplitterDistance = 760;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -111,7 +121,7 @@
             // splitContainer1A2.Panel2
             // 
             this.splitContainer1A2.Panel2.Controls.Add(this.splitContainer1A2B3);
-            this.splitContainer1A2.Size = new System.Drawing.Size(760, 450);
+            this.splitContainer1A2.Size = new System.Drawing.Size(760, 561);
             this.splitContainer1A2.SplitterDistance = 80;
             this.splitContainer1A2.TabIndex = 0;
             // 
@@ -197,9 +207,9 @@
             // 
             // splitContainer1A2B3.Panel2
             // 
-            this.splitContainer1A2B3.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer1A2B3.Size = new System.Drawing.Size(760, 366);
-            this.splitContainer1A2B3.SplitterDistance = 240;
+            this.splitContainer1A2B3.Panel2.Controls.Add(this.splitContainer1A2B3B4);
+            this.splitContainer1A2B3.Size = new System.Drawing.Size(760, 477);
+            this.splitContainer1A2B3.SplitterDistance = 230;
             this.splitContainer1A2B3.TabIndex = 0;
             // 
             // splitContainer1A2B3A4
@@ -216,8 +226,8 @@
             // splitContainer1A2B3A4.Panel2
             // 
             this.splitContainer1A2B3A4.Panel2.Controls.Add(this.tabControlTag);
-            this.splitContainer1A2B3A4.Size = new System.Drawing.Size(760, 240);
-            this.splitContainer1A2B3A4.SplitterDistance = 94;
+            this.splitContainer1A2B3A4.Size = new System.Drawing.Size(760, 230);
+            this.splitContainer1A2B3A4.SplitterDistance = 73;
             this.splitContainer1A2B3A4.TabIndex = 0;
             // 
             // tabControlTag
@@ -231,7 +241,7 @@
             this.tabControlTag.Location = new System.Drawing.Point(0, 0);
             this.tabControlTag.Name = "tabControlTag";
             this.tabControlTag.SelectedIndex = 0;
-            this.tabControlTag.Size = new System.Drawing.Size(760, 142);
+            this.tabControlTag.Size = new System.Drawing.Size(760, 153);
             this.tabControlTag.TabIndex = 0;
             // 
             // tabTag1
@@ -240,7 +250,7 @@
             this.tabTag1.Location = new System.Drawing.Point(4, 22);
             this.tabTag1.Name = "tabTag1";
             this.tabTag1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag1.Size = new System.Drawing.Size(752, 116);
+            this.tabTag1.Size = new System.Drawing.Size(752, 127);
             this.tabTag1.TabIndex = 2;
             this.tabTag1.Text = "Tag 1";
             this.tabTag1.UseVisualStyleBackColor = true;
@@ -251,7 +261,7 @@
             this.tabTag2.Location = new System.Drawing.Point(4, 22);
             this.tabTag2.Name = "tabTag2";
             this.tabTag2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag2.Size = new System.Drawing.Size(752, 116);
+            this.tabTag2.Size = new System.Drawing.Size(752, 127);
             this.tabTag2.TabIndex = 3;
             this.tabTag2.Text = "Tag 2";
             this.tabTag2.UseVisualStyleBackColor = true;
@@ -262,7 +272,7 @@
             this.tabTag3.Location = new System.Drawing.Point(4, 22);
             this.tabTag3.Name = "tabTag3";
             this.tabTag3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag3.Size = new System.Drawing.Size(752, 116);
+            this.tabTag3.Size = new System.Drawing.Size(752, 127);
             this.tabTag3.TabIndex = 4;
             this.tabTag3.Text = "Tag 3";
             this.tabTag3.UseVisualStyleBackColor = true;
@@ -273,7 +283,7 @@
             this.tabTag4.Location = new System.Drawing.Point(4, 22);
             this.tabTag4.Name = "tabTag4";
             this.tabTag4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag4.Size = new System.Drawing.Size(752, 116);
+            this.tabTag4.Size = new System.Drawing.Size(752, 127);
             this.tabTag4.TabIndex = 5;
             this.tabTag4.Text = "Tag 4";
             this.tabTag4.UseVisualStyleBackColor = true;
@@ -284,20 +294,80 @@
             this.tabTag5.Location = new System.Drawing.Point(4, 22);
             this.tabTag5.Name = "tabTag5";
             this.tabTag5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag5.Size = new System.Drawing.Size(752, 116);
+            this.tabTag5.Size = new System.Drawing.Size(752, 127);
             this.tabTag5.TabIndex = 6;
             this.tabTag5.Text = "Tag 5";
             this.tabTag5.UseVisualStyleBackColor = true;
             // 
+            // groupBoxOutput
+            // 
+            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
+            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxOutput.Name = "groupBoxOutput";
+            this.groupBoxOutput.Size = new System.Drawing.Size(760, 179);
+            this.groupBoxOutput.TabIndex = 0;
+            this.groupBoxOutput.TabStop = false;
+            this.groupBoxOutput.Text = "Output";
+            // 
+            // richTextBoxOutput
+            // 
+            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
+            this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.Size = new System.Drawing.Size(754, 160);
+            this.richTextBoxOutput.TabIndex = 0;
+            this.richTextBoxOutput.Text = "";
+            // 
             // groupBoxIdentità
             // 
+            this.groupBoxIdentità.Controls.Add(this.treeViewIdentita);
             this.groupBoxIdentità.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxIdentità.Location = new System.Drawing.Point(0, 0);
             this.groupBoxIdentità.Name = "groupBoxIdentità";
-            this.groupBoxIdentità.Size = new System.Drawing.Size(220, 450);
+            this.groupBoxIdentità.Size = new System.Drawing.Size(220, 561);
             this.groupBoxIdentità.TabIndex = 0;
             this.groupBoxIdentità.TabStop = false;
             this.groupBoxIdentità.Text = "Identità";
+            // 
+            // splitContainer1A2B3B4
+            // 
+            this.splitContainer1A2B3B4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1A2B3B4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1A2B3B4.Name = "splitContainer1A2B3B4";
+            this.splitContainer1A2B3B4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1A2B3B4.Panel1
+            // 
+            this.splitContainer1A2B3B4.Panel1.Controls.Add(this.groupBoxComandi);
+            // 
+            // splitContainer1A2B3B4.Panel2
+            // 
+            this.splitContainer1A2B3B4.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1A2B3B4.Size = new System.Drawing.Size(760, 243);
+            this.splitContainer1A2B3B4.SplitterDistance = 60;
+            this.splitContainer1A2B3B4.TabIndex = 0;
+            // 
+            // groupBoxComandi
+            // 
+            this.groupBoxComandi.Controls.Add(this.button1);
+            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxComandi.Name = "groupBoxComandi";
+            this.groupBoxComandi.Size = new System.Drawing.Size(760, 60);
+            this.groupBoxComandi.TabIndex = 0;
+            this.groupBoxComandi.TabStop = false;
+            this.groupBoxComandi.Text = "Comandi";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // uContrLuogo1
             // 
@@ -305,7 +375,7 @@
             this.uContrLuogo1.Location = new System.Drawing.Point(0, 0);
             this.uContrLuogo1.Name = "uContrLuogo1";
             this.uContrLuogo1.Nome = "Luogo";
-            this.uContrLuogo1.Size = new System.Drawing.Size(760, 94);
+            this.uContrLuogo1.Size = new System.Drawing.Size(760, 73);
             this.uContrLuogo1.TabIndex = 0;
             // 
             // uContrLuogoTag1
@@ -314,7 +384,7 @@
             this.uContrLuogoTag1.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag1.Name = "uContrLuogoTag1";
             this.uContrLuogoTag1.Nome = "Luogo";
-            this.uContrLuogoTag1.Size = new System.Drawing.Size(746, 110);
+            this.uContrLuogoTag1.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag1.TabIndex = 0;
             // 
             // uContrLuogoTag2
@@ -323,7 +393,7 @@
             this.uContrLuogoTag2.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag2.Name = "uContrLuogoTag2";
             this.uContrLuogoTag2.Nome = "Luogo";
-            this.uContrLuogoTag2.Size = new System.Drawing.Size(746, 110);
+            this.uContrLuogoTag2.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag2.TabIndex = 0;
             // 
             // uContrLuogoTag3
@@ -332,7 +402,7 @@
             this.uContrLuogoTag3.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag3.Name = "uContrLuogoTag3";
             this.uContrLuogoTag3.Nome = "Luogo";
-            this.uContrLuogoTag3.Size = new System.Drawing.Size(746, 110);
+            this.uContrLuogoTag3.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag3.TabIndex = 0;
             // 
             // uContrLuogoTag4
@@ -341,7 +411,7 @@
             this.uContrLuogoTag4.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag4.Name = "uContrLuogoTag4";
             this.uContrLuogoTag4.Nome = "Luogo";
-            this.uContrLuogoTag4.Size = new System.Drawing.Size(746, 110);
+            this.uContrLuogoTag4.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag4.TabIndex = 0;
             // 
             // uContrLuogoTag5
@@ -350,34 +420,22 @@
             this.uContrLuogoTag5.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag5.Name = "uContrLuogoTag5";
             this.uContrLuogoTag5.Nome = "Luogo";
-            this.uContrLuogoTag5.Size = new System.Drawing.Size(746, 110);
+            this.uContrLuogoTag5.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag5.TabIndex = 0;
             // 
-            // richTextBoxOutput
+            // treeViewIdentita
             // 
-            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxOutput.Location = new System.Drawing.Point(3, 16);
-            this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(754, 103);
-            this.richTextBoxOutput.TabIndex = 0;
-            this.richTextBoxOutput.Text = "";
-            // 
-            // groupBoxOutput
-            // 
-            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
-            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(760, 122);
-            this.groupBoxOutput.TabIndex = 0;
-            this.groupBoxOutput.TabStop = false;
-            this.groupBoxOutput.Text = "Output";
+            this.treeViewIdentita.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewIdentita.Location = new System.Drawing.Point(3, 16);
+            this.treeViewIdentita.Name = "treeViewIdentita";
+            this.treeViewIdentita.Size = new System.Drawing.Size(214, 542);
+            this.treeViewIdentita.TabIndex = 0;
             // 
             // FormLuogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 450);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormLuogo";
             this.Text = "Luogo";
@@ -406,6 +464,12 @@
             this.tabTag4.ResumeLayout(false);
             this.tabTag5.ResumeLayout(false);
             this.groupBoxOutput.ResumeLayout(false);
+            this.groupBoxIdentità.ResumeLayout(false);
+            this.splitContainer1A2B3B4.Panel1.ResumeLayout(false);
+            this.splitContainer1A2B3B4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1A2B3B4)).EndInit();
+            this.splitContainer1A2B3B4.ResumeLayout(false);
+            this.groupBoxComandi.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -438,5 +502,9 @@
         private UContrLuogo uContrLuogoTag5;
         private System.Windows.Forms.GroupBox groupBoxOutput;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
+        private System.Windows.Forms.SplitContainer splitContainer1A2B3B4;
+        private System.Windows.Forms.GroupBox groupBoxComandi;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TreeView treeViewIdentita;
     }
 }
