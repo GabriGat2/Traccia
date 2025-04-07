@@ -45,7 +45,8 @@ namespace Traccia
         /// <summary>
         /// ID identificativo unico del blocco
         /// </summary>
-        public UInt64 ID { get => Convert.ToUInt64(GetCampo(EIstruzione.ID)); } 
+        //public UInt64 ID { get => Convert.ToUInt64(RimuoveApici(GetCampo(EIstruzione.ID))); }
+        public UInt64 ID { get => Convert.ToUInt64(GetCampo(EIstruzione.ID).Trim('"')); }
         /// <summary>
         /// Link
         /// </summary>
@@ -171,7 +172,11 @@ namespace Traccia
                     break;
             }
         }
-        // renda il valore del campo specificato
+        /// <summary>
+        /// renda il valore del campo specificato
+        /// </summary>
+        /// <param name="indice"></param>
+        /// <returns></returns>
         public string GetCampo(EIstruzione indice)
         {
             if ((int)indice < Campi)

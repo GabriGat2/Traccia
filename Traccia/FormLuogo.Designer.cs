@@ -45,19 +45,20 @@
             this.tabTag3 = new System.Windows.Forms.TabPage();
             this.tabTag4 = new System.Windows.Forms.TabPage();
             this.tabTag5 = new System.Windows.Forms.TabPage();
-            this.groupBoxOutput = new System.Windows.Forms.GroupBox();
-            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.groupBoxIdentità = new System.Windows.Forms.GroupBox();
             this.splitContainer1A2B3B4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBoxOutput = new System.Windows.Forms.GroupBox();
+            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.groupBoxIdentità = new System.Windows.Forms.GroupBox();
+            this.treeViewIdentita = new System.Windows.Forms.TreeView();
             this.uContrLuogo1 = new Traccia.UContrLuogo();
             this.uContrLuogoTag1 = new Traccia.UContrLuogo();
             this.uContrLuogoTag2 = new Traccia.UContrLuogo();
             this.uContrLuogoTag3 = new Traccia.UContrLuogo();
             this.uContrLuogoTag4 = new Traccia.UContrLuogo();
             this.uContrLuogoTag5 = new Traccia.UContrLuogo();
-            this.treeViewIdentita = new System.Windows.Forms.TreeView();
+            this.butAssegna = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,13 +82,13 @@
             this.tabTag3.SuspendLayout();
             this.tabTag4.SuspendLayout();
             this.tabTag5.SuspendLayout();
-            this.groupBoxOutput.SuspendLayout();
-            this.groupBoxIdentità.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1A2B3B4)).BeginInit();
             this.splitContainer1A2B3B4.Panel1.SuspendLayout();
             this.splitContainer1A2B3B4.Panel2.SuspendLayout();
             this.splitContainer1A2B3B4.SuspendLayout();
             this.groupBoxComandi.SuspendLayout();
+            this.groupBoxOutput.SuspendLayout();
+            this.groupBoxIdentità.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -103,7 +104,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBoxIdentità);
-            this.splitContainer1.Size = new System.Drawing.Size(984, 561);
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 561);
             this.splitContainer1.SplitterDistance = 760;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -299,6 +300,46 @@
             this.tabTag5.Text = "Tag 5";
             this.tabTag5.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1A2B3B4
+            // 
+            this.splitContainer1A2B3B4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1A2B3B4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1A2B3B4.Name = "splitContainer1A2B3B4";
+            this.splitContainer1A2B3B4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1A2B3B4.Panel1
+            // 
+            this.splitContainer1A2B3B4.Panel1.Controls.Add(this.groupBoxComandi);
+            // 
+            // splitContainer1A2B3B4.Panel2
+            // 
+            this.splitContainer1A2B3B4.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1A2B3B4.Size = new System.Drawing.Size(760, 243);
+            this.splitContainer1A2B3B4.SplitterDistance = 60;
+            this.splitContainer1A2B3B4.TabIndex = 0;
+            // 
+            // groupBoxComandi
+            // 
+            this.groupBoxComandi.Controls.Add(this.butAssegna);
+            this.groupBoxComandi.Controls.Add(this.button1);
+            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxComandi.Name = "groupBoxComandi";
+            this.groupBoxComandi.Size = new System.Drawing.Size(760, 60);
+            this.groupBoxComandi.TabIndex = 0;
+            this.groupBoxComandi.TabStop = false;
+            this.groupBoxComandi.Text = "Comandi";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBoxOutput
             // 
             this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
@@ -325,49 +366,18 @@
             this.groupBoxIdentità.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxIdentità.Location = new System.Drawing.Point(0, 0);
             this.groupBoxIdentità.Name = "groupBoxIdentità";
-            this.groupBoxIdentità.Size = new System.Drawing.Size(220, 561);
+            this.groupBoxIdentità.Size = new System.Drawing.Size(320, 561);
             this.groupBoxIdentità.TabIndex = 0;
             this.groupBoxIdentità.TabStop = false;
             this.groupBoxIdentità.Text = "Identità";
             // 
-            // splitContainer1A2B3B4
+            // treeViewIdentita
             // 
-            this.splitContainer1A2B3B4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1A2B3B4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1A2B3B4.Name = "splitContainer1A2B3B4";
-            this.splitContainer1A2B3B4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1A2B3B4.Panel1
-            // 
-            this.splitContainer1A2B3B4.Panel1.Controls.Add(this.groupBoxComandi);
-            // 
-            // splitContainer1A2B3B4.Panel2
-            // 
-            this.splitContainer1A2B3B4.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer1A2B3B4.Size = new System.Drawing.Size(760, 243);
-            this.splitContainer1A2B3B4.SplitterDistance = 60;
-            this.splitContainer1A2B3B4.TabIndex = 0;
-            // 
-            // groupBoxComandi
-            // 
-            this.groupBoxComandi.Controls.Add(this.button1);
-            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Size = new System.Drawing.Size(760, 60);
-            this.groupBoxComandi.TabIndex = 0;
-            this.groupBoxComandi.TabStop = false;
-            this.groupBoxComandi.Text = "Comandi";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.treeViewIdentita.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewIdentita.Location = new System.Drawing.Point(3, 16);
+            this.treeViewIdentita.Name = "treeViewIdentita";
+            this.treeViewIdentita.Size = new System.Drawing.Size(314, 542);
+            this.treeViewIdentita.TabIndex = 0;
             // 
             // uContrLuogo1
             // 
@@ -423,19 +433,21 @@
             this.uContrLuogoTag5.Size = new System.Drawing.Size(746, 121);
             this.uContrLuogoTag5.TabIndex = 0;
             // 
-            // treeViewIdentita
+            // butAssegna
             // 
-            this.treeViewIdentita.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewIdentita.Location = new System.Drawing.Point(3, 16);
-            this.treeViewIdentita.Name = "treeViewIdentita";
-            this.treeViewIdentita.Size = new System.Drawing.Size(214, 542);
-            this.treeViewIdentita.TabIndex = 0;
+            this.butAssegna.Location = new System.Drawing.Point(129, 19);
+            this.butAssegna.Name = "butAssegna";
+            this.butAssegna.Size = new System.Drawing.Size(75, 23);
+            this.butAssegna.TabIndex = 1;
+            this.butAssegna.Text = "Assegna";
+            this.butAssegna.UseVisualStyleBackColor = true;
+            this.butAssegna.Click += new System.EventHandler(this.butAssegna_Click);
             // 
             // FormLuogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(1084, 561);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormLuogo";
             this.Text = "Luogo";
@@ -463,13 +475,13 @@
             this.tabTag3.ResumeLayout(false);
             this.tabTag4.ResumeLayout(false);
             this.tabTag5.ResumeLayout(false);
-            this.groupBoxOutput.ResumeLayout(false);
-            this.groupBoxIdentità.ResumeLayout(false);
             this.splitContainer1A2B3B4.Panel1.ResumeLayout(false);
             this.splitContainer1A2B3B4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1A2B3B4)).EndInit();
             this.splitContainer1A2B3B4.ResumeLayout(false);
             this.groupBoxComandi.ResumeLayout(false);
+            this.groupBoxOutput.ResumeLayout(false);
+            this.groupBoxIdentità.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -506,5 +518,6 @@
         private System.Windows.Forms.GroupBox groupBoxComandi;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TreeView treeViewIdentita;
+        private System.Windows.Forms.Button butAssegna;
     }
 }

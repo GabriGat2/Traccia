@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -117,6 +118,7 @@ namespace Traccia
                 // Aggiunge il nodo figlio
                 TreeNode nodoFiglio = new TreeNode(identita.Nome);
                 nodo.Nodes.Add(nodoFiglio);
+                nodoFiglio.Tag = identita.ID;
 
                 // Aggiunge Sigla
                 TreeNode nodoSigla = new TreeNode("Sigla: " + identita.Sigla);
@@ -139,6 +141,7 @@ namespace Traccia
                 // Aggiunge Gruppo
                 nodoGruppo = new TreeNode(identita.Nome);
                 nodo.Nodes.Add(nodoGruppo);
+                nodoGruppo.Tag = identita.ID;
             }
 
             // Aggiunge i nodi nipote
@@ -149,6 +152,23 @@ namespace Traccia
 
             return esito;
         }
+        /// <summary>
+        /// Assegna l'identità selezionata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAssegna_Click(object sender, EventArgs e)
+        {
+            // recuprea il nodo selezionato
+            TreeNode nodo = treeViewIdentita.SelectedNode;
 
+            // recupera l'ID del nodo
+            UInt64 ID = (UInt64) nodo.Tag;
+
+            // cerca l'identita
+            //Traccia.Escursione.AreaArchivio.Identita.CercaFiglio()
+
+
+        }
     }
 }

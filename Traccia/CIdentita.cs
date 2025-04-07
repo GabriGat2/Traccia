@@ -117,18 +117,20 @@ namespace Traccia
             figlio = null;
             return GstErrori.EErrore.E1373_IdentitaNonEsiste;
         }
-        ///// <summary>
-        ///// Scompone istruzione
-        ///// </summary>
-        ///// <param name="istruzione"></param>
-        ///// <returns></returns>
-        //public string[] ScomponeIstruzione(string istruzione)
-        //{
-        //    // scompone l'istruzione
-        //    return istruzione.Trim().Split(';');
+
+        public GstErrori.EErrore CercaFiglio(UInt64 ID, out CIdentita figlio)
+        {
+            // estrae l'ID locale
 
 
 
-        //}
+
+
+            // non ha trovato nessun figlio
+            figlio = null;
+            return GstErrori.EErrore.E1373_IdentitaNonEsiste;
+        }
+
+
     }
 }
