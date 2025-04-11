@@ -258,6 +258,17 @@ namespace Traccia
             TreeNode nodoLivello = new TreeNode("Livello: " + identita.Livello.ToString());
             nodoFiglio.Nodes.Add(nodoLivello);
 
+            // Aggiorna Tag
+            TreeNode nodoTags = new TreeNode("Tag: " + " (" + identita.Tag.Count.ToString() + ")");
+            nodoFiglio.Nodes.Add(nodoTags);
+            int i = 0;
+            foreach (var tag in identita.Tag)
+            {
+                TreeNode nodoTag = new TreeNode("Tag " + i.ToString()+ ": " + tag.ToString());
+                nodoTags.Nodes.Add(nodoTag);
+                i++;
+            }
+
             // Aggiunge Gruppo
             TreeNode nodoGruppo = new TreeNode(identita.NomeGruppo + " ("  + identita.Gruppo.Count.ToString() + ")");
             nodoFiglio.Nodes.Add(nodoGruppo);

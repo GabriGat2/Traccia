@@ -45,6 +45,11 @@ namespace Traccia
         public string Parenti { get => parenti; set => parenti = value; }
         private string parenti = string.Empty;
         /// <summary>
+        /// Tag
+        /// </summary>
+        public List<UInt64> Tag { get => tag; /*set => tag = value;*/ }  
+        private List<UInt64> tag = new List<UInt64>();
+        /// <summary>
         /// Tipo del nome
         /// </summary>
         public string Tipo { get => tipo; set => tipo = value; }
@@ -64,8 +69,6 @@ namespace Traccia
         /// Esito operazioni esguite da costruttore
         /// </summary>
         public GstErrori.EErrore EsitoCostruttore { get => esitoCostruttore; }
-
-
         private GstErrori.EErrore esitoCostruttore = GstErrori.EErrore.E0001_NOK;
 
         /// <summary>
@@ -91,8 +94,30 @@ namespace Traccia
             this.sigla = istruzione.Sigla;
             this.nomeGruppo = istruzione.NomeGruppo;
 
+            // Aggiunge Tag
+            AggiungeTags(ref istruzione);
 
             this.esitoCostruttore = GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Aggiunge i tags
+        /// </summary>
+        /// <param name="istruzione"></param>
+        private void AggiungeTags(ref CIstruzione istruzione)
+        {
+            string sTag;
+            UInt64 lTag = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                sTag = istruzione.GetTag(i);
+                if ((sTag == null) || (sTag.Length == 0))
+                    lTag = 0;
+                else
+                    lTag = Convert.ToUInt64(sTag);
+ 
+                tag.Add(lTag);
+            }
         }
         /// <summary>
         /// Cerca un figlio per nome

@@ -45,13 +45,11 @@ namespace Traccia
         /// <summary>
         /// ID identificativo unico del blocco
         /// </summary>
-        //public UInt64 ID { get => Convert.ToUInt64(RimuoveApici(GetCampo(EIstruzione.ID))); }
         public UInt64 ID { get => Convert.ToUInt64(GetCampo(EIstruzione.ID).Trim('"')); }
         /// <summary>
         /// Link
         /// </summary>
         public string Link { get => GetCampo((EIstruzione) EIstruzioneLink.Link); }
-
         /// <summary>
         /// Nome del gruppo contenuto
         /// </summary>
@@ -231,6 +229,22 @@ namespace Traccia
             }
 
             return -1;
+        }
+        /// <summary>
+        /// Rende il tag specificato
+        /// </summary>
+        /// <param name="indice"></param>
+        /// <returns></returns>
+        public string GetTag(int indice)
+        {
+            // Calcola valore dell'indice nell'istruzione
+            EIstruzione indiceCampoIstruzione = EIstruzione.Tag1 + indice;
+
+            // Verifica il valore dell'indice
+            if ((indiceCampoIstruzione < EIstruzione.Tag1) || (indiceCampoIstruzione > EIstruzione.Tag5))
+                return "";
+
+            return GetCampo(indiceCampoIstruzione).Trim('"');
         }
         /// <summary>
         /// Cerca l'dentità specificata nell'istruzione
