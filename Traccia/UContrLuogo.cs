@@ -15,9 +15,8 @@ namespace Traccia
         /// <summary>
         /// Nome del controllo
         /// </summary>
-        private string nome;
-        public string Nome { get => groupBoxLuogo.Text; set => groupBoxLuogo.Text = value; }
-        /// <summary>
+        public string NomeControllo { get => groupBoxLuogo.Text; set => groupBoxLuogo.Text = value; }
+        // <summary>
         /// Costruttore
         /// </summary>
         public UContrLuogo()

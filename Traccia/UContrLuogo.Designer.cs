@@ -159,14 +159,14 @@
 
         private System.Windows.Forms.GroupBox groupBoxLuogo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxDati;
+        public System.Windows.Forms.TextBox textBoxDati;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxNome;
+        public System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxID;
+        public System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxSigla;
+        public System.Windows.Forms.TextBox textBoxSigla;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxDescrizione;
+        public System.Windows.Forms.TextBox textBoxDescrizione;
     }
 }

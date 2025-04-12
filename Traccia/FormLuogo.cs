@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,12 +49,12 @@ namespace Traccia
             msg = new CMessaggio(ref richTextBoxOutput);
 
             // imposta il nome dei Controlli di luogo
-            uContrLuogo1.Name = "luogo dell'escursione";
-            uContrLuogoTag1.Nome = "Tag 1";
-            uContrLuogoTag2.Nome = "Tag 2";
-            uContrLuogoTag3.Nome = "Tag 3";
-            uContrLuogoTag4.Nome = "Tag 4";
-            uContrLuogoTag5.Nome = "Tag 5";
+            uContrLuogo1.NomeControllo = "luogo dell'escursione";
+            uContrLuogoTag1.NomeControllo = "Tag 1";
+            uContrLuogoTag2.NomeControllo = "Tag 2";
+            uContrLuogoTag3.NomeControllo = "Tag 3";
+            uContrLuogoTag4.NomeControllo = "Tag 4";
+            uContrLuogoTag5.NomeControllo = "Tag 5";
 
 
         }
@@ -132,6 +133,17 @@ namespace Traccia
                 TreeNode nodoLivello = new TreeNode("Livello: " + identita.Livello.ToString());
                 nodoFiglio.Nodes.Add(nodoLivello);
 
+                // Aggiorna Tag
+                TreeNode nodoTags = new TreeNode("Tag: " + " (" + identita.Tag.Count.ToString() + ")");
+                nodoFiglio.Nodes.Add(nodoTags);
+                int i = 0;
+                foreach (var tag in identita.Tag)
+                {
+                    TreeNode nodoTag = new TreeNode("Tag " + i.ToString() + ": " + tag.ToString());
+                    nodoTags.Nodes.Add(nodoTag);
+                    i++;
+                }
+
                 // Aggiunge Gruppo
                 nodoGruppo = new TreeNode(identita.NomeGruppo + " (" + identita.Gruppo.Count.ToString() + ")");
                 nodoFiglio.Nodes.Add(nodoGruppo);
@@ -159,6 +171,8 @@ namespace Traccia
         /// <param name="e"></param>
         private void butAssegna_Click(object sender, EventArgs e)
         {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
             // recuprea il nodo selezionato
             TreeNode nodo = treeViewIdentita.SelectedNode;
 
@@ -166,9 +180,72 @@ namespace Traccia
             UInt64 ID = (UInt64) nodo.Tag;
 
             // cerca l'identita
-            //Traccia.Escursione.AreaArchivio.Identita.CercaFiglio()
+            CIdentita figlio;
+            esito = Traccia.Escursione.AreaArchivio.Identita.CercaFiglio(ID, out figlio);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return;
 
+            // Pubblica i dati dell'identità
+            StampaIdentita(ref uContrLuogo1, ref figlio);
+
+
+            // stampa i tag
+            int i = 1;
+            foreach (var tag in figlio.Tag)
+            {
+                switch (i)
+                {
+                    case 1:
+                        esito = StampaIdentitaTag(tag, ref uContrLuogoTag1);
+                        break;
+                    case 2:
+                        esito = StampaIdentitaTag(tag, ref uContrLuogoTag2);
+                        break;
+                    case 3:
+                        esito = StampaIdentitaTag(tag, ref uContrLuogoTag3);
+                        break;
+                    case 4:
+                        esito = StampaIdentitaTag(tag, ref uContrLuogoTag4);
+                        break;
+                    case 5:
+                        esito = StampaIdentitaTag(tag, ref uContrLuogoTag5);
+                        break;
+                    default:
+                        break;
+                }
+                i++;    
+            }
+        }
+        private GstErrori.EErrore StampaIdentitaTag(UInt64 ID, ref UContrLuogo UCluogo)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // cerca l'identita
+            CIdentita figlio;
+            esito = Traccia.Escursione.AreaArchivio.Identita.CercaFiglio(ID, out figlio);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Pubblica i dati dell'identità
+            StampaIdentita(ref UCluogo, ref figlio);
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Stampa i dati dell'identità 
+        /// </summary>
+        /// <param name="UCluogo"></param>
+        /// <param name="identita"></param>
+        private void StampaIdentita(ref UContrLuogo UCluogo, ref CIdentita identita)
+        {
+            UCluogo.textBoxNome.Text = identita.Nome;
+            UCluogo.textBoxSigla.Text = identita.Sigla;
+            //UCluogo.textBoxID.Text = identita.ID.ToString();
+            UCluogo.textBoxID.Text = identita.ID.ToString("##-##-##-##-###-##-##");
+
+            UCluogo.textBoxDati.Text = identita.StampaGenitori();
 
         }
+
     }
 }

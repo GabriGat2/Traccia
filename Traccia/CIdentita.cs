@@ -142,20 +142,107 @@ namespace Traccia
             figlio = null;
             return GstErrori.EErrore.E1373_IdentitaNonEsiste;
         }
-
-        public GstErrori.EErrore CercaFiglio(UInt64 ID, out CIdentita figlio)
+        /// <summary>
+        ///  Costante divisione per il calcolo dell'ID locale
+        /// </summary>
+        private UInt64[] IDkDivisione = 
         {
+            (UInt64) Math.Pow(10, 13),            // livello 1
+            (UInt64) Math.Pow(10, 11),            // livello 2
+            (UInt64) Math.Pow(10,  9),            // livello 3
+            (UInt64) Math.Pow(10,  7),            // livello 4
+            (UInt64) Math.Pow(10,  4),            // livello 5
+            (UInt64) Math.Pow(10,  2),            // livello 6
+            (UInt64) Math.Pow(10,  0),            // livello 7
+        };
+        /// <summary>
+        ///  Costante resto per il calcolo dell'ID locale
+        /// </summary>
+        private UInt64[] IDkResto =
+        {
+            (UInt64) Math.Pow(10, 2),             // livello 1
+            (UInt64) Math.Pow(10, 2),             // livello 2
+            (UInt64) Math.Pow(10, 2),             // livello 3
+            (UInt64) Math.Pow(10, 2),             // livello 4
+            (UInt64) Math.Pow(10, 3),             // livello 5
+            (UInt64) Math.Pow(10, 2),             // livello 6
+            (UInt64) Math.Pow(10, 2),             // livello 7
+        };
+        /// <summary>
+        /// Estrae l'ID locale in funzione del livello specificato
+        /// </summary>
+        /// <param name="vID"></param>
+        /// <param name="vLivello"></param>
+        /// <returns></returns>
+        private UInt64 GetIdLocale(UInt64 vID, int vLivello)
+        {
+            // estrae il li9vello dell'identità
+            uint liv = (uint)vLivello - 1;
+
+            // esegue la divizione
+            UInt64 div = IDkDivisione[liv]; 
+            UInt64 IDdiv = vID / IDkDivisione[liv];
+
+            // estra l'ID locale
+            UInt64 res = IDkResto[liv];
+            UInt64 IDloc = IDdiv % IDkResto[liv];
+
+            return IDloc;
+        }
+        /// <summary>
+        /// Cerca un figlio atraverso l'ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="figlio"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore CercaFiglio(UInt64 vID, out CIdentita figlio)
+        {
+            // controlla se l'ID coincide con l'ID dell'identità
+            if (this.ID == vID)
+            {
+                figlio = this;
+                return GstErrori.EErrore.E0000_OK;
+            }
+
             // estrae l'ID locale
+            UInt64 IDlocale = GetIdLocale(vID, Livello + 1);
 
+            // controlla nel gruppo
+            foreach (var lIdentita in Gruppo)
+            {
+                // calcola l'ID locale dell'identità presente nel gruppo
+                UInt64 IDlocaleGruppo = lIdentita.GetIdLocale(lIdentita.ID, lIdentita.Livello);
 
-
-
+                // controlla se gli ID locali coincidono
+                if (IDlocale == IDlocaleGruppo)
+                {
+                    return lIdentita.CercaFiglio(vID, out figlio);
+                }
+            }
 
             // non ha trovato nessun figlio
             figlio = null;
             return GstErrori.EErrore.E1373_IdentitaNonEsiste;
         }
+        /// <summary>
+        /// Stampa i genitori
+        /// </summary>
+        /// <returns></returns>
+        public string StampaGenitori()
+        {
+            string sGenitori = string.Empty;
+
+            // controlla se c'è un genitore
+            if (Genitore == null)
+                return string.Empty;
+            else
+                sGenitori = Genitore.StampaGenitori();
+
+            if (sGenitori.Length > 0)
+                sGenitori += ", ";
 
 
+            return sGenitori + Nome;
+        }
     }
 }
