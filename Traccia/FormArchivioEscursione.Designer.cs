@@ -51,13 +51,17 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butLuogo = new System.Windows.Forms.Button();
             this.butModificaTraccia = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
             this.butCrea = new System.Windows.Forms.Button();
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butLuogo = new System.Windows.Forms.Button();
+            this.textBoxLuogoID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxLuogo = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -101,7 +105,7 @@
             // 
             this.textBoxPrefisso.Location = new System.Drawing.Point(141, 44);
             this.textBoxPrefisso.Name = "textBoxPrefisso";
-            this.textBoxPrefisso.Size = new System.Drawing.Size(627, 20);
+            this.textBoxPrefisso.Size = new System.Drawing.Size(200, 20);
             this.textBoxPrefisso.TabIndex = 5;
             this.textBoxPrefisso.TextChanged += new System.EventHandler(this.textBoxPrefisso_TextChanged);
             // 
@@ -232,6 +236,10 @@
             // 
             // groupBoxArchivio
             // 
+            this.groupBoxArchivio.Controls.Add(this.label9);
+            this.groupBoxArchivio.Controls.Add(this.textBoxLuogo);
+            this.groupBoxArchivio.Controls.Add(this.label8);
+            this.groupBoxArchivio.Controls.Add(this.textBoxLuogoID);
             this.groupBoxArchivio.Controls.Add(this.butExplorerEscursione);
             this.groupBoxArchivio.Controls.Add(this.label7);
             this.groupBoxArchivio.Controls.Add(this.textBoxPathArchivio);
@@ -355,6 +363,16 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butLuogo
+            // 
+            this.butLuogo.Location = new System.Drawing.Point(261, 18);
+            this.butLuogo.Name = "butLuogo";
+            this.butLuogo.Size = new System.Drawing.Size(111, 23);
+            this.butLuogo.TabIndex = 15;
+            this.butLuogo.Text = "Luogo";
+            this.butLuogo.UseVisualStyleBackColor = true;
+            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
+            // 
             // butModificaTraccia
             // 
             this.butModificaTraccia.Location = new System.Drawing.Point(657, 18);
@@ -418,15 +436,39 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butLuogo
+            // textBoxLuogoID
             // 
-            this.butLuogo.Location = new System.Drawing.Point(261, 18);
-            this.butLuogo.Name = "butLuogo";
-            this.butLuogo.Size = new System.Drawing.Size(111, 23);
-            this.butLuogo.TabIndex = 15;
-            this.butLuogo.Text = "butLuogo";
-            this.butLuogo.UseVisualStyleBackColor = true;
-            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
+            this.textBoxLuogoID.Location = new System.Drawing.Point(568, 44);
+            this.textBoxLuogoID.Name = "textBoxLuogoID";
+            this.textBoxLuogoID.ReadOnly = true;
+            this.textBoxLuogoID.Size = new System.Drawing.Size(200, 20);
+            this.textBoxLuogoID.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(502, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "ID Luogo";
+            // 
+            // textBoxLuogo
+            // 
+            this.textBoxLuogo.Location = new System.Drawing.Point(568, 18);
+            this.textBoxLuogo.Name = "textBoxLuogo";
+            this.textBoxLuogo.ReadOnly = true;
+            this.textBoxLuogo.Size = new System.Drawing.Size(200, 20);
+            this.textBoxLuogo.TabIndex = 16;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(502, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Luogo";
             // 
             // FormArchivioEscursione
             // 
@@ -493,5 +535,9 @@
         private System.Windows.Forms.Button butExplorerEscursione;
         private System.Windows.Forms.Button butExplorerArea;
         private System.Windows.Forms.Button butLuogo;
+        private System.Windows.Forms.TextBox textBoxLuogoID;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxLuogo;
     }
 }

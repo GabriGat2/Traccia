@@ -146,6 +146,65 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
+        /// Legge il file info del'escursione
+        /// </summary>
+        /// <param name="pathFileInfo"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore LeggeFileInfoEscursione(string pathFileInfo)
+        {
+            string line = string.Empty;
+            try
+            {
+                // Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader(pathFileInfo);
+                // legge la prima linea del file
+                line = sr.ReadLine();
+
+
+                // Continue to read until you reach end of file
+                while (line != null)
+                {
+                    // scompone la riga letta
+                    string[] campo = line.Trim().Split('=');
+
+                    // verifica la dimensione di campi
+                    if (campo.Length != 3)
+                        continue;
+
+                    // analizza gruppo di informazione
+                    switch (AnalizzaGruppoInfo(campo[0]))
+                    {
+                        case EGruppoInfo.Area:
+                            break;
+
+                        case EGruppoInfo.Escursione:
+                            Escursione.Set(campo[1], campo[2]);
+                            break;
+
+                        case EGruppoInfo.Traccia:
+                            break;
+
+                        default:
+                            continue;
+                    }
+
+                    // Read the next line
+                    line = sr.ReadLine();
+                }
+
+                // Chiude il file
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
         /// Legge il file info della traccia
         /// </summary>
         /// <param name="pathFileInfo"></param>
@@ -206,7 +265,7 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Legge il file info della traccia
+        /// Legge il file info navigatore
         /// </summary>
         /// <param name="pathFileInfo"></param>
         /// <returns></returns>
@@ -534,6 +593,8 @@ namespace Traccia
         protected override void Popola()
         {
             GruppoInfo.Add(new CInfoCampo("Nome", ""));
+            GruppoInfo.Add(new CInfoCampo("Luogo", ""));
+            GruppoInfo.Add(new CInfoCampo("LuogoID", ""));
         }
         /// Recupera il gruppo delle informazioni
         /// </summary>

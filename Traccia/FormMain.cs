@@ -249,7 +249,7 @@ namespace Traccia
 
         private void butLuogo_Click(object sender, EventArgs e)
         {
-            FormLuogo dlg = new FormLuogo(ref Traccia);
+            FormLuogo dlg = new FormLuogo(ref Traccia, "");
             dlg.ShowDialog();   
         }
     }

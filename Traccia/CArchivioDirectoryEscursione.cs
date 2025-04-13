@@ -15,7 +15,8 @@ namespace Traccia
         protected override void Popola()
         {
             DirArchivio.Add(new DirectoryParziale("Info", "04-Info"));
-            DirArchivio.Add(new DirectoryParziale("InfoT", "04-Info\\InfoTraccia"));
+            DirArchivio.Add(new DirectoryParziale("InfoT", "04-Info\\01-InfoTraccia"));
+            DirArchivio.Add(new DirectoryParziale("InfoL", "04-Info\\02-Luogo"));
 
             DirArchivio.Add(new DirectoryParziale("Altro", "20-Altro"));
 

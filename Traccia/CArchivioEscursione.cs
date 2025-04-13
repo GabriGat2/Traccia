@@ -114,11 +114,26 @@ namespace Traccia
             return esito;
         }
         /// <summary>
-        /// Compone le info dell'escursione
+        /// Legge un file info traccia
         /// </summary>
-        private void ComponeInfo ()
+        /// <param name="pathFileInfo"></param>
+        /// <returns></returns>
+        public GstErrori.EErrore LeggeFileInfo(string pathFileInfo)
         {
-               
+            // pulisce la traccia
+            //ClearEscursione();
+
+
+            // Legge il file info della traccia specificata
+            GstErrori.EErrore esito = Info.LeggeFileInfoEscursione(pathFileInfo);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+            // Assegna i valori letti
+            Luogo = Info.Escursione.Get("Luogo");
+            LuogoID = Info.Escursione.Get("LuogoID");
+
+            return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
         /// Scrive le informazioni Info Escursione
@@ -130,6 +145,8 @@ namespace Traccia
             bEsito = Info.Area.Set("Data", DateTime.Now.ToString());
 
             bEsito = Info.Escursione.Set("Nome", Nome);
+            bEsito = Info.Escursione.Set("Luogo", Luogo);
+            bEsito = Info.Escursione.Set("LuogoID", LuogoID);
             return bEsito;
         }
         /// <summary>
@@ -144,6 +161,36 @@ namespace Traccia
             string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
 
             GstErrori.EErrore esito = Info.ScriveFileInfoEscursione(pathInfo);
+        }
+        /// <summary>
+        /// Scrive il file luogo
+        /// </summary>
+        /// <returns></returns>
+        public override GstErrori.EErrore ScriveFileLuogo()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // compone il path del file luogo
+            string pathLuogo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("InfoL") + SeparaDir + "Luogo_" + Nome + ".txt";
+
+            try
+            {
+                // Apre lo il file da scrivere
+                StreamWriter sw = new StreamWriter(pathLuogo);
+
+                // stampa le informazioni dell'applicazione
+                esito = ScriveLuogo(ref areaArchivio, ref sw);
+
+                //Close the file
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return esito;
         }
     }
 }

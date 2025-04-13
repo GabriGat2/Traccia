@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net.Security;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Traccia.CIstruzione;
 
 namespace Traccia
 {
@@ -150,7 +152,6 @@ namespace Traccia
                 }
 
             }
-
             // non ha trovato nessun figlio
             figlio = null;
             return GstErrori.EErrore.E1373_IdentitaNonEsiste;
@@ -201,6 +202,37 @@ namespace Traccia
             UInt64 IDloc = IDdiv % IDkResto[liv];
 
             return IDloc;
+        }
+        /// <summary>
+        /// Toglie i separatori da una stringa ID
+        /// </summary>
+        /// <param name="sID"></param>
+        /// <returns></returns>
+        public UInt64 IDToglieSeparatori(string sID)
+        {
+            string [] campo = sID.Trim().Split('-');
+            string zID = string.Empty;
+
+            // ricomponme la stringa senza i separatori    
+            for (int i = 0; i < campo.Length; i++)
+            {
+                zID += campo[i];
+            }
+
+            // sel la stringa esite esegue la conversione in UInt64
+            if (!string.IsNullOrEmpty(zID))
+                return Convert.ToUInt64(zID);
+            else
+                return 0;
+        }
+        /// <summary>
+        /// Converte un ID in stringa aggiungend i separatori in una stringa ID
+        /// </summary>
+        /// <param name="sID"></param>
+        /// <returns></returns>
+        public string IDAggiungeSeparatori()
+        {
+            return ID.ToString("##-##-##-##-###-##-##");
         }
         /// <summary>
         /// Cerca un figlio atraverso l'ID

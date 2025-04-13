@@ -30,12 +30,20 @@ namespace Traccia
         /// </summary>
         private bool VisualizzazioneEstesa = false;
         /// <summary>
+        /// ID luogo selezionato
+        /// </summary>
+        private UInt64 LuogoID;
+        /// <summary>
         /// Costruttore
         /// </summary>
-        public FormLuogo(ref CArchivioTraccia traccia)
+        public FormLuogo(ref CArchivioTraccia traccia, string IDspaziato)
         {
             // Assegna Archivio traccia
             Traccia = traccia;
+
+            // Assegna l'ID del luogo
+            LuogoID = traccia.Escursione.AreaArchivio.Identita.IDToglieSeparatori(IDspaziato);
+
 
             InitializeComponent();
             InizializzaClasse();
@@ -58,6 +66,9 @@ namespace Traccia
 
             // Aggiorna l'albero delle identità
             AggiornaAlberoIdentita();
+
+            // stampa i dati completi dell'identita del lugo selezionato
+            StampaIdentitaCompleta();
         }
         /// <summary>
         /// Ricarica le identità
@@ -71,6 +82,9 @@ namespace Traccia
 
             // Aggiorna albero identità
             AggiornaAlberoIdentita();
+
+            // stampa i dati completi dell'identita del lugo selezionato
+            StampaIdentitaCompleta();
         }
         /// <summary>
         /// Aggiorna l'albero delle identità
@@ -99,8 +113,6 @@ namespace Traccia
             {
                 AggiornaIdentita(identitaFiglio, ref nodo);
             }
-
-
 
             // termina aggiornamnto
             treeViewIdentita.EndUpdate();
@@ -189,13 +201,11 @@ namespace Traccia
         }
 
         /// <summary>
-        /// Estra il tag selezinato
+        /// Estra il tag selezionato
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore EstraeTag() 
-        { 
-            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
-
+        private GstErrori.EErrore EstraeTag()
+        {
             // recuprea il nodo selezionato
             TreeNode nodo = treeViewIdentita.SelectedNode;
             if (nodo == null)
@@ -204,11 +214,23 @@ namespace Traccia
             // recupera l'ID del nodo
             if (nodo.Tag == null)
                 return GstErrori.EErrore.E0001_NOK;
-            UInt64 ID = (UInt64) nodo.Tag;
+            LuogoID = (UInt64)nodo.Tag;
+
+            // stampa i dati completi dell'identita del lugo selezionato
+            return StampaIdentitaCompleta();
+        }
+        /// <summary>
+        /// Mostra i dati dell'identita specificata dall'ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore StampaIdentitaCompleta()
+        { 
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
             // cerca l'identita
             CIdentita figlio;
-            esito = Traccia.Escursione.AreaArchivio.Identita.CercaFiglio(ID, out figlio);
+            esito = Traccia.Escursione.AreaArchivio.Identita.CercaFiglio(LuogoID, out figlio);
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
@@ -275,8 +297,7 @@ namespace Traccia
         {
             UCluogo.textBoxNome.Text = identita.Nome;
             UCluogo.textBoxSigla.Text = identita.Sigla;
-            //UCluogo.textBoxID.Text = identita.ID.ToString();
-            UCluogo.textBoxID.Text = identita.ID.ToString("##-##-##-##-###-##-##");
+            UCluogo.textBoxID.Text = identita.IDAggiungeSeparatori();
 
             UCluogo.textBoxDati.Text = identita.StampaGenitori();
 

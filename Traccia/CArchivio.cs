@@ -4,8 +4,10 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Traccia
 {
@@ -39,19 +41,26 @@ namespace Traccia
         /// </summary>
         protected string nome = string.Empty;
         public string Nome {get => nome; set => AssegnaNome(value); }
-
         /// <summary>
         /// Path dell'archivio
         /// </summary>
-        private string path;
         public string Path { get => path; }
-
+        private string path;
         /// <summary>
         /// Path base dell'archivio
         /// </summary>
-        private string pathBase = string.Empty;
         public string PathBase { get => pathBase; set => AssegnaPathBase(value); }
-
+        private string pathBase = string.Empty;
+        /// <summary>
+        /// Luogo
+        /// </summary>
+        public string Luogo { get => luogo; set => luogo = value; }
+        private string luogo = string.Empty;
+        /// <summary>
+        /// ID del lugo
+        /// </summary>
+        public string LuogoID { get => luogoID; set => luogoID = value; }   
+        private string luogoID = string.Empty;
 
         /// <summary>
         /// Costruttore
@@ -301,6 +310,88 @@ namespace Traccia
         public virtual GstErrori.EErrore CreaDirectoryArchivio()
         {
             return GstErrori.EErrore.E0001_NOK;
+        }
+        /// <summary>
+        /// Scrive il file luogo
+        /// </summary>
+        /// <returns></returns>
+        public virtual GstErrori.EErrore ScriveFileLuogo()
+        {
+            return GstErrori.EErrore.E0001_NOK;
+        }
+        /// <summary>
+        /// scrive nel file luogo le informazioni dell'identità
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="sw"></param>
+        /// <returns></returns>
+        protected GstErrori.EErrore ScriveLuogo(ref CAreaArchivio area, ref StreamWriter sw)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+            try
+            {
+                // cerca l'identita del luogo
+                CIdentita figlio;
+                esito = area.Identita.CercaFiglio(area.Identita.IDToglieSeparatori(luogoID), out figlio);
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+
+                // Scrive i dati del luogo
+                ScriveIdentita("Luogo", ref sw, ref figlio);
+
+                // stampa i tag
+                int i = 1;
+                foreach (var tagID in figlio.Tag)
+                {
+                    // cerca l'identita del tag
+                    CIdentita nipote;
+                    esito = area.Identita.CercaFiglio(tagID, out nipote);
+                    if (esito != GstErrori.EErrore.E0000_OK)
+                        return esito;
+
+                    // Scrive i dati del tag
+                    ScriveIdentita("Tag " + i.ToString(), ref sw, ref nipote);
+
+                    i++;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return esito;
+        }
+        /// <summary>
+        /// Scrive i dati dell'identità 
+        /// </summary>
+        /// <param name="titolo"></param>
+        /// <param name="sw"></param>
+        /// <param name="identita"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore ScriveIdentita(string titolo, ref StreamWriter sw, ref CIdentita identita)
+        {
+
+            try
+            {
+                sw.WriteLine("------------------------------------------------------------------");
+                sw.WriteLine(titolo);
+                sw.WriteLine("------------------------------------------------------------------");
+                sw.WriteLine("nome    : " + identita.Nome);
+                sw.WriteLine("Genitori: " + identita.StampaGenitori());
+                sw.WriteLine("Sigla   : " + identita.Sigla);
+                sw.WriteLine("ID      : " + identita.IDAggiungeSeparatori());
+                sw.WriteLine("==================================================================");
+                sw.WriteLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
         }
     }
 }

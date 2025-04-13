@@ -28,6 +28,10 @@ namespace Traccia
         /// </summary>
         private bool AbilitazioneAggiornamentoEscursione;
         /// <summary>
+        /// Segnala che la data è stata impostata almeno una volta
+        /// </summary>
+        private bool DataImpostata = false;
+        /// <summary>
         /// Gestore per la stampa dei messaggi
         /// </summary>
         private CMessaggio msg = null;
@@ -57,6 +61,13 @@ namespace Traccia
 
             // Aggiorna la casella con il path dell'area archivio
             textBoxDirectoryBase.Text = Escursione.AreaArchivio.PathBase;
+
+            // Segnal data non impostata
+            DataImpostata = false;
+
+            // aggiorna i campi luogo
+            textBoxLuogo.Text = Traccia.Escursione.Luogo;
+            textBoxLuogoID.Text = Traccia.Escursione.LuogoID;
 
             // Controlla lo stato della Escursione
             if (Escursione.StatoOk())
@@ -130,7 +141,7 @@ namespace Traccia
 
             data = dateTimePicker1.Text;
             string[] campi = data.Split('/');
-            if (campi.Length == 3)
+            if ((campi.Length == 3) && DataImpostata)
             {
                 nData = campi[2] + '-' + campi[1] + '-' + campi[0];
             }
@@ -212,6 +223,9 @@ namespace Traccia
         /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            // segnala data impostata almeno una volta
+            DataImpostata = true;
+
             if (dateTimePicker1.Enabled)
                 AggiornamentoEscursione();
         }
@@ -240,9 +254,12 @@ namespace Traccia
 
             // crea l'archivio della traccia 
             esito = Escursione.CreaDirectoryArchivio();
-
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
+
+            // Crea il file con le informazioni di luogo
+            esito = Escursione.ScriveFileLuogo();
+
 
             // disabilita l'aggiornamento del nome della traccia
             AbilitazioneAggiornamentoEscursione = false;
@@ -386,10 +403,33 @@ namespace Traccia
         /// <param name="e"></param>
         private void butLuogo_Click(object sender, EventArgs e)
         {
-           FormLuogo dlg = new FormLuogo(ref Traccia);
-           dlg.ShowDialog();
-           DialogResult esito = dlg.DialogResult;
-           ;
+            FormLuogo dlg = new FormLuogo(ref Traccia, Traccia.Escursione.LuogoID);
+            dlg.ShowDialog();
+            DialogResult esito = dlg.DialogResult;
+
+
+            // Controlla se deve assegnare il luogo selezionato
+            if ((esito == DialogResult.OK) && (!Escursione.StatoOk()))
+            {
+                // Assegna prefisso 
+                textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
+
+                // assegna nome
+                string [] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
+                textBoxNome.Text = string.Empty;
+                for (int i = 0; i <  campiNome.Length; i++)
+                {
+                    textBoxNome.Text += campiNome[i];
+                }
+
+                // Assegna luogo 
+                textBoxLuogo.Text = dlg.uContrLuogo1.textBoxNome.Text;
+                Traccia.Escursione.Luogo = textBoxLuogo.Text;
+
+                // assegna ID luogo
+                textBoxLuogoID.Text = dlg.uContrLuogo1.textBoxID.Text;
+                Traccia.Escursione.LuogoID = textBoxLuogoID.Text;
+            }
         }
     }
 }

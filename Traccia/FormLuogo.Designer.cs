@@ -424,7 +424,7 @@
             this.butRicarica.Name = "butRicarica";
             this.butRicarica.Size = new System.Drawing.Size(75, 23);
             this.butRicarica.TabIndex = 0;
-            this.butRicarica.Text = "butRicarica";
+            this.butRicarica.Text = "Ricarica";
             this.butRicarica.UseVisualStyleBackColor = true;
             this.butRicarica.Click += new System.EventHandler(this.butRicarica_Click);
             // 
@@ -526,7 +526,7 @@
         private System.Windows.Forms.TextBox textBoxNomeTraccia;
         private System.Windows.Forms.SplitContainer splitContainer1A2B3A4;
         private System.Windows.Forms.SplitContainer splitContainer1A2B3;
-        private UContrLuogo uContrLuogo1;
+        public UContrLuogo uContrLuogo1;
         private System.Windows.Forms.TabControl tabControlTag;
         private System.Windows.Forms.TabPage tabTag1;
         private UContrLuogo uContrLuogoTag1;
