@@ -56,16 +56,22 @@ namespace Traccia
             uContrLuogoTag4.NomeControllo = "Tag 4";
             uContrLuogoTag5.NomeControllo = "Tag 5";
 
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            VisualizzazioneEstesa = ! VisualizzazioneEstesa;
+            // Aggiorna l'albero delle identità
             AggiornaAlberoIdentita();
         }
+        /// <summary>
+        /// Ricarica le identità
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butRicarica_Click(object sender, EventArgs e)
+        {
+            FormIdentita dlg = new FormIdentita(ref Traccia);
+            dlg.ShowDialog();
 
-
+            // Aggiorna albero identità
+            AggiornaAlberoIdentita();
+        }
         /// <summary>
         /// Aggiorna l'albero delle identità
         /// </summary>
@@ -171,19 +177,40 @@ namespace Traccia
         /// <param name="e"></param>
         private void butAssegna_Click(object sender, EventArgs e)
         {
+            VisualizzazioneEstesa = !VisualizzazioneEstesa;
+            if (VisualizzazioneEstesa)
+                butEstesa.Text = "Normale";
+            else
+                butEstesa.Text = "Estesa";
+
+            // Aggiorna l'albero delle identità
+            AggiornaAlberoIdentita();
+
+        }
+
+        /// <summary>
+        /// Estra il tag selezinato
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore EstraeTag() 
+        { 
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
             // recuprea il nodo selezionato
             TreeNode nodo = treeViewIdentita.SelectedNode;
+            if (nodo == null)
+                return GstErrori.EErrore.E0001_NOK;
 
             // recupera l'ID del nodo
+            if (nodo.Tag == null)
+                return GstErrori.EErrore.E0001_NOK;
             UInt64 ID = (UInt64) nodo.Tag;
 
             // cerca l'identita
             CIdentita figlio;
             esito = Traccia.Escursione.AreaArchivio.Identita.CercaFiglio(ID, out figlio);
             if (esito != GstErrori.EErrore.E0000_OK)
-                return;
+                return esito;
 
             // Pubblica i dati dell'identità
             StampaIdentita(ref uContrLuogo1, ref figlio);
@@ -215,7 +242,15 @@ namespace Traccia
                 }
                 i++;    
             }
+
+            return esito;
         }
+        /// <summary>
+        /// Stampa identità
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="UCluogo"></param>
+        /// <returns></returns>
         private GstErrori.EErrore StampaIdentitaTag(UInt64 ID, ref UContrLuogo UCluogo)
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
@@ -246,6 +281,43 @@ namespace Traccia
             UCluogo.textBoxDati.Text = identita.StampaGenitori();
 
         }
-
+        /// <summary>
+        /// Rende esito positivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        /// <summary>
+        /// Rende esito negativo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butNOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+        /// <summary>
+        /// Seleziona luogo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewIdentita_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            EstraeTag();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewIdentita_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            EstraeTag();
+        }
     }
 }

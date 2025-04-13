@@ -57,20 +57,28 @@ namespace Traccia
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        private void butCaricaIdentita_Click(object sender, EventArgs e)
+        {
+            AggiornaIdentita();
+        }
+
+        private void AggiornaIdentita()
         {
             string filename;
 
+            // Azzera l'albero delle identità
+            Traccia.Escursione.AreaArchivio.Identita.Azzera();
+
+
             // compone il file name da leggere
             filename = Traccia.Escursione.AreaArchivio.GetPathComune() + SeparaDir + "identita.csv";
-
-            //msg.Stampa("dimensione identita : ", sizeof(Traccia.Escursione.AreaArchivio.Identita));
 
             LeggeFile(filename, ref Traccia.Escursione.AreaArchivio.Identita);
 
 
             // Aggiorna tree view identita
             AggiornaAlberoIdentita();
+
         }
         /// <summary>
         /// Legge un file di indentità
@@ -213,7 +221,6 @@ namespace Traccia
 
             // estrae identita
             CIdentita identita = Traccia.Escursione.AreaArchivio.Identita;
-
 
             // Aggiunge il primo nodo
             TreeNode nodo = new TreeNode(identita.Nome);

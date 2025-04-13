@@ -53,8 +53,10 @@
             this.uContrLuogoTag5 = new Traccia.UContrLuogo();
             this.splitContainer1A2B3B4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
-            this.butAssegna = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.butNOK = new System.Windows.Forms.Button();
+            this.butOK = new System.Windows.Forms.Button();
+            this.butEstesa = new System.Windows.Forms.Button();
+            this.butRicarica = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.groupBoxIdentità = new System.Windows.Forms.GroupBox();
@@ -228,7 +230,7 @@
             // 
             this.splitContainer1A2B3A4.Panel2.Controls.Add(this.tabControlTag);
             this.splitContainer1A2B3A4.Size = new System.Drawing.Size(760, 250);
-            this.splitContainer1A2B3A4.SplitterDistance = 110;
+            this.splitContainer1A2B3A4.SplitterDistance = 109;
             this.splitContainer1A2B3A4.TabIndex = 0;
             // 
             // uContrLuogo1
@@ -237,7 +239,7 @@
             this.uContrLuogo1.Location = new System.Drawing.Point(0, 0);
             this.uContrLuogo1.Name = "uContrLuogo1";
             this.uContrLuogo1.NomeControllo = "Luogo";
-            this.uContrLuogo1.Size = new System.Drawing.Size(760, 110);
+            this.uContrLuogo1.Size = new System.Drawing.Size(760, 109);
             this.uContrLuogo1.TabIndex = 0;
             // 
             // tabControlTag
@@ -251,7 +253,7 @@
             this.tabControlTag.Location = new System.Drawing.Point(0, 0);
             this.tabControlTag.Name = "tabControlTag";
             this.tabControlTag.SelectedIndex = 0;
-            this.tabControlTag.Size = new System.Drawing.Size(760, 136);
+            this.tabControlTag.Size = new System.Drawing.Size(760, 137);
             this.tabControlTag.TabIndex = 0;
             // 
             // tabTag1
@@ -260,7 +262,7 @@
             this.tabTag1.Location = new System.Drawing.Point(4, 22);
             this.tabTag1.Name = "tabTag1";
             this.tabTag1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag1.Size = new System.Drawing.Size(752, 110);
+            this.tabTag1.Size = new System.Drawing.Size(752, 111);
             this.tabTag1.TabIndex = 2;
             this.tabTag1.Text = "Tag 1";
             this.tabTag1.UseVisualStyleBackColor = true;
@@ -271,7 +273,7 @@
             this.uContrLuogoTag1.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag1.Name = "uContrLuogoTag1";
             this.uContrLuogoTag1.NomeControllo = "Luogo";
-            this.uContrLuogoTag1.Size = new System.Drawing.Size(746, 104);
+            this.uContrLuogoTag1.Size = new System.Drawing.Size(746, 105);
             this.uContrLuogoTag1.TabIndex = 0;
             // 
             // tabTag2
@@ -280,7 +282,7 @@
             this.tabTag2.Location = new System.Drawing.Point(4, 22);
             this.tabTag2.Name = "tabTag2";
             this.tabTag2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag2.Size = new System.Drawing.Size(752, 127);
+            this.tabTag2.Size = new System.Drawing.Size(752, 111);
             this.tabTag2.TabIndex = 3;
             this.tabTag2.Text = "Tag 2";
             this.tabTag2.UseVisualStyleBackColor = true;
@@ -291,7 +293,7 @@
             this.uContrLuogoTag2.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag2.Name = "uContrLuogoTag2";
             this.uContrLuogoTag2.NomeControllo = "Luogo";
-            this.uContrLuogoTag2.Size = new System.Drawing.Size(746, 121);
+            this.uContrLuogoTag2.Size = new System.Drawing.Size(746, 105);
             this.uContrLuogoTag2.TabIndex = 0;
             // 
             // tabTag3
@@ -300,7 +302,7 @@
             this.tabTag3.Location = new System.Drawing.Point(4, 22);
             this.tabTag3.Name = "tabTag3";
             this.tabTag3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag3.Size = new System.Drawing.Size(752, 127);
+            this.tabTag3.Size = new System.Drawing.Size(752, 111);
             this.tabTag3.TabIndex = 4;
             this.tabTag3.Text = "Tag 3";
             this.tabTag3.UseVisualStyleBackColor = true;
@@ -311,7 +313,7 @@
             this.uContrLuogoTag3.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag3.Name = "uContrLuogoTag3";
             this.uContrLuogoTag3.NomeControllo = "Luogo";
-            this.uContrLuogoTag3.Size = new System.Drawing.Size(746, 121);
+            this.uContrLuogoTag3.Size = new System.Drawing.Size(746, 105);
             this.uContrLuogoTag3.TabIndex = 0;
             // 
             // tabTag4
@@ -320,7 +322,7 @@
             this.tabTag4.Location = new System.Drawing.Point(4, 22);
             this.tabTag4.Name = "tabTag4";
             this.tabTag4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag4.Size = new System.Drawing.Size(752, 127);
+            this.tabTag4.Size = new System.Drawing.Size(752, 111);
             this.tabTag4.TabIndex = 5;
             this.tabTag4.Text = "Tag 4";
             this.tabTag4.UseVisualStyleBackColor = true;
@@ -331,7 +333,7 @@
             this.uContrLuogoTag4.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag4.Name = "uContrLuogoTag4";
             this.uContrLuogoTag4.NomeControllo = "Luogo";
-            this.uContrLuogoTag4.Size = new System.Drawing.Size(746, 121);
+            this.uContrLuogoTag4.Size = new System.Drawing.Size(746, 105);
             this.uContrLuogoTag4.TabIndex = 0;
             // 
             // tabTag5
@@ -340,7 +342,7 @@
             this.tabTag5.Location = new System.Drawing.Point(4, 22);
             this.tabTag5.Name = "tabTag5";
             this.tabTag5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTag5.Size = new System.Drawing.Size(752, 127);
+            this.tabTag5.Size = new System.Drawing.Size(752, 111);
             this.tabTag5.TabIndex = 6;
             this.tabTag5.Text = "Tag 5";
             this.tabTag5.UseVisualStyleBackColor = true;
@@ -351,7 +353,7 @@
             this.uContrLuogoTag5.Location = new System.Drawing.Point(3, 3);
             this.uContrLuogoTag5.Name = "uContrLuogoTag5";
             this.uContrLuogoTag5.NomeControllo = "Luogo";
-            this.uContrLuogoTag5.Size = new System.Drawing.Size(746, 121);
+            this.uContrLuogoTag5.Size = new System.Drawing.Size(746, 105);
             this.uContrLuogoTag5.TabIndex = 0;
             // 
             // splitContainer1A2B3B4
@@ -374,8 +376,10 @@
             // 
             // groupBoxComandi
             // 
-            this.groupBoxComandi.Controls.Add(this.butAssegna);
-            this.groupBoxComandi.Controls.Add(this.button1);
+            this.groupBoxComandi.Controls.Add(this.butNOK);
+            this.groupBoxComandi.Controls.Add(this.butOK);
+            this.groupBoxComandi.Controls.Add(this.butEstesa);
+            this.groupBoxComandi.Controls.Add(this.butRicarica);
             this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
             this.groupBoxComandi.Name = "groupBoxComandi";
@@ -384,25 +388,45 @@
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
-            // butAssegna
+            // butNOK
             // 
-            this.butAssegna.Location = new System.Drawing.Point(129, 19);
-            this.butAssegna.Name = "butAssegna";
-            this.butAssegna.Size = new System.Drawing.Size(75, 23);
-            this.butAssegna.TabIndex = 1;
-            this.butAssegna.Text = "Assegna";
-            this.butAssegna.UseVisualStyleBackColor = true;
-            this.butAssegna.Click += new System.EventHandler(this.butAssegna_Click);
+            this.butNOK.Location = new System.Drawing.Point(678, 19);
+            this.butNOK.Name = "butNOK";
+            this.butNOK.Size = new System.Drawing.Size(75, 23);
+            this.butNOK.TabIndex = 3;
+            this.butNOK.Text = "NOK";
+            this.butNOK.UseVisualStyleBackColor = true;
+            this.butNOK.Click += new System.EventHandler(this.butNOK_Click);
             // 
-            // button1
+            // butOK
             // 
-            this.button1.Location = new System.Drawing.Point(12, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.butOK.Location = new System.Drawing.Point(597, 19);
+            this.butOK.Name = "butOK";
+            this.butOK.Size = new System.Drawing.Size(75, 23);
+            this.butOK.TabIndex = 2;
+            this.butOK.Text = "OK";
+            this.butOK.UseVisualStyleBackColor = true;
+            this.butOK.Click += new System.EventHandler(this.butOK_Click);
+            // 
+            // butEstesa
+            // 
+            this.butEstesa.Location = new System.Drawing.Point(129, 19);
+            this.butEstesa.Name = "butEstesa";
+            this.butEstesa.Size = new System.Drawing.Size(75, 23);
+            this.butEstesa.TabIndex = 1;
+            this.butEstesa.Text = "Estesa";
+            this.butEstesa.UseVisualStyleBackColor = true;
+            this.butEstesa.Click += new System.EventHandler(this.butAssegna_Click);
+            // 
+            // butRicarica
+            // 
+            this.butRicarica.Location = new System.Drawing.Point(12, 19);
+            this.butRicarica.Name = "butRicarica";
+            this.butRicarica.Size = new System.Drawing.Size(75, 23);
+            this.butRicarica.TabIndex = 0;
+            this.butRicarica.Text = "butRicarica";
+            this.butRicarica.UseVisualStyleBackColor = true;
+            this.butRicarica.Click += new System.EventHandler(this.butRicarica_Click);
             // 
             // groupBoxOutput
             // 
@@ -442,6 +466,8 @@
             this.treeViewIdentita.Name = "treeViewIdentita";
             this.treeViewIdentita.Size = new System.Drawing.Size(314, 542);
             this.treeViewIdentita.TabIndex = 0;
+            this.treeViewIdentita.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseClick);
+            this.treeViewIdentita.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseDoubleClick);
             // 
             // FormLuogo
             // 
@@ -516,8 +542,10 @@
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private System.Windows.Forms.SplitContainer splitContainer1A2B3B4;
         private System.Windows.Forms.GroupBox groupBoxComandi;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button butRicarica;
         private System.Windows.Forms.TreeView treeViewIdentita;
-        private System.Windows.Forms.Button butAssegna;
+        private System.Windows.Forms.Button butEstesa;
+        private System.Windows.Forms.Button butNOK;
+        private System.Windows.Forms.Button butOK;
     }
 }

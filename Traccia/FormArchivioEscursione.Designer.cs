@@ -57,6 +57,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butLuogo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -109,7 +110,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(21, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Sigla";
             // 
@@ -339,6 +340,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butLuogo);
             this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
             this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
             this.groupBoxComandi.Controls.Add(this.butCrea);
@@ -355,7 +357,7 @@
             // 
             // butModificaTraccia
             // 
-            this.butModificaTraccia.Location = new System.Drawing.Point(343, 19);
+            this.butModificaTraccia.Location = new System.Drawing.Point(657, 18);
             this.butModificaTraccia.Name = "butModificaTraccia";
             this.butModificaTraccia.Size = new System.Drawing.Size(111, 23);
             this.butModificaTraccia.TabIndex = 14;
@@ -365,7 +367,7 @@
             // 
             // butArchiviaTraccia
             // 
-            this.butArchiviaTraccia.Location = new System.Drawing.Point(564, 18);
+            this.butArchiviaTraccia.Location = new System.Drawing.Point(540, 18);
             this.butArchiviaTraccia.Name = "butArchiviaTraccia";
             this.butArchiviaTraccia.Size = new System.Drawing.Size(111, 23);
             this.butArchiviaTraccia.TabIndex = 13;
@@ -375,19 +377,19 @@
             // 
             // butCrea
             // 
-            this.butCrea.Location = new System.Drawing.Point(10, 18);
+            this.butCrea.Location = new System.Drawing.Point(5, 18);
             this.butCrea.Name = "butCrea";
-            this.butCrea.Size = new System.Drawing.Size(138, 23);
+            this.butCrea.Size = new System.Drawing.Size(111, 23);
             this.butCrea.TabIndex = 12;
-            this.butCrea.Text = "Crea Archivio Escursione";
+            this.butCrea.Text = "Crea Escursione";
             this.butCrea.UseVisualStyleBackColor = true;
             this.butCrea.Click += new System.EventHandler(this.butCrea_Click);
             // 
             // butAggiorna
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(176, 18);
+            this.butAggiorna.Location = new System.Drawing.Point(423, 18);
             this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
+            this.butAggiorna.Size = new System.Drawing.Size(111, 23);
             this.butAggiorna.TabIndex = 11;
             this.butAggiorna.Text = "Aggiorna";
             this.butAggiorna.UseVisualStyleBackColor = true;
@@ -415,6 +417,16 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(792, 193);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // butLuogo
+            // 
+            this.butLuogo.Location = new System.Drawing.Point(261, 18);
+            this.butLuogo.Name = "butLuogo";
+            this.butLuogo.Size = new System.Drawing.Size(111, 23);
+            this.butLuogo.TabIndex = 15;
+            this.butLuogo.Text = "butLuogo";
+            this.butLuogo.UseVisualStyleBackColor = true;
+            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
             // 
             // FormArchivioEscursione
             // 
@@ -480,5 +492,6 @@
         private System.Windows.Forms.Button butModificaTraccia;
         private System.Windows.Forms.Button butExplorerEscursione;
         private System.Windows.Forms.Button butExplorerArea;
+        private System.Windows.Forms.Button butLuogo;
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeViewIdentita = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.butCaricaIdentita = new System.Windows.Forms.Button();
+            this.treeViewIdentita = new System.Windows.Forms.TreeView();
+            this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,6 +61,33 @@
             this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 0;
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.butCaricaIdentita);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.treeViewIdentita);
+            this.splitContainer2.Size = new System.Drawing.Size(800, 266);
+            this.splitContainer2.SplitterDistance = 266;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // butCaricaIdentita
+            // 
+            this.butCaricaIdentita.Location = new System.Drawing.Point(95, 111);
+            this.butCaricaIdentita.Name = "butCaricaIdentita";
+            this.butCaricaIdentita.Size = new System.Drawing.Size(75, 23);
+            this.butCaricaIdentita.TabIndex = 0;
+            this.butCaricaIdentita.Text = "Carica identità";
+            this.butCaricaIdentita.UseVisualStyleBackColor = true;
+            this.butCaricaIdentita.Click += new System.EventHandler(this.butCaricaIdentita_Click);
+            // 
             // treeViewIdentita
             // 
             this.treeViewIdentita.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,16 +99,6 @@
             this.treeViewIdentita.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseDoubleClick);
             this.treeViewIdentita.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewIdentita_MouseDoubleClick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(95, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // richTextBoxOutput
             // 
             this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -90,23 +107,6 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(800, 180);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.button1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.treeViewIdentita);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 266);
-            this.splitContainer2.SplitterDistance = 266;
-            this.splitContainer2.TabIndex = 0;
             // 
             // FormIdentita
             // 
@@ -131,7 +131,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button butCaricaIdentita;
         private System.Windows.Forms.TreeView treeViewIdentita;
         private System.Windows.Forms.RichTextBox richTextBoxOutput;
         private System.Windows.Forms.SplitContainer splitContainer2;

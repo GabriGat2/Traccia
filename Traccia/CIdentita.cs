@@ -100,6 +100,19 @@ namespace Traccia
             this.esitoCostruttore = GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
+        /// Azzera il contenuto dell'ientità
+        /// </summary>
+        public void Azzera()
+        {
+            foreach (var lIdentita in Gruppo)
+            {
+                lIdentita.Azzera();
+            }
+
+            Gruppo.Clear();
+            Tag.Clear();
+        }
+        /// <summary>
         /// Aggiunge i tags
         /// </summary>
         /// <param name="istruzione"></param>

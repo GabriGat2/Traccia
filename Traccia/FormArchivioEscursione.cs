@@ -379,6 +379,17 @@ namespace Traccia
             }
 
         }
-
+        /// <summary>
+        /// Selezione il lugo in cui si sviluppa l'escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butLuogo_Click(object sender, EventArgs e)
+        {
+           FormLuogo dlg = new FormLuogo(ref Traccia);
+           dlg.ShowDialog();
+           DialogResult esito = dlg.DialogResult;
+           ;
+        }
     }
 }
