@@ -238,15 +238,6 @@ namespace Traccia
         {
             // Crea l'archivio per un escursine
             CreaArchivioEscursione();
-
-            //// Crea l'archivio per un escursine
-            //msg.Stampa("Genera l'archivio: " + Escursione.Nome);
-
-            //GstErrori.EErrore esito = CreaArchivioEscursione();
-
-            //msg.Stampa("La generazione dell'archivio: " + Escursione.Nome);
-            //msg.StampaConEsito(" è stata  eseguita", " è FALLITA!", esito, false);
-
         }
         private GstErrori.EErrore CreaArchivioEscursione()
         {
@@ -286,6 +277,7 @@ namespace Traccia
 
             // disabilita il bottone crea l'escursione 
             butCrea.Enabled = false;
+            butEscurzioneTraccia.Enabled = false;
 
             // abilita il bottone nuova traccia 
             butArchiviaTraccia.Enabled = true;
