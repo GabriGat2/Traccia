@@ -100,36 +100,38 @@ namespace Traccia
             AbilitazioneAggiornamentoTraccia = !tracciaEsiste;
 
             // Propone il nome della traccia
-            string nome1;
-            string mezzo1;
-            if (tracciaEsiste)
-            {
-                nome1 = Traccia.Nome;
-                mezzo1 = Traccia.Mezzo;
-            }
-            else
-            {
-                nome1 = Traccia.Escursione.Nome;
-                mezzo1 = "";
-            }
+            textBoxNome.Text = NomeTracciaProposto(tracciaEsiste);
 
-            string[] campiMezzo1 = mezzo1.Trim().Split('_');
-            int delta = 0;
-            if (campiMezzo1.Length > 0)
-                if ((campiMezzo1[0] == "Cammino") || (campiMezzo1[0] == ""))
-                    delta = 0;
-                else
-                    delta = 1;
+            //string nome1;
+            //string mezzo1;
+            //if (tracciaEsiste)
+            //{
+            //    nome1 = Traccia.Nome;
+            //    mezzo1 = Traccia.Mezzo;
+            //}
+            //else
+            //{
+            //    nome1 = Traccia.Escursione.Nome;
+            //    mezzo1 = "";
+            //}
 
-            string[] campiNome = nome1.Trim().Split('_');
-            if (campiNome.Length > 2)
-            {
-                textBoxNome.Text = campiNome[2];
-                for (int i = 3; i < (campiNome.Length - delta); i++)
-                {
-                    textBoxNome.Text += "_" + campiNome[i];
-                }
-            }
+            //string[] campiMezzo1 = mezzo1.Trim().Split('_');
+            //int delta = 0;
+            //if (campiMezzo1.Length > 0)
+            //    if ((campiMezzo1[0] == "Cammino") || (campiMezzo1[0] == ""))
+            //        delta = 0;
+            //    else
+            //        delta = 1;
+
+            //string[] campiNome = nome1.Trim().Split('_');
+            //if (campiNome.Length > 2)
+            //{
+            //    textBoxNome.Text = campiNome[2];
+            //    for (int i = 3; i < (campiNome.Length - delta); i++)
+            //    {
+            //        textBoxNome.Text += "_" + campiNome[i];
+            //    }
+            //}
 
             // aggiorna i campi luogo
             if (!tracciaEsiste)
@@ -192,6 +194,53 @@ namespace Traccia
                                                 dateTimePicker1.Value.Month,
                                                 dateTimePicker1.Value.Day,
                                                 23, 59, 59);
+        }
+        /// <summary>
+        /// Propone il nome della traccia
+        /// </summary>
+        /// <param name="esiste"></param>
+        /// <returns></returns>
+        private string NomeTracciaProposto(bool tracciaEsiste)
+        {
+            // Propone il nome della traccia
+            string nome1;
+            string mezzo1;
+
+
+            // Seleziona il nome in funzione dell'esistenza della traccia
+            if (tracciaEsiste)
+            {
+                nome1 = Traccia.Nome;
+                mezzo1 = Traccia.Mezzo;
+            }
+            else
+            {
+                nome1 = Traccia.Escursione.Nome;
+                mezzo1 = "";
+            }
+
+            // scompone il nome della traccia
+            string[] campiMezzo1 = mezzo1.Trim().Split('_');
+            int delta = 0;
+            if (campiMezzo1.Length > 0)
+                if ((campiMezzo1[0] == "Cammino") || (campiMezzo1[0] == ""))
+                    delta = 0;
+                else
+                    delta = 1;
+
+            // ricompone il nome della traccia escludendo data, prefisso ed eventuale mezzo
+            string nomeProposto = string.Empty;
+            string[] campiNome = nome1.Trim().Split('_');
+            if (campiNome.Length > 2)
+            {
+                nomeProposto = campiNome[2];
+                for (int i = 3; i < (campiNome.Length - delta); i++)
+                {
+                    nomeProposto += "_" + campiNome[i];
+                }
+            }
+
+            return nomeProposto;
         }
         /// <summary>
         /// Aggiorna le caselle con la nuova traccia
@@ -747,7 +796,7 @@ namespace Traccia
             PrenotaCreaTraccia = false;
 
             // Assegna il nome dell'escursione
-            textBoxNome.Text = Traccia.Escursione.Nome;
+            textBoxNome.Text = NomeTracciaProposto(false);
 
             // Disabilita le opzioni
             Traccia.OptSingola = false;
@@ -801,7 +850,7 @@ namespace Traccia
 
                     // Analizza la lettera estratta
                     if (campiData.Length >= 3)
-                        if (campiData[3].ElementAt(0) > lettera)
+                        if (campiData[3].ElementAt(0) >= lettera)
                             lettera = (char) (campiData[3].ElementAt(0) + 1);
                 }
             }

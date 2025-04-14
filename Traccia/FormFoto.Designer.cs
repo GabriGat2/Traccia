@@ -38,9 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1B2 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTipoFoto = new System.Windows.Forms.GroupBox();
-            this.ucFotoRaw = new Traccia.UserControlFoto();
-            this.ucFotoHeic = new Traccia.UserControlFoto();
-            this.ucFotoJpeg = new Traccia.UserControlFoto();
             this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
             this.butAnnullaCopia = new System.Windows.Forms.Button();
@@ -51,6 +48,10 @@
             this.butSelezione = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butAggiorna = new System.Windows.Forms.Button();
+            this.ucFotoRaw = new Traccia.UserControlFoto();
+            this.ucFotoHeic = new Traccia.UserControlFoto();
+            this.ucFotoJpeg = new Traccia.UserControlFoto();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -186,48 +187,6 @@
             this.groupBoxTipoFoto.TabStop = false;
             this.groupBoxTipoFoto.Text = "Tipo foto";
             // 
-            // ucFotoRaw
-            // 
-            this.ucFotoRaw.Abilita = false;
-            this.ucFotoRaw.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucFotoRaw.Location = new System.Drawing.Point(3, 146);
-            this.ucFotoRaw.Name = "ucFotoRaw";
-            this.ucFotoRaw.Nome = "TipoFoto";
-            this.ucFotoRaw.PathAssegnati = "";
-            this.ucFotoRaw.PathCopiati = "";
-            this.ucFotoRaw.PathDisponibili = "";
-            this.ucFotoRaw.PathSelezionati = "";
-            this.ucFotoRaw.Size = new System.Drawing.Size(794, 65);
-            this.ucFotoRaw.TabIndex = 8;
-            // 
-            // ucFotoHeic
-            // 
-            this.ucFotoHeic.Abilita = false;
-            this.ucFotoHeic.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucFotoHeic.Location = new System.Drawing.Point(3, 81);
-            this.ucFotoHeic.Name = "ucFotoHeic";
-            this.ucFotoHeic.Nome = "TipoFoto";
-            this.ucFotoHeic.PathAssegnati = "";
-            this.ucFotoHeic.PathCopiati = "";
-            this.ucFotoHeic.PathDisponibili = "";
-            this.ucFotoHeic.PathSelezionati = "";
-            this.ucFotoHeic.Size = new System.Drawing.Size(794, 65);
-            this.ucFotoHeic.TabIndex = 7;
-            // 
-            // ucFotoJpeg
-            // 
-            this.ucFotoJpeg.Abilita = false;
-            this.ucFotoJpeg.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucFotoJpeg.Location = new System.Drawing.Point(3, 16);
-            this.ucFotoJpeg.Name = "ucFotoJpeg";
-            this.ucFotoJpeg.Nome = "TipoFoto";
-            this.ucFotoJpeg.PathAssegnati = "";
-            this.ucFotoJpeg.PathCopiati = "";
-            this.ucFotoJpeg.PathDisponibili = "";
-            this.ucFotoJpeg.PathSelezionati = "";
-            this.ucFotoJpeg.Size = new System.Drawing.Size(794, 65);
-            this.ucFotoJpeg.TabIndex = 6;
-            // 
             // splitContainer1B2B3
             // 
             this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -248,6 +207,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butAggiorna);
             this.groupBoxComandi.Controls.Add(this.butAnnullaCopia);
             this.groupBoxComandi.Controls.Add(this.butCopia);
             this.groupBoxComandi.Controls.Add(this.butAnnullaAssegna);
@@ -270,6 +230,7 @@
             this.butAnnullaCopia.TabIndex = 5;
             this.butAnnullaCopia.Text = "Annulla Copia";
             this.butAnnullaCopia.UseVisualStyleBackColor = true;
+            this.butAnnullaCopia.Visible = false;
             this.butAnnullaCopia.Click += new System.EventHandler(this.butAnnullaCopia_Click);
             // 
             // butCopia
@@ -280,11 +241,12 @@
             this.butCopia.TabIndex = 4;
             this.butCopia.Text = "Copia";
             this.butCopia.UseVisualStyleBackColor = true;
+            this.butCopia.Visible = false;
             this.butCopia.Click += new System.EventHandler(this.butCopia_Click);
             // 
             // butAnnullaAssegna
             // 
-            this.butAnnullaAssegna.Location = new System.Drawing.Point(395, 29);
+            this.butAnnullaAssegna.Location = new System.Drawing.Point(355, 29);
             this.butAnnullaAssegna.Name = "butAnnullaAssegna";
             this.butAnnullaAssegna.Size = new System.Drawing.Size(100, 23);
             this.butAnnullaAssegna.TabIndex = 3;
@@ -294,7 +256,7 @@
             // 
             // ButAssegna
             // 
-            this.ButAssegna.Location = new System.Drawing.Point(289, 29);
+            this.ButAssegna.Location = new System.Drawing.Point(249, 29);
             this.ButAssegna.Name = "ButAssegna";
             this.ButAssegna.Size = new System.Drawing.Size(100, 23);
             this.ButAssegna.TabIndex = 2;
@@ -341,6 +303,58 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(794, 89);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
+            // 
+            // butAggiorna
+            // 
+            this.butAggiorna.Location = new System.Drawing.Point(483, 29);
+            this.butAggiorna.Name = "butAggiorna";
+            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
+            this.butAggiorna.TabIndex = 6;
+            this.butAggiorna.Text = "Aggiorna";
+            this.butAggiorna.UseVisualStyleBackColor = true;
+            this.butAggiorna.Click += new System.EventHandler(this.butAggiorna_Click);
+            // 
+            // ucFotoRaw
+            // 
+            this.ucFotoRaw.Abilita = false;
+            this.ucFotoRaw.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoRaw.Location = new System.Drawing.Point(3, 146);
+            this.ucFotoRaw.Name = "ucFotoRaw";
+            this.ucFotoRaw.Nome = "TipoFoto";
+            this.ucFotoRaw.PathAssegnati = "";
+            this.ucFotoRaw.PathCopiati = "";
+            this.ucFotoRaw.PathDisponibili = "";
+            this.ucFotoRaw.PathSelezionati = "";
+            this.ucFotoRaw.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoRaw.TabIndex = 8;
+            // 
+            // ucFotoHeic
+            // 
+            this.ucFotoHeic.Abilita = false;
+            this.ucFotoHeic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoHeic.Location = new System.Drawing.Point(3, 81);
+            this.ucFotoHeic.Name = "ucFotoHeic";
+            this.ucFotoHeic.Nome = "TipoFoto";
+            this.ucFotoHeic.PathAssegnati = "";
+            this.ucFotoHeic.PathCopiati = "";
+            this.ucFotoHeic.PathDisponibili = "";
+            this.ucFotoHeic.PathSelezionati = "";
+            this.ucFotoHeic.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoHeic.TabIndex = 7;
+            // 
+            // ucFotoJpeg
+            // 
+            this.ucFotoJpeg.Abilita = false;
+            this.ucFotoJpeg.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucFotoJpeg.Location = new System.Drawing.Point(3, 16);
+            this.ucFotoJpeg.Name = "ucFotoJpeg";
+            this.ucFotoJpeg.Nome = "TipoFoto";
+            this.ucFotoJpeg.PathAssegnati = "";
+            this.ucFotoJpeg.PathCopiati = "";
+            this.ucFotoJpeg.PathDisponibili = "";
+            this.ucFotoJpeg.PathSelezionati = "";
+            this.ucFotoJpeg.Size = new System.Drawing.Size(794, 65);
+            this.ucFotoJpeg.TabIndex = 6;
             // 
             // FormFoto
             // 
@@ -396,5 +410,6 @@
         private System.Windows.Forms.Button butAnnullaAssegna;
         private System.Windows.Forms.Button butCopia;
         private System.Windows.Forms.Button butAnnullaCopia;
+        private System.Windows.Forms.Button butAggiorna;
     }
 }

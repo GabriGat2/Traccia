@@ -305,6 +305,7 @@ namespace Traccia
                 DateTime dataUltimoAccesso = File.GetLastAccessTime(srcFile);
                 // Estrae la data di ultimo accesso
                 DateTime dataUltimaScritta = File.GetLastWriteTime(srcFile);
+                DateTime dataUltimaScrittaUTC = File.GetLastWriteTimeUtc(srcFile);
 
                 // verifica se la data del file è successiva alla data di inizio
                 int resultInizio = DataInizioRicerca.CompareTo(dataUltimaScritta);
@@ -859,6 +860,16 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
 
+        }
+        /// <summary>
+        /// Aggiorna i contatori
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAggiorna_Click(object sender, EventArgs e)
+        {
+            // Agggiorna contatori
+            AggiornaContatori();
         }
     }
 }
