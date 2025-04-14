@@ -237,18 +237,33 @@ namespace Traccia
         private void butCrea_Click(object sender, EventArgs e)
         {
             // Crea l'archivio per un escursine
+            CreaArchivioEscursione();
+
+            //// Crea l'archivio per un escursine
+            //msg.Stampa("Genera l'archivio: " + Escursione.Nome);
+
+            //GstErrori.EErrore esito = CreaArchivioEscursione();
+
+            //msg.Stampa("La generazione dell'archivio: " + Escursione.Nome);
+            //msg.StampaConEsito(" è stata  eseguita", " è FALLITA!", esito, false);
+
+        }
+        private GstErrori.EErrore CreaArchivioEscursione()
+        {
+            // Crea l'archivio per un escursine
             msg.Stampa("Genera l'archivio: " + Escursione.Nome);
 
-            GstErrori.EErrore esito = CreaArchivioEscursione();
+            GstErrori.EErrore esito = CreaArchivioEscursione2();
 
             msg.Stampa("La generazione dell'archivio: " + Escursione.Nome);
             msg.StampaConEsito(" è stata  eseguita", " è FALLITA!", esito, false);
 
+            return esito;
         }
         /// <summary>
         /// Crea archivo dell'escursione
         /// </summary>
-        private GstErrori.EErrore CreaArchivioEscursione()
+        private GstErrori.EErrore CreaArchivioEscursione2()
         {
             GstErrori.EErrore esito;
 
@@ -467,6 +482,32 @@ namespace Traccia
             }
 
             return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Crea Escursione e traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butEscurzioneTraccia_Click(object sender, EventArgs e)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // Crea l'archivio per un escursine
+            esito = CreaArchivioEscursione();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return;
+
+            // verifica l'esistenza dell'Escursione
+            if (!Escursione.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1312_PathEscursioneErrato, Escursione.Path);
+                return;
+            }
+
+            // Attiva la dialog della traccia
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false, true);
+            dlg.ShowDialog();
+
         }
     }
 }

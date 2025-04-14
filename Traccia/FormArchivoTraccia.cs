@@ -32,16 +32,23 @@ namespace Traccia
         /// </summary>
         private bool AbilitazioneAggiornamentoTraccia;
         /// <summary>
+        /// Prenota la creazione automatica della traccia
+        /// </summary>
+        private bool PrenotaCreaTraccia = false;
+        /// <summary>
         /// Costruttore
         /// </summary>
         /// <param name="traccia"></param>
-        public FormArchivoTraccia(ref CArchivioTraccia traccia, bool modifica)
+        public FormArchivoTraccia(ref CArchivioTraccia traccia, bool modifica, bool crea = false)
         {
             // Assegna Archivio traccia
             Traccia = traccia;
 
             InitializeComponent();
             InizializzaClasse(modifica);
+
+            // prenota creazione traccia
+            PrenotaCreaTraccia = crea;
         }
         /// <summary>
         /// Inizilizzazione della classe
@@ -271,7 +278,10 @@ namespace Traccia
             // recupera il valore del mezzzo
             string mezzo = comboBoxMezzo.Text;
             string[] campiMezzo = mezzo.Trim().Split('_');
-           
+
+            // assegna il mezzo
+            Traccia.Mezzo = mezzo;
+
             // compone il nome dell'Archivio
             string nArchivio = nData + '-' + lettera + '_' + nPrefisso + '_' + nNome;
             if (campiMezzo.Length > 0)
@@ -334,20 +344,36 @@ namespace Traccia
         }
         private void butCreaTraccia_Click(object sender, EventArgs e)
         {
-            msg.Stampa("Genera l'archivio: " + Traccia.Nome);
-            
             // Crea la traccia
-            GstErrori.EErrore esito = CreaTraccia();
+            CreaTraccia();
+
+
+            //msg.Stampa("Genera l'archivio: " + Traccia.Nome);
+
+            //// Crea la traccia
+            //GstErrori.EErrore esito = CreaTraccia2();
+
+            //msg.Stampa("La generazione dell'archivio: " + Traccia.Nome);
+            //msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
+
+        }
+        private GstErrori.EErrore CreaTraccia()
+        {
+            msg.Stampa("Genera l'archivio: " + Traccia.Nome);
+
+            // Crea la traccia
+            GstErrori.EErrore esito = CreaTraccia2();
 
             msg.Stampa("La generazione dell'archivio: " + Traccia.Nome);
             msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
 
+            return esito;
         }
         /// <summary>
         /// Crea la traccia
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore CreaTraccia()
+        private GstErrori.EErrore CreaTraccia2()
         {
             GstErrori.EErrore esito;
 
@@ -683,5 +709,44 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
 
+        private void FormArchivoTraccia_Load(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private void FormArchivoTraccia_Activated(object sender, EventArgs e)
+        {
+            // controlla se è richiesta la creazione automatica swlla traccia
+            if (!PrenotaCreaTraccia)
+                return;
+            PrenotaCreaTraccia = false;
+
+            // Assegna il nome dell'escursione
+            textBoxNome.Text = Traccia.Escursione.Nome;
+
+            // Disabilita le opzioni
+            Traccia.OptSingola = false;
+            Traccia.OptGiorno = false;
+
+            checkBoxGiorno.Checked = Traccia.OptGiorno;
+            checkBoxSingola.Checked = Traccia.OptSingola;
+
+            // Assegna il luogo dell'escursione
+            Traccia.Luogo = Traccia.Escursione.Luogo;
+            Traccia.LuogoID = Traccia.Escursione.LuogoID;
+
+            textBoxLuogo.Text = Traccia.Luogo;
+            textBoxLuogoID.Text = Traccia.LuogoID;
+
+            // Aggiorna il nome della traccia
+            AggiornaNomeTraccia();
+
+
+            // Crea la traccia
+            CreaTraccia();
+
+
+            ;
+        }
     }
 }

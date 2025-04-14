@@ -58,14 +58,22 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Label5 = new System.Windows.Forms.Label();
             this.textBoxArchivio = new System.Windows.Forms.TextBox();
+            this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1B2B3B4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxTool = new System.Windows.Forms.GroupBox();
             this.buttonInternetTool = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxLink = new System.Windows.Forms.TextBox();
+            this.splitContainer1B2B3B4B5 = new System.Windows.Forms.SplitContainer();
+            this.groupBoxLuogo = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxLuogo = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxLuogoID = new System.Windows.Forms.TextBox();
+            this.splitContainer1B2B3B4B5B6 = new System.Windows.Forms.SplitContainer();
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
-            this.splitContainer1B2B3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butLuogo = new System.Windows.Forms.Button();
             this.butModificaTraccia = new System.Windows.Forms.Button();
             this.butNavigatore = new System.Windows.Forms.Button();
             this.butFoto = new System.Windows.Forms.Button();
@@ -74,14 +82,6 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.splitContainer1B2B3B4B5 = new System.Windows.Forms.SplitContainer();
-            this.groupBoxLuogo = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxLuogo = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxLuogoID = new System.Windows.Forms.TextBox();
-            this.splitContainer1B2B3B4B5B6 = new System.Windows.Forms.SplitContainer();
-            this.butLuogo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -92,18 +92,15 @@
             this.splitContainer1B2.Panel2.SuspendLayout();
             this.splitContainer1B2.SuspendLayout();
             this.groupBoxTraccia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).BeginInit();
+            this.splitContainer1B2B3.Panel1.SuspendLayout();
+            this.splitContainer1B2B3.Panel2.SuspendLayout();
+            this.splitContainer1B2B3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4)).BeginInit();
             this.splitContainer1B2B3B4.Panel1.SuspendLayout();
             this.splitContainer1B2B3B4.Panel2.SuspendLayout();
             this.splitContainer1B2B3B4.SuspendLayout();
             this.groupBoxTool.SuspendLayout();
-            this.groupBoxDescrizione.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).BeginInit();
-            this.splitContainer1B2B3.Panel1.SuspendLayout();
-            this.splitContainer1B2B3.Panel2.SuspendLayout();
-            this.splitContainer1B2B3.SuspendLayout();
-            this.groupBoxComandi.SuspendLayout();
-            this.groupBoxOutput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4B5)).BeginInit();
             this.splitContainer1B2B3B4B5.Panel1.SuspendLayout();
             this.splitContainer1B2B3B4B5.Panel2.SuspendLayout();
@@ -113,6 +110,9 @@
             this.splitContainer1B2B3B4B5B6.Panel1.SuspendLayout();
             this.splitContainer1B2B3B4B5B6.Panel2.SuspendLayout();
             this.splitContainer1B2B3B4B5B6.SuspendLayout();
+            this.groupBoxDescrizione.SuspendLayout();
+            this.groupBoxComandi.SuspendLayout();
+            this.groupBoxOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxPathEscursione
@@ -439,6 +439,26 @@
             this.textBoxArchivio.Size = new System.Drawing.Size(627, 20);
             this.textBoxArchivio.TabIndex = 10;
             // 
+            // splitContainer1B2B3
+            // 
+            this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1B2B3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1B2B3.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1B2B3.Name = "splitContainer1B2B3";
+            this.splitContainer1B2B3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1B2B3.Panel1
+            // 
+            this.splitContainer1B2B3.Panel1.Controls.Add(this.splitContainer1B2B3B4);
+            // 
+            // splitContainer1B2B3.Panel2
+            // 
+            this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1B2B3.Size = new System.Drawing.Size(796, 418);
+            this.splitContainer1B2B3.SplitterDistance = 270;
+            this.splitContainer1B2B3.SplitterWidth = 3;
+            this.splitContainer1B2B3.TabIndex = 0;
+            // 
             // splitContainer1B2B3B4
             // 
             this.splitContainer1B2B3B4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -496,139 +516,6 @@
             this.textBoxLink.Name = "textBoxLink";
             this.textBoxLink.Size = new System.Drawing.Size(627, 20);
             this.textBoxLink.TabIndex = 21;
-            // 
-            // groupBoxDescrizione
-            // 
-            this.groupBoxDescrizione.Controls.Add(this.richTextDescrizione);
-            this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxDescrizione.Name = "groupBoxDescrizione";
-            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 93);
-            this.groupBoxDescrizione.TabIndex = 0;
-            this.groupBoxDescrizione.TabStop = false;
-            this.groupBoxDescrizione.Text = "Descrizione";
-            // 
-            // splitContainer1B2B3
-            // 
-            this.splitContainer1B2B3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1B2B3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1B2B3.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer1B2B3.Name = "splitContainer1B2B3";
-            this.splitContainer1B2B3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1B2B3.Panel1
-            // 
-            this.splitContainer1B2B3.Panel1.Controls.Add(this.splitContainer1B2B3B4);
-            // 
-            // splitContainer1B2B3.Panel2
-            // 
-            this.splitContainer1B2B3.Panel2.Controls.Add(this.groupBoxOutput);
-            this.splitContainer1B2B3.Size = new System.Drawing.Size(796, 418);
-            this.splitContainer1B2B3.SplitterDistance = 270;
-            this.splitContainer1B2B3.SplitterWidth = 3;
-            this.splitContainer1B2B3.TabIndex = 0;
-            // 
-            // groupBoxComandi
-            // 
-            this.groupBoxComandi.Controls.Add(this.butLuogo);
-            this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
-            this.groupBoxComandi.Controls.Add(this.butNavigatore);
-            this.groupBoxComandi.Controls.Add(this.butFoto);
-            this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
-            this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
-            this.groupBoxComandi.Controls.Add(this.butAggiorna);
-            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxComandi.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBoxComandi.Name = "groupBoxComandi";
-            this.groupBoxComandi.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxComandi.Size = new System.Drawing.Size(796, 51);
-            this.groupBoxComandi.TabIndex = 0;
-            this.groupBoxComandi.TabStop = false;
-            this.groupBoxComandi.Text = "Comandi";
-            // 
-            // butModificaTraccia
-            // 
-            this.butModificaTraccia.Location = new System.Drawing.Point(219, 18);
-            this.butModificaTraccia.Name = "butModificaTraccia";
-            this.butModificaTraccia.Size = new System.Drawing.Size(101, 23);
-            this.butModificaTraccia.TabIndex = 16;
-            this.butModificaTraccia.Text = "Modifica Traccia";
-            this.butModificaTraccia.UseVisualStyleBackColor = true;
-            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
-            // 
-            // butNavigatore
-            // 
-            this.butNavigatore.Location = new System.Drawing.Point(583, 18);
-            this.butNavigatore.Name = "butNavigatore";
-            this.butNavigatore.Size = new System.Drawing.Size(101, 23);
-            this.butNavigatore.TabIndex = 15;
-            this.butNavigatore.Text = "Navigatore";
-            this.butNavigatore.UseVisualStyleBackColor = true;
-            this.butNavigatore.Click += new System.EventHandler(this.butNavigatore_Click);
-            // 
-            // butFoto
-            // 
-            this.butFoto.Location = new System.Drawing.Point(476, 18);
-            this.butFoto.Name = "butFoto";
-            this.butFoto.Size = new System.Drawing.Size(101, 23);
-            this.butFoto.TabIndex = 14;
-            this.butFoto.Text = "Foto";
-            this.butFoto.UseVisualStyleBackColor = true;
-            this.butFoto.Click += new System.EventHandler(this.butFoto_Click);
-            // 
-            // butCreaTraccia
-            // 
-            this.butCreaTraccia.Location = new System.Drawing.Point(5, 18);
-            this.butCreaTraccia.Name = "butCreaTraccia";
-            this.butCreaTraccia.Size = new System.Drawing.Size(101, 23);
-            this.butCreaTraccia.TabIndex = 13;
-            this.butCreaTraccia.Text = "Crea Traccia";
-            this.butCreaTraccia.UseVisualStyleBackColor = true;
-            this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
-            // 
-            // butNuovaTraccia
-            // 
-            this.butNuovaTraccia.Location = new System.Drawing.Point(112, 18);
-            this.butNuovaTraccia.Name = "butNuovaTraccia";
-            this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);
-            this.butNuovaTraccia.TabIndex = 12;
-            this.butNuovaTraccia.Text = "Nuova Traccia";
-            this.butNuovaTraccia.UseVisualStyleBackColor = true;
-            this.butNuovaTraccia.Click += new System.EventHandler(this.butNuovaTraccia_Click);
-            // 
-            // butAggiorna
-            // 
-            this.butAggiorna.Location = new System.Drawing.Point(690, 18);
-            this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(101, 23);
-            this.butAggiorna.TabIndex = 11;
-            this.butAggiorna.Text = "Aggiorna";
-            this.butAggiorna.UseVisualStyleBackColor = true;
-            this.butAggiorna.Click += new System.EventHandler(this.butAggiorna_Click);
-            // 
-            // groupBoxOutput
-            // 
-            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
-            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxOutput.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxOutput.Size = new System.Drawing.Size(796, 145);
-            this.groupBoxOutput.TabIndex = 0;
-            this.groupBoxOutput.TabStop = false;
-            this.groupBoxOutput.Text = "Output";
-            // 
-            // richTextBoxOutput
-            // 
-            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxOutput.Location = new System.Drawing.Point(2, 15);
-            this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 128);
-            this.richTextBoxOutput.TabIndex = 0;
-            this.richTextBoxOutput.Text = "";
             // 
             // splitContainer1B2B3B4B5
             // 
@@ -714,6 +601,36 @@
             this.splitContainer1B2B3B4B5B6.SplitterDistance = 93;
             this.splitContainer1B2B3B4B5B6.TabIndex = 0;
             // 
+            // groupBoxDescrizione
+            // 
+            this.groupBoxDescrizione.Controls.Add(this.richTextDescrizione);
+            this.groupBoxDescrizione.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxDescrizione.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxDescrizione.Name = "groupBoxDescrizione";
+            this.groupBoxDescrizione.Size = new System.Drawing.Size(796, 93);
+            this.groupBoxDescrizione.TabIndex = 0;
+            this.groupBoxDescrizione.TabStop = false;
+            this.groupBoxDescrizione.Text = "Descrizione";
+            // 
+            // groupBoxComandi
+            // 
+            this.groupBoxComandi.Controls.Add(this.butLuogo);
+            this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
+            this.groupBoxComandi.Controls.Add(this.butNavigatore);
+            this.groupBoxComandi.Controls.Add(this.butFoto);
+            this.groupBoxComandi.Controls.Add(this.butCreaTraccia);
+            this.groupBoxComandi.Controls.Add(this.butNuovaTraccia);
+            this.groupBoxComandi.Controls.Add(this.butAggiorna);
+            this.groupBoxComandi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxComandi.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxComandi.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxComandi.Name = "groupBoxComandi";
+            this.groupBoxComandi.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxComandi.Size = new System.Drawing.Size(796, 51);
+            this.groupBoxComandi.TabIndex = 0;
+            this.groupBoxComandi.TabStop = false;
+            this.groupBoxComandi.Text = "Comandi";
+            // 
             // butLuogo
             // 
             this.butLuogo.Location = new System.Drawing.Point(369, 18);
@@ -724,6 +641,89 @@
             this.butLuogo.UseVisualStyleBackColor = true;
             this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
             // 
+            // butModificaTraccia
+            // 
+            this.butModificaTraccia.Location = new System.Drawing.Point(219, 18);
+            this.butModificaTraccia.Name = "butModificaTraccia";
+            this.butModificaTraccia.Size = new System.Drawing.Size(101, 23);
+            this.butModificaTraccia.TabIndex = 16;
+            this.butModificaTraccia.Text = "Modifica Traccia";
+            this.butModificaTraccia.UseVisualStyleBackColor = true;
+            this.butModificaTraccia.Click += new System.EventHandler(this.butModificaTraccia_Click);
+            // 
+            // butNavigatore
+            // 
+            this.butNavigatore.Location = new System.Drawing.Point(583, 18);
+            this.butNavigatore.Name = "butNavigatore";
+            this.butNavigatore.Size = new System.Drawing.Size(101, 23);
+            this.butNavigatore.TabIndex = 15;
+            this.butNavigatore.Text = "Navigatore";
+            this.butNavigatore.UseVisualStyleBackColor = true;
+            this.butNavigatore.Click += new System.EventHandler(this.butNavigatore_Click);
+            // 
+            // butFoto
+            // 
+            this.butFoto.Location = new System.Drawing.Point(476, 18);
+            this.butFoto.Name = "butFoto";
+            this.butFoto.Size = new System.Drawing.Size(101, 23);
+            this.butFoto.TabIndex = 14;
+            this.butFoto.Text = "Foto";
+            this.butFoto.UseVisualStyleBackColor = true;
+            this.butFoto.Click += new System.EventHandler(this.butFoto_Click);
+            // 
+            // butCreaTraccia
+            // 
+            this.butCreaTraccia.Location = new System.Drawing.Point(5, 18);
+            this.butCreaTraccia.Name = "butCreaTraccia";
+            this.butCreaTraccia.Size = new System.Drawing.Size(101, 23);
+            this.butCreaTraccia.TabIndex = 13;
+            this.butCreaTraccia.Text = "Crea Traccia";
+            this.butCreaTraccia.UseVisualStyleBackColor = true;
+            this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
+            // 
+            // butNuovaTraccia
+            // 
+            this.butNuovaTraccia.Location = new System.Drawing.Point(112, 18);
+            this.butNuovaTraccia.Name = "butNuovaTraccia";
+            this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);
+            this.butNuovaTraccia.TabIndex = 12;
+            this.butNuovaTraccia.Text = "Nuova Traccia";
+            this.butNuovaTraccia.UseVisualStyleBackColor = true;
+            this.butNuovaTraccia.Click += new System.EventHandler(this.butNuovaTraccia_Click);
+            // 
+            // butAggiorna
+            // 
+            this.butAggiorna.Location = new System.Drawing.Point(690, 18);
+            this.butAggiorna.Name = "butAggiorna";
+            this.butAggiorna.Size = new System.Drawing.Size(101, 23);
+            this.butAggiorna.TabIndex = 11;
+            this.butAggiorna.Text = "Aggiorna";
+            this.butAggiorna.UseVisualStyleBackColor = true;
+            this.butAggiorna.Click += new System.EventHandler(this.butAggiorna_Click);
+            // 
+            // groupBoxOutput
+            // 
+            this.groupBoxOutput.Controls.Add(this.richTextBoxOutput);
+            this.groupBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxOutput.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxOutput.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxOutput.Name = "groupBoxOutput";
+            this.groupBoxOutput.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxOutput.Size = new System.Drawing.Size(796, 145);
+            this.groupBoxOutput.TabIndex = 0;
+            this.groupBoxOutput.TabStop = false;
+            this.groupBoxOutput.Text = "Output";
+            // 
+            // richTextBoxOutput
+            // 
+            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxOutput.Location = new System.Drawing.Point(2, 15);
+            this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxOutput.Name = "richTextBoxOutput";
+            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 128);
+            this.richTextBoxOutput.TabIndex = 0;
+            this.richTextBoxOutput.Text = "";
+            // 
             // FormArchivoTraccia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -732,6 +732,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormArchivoTraccia";
             this.Text = "Archivio Traccia";
+            this.Activated += new System.EventHandler(this.FormArchivoTraccia_Activated);
+            this.Load += new System.EventHandler(this.FormArchivoTraccia_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -744,19 +746,16 @@
             this.splitContainer1B2.ResumeLayout(false);
             this.groupBoxTraccia.ResumeLayout(false);
             this.groupBoxTraccia.PerformLayout();
+            this.splitContainer1B2B3.Panel1.ResumeLayout(false);
+            this.splitContainer1B2B3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).EndInit();
+            this.splitContainer1B2B3.ResumeLayout(false);
             this.splitContainer1B2B3B4.Panel1.ResumeLayout(false);
             this.splitContainer1B2B3B4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4)).EndInit();
             this.splitContainer1B2B3B4.ResumeLayout(false);
             this.groupBoxTool.ResumeLayout(false);
             this.groupBoxTool.PerformLayout();
-            this.groupBoxDescrizione.ResumeLayout(false);
-            this.splitContainer1B2B3.Panel1.ResumeLayout(false);
-            this.splitContainer1B2B3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3)).EndInit();
-            this.splitContainer1B2B3.ResumeLayout(false);
-            this.groupBoxComandi.ResumeLayout(false);
-            this.groupBoxOutput.ResumeLayout(false);
             this.splitContainer1B2B3B4B5.Panel1.ResumeLayout(false);
             this.splitContainer1B2B3B4B5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4B5)).EndInit();
@@ -767,6 +766,9 @@
             this.splitContainer1B2B3B4B5B6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1B2B3B4B5B6)).EndInit();
             this.splitContainer1B2B3B4B5B6.ResumeLayout(false);
+            this.groupBoxDescrizione.ResumeLayout(false);
+            this.groupBoxComandi.ResumeLayout(false);
+            this.groupBoxOutput.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -62,6 +62,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butEscurzioneTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -382,6 +383,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butEscurzioneTraccia);
             this.groupBoxComandi.Controls.Add(this.butLuogo);
             this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
             this.groupBoxComandi.Controls.Add(this.butArchiviaTraccia);
@@ -399,7 +401,7 @@
             // 
             // butLuogo
             // 
-            this.butLuogo.Location = new System.Drawing.Point(261, 18);
+            this.butLuogo.Location = new System.Drawing.Point(306, 18);
             this.butLuogo.Name = "butLuogo";
             this.butLuogo.Size = new System.Drawing.Size(111, 23);
             this.butLuogo.TabIndex = 15;
@@ -470,6 +472,16 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
+            // butEscurzioneTraccia
+            // 
+            this.butEscurzioneTraccia.Location = new System.Drawing.Point(122, 18);
+            this.butEscurzioneTraccia.Name = "butEscurzioneTraccia";
+            this.butEscurzioneTraccia.Size = new System.Drawing.Size(111, 23);
+            this.butEscurzioneTraccia.TabIndex = 16;
+            this.butEscurzioneTraccia.Text = "Escursione+Traccia";
+            this.butEscurzioneTraccia.UseVisualStyleBackColor = true;
+            this.butEscurzioneTraccia.Click += new System.EventHandler(this.butEscurzioneTraccia_Click);
+            // 
             // FormArchivioEscursione
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,5 +551,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxLuogo;
+        private System.Windows.Forms.Button butEscurzioneTraccia;
     }
 }
