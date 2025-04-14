@@ -166,6 +166,9 @@ namespace Traccia
 
             bEsito = Escursione.Info.Traccia.Set("Mezzo", Mezzo);
 
+            bEsito = Escursione.Info.Traccia.Set("Luogo", Luogo);
+            bEsito = Escursione.Info.Traccia.Set("LuogoID", LuogoID);
+
             return bEsito;
         }
         /// <summary>
@@ -231,6 +234,9 @@ namespace Traccia
                 return esito;
 
             // Assegna i valori letti
+            Luogo = Escursione.Info.Traccia.Get("Luogo");
+            LuogoID = Escursione.Info.Traccia.Get("LuogoID");
+
             Mezzo = Escursione.Info.Traccia.Get("Mezzo");
 
             optGiorno = Convert.ToBoolean(Escursione.Info.Traccia.Get("OptGiorno"));
@@ -306,6 +312,36 @@ namespace Traccia
         {
             string fileInfo = GetPathInfo() + SeparaDir + Nome;
             return File.Exists(fileInfo);
+        }
+        /// <summary>
+        /// Scrive il file luogo
+        /// </summary>
+        /// <returns></returns>
+        public override GstErrori.EErrore ScriveFileLuogo()
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+
+            // compone il path del file luogo
+            string pathLuogo = Path + SeparaDir + Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info") + SeparaDir + "Luogo_" + Nome + ".txt";
+
+            try
+            {
+                // Apre lo il file da scrivere
+                StreamWriter sw = new StreamWriter(pathLuogo);
+
+                // stampa le informazioni dell'applicazione
+                esito = ScriveLuogo(ref Escursione.AreaArchivio.Identita, ref sw);
+
+                //Close the file
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return esito;
         }
 
     }

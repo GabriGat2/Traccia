@@ -252,7 +252,7 @@ namespace Traccia
         {
             GstErrori.EErrore esito;
 
-            // crea l'archivio della traccia 
+            // crea l'archivio dell'escursione
             esito = Escursione.CreaDirectoryArchivio();
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
@@ -261,7 +261,7 @@ namespace Traccia
             esito = Escursione.ScriveFileLuogo();
 
 
-            // disabilita l'aggiornamento del nome della traccia
+            // disabilita l'aggiornamento del nome dell'escursione'
             AbilitazioneAggiornamentoEscursione = false;
 
             // disabilita i campi di impostazione del nome
@@ -397,11 +397,46 @@ namespace Traccia
 
         }
         /// <summary>
-        /// Selezione il lugo in cui si sviluppa l'escursione
+        /// Selezione il luogo in cui si sviluppa l'escursione
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void butLuogo_Click(object sender, EventArgs e)
+        {
+            SelezionaLuogoEscursione();
+            //FormLuogo dlg = new FormLuogo(ref Traccia, Traccia.Escursione.LuogoID);
+            //dlg.ShowDialog();
+            //DialogResult esito = dlg.DialogResult;
+
+
+            //// Controlla se deve assegnare il luogo selezionato
+            //if ((esito == DialogResult.OK) && (!Escursione.StatoOk()))
+            //{
+            //    // Assegna prefisso 
+            //    textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
+
+            //    // assegna nome
+            //    string [] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
+            //    textBoxNome.Text = string.Empty;
+            //    for (int i = 0; i <  campiNome.Length; i++)
+            //    {
+            //        textBoxNome.Text += campiNome[i];
+            //    }
+
+            //    // Assegna luogo 
+            //    textBoxLuogo.Text = dlg.uContrLuogo1.textBoxNome.Text;
+            //    Traccia.Escursione.Luogo = textBoxLuogo.Text;
+
+            //    // assegna ID luogo
+            //    textBoxLuogoID.Text = dlg.uContrLuogo1.textBoxID.Text;
+            //    Traccia.Escursione.LuogoID = textBoxLuogoID.Text;
+            //}
+        }
+        /// <summary>
+        /// Selezione il luogo in cui si sviluppa l'escursione
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore SelezionaLuogoEscursione()
         {
             FormLuogo dlg = new FormLuogo(ref Traccia, Traccia.Escursione.LuogoID);
             dlg.ShowDialog();
@@ -415,9 +450,9 @@ namespace Traccia
                 textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
 
                 // assegna nome
-                string [] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
+                string[] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
                 textBoxNome.Text = string.Empty;
-                for (int i = 0; i <  campiNome.Length; i++)
+                for (int i = 0; i < campiNome.Length; i++)
                 {
                     textBoxNome.Text += campiNome[i];
                 }
@@ -430,6 +465,8 @@ namespace Traccia
                 textBoxLuogoID.Text = dlg.uContrLuogo1.textBoxID.Text;
                 Traccia.Escursione.LuogoID = textBoxLuogoID.Text;
             }
+
+            return GstErrori.EErrore.E0000_OK;
         }
     }
 }

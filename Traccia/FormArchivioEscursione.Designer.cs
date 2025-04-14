@@ -42,6 +42,10 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxLuogo = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxLuogoID = new System.Windows.Forms.TextBox();
             this.butExplorerEscursione = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxPathArchivio = new System.Windows.Forms.TextBox();
@@ -58,10 +62,6 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.textBoxLuogoID = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxLuogo = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -261,6 +261,40 @@
             this.groupBoxArchivio.TabStop = false;
             this.groupBoxArchivio.Text = "Archivio";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(502, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Luogo";
+            // 
+            // textBoxLuogo
+            // 
+            this.textBoxLuogo.Location = new System.Drawing.Point(568, 18);
+            this.textBoxLuogo.Name = "textBoxLuogo";
+            this.textBoxLuogo.ReadOnly = true;
+            this.textBoxLuogo.Size = new System.Drawing.Size(200, 20);
+            this.textBoxLuogo.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(502, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "ID Luogo";
+            // 
+            // textBoxLuogoID
+            // 
+            this.textBoxLuogoID.Location = new System.Drawing.Point(568, 44);
+            this.textBoxLuogoID.Name = "textBoxLuogoID";
+            this.textBoxLuogoID.ReadOnly = true;
+            this.textBoxLuogoID.Size = new System.Drawing.Size(200, 20);
+            this.textBoxLuogoID.TabIndex = 14;
+            // 
             // butExplorerEscursione
             // 
             this.butExplorerEscursione.Location = new System.Drawing.Point(774, 129);
@@ -435,40 +469,6 @@
             this.richTextBoxOutput.Size = new System.Drawing.Size(792, 193);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // textBoxLuogoID
-            // 
-            this.textBoxLuogoID.Location = new System.Drawing.Point(568, 44);
-            this.textBoxLuogoID.Name = "textBoxLuogoID";
-            this.textBoxLuogoID.ReadOnly = true;
-            this.textBoxLuogoID.Size = new System.Drawing.Size(200, 20);
-            this.textBoxLuogoID.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(502, 47);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "ID Luogo";
-            // 
-            // textBoxLuogo
-            // 
-            this.textBoxLuogo.Location = new System.Drawing.Point(568, 18);
-            this.textBoxLuogo.Name = "textBoxLuogo";
-            this.textBoxLuogo.ReadOnly = true;
-            this.textBoxLuogo.Size = new System.Drawing.Size(200, 20);
-            this.textBoxLuogo.TabIndex = 16;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(502, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Luogo";
             // 
             // FormArchivioEscursione
             // 

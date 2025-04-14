@@ -17,7 +17,7 @@ namespace Traccia
         public CInfo Info = new CInfo();    
 
         private CAreaArchivio areaArchivio;
-        public CAreaArchivio AreaArchivio { get => areaArchivio; set => areaArchivio = value; }
+        public  CAreaArchivio AreaArchivio { get => areaArchivio; set => areaArchivio = value; }
 
         public string Data { get => GetCampo(0); }
         /// <summary>

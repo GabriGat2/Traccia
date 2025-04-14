@@ -634,6 +634,10 @@ namespace Traccia
             GruppoInfo.Add(new CInfoCampo("OptSingola", "0"));
 
             GruppoInfo.Add(new CInfoCampo("Mezzo", ""));
+
+            GruppoInfo.Add(new CInfoCampo("Luogo", ""));
+            GruppoInfo.Add(new CInfoCampo("LuogoID", ""));
+
         }
         /// Recupera il gruppo delle informazioni
         /// </summary>

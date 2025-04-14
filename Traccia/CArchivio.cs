@@ -363,6 +363,47 @@ namespace Traccia
 
             return esito;
         }
+
+        protected GstErrori.EErrore ScriveLuogo(ref CIdentita rIdentita, ref StreamWriter sw)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
+            try
+            {
+                // cerca l'identita del luogo
+                CIdentita figlio;
+                esito = rIdentita.CercaFiglio(rIdentita.IDToglieSeparatori(luogoID), out figlio);
+                if (esito != GstErrori.EErrore.E0000_OK)
+                    return esito;
+
+                // Scrive i dati del luogo
+                ScriveIdentita("Luogo", ref sw, ref figlio);
+
+                // stampa i tag
+                int i = 1;
+                foreach (var tagID in figlio.Tag)
+                {
+                    // cerca l'identita del tag
+                    CIdentita nipote;
+                    esito = rIdentita.CercaFiglio(tagID, out nipote);
+                    if (esito != GstErrori.EErrore.E0000_OK)
+                        return esito;
+
+                    // Scrive i dati del tag
+                    ScriveIdentita("Tag " + i.ToString(), ref sw, ref nipote);
+
+                    i++;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return GstErrori.EErrore.E0001_NOK;
+            }
+
+            return esito;
+        }
+
+
         /// <summary>
         /// Scrive i dati dell'identità 
         /// </summary>

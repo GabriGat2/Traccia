@@ -81,7 +81,6 @@ namespace Traccia
             // Crea la dialog per copiare le foto
             DlgCopiaFoto = new FormFoto(ref Traccia);
 
-
             // Abilita l'abilitazione dei campi in funzione dell'esistenza della traccia
             AbilitaCampi(modifica);
         }
@@ -93,6 +92,10 @@ namespace Traccia
         {
             // abilita l'aggiornnamento del nome della traccia
             AbilitazioneAggiornamentoTraccia = !tracciaEsiste;
+
+            // aggiorna i campi luogo
+            textBoxLuogo.Text = Traccia.Luogo;
+            textBoxLuogoID.Text = Traccia.LuogoID;
 
             // Inizializza la data
             if (tracciaEsiste)
@@ -350,9 +353,11 @@ namespace Traccia
 
             // crea l'archivio della traccia 
             esito = Traccia.CreaDirectoryArchivio();
-
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
+
+            // Crea il file con le informazioni di luogo
+            esito = Traccia.ScriveFileLuogo();
 
             // Abilita i campi segnalando che la traccia esiste
             AbilitaCampi(true);
@@ -631,7 +636,52 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Selezione il lugo in cui si sviluppa la traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butLuogo_Click(object sender, EventArgs e)
+        {
+            SelezionaLuogoTraccia();
+        }
 
+        /// <summary>
+        /// Selezione il luogo in cui si sviluppa la traccia
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore SelezionaLuogoTraccia()
+        {
+            FormLuogo dlg = new FormLuogo(ref Traccia, Traccia.LuogoID);
+            dlg.ShowDialog();
+            DialogResult esito = dlg.DialogResult;
+
+
+            // Controlla se deve assegnare il luogo selezionato
+            if ((esito == DialogResult.OK) && (!Traccia.StatoOk()))
+            {
+                // Assegna prefisso NON PUO essere cambiato nella traccia
+                //textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
+
+                // assegna nome
+                string[] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
+                textBoxNome.Text = string.Empty;
+                for (int i = 0; i < campiNome.Length; i++)
+                {
+                    textBoxNome.Text += campiNome[i];
+                }
+
+                // Assegna luogo 
+                textBoxLuogo.Text = dlg.uContrLuogo1.textBoxNome.Text;
+                Traccia.Luogo = textBoxLuogo.Text;
+
+                // assegna ID luogo
+                textBoxLuogoID.Text = dlg.uContrLuogo1.textBoxID.Text;
+                Traccia.LuogoID = textBoxLuogoID.Text;
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
 
     }
 }
