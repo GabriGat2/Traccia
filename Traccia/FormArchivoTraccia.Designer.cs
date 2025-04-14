@@ -547,7 +547,7 @@
             this.groupBoxLuogo.Size = new System.Drawing.Size(796, 60);
             this.groupBoxLuogo.TabIndex = 0;
             this.groupBoxLuogo.TabStop = false;
-            this.groupBoxLuogo.Text = "groupBox1";
+            this.groupBoxLuogo.Text = "Luogo";
             // 
             // label12
             // 

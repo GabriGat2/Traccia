@@ -80,7 +80,6 @@ namespace Traccia
             PopolaMezzi();
             comboBoxMezzo.SelectedIndex = 0;
 
-
             // Impone il sigla dell'escursione
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
             textBoxPrefisso.Enabled = false;
@@ -100,7 +99,29 @@ namespace Traccia
             // abilita l'aggiornnamento del nome della traccia
             AbilitazioneAggiornamentoTraccia = !tracciaEsiste;
 
+            // Propone il nome della traccia
+            string nome1;
+            if (tracciaEsiste)
+                nome1 = Traccia.Nome;
+            else
+                nome1 = Traccia.Escursione.Nome;
+            string[] campiNome = nome1.Trim().Split('_');
+            if (campiNome.Length > 1)
+            {
+                textBoxNome.Text = campiNome[1];
+                for (int i = 2; i < campiNome.Length; i++)
+                {
+                    textBoxNome.Text += "_" + campiNome[i];
+                }
+            }
+
+
             // aggiorna i campi luogo
+            if (!tracciaEsiste)
+            {
+                Traccia.Luogo = Traccia.Escursione.Luogo;
+                Traccia.LuogoID = Traccia.Escursione.LuogoID;
+            }
             textBoxLuogo.Text = Traccia.Luogo;
             textBoxLuogoID.Text = Traccia.LuogoID;
 
