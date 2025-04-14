@@ -101,20 +101,35 @@ namespace Traccia
 
             // Propone il nome della traccia
             string nome1;
+            string mezzo1;
             if (tracciaEsiste)
-                nome1 = Traccia.Nome;
-            else
-                nome1 = Traccia.Escursione.Nome;
-            string[] campiNome = nome1.Trim().Split('_');
-            if (campiNome.Length > 1)
             {
-                textBoxNome.Text = campiNome[1];
-                for (int i = 2; i < campiNome.Length; i++)
+                nome1 = Traccia.Nome;
+                mezzo1 = Traccia.Mezzo;
+            }
+            else
+            {
+                nome1 = Traccia.Escursione.Nome;
+                mezzo1 = "";
+            }
+
+            string[] campiMezzo1 = mezzo1.Trim().Split('_');
+            int delta = 0;
+            if (campiMezzo1.Length > 0)
+                if ((campiMezzo1[0] == "Cammino") || (campiMezzo1[0] == ""))
+                    delta = 0;
+                else
+                    delta = 1;
+
+            string[] campiNome = nome1.Trim().Split('_');
+            if (campiNome.Length > 2)
+            {
+                textBoxNome.Text = campiNome[2];
+                for (int i = 3; i < (campiNome.Length - delta); i++)
                 {
                     textBoxNome.Text += "_" + campiNome[i];
                 }
             }
-
 
             // aggiorna i campi luogo
             if (!tracciaEsiste)
@@ -135,7 +150,7 @@ namespace Traccia
             if (tracciaEsiste)
                 comboBoxLettera.SelectedIndex = Traccia.GetLettera() - 'A';
             else
-                comboBoxLettera.SelectedIndex = 'A' - 'A';
+                comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibile() - 'A';
 
             // inizializza opzioni
             checkBoxGiorno.Checked = Traccia.OptGiorno;
@@ -367,16 +382,6 @@ namespace Traccia
         {
             // Crea la traccia
             CreaTraccia();
-
-
-            //msg.Stampa("Genera l'archivio: " + Traccia.Nome);
-
-            //// Crea la traccia
-            //GstErrori.EErrore esito = CreaTraccia2();
-
-            //msg.Stampa("La generazione dell'archivio: " + Traccia.Nome);
-            //msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
-
         }
         private GstErrori.EErrore CreaTraccia()
         {
@@ -705,18 +710,18 @@ namespace Traccia
 
 
             // Controlla se deve assegnare il luogo selezionato
-            if ((esito == DialogResult.OK) && (!Traccia.StatoOk()))
+            if ((esito == DialogResult.OK) && (!Traccia.FileInfoEsiste()))
             {
                 // Assegna prefisso NON PUO essere cambiato nella traccia
                 //textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
 
                 // assegna nome
-                string[] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
-                textBoxNome.Text = string.Empty;
-                for (int i = 0; i < campiNome.Length; i++)
-                {
-                    textBoxNome.Text += campiNome[i];
-                }
+                //string[] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
+                //textBoxNome.Text = string.Empty;
+                //for (int i = 0; i < campiNome.Length; i++)
+                //{
+                //    textBoxNome.Text += campiNome[i];
+                //}
 
                 // Assegna luogo 
                 textBoxLuogo.Text = dlg.uContrLuogo1.textBoxNome.Text;
@@ -729,12 +734,11 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
-
-        private void FormArchivoTraccia_Load(object sender, EventArgs e)
-        {
-            ;
-        }
-
+        /// <summary>
+        /// Crea in automativo la traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormArchivoTraccia_Activated(object sender, EventArgs e)
         {
             // controlla se è richiesta la creazione automatica swlla traccia
@@ -765,9 +769,48 @@ namespace Traccia
 
             // Crea la traccia
             CreaTraccia();
+        }
+        /// <summary>
+        /// Seleziona la prima lettera disponibile nelle tracce
+        /// </summary>
+        private char SelezionaLetteraDisponibile()
+        {
+            char lettera = 'A';
 
 
-            ;
+            // compone il path del file info
+            string pathInfo = Traccia.GetPathInfo();
+
+
+            // Compone la lista delle foto disponibili
+            string[] srcList = Directory.GetFiles(pathInfo, "*.txt");
+
+            try
+            {
+                // loop di analisi della directory
+                foreach (string srcFile in srcList)
+                {
+                    // Estrae il nome del file
+                    string srcFileName = srcFile.Substring(pathInfo.Length + 1);
+
+                    // Scompone il nome della traccia
+                    string[] campiNome = srcFileName.Trim().Split('_');
+
+                    // Scompone la data
+                    string[] campiData = campiNome[0].Trim().Split('-');
+
+                    // Analizza la lettera estratta
+                    if (campiData.Length >= 3)
+                        if (campiData[3].ElementAt(0) > lettera)
+                            lettera = (char) (campiData[3].ElementAt(0) + 1);
+                }
+            }
+            catch (Exception e)
+            {
+                return 'A';
+            }
+
+            return lettera;
         }
     }
 }

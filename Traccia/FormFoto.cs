@@ -776,7 +776,7 @@ namespace Traccia
         //    return esito;
         //}
         /// <summary>
-        /// Attiva a copia delle foto da sorgente a traccia
+        /// Attiva la copia delle foto da sorgente a traccia
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
