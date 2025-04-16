@@ -114,8 +114,6 @@ namespace Traccia
         /// </summary>
         private GstErrori.EErrore AggiornaContatori()
         {
-            string[] srcList = null;
-
             ucFiles.Aggiorna();
 
             return GstErrori.EErrore.E0000_OK;
@@ -871,6 +869,9 @@ namespace Traccia
             // stampa fine operazioni
             msg.StampaOperazione(false, operazione, esito);
 
+            // Aggiorna la classe
+            AggiornaClasse();
+
             return esito;
 
         }
@@ -885,7 +886,7 @@ namespace Traccia
             // compone il path della directory dowload
             string pathDownloads = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
-            // definisce il delta di minuti di ricenrca
+            // definisce il delta di minuti di ricerca
             double minuti = 5;
 
             // Compone la data di inizio ricerca

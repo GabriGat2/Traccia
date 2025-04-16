@@ -70,7 +70,6 @@ namespace Traccia
         private string RawPathCopiati = string.Empty;
         private string RawPathSelezionati = string.Empty;
         private string RawPathAssegnati = string.Empty;
-
         /// <summary>
         /// Costruttore
         /// </summary>
@@ -623,7 +622,6 @@ namespace Traccia
             esito = ComponePath();
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
-
 
             // Annula copia file JPEG
             if (ucFotoJpeg.Abilita)
