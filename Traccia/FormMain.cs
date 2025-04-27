@@ -36,7 +36,7 @@ namespace Traccia
             InizializzaClasse();
 
             // Verifica Area Archivio
-            AreaArchivio.PathBase = "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia";
+            AreaArchivio.PathBase = "";// "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia";
             AreaArchivio.Nome = "ArchivioEscursioni";
             MostraAreaArchivio();
         }
@@ -140,7 +140,10 @@ namespace Traccia
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 path = dlg.SelectedPath;
+                AreaArchivio.PathBase = path;
             }
+
+
 
             // verifica se la directory esiste
             VerificaAreaArchivio(path);
@@ -215,27 +218,6 @@ namespace Traccia
             // Apre il form Archivio Escursione
             OpenArchivioEscursione();
         }
-
-        private void butExplore_Click(object sender, EventArgs e)
-        {
-            string target = "Explorer";
-            //Use no more than one assignment when you test this code.
-            //string target = "ftp://ftp.microsoft.com";
-            //string target = "C:\\Program Files\\Microsoft Visual Studio\\INSTALL.HTM";
-            try
-            {
-                System.Diagnostics.Process.Start(target, "D:\\Angelo\\Prj\\Traccia\\ArchiviazioneTraccia\\ArchivioEscursioni\\30-Escursioni\\2025-03-20_01_Pluto\\30-Archivio");
-            }
-            catch (System.ComponentModel.Win32Exception noBrowser)
-            {
-                if (noBrowser.ErrorCode == -2147467259)
-                    MessageBox.Show(noBrowser.Message);
-            }
-            catch (System.Exception other)
-            {
-                MessageBox.Show(other.Message);
-            }
-        }
         /// <summary>
         /// Attiva il form per la gestione dei prefissi
         /// </summary>
@@ -251,6 +233,41 @@ namespace Traccia
         {
             FormLuogo dlg = new FormLuogo(ref Traccia, "");
             dlg.ShowDialog();   
+        }
+        /// <summary>
+        /// Avvia explorer dal path specificato
+        /// </summary>
+        /// <param name="path"></param>
+        private void ApreExplorer(string path)
+        {
+            string target = "Explorer";
+
+            try
+            {
+                System.Diagnostics.Process.Start(target, path);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
+
+        }
+
+        private void butExplorerAreaBase_Click(object sender, EventArgs e)
+        {
+            //// Controlla lo stato della Escursione
+            //if (!Escursione.StatoOk())
+            //{
+            //    GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1332_PathEscursioneEsiste);
+            //}
+
+            // recupera il path dell'escursione e avvia explore
+            ApreExplorer(textBoxPathAreaArchivio.Text);
         }
     }
 }

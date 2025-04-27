@@ -78,7 +78,8 @@ namespace Traccia
 
             // Popola la combobox dei mezzi
             PopolaMezzi();
-            comboBoxMezzo.SelectedIndex = 0;
+            if (comboBoxMezzo.Items.Count > 0) 
+                comboBoxMezzo.SelectedIndex = 0;
 
             // Impone il sigla dell'escursione
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;

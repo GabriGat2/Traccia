@@ -160,6 +160,10 @@ namespace Traccia
         /// <returns></returns>
         protected bool VerificaEsistenzaDirectory(string path)
         {
+            // verifica che la stringa non sia vuota
+            if (path.Length == 0) 
+                return false;
+
             // verifica se la directory esiste
             DirectoryInfo dir = new DirectoryInfo(path);
             return dir.Exists;

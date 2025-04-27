@@ -34,6 +34,9 @@ namespace Traccia
             // Aggiorna le caselle di impostazione   
             textBoxNome.Text = AreaArchivio.Nome;
             textBoxDirectoryBaseAreaArchivio.Text = AreaArchivio.PathBase;
+
+            // abilita la creazione dell'area archivio
+            AbilitazioneAggiornamentoNomeAreaArchivio = true;
         }
         private void butDirectoryBaseAreaArchivio_Click(object sender, EventArgs e)
         {

@@ -33,17 +33,17 @@
             this.butCreaAreaArchivio = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBoxAreaArchivio = new System.Windows.Forms.GroupBox();
+            this.butExplorerAreaBase = new System.Windows.Forms.Button();
             this.textBoxPathAreaArchivio = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxNomeAreaArchivio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.butSelezionaAreaArchivio = new System.Windows.Forms.Button();
             this.groupBoxArchivio = new System.Windows.Forms.GroupBox();
+            this.butLuogo = new System.Windows.Forms.Button();
             this.butIdentita = new System.Windows.Forms.Button();
-            this.butExplore = new System.Windows.Forms.Button();
             this.butEscursione = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
-            this.butLuogo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,12 +55,13 @@
             // butArchiviaEscursione
             // 
             this.butArchiviaEscursione.Enabled = false;
-            this.butArchiviaEscursione.Location = new System.Drawing.Point(12, 129);
+            this.butArchiviaEscursione.Location = new System.Drawing.Point(12, 100);
             this.butArchiviaEscursione.Name = "butArchiviaEscursione";
             this.butArchiviaEscursione.Size = new System.Drawing.Size(147, 23);
             this.butArchiviaEscursione.TabIndex = 0;
             this.butArchiviaEscursione.Text = "Archivia Escursione";
             this.butArchiviaEscursione.UseVisualStyleBackColor = true;
+            this.butArchiviaEscursione.Visible = false;
             this.butArchiviaEscursione.Click += new System.EventHandler(this.butArchiviaEscursione_Click);
             // 
             // butCreaArchivio
@@ -103,6 +104,7 @@
             // 
             // groupBoxAreaArchivio
             // 
+            this.groupBoxAreaArchivio.Controls.Add(this.butExplorerAreaBase);
             this.groupBoxAreaArchivio.Controls.Add(this.textBoxPathAreaArchivio);
             this.groupBoxAreaArchivio.Controls.Add(this.label2);
             this.groupBoxAreaArchivio.Controls.Add(this.textBoxNomeAreaArchivio);
@@ -117,12 +119,22 @@
             this.groupBoxAreaArchivio.TabStop = false;
             this.groupBoxAreaArchivio.Text = "Area Archivio";
             // 
+            // butExplorerAreaBase
+            // 
+            this.butExplorerAreaBase.Location = new System.Drawing.Point(771, 155);
+            this.butExplorerAreaBase.Name = "butExplorerAreaBase";
+            this.butExplorerAreaBase.Size = new System.Drawing.Size(17, 23);
+            this.butExplorerAreaBase.TabIndex = 15;
+            this.butExplorerAreaBase.Text = "E";
+            this.butExplorerAreaBase.UseVisualStyleBackColor = true;
+            this.butExplorerAreaBase.Click += new System.EventHandler(this.butExplorerAreaBase_Click);
+            // 
             // textBoxPathAreaArchivio
             // 
             this.textBoxPathAreaArchivio.Location = new System.Drawing.Point(172, 155);
             this.textBoxPathAreaArchivio.Name = "textBoxPathAreaArchivio";
             this.textBoxPathAreaArchivio.ReadOnly = true;
-            this.textBoxPathAreaArchivio.Size = new System.Drawing.Size(616, 20);
+            this.textBoxPathAreaArchivio.Size = new System.Drawing.Size(590, 20);
             this.textBoxPathAreaArchivio.TabIndex = 7;
             // 
             // label2
@@ -139,7 +151,7 @@
             this.textBoxNomeAreaArchivio.Location = new System.Drawing.Point(172, 129);
             this.textBoxNomeAreaArchivio.Name = "textBoxNomeAreaArchivio";
             this.textBoxNomeAreaArchivio.ReadOnly = true;
-            this.textBoxNomeAreaArchivio.Size = new System.Drawing.Size(616, 20);
+            this.textBoxNomeAreaArchivio.Size = new System.Drawing.Size(590, 20);
             this.textBoxNomeAreaArchivio.TabIndex = 5;
             // 
             // label1
@@ -165,7 +177,6 @@
             // 
             this.groupBoxArchivio.Controls.Add(this.butLuogo);
             this.groupBoxArchivio.Controls.Add(this.butIdentita);
-            this.groupBoxArchivio.Controls.Add(this.butExplore);
             this.groupBoxArchivio.Controls.Add(this.butEscursione);
             this.groupBoxArchivio.Controls.Add(this.butArchiviaTraccia);
             this.groupBoxArchivio.Controls.Add(this.butArchiviaEscursione);
@@ -178,29 +189,30 @@
             this.groupBoxArchivio.TabStop = false;
             this.groupBoxArchivio.Text = "Archivio";
             // 
+            // butLuogo
+            // 
+            this.butLuogo.Location = new System.Drawing.Point(15, 236);
+            this.butLuogo.Name = "butLuogo";
+            this.butLuogo.Size = new System.Drawing.Size(75, 23);
+            this.butLuogo.TabIndex = 6;
+            this.butLuogo.Text = "Luogo";
+            this.butLuogo.UseVisualStyleBackColor = true;
+            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
+            // 
             // butIdentita
             // 
-            this.butIdentita.Location = new System.Drawing.Point(484, 56);
+            this.butIdentita.Location = new System.Drawing.Point(12, 207);
             this.butIdentita.Name = "butIdentita";
             this.butIdentita.Size = new System.Drawing.Size(75, 23);
             this.butIdentita.TabIndex = 5;
             this.butIdentita.Text = "Identita";
             this.butIdentita.UseVisualStyleBackColor = true;
+            this.butIdentita.Visible = false;
             this.butIdentita.Click += new System.EventHandler(this.butIdentita_Click);
-            // 
-            // butExplore
-            // 
-            this.butExplore.Location = new System.Drawing.Point(484, 18);
-            this.butExplore.Name = "butExplore";
-            this.butExplore.Size = new System.Drawing.Size(75, 23);
-            this.butExplore.TabIndex = 4;
-            this.butExplore.Text = "Explorer";
-            this.butExplore.UseVisualStyleBackColor = true;
-            this.butExplore.Click += new System.EventHandler(this.butExplore_Click);
             // 
             // butEscursione
             // 
-            this.butEscursione.Location = new System.Drawing.Point(12, 57);
+            this.butEscursione.Location = new System.Drawing.Point(12, 48);
             this.butEscursione.Name = "butEscursione";
             this.butEscursione.Size = new System.Drawing.Size(147, 23);
             this.butEscursione.TabIndex = 3;
@@ -211,23 +223,14 @@
             // butArchiviaTraccia
             // 
             this.butArchiviaTraccia.Enabled = false;
-            this.butArchiviaTraccia.Location = new System.Drawing.Point(12, 165);
+            this.butArchiviaTraccia.Location = new System.Drawing.Point(12, 129);
             this.butArchiviaTraccia.Name = "butArchiviaTraccia";
             this.butArchiviaTraccia.Size = new System.Drawing.Size(147, 23);
             this.butArchiviaTraccia.TabIndex = 2;
             this.butArchiviaTraccia.Text = "Archivia Traccia";
             this.butArchiviaTraccia.UseVisualStyleBackColor = true;
+            this.butArchiviaTraccia.Visible = false;
             this.butArchiviaTraccia.Click += new System.EventHandler(this.butArchiviaTraccia_Click);
-            // 
-            // butLuogo
-            // 
-            this.butLuogo.Location = new System.Drawing.Point(507, 128);
-            this.butLuogo.Name = "butLuogo";
-            this.butLuogo.Size = new System.Drawing.Size(75, 23);
-            this.butLuogo.TabIndex = 6;
-            this.butLuogo.Text = "Luogo";
-            this.butLuogo.UseVisualStyleBackColor = true;
-            this.butLuogo.Click += new System.EventHandler(this.butLuogo_Click);
             // 
             // FormMain
             // 
@@ -263,9 +266,9 @@
         private System.Windows.Forms.TextBox textBoxNomeAreaArchivio;
         private System.Windows.Forms.Button butArchiviaTraccia;
         private System.Windows.Forms.Button butEscursione;
-        private System.Windows.Forms.Button butExplore;
         private System.Windows.Forms.Button butIdentita;
         private System.Windows.Forms.Button butLuogo;
+        private System.Windows.Forms.Button butExplorerAreaBase;
     }
 }
 
