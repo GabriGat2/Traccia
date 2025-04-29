@@ -806,6 +806,11 @@ namespace Traccia
             // compone il path del nome del file resoconto
             string resocontoPathName = PathResoconto + SeparaDir + resocontoFileName;
 
+            // DEBUG_: stampa il path del file resoconto
+            msg.Stampa(" +++++++++++++++ ");
+            msg.Stampa(resocontoPathName);
+            msg.Stampa(" +++++++++++++++ ");
+
             // verifica se il file resoconto esiste
             if (!File.Exists(resocontoPathName))
             {
