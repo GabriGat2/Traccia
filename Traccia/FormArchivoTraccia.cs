@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Traccia
 {
-    public partial class FormArchivoTraccia: Form
+    public partial class FormArchivoTraccia : Form
     {
         /// <summary>
         /// Archivio Traccia
@@ -67,8 +67,8 @@ namespace Traccia
             textBoxPathInputDati.Text = Traccia.Escursione.AreaArchivio.GetPathInput();
 
             // popola combobox lettera
-            string[] lettere = new string[] 
-            {   
+            string[] lettere = new string[]
+            {
                 "A", "B", "C", "D", "E", "F", "G", "H",
                 "I", "J", "K", "L", "M", "N", "O", "P",
                 "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
@@ -78,7 +78,7 @@ namespace Traccia
 
             // Popola la combobox dei mezzi
             PopolaMezzi();
-            if (comboBoxMezzo.Items.Count > 0) 
+            if (comboBoxMezzo.Items.Count > 0)
                 comboBoxMezzo.SelectedIndex = 0;
 
             // Impone il sigla dell'escursione
@@ -103,37 +103,6 @@ namespace Traccia
             // Propone il nome della traccia
             textBoxNome.Text = NomeTracciaProposto(tracciaEsiste);
 
-            //string nome1;
-            //string mezzo1;
-            //if (tracciaEsiste)
-            //{
-            //    nome1 = Traccia.Nome;
-            //    mezzo1 = Traccia.Mezzo;
-            //}
-            //else
-            //{
-            //    nome1 = Traccia.Escursione.Nome;
-            //    mezzo1 = "";
-            //}
-
-            //string[] campiMezzo1 = mezzo1.Trim().Split('_');
-            //int delta = 0;
-            //if (campiMezzo1.Length > 0)
-            //    if ((campiMezzo1[0] == "Cammino") || (campiMezzo1[0] == ""))
-            //        delta = 0;
-            //    else
-            //        delta = 1;
-
-            //string[] campiNome = nome1.Trim().Split('_');
-            //if (campiNome.Length > 2)
-            //{
-            //    textBoxNome.Text = campiNome[2];
-            //    for (int i = 3; i < (campiNome.Length - delta); i++)
-            //    {
-            //        textBoxNome.Text += "_" + campiNome[i];
-            //    }
-            //}
-
             // aggiorna i campi luogo
             if (!tracciaEsiste)
             {
@@ -153,7 +122,11 @@ namespace Traccia
             if (tracciaEsiste)
                 comboBoxLettera.SelectedIndex = Traccia.GetLettera() - 'A';
             else
-                comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibile() - 'A';
+            {
+                DateTime data = dateTimePicker1.Value;
+                //comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibile() - 'A';
+                comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibileNelGiorno(data) - 'A';
+            }
 
             // inizializza opzioni
             checkBoxGiorno.Checked = Traccia.OptGiorno;
@@ -256,8 +229,8 @@ namespace Traccia
         private void PopolaMezzi()
         {
             // recupera il path della directory comune e aggiunge il nome del filee
-            string pathMezzi = Traccia.Escursione.AreaArchivio.GetPathComune()  + "\\" + "Mezzi.txt";
-          
+            string pathMezzi = Traccia.Escursione.AreaArchivio.GetPathComune() + "\\" + "Mezzi.txt";
+
             String line;
             try
             {
@@ -269,7 +242,7 @@ namespace Traccia
                 while (line != null)
                 {
                     //write the line to console window
-                    msg.Stampa(line); 
+                    msg.Stampa(line);
 
                     // Aggiunge line a combobox
                     comboBoxMezzo.Items.Add(line);
@@ -304,7 +277,7 @@ namespace Traccia
             {
                 StampaNomeTraccia();
 
-                return; 
+                return;
             }
 
 
@@ -326,7 +299,7 @@ namespace Traccia
             // recupera il valore della lettera
             string lettera = string.Empty;
 
-            if (comboBoxLettera.Text.Trim().Length > 0) 
+            if (comboBoxLettera.Text.Trim().Length > 0)
                 lettera = comboBoxLettera.Text;
             else
                 lettera = "?";
@@ -371,7 +344,7 @@ namespace Traccia
             // compone il nome dell'Archivio
             string nArchivio = nData + '-' + lettera + '_' + nPrefisso + '_' + nNome;
             if (campiMezzo.Length > 0)
-                if( (campiMezzo[0] != "Cammino") && (campiMezzo[0].Trim().Length > 0))
+                if ((campiMezzo[0] != "Cammino") && (campiMezzo[0].Trim().Length > 0))
                     nArchivio = nArchivio + '_' + campiMezzo[0];
 
             // Assegna il nome dell'archivio
@@ -421,11 +394,14 @@ namespace Traccia
         /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            //if (dateTimePicker1.Enabled)
-            //{
-            //    DlgCopiaFoto.DataInizio = dateTimePicker1.Text;
-            //    DlgCopiaFoto.DataFine = dateTimePicker1.Text;
-            //}
+            // controlla se l'aggiornamento del nome della traccia è abilitato
+            if (AbilitazioneAggiornamentoTraccia)
+            {
+                // verifica il la lettere 
+                DateTime data = dateTimePicker1.Value;
+                comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibileNelGiorno(data) - 'A';
+            }
+
             AggiornaNomeTraccia();
         }
         private void butCreaTraccia_Click(object sender, EventArgs e)
@@ -466,7 +442,7 @@ namespace Traccia
 
             // Stampa il file delle Info
             Traccia.ScriveFileInfo();
-            
+
             // Aggiornamento traccia
             AggiornaNomeTraccia();
 
@@ -532,13 +508,13 @@ namespace Traccia
             DlgCopiaFoto.ShowDialog(this);
         }
 
-        private GstErrori.EErrore CopiaFoto ()
+        private GstErrori.EErrore CopiaFoto()
         {
             // recupera il path delle foto JPEG sorgente
             string srcJpegPath = Traccia.Escursione.AreaArchivio.GetPathJpeg();
 
             // Compone la lista delle foto JPEG
-            string [] srcJpegList = Directory.GetFiles(srcJpegPath, "*.*");
+            string[] srcJpegList = Directory.GetFiles(srcJpegPath, "*.*");
 
             // Estra la data di ricerca
             string dataTraccia = Traccia.GetOnlyData();
@@ -747,7 +723,6 @@ namespace Traccia
         {
             SelezionaLuogoTraccia();
         }
-
         /// <summary>
         /// Selezione il luogo in cui si sviluppa la traccia
         /// </summary>
@@ -762,17 +737,6 @@ namespace Traccia
             // Controlla se deve assegnare il luogo selezionato
             if ((esito == DialogResult.OK) && (!Traccia.FileInfoEsiste()))
             {
-                // Assegna prefisso NON PUO essere cambiato nella traccia
-                //textBoxPrefisso.Text = dlg.uContrLuogo1.textBoxSigla.Text;
-
-                // assegna nome
-                //string[] campiNome = dlg.uContrLuogo1.textBoxNome.Text.Trim().Split(' ');
-                //textBoxNome.Text = string.Empty;
-                //for (int i = 0; i < campiNome.Length; i++)
-                //{
-                //    textBoxNome.Text += campiNome[i];
-                //}
-
                 // Assegna luogo 
                 textBoxLuogo.Text = dlg.uContrLuogo1.textBoxNome.Text;
                 Traccia.Luogo = textBoxLuogo.Text;
@@ -852,7 +816,57 @@ namespace Traccia
                     // Analizza la lettera estratta
                     if (campiData.Length >= 3)
                         if (campiData[3].ElementAt(0) >= lettera)
-                            lettera = (char) (campiData[3].ElementAt(0) + 1);
+                            lettera = (char)(campiData[3].ElementAt(0) + 1);
+                }
+            }
+            catch (Exception e)
+            {
+                return 'A';
+            }
+
+            return lettera;
+        }
+        /// <summary>
+        /// Seleziona la prima lettera disponibile nelle tracce con la data specificata
+        /// </summary>
+        private char SelezionaLetteraDisponibileNelGiorno(DateTime data)
+        {
+            char lettera = 'A';
+
+
+            // compone il path del file info
+            string pathInfo = Traccia.GetPathInfo();
+
+
+            // Compone la lista delle foto disponibili
+            string[] srcList = Directory.GetFiles(pathInfo, "*.txt");
+
+            try
+            {
+                // loop di analisi della directory
+                foreach (string srcFile in srcList)
+                {
+                    // Estrae il nome del file
+                    string srcFileName = srcFile.Substring(pathInfo.Length + 1);
+
+                    // Scompone il nome della traccia
+                    string[] campiNome = srcFileName.Trim().Split('_');
+
+                    // Scompone la data
+                    string[] campiData = campiNome[0].Trim().Split('-');
+
+                    // ricompone la data
+                    DateTime dataFile = new DateTime(Convert.ToInt32(campiData[0]), Convert.ToInt32(campiData[1]), Convert.ToInt32(campiData[2]));
+
+                    // confronta le date
+                    int resultInizio = dataFile.CompareTo(data);
+                    if (resultInizio == 0)
+                    {
+                        // Analizza la lettera estratta
+                        if (campiData.Length >= 3)
+                            if (campiData[3].ElementAt(0) >= lettera)
+                                lettera = (char)(campiData[3].ElementAt(0) + 1);
+                    }
                 }
             }
             catch (Exception e)
