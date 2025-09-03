@@ -480,7 +480,7 @@
             this.butEscurzioneTraccia.TabIndex = 16;
             this.butEscurzioneTraccia.Text = "Escursione+Traccia";
             this.butEscurzioneTraccia.UseVisualStyleBackColor = true;
-            this.butEscurzioneTraccia.Click += new System.EventHandler(this.butEscurzioneTraccia_Click);
+            this.butEscurzioneTraccia.Click += new System.EventHandler(this.butEsecuzioneTraccia_Click);
             // 
             // FormArchivioEscursione
             // 

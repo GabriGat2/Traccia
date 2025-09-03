@@ -480,7 +480,7 @@ namespace Traccia
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void butEscurzioneTraccia_Click(object sender, EventArgs e)
+        private void butEsecuzioneTraccia_Click(object sender, EventArgs e)
         {
             GstErrori.EErrore esito = GstErrori.EErrore.E0001_NOK;
 
