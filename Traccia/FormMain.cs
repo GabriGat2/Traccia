@@ -212,7 +212,7 @@ namespace Traccia
             // salva il path reso
             string path = dlg.SelectedPath;
 
-            // Assegna il nome della traccia
+            // Assegna il nome dell'escursione
             Escursione.SetNome(path);
 
             // Apre il form Archivio Escursione

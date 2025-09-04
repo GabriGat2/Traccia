@@ -55,6 +55,7 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butEscurzioneTraccia = new System.Windows.Forms.Button();
             this.butLuogo = new System.Windows.Forms.Button();
             this.butModificaTraccia = new System.Windows.Forms.Button();
             this.butArchiviaTraccia = new System.Windows.Forms.Button();
@@ -62,7 +63,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butEscurzioneTraccia = new System.Windows.Forms.Button();
+            this.butSommario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -383,6 +384,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butSommario);
             this.groupBoxComandi.Controls.Add(this.butEscurzioneTraccia);
             this.groupBoxComandi.Controls.Add(this.butLuogo);
             this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
@@ -398,6 +400,16 @@
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
+            // 
+            // butEscurzioneTraccia
+            // 
+            this.butEscurzioneTraccia.Location = new System.Drawing.Point(122, 18);
+            this.butEscurzioneTraccia.Name = "butEscurzioneTraccia";
+            this.butEscurzioneTraccia.Size = new System.Drawing.Size(111, 23);
+            this.butEscurzioneTraccia.TabIndex = 16;
+            this.butEscurzioneTraccia.Text = "Escursione+Traccia";
+            this.butEscurzioneTraccia.UseVisualStyleBackColor = true;
+            this.butEscurzioneTraccia.Click += new System.EventHandler(this.butEsecuzioneTraccia_Click);
             // 
             // butLuogo
             // 
@@ -472,15 +484,15 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butEscurzioneTraccia
+            // butSommario
             // 
-            this.butEscurzioneTraccia.Location = new System.Drawing.Point(122, 18);
-            this.butEscurzioneTraccia.Name = "butEscurzioneTraccia";
-            this.butEscurzioneTraccia.Size = new System.Drawing.Size(111, 23);
-            this.butEscurzioneTraccia.TabIndex = 16;
-            this.butEscurzioneTraccia.Text = "Escursione+Traccia";
-            this.butEscurzioneTraccia.UseVisualStyleBackColor = true;
-            this.butEscurzioneTraccia.Click += new System.EventHandler(this.butEsecuzioneTraccia_Click);
+            this.butSommario.Location = new System.Drawing.Point(239, 18);
+            this.butSommario.Name = "butSommario";
+            this.butSommario.Size = new System.Drawing.Size(46, 23);
+            this.butSommario.TabIndex = 17;
+            this.butSommario.Text = "Sommario";
+            this.butSommario.UseVisualStyleBackColor = true;
+            this.butSommario.Click += new System.EventHandler(this.butSommario_Click);
             // 
             // FormArchivioEscursione
             // 
@@ -552,5 +564,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxLuogo;
         private System.Windows.Forms.Button butEscurzioneTraccia;
+        private System.Windows.Forms.Button butSommario;
     }
 }

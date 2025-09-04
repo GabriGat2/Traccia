@@ -28,7 +28,9 @@ namespace Traccia
         /// Nome parziale
         /// </summary>
         public string NomeParziale { get => GetCampo(2); }
-
+        /// <summary>
+        /// Costruttore
+        /// </summary>
         public void CAreaEscursione()
         {
             InizializzaClasse();
