@@ -52,6 +52,7 @@
             this.richTextBoxSommarioTracce.Size = new System.Drawing.Size(638, 311);
             this.richTextBoxSommarioTracce.TabIndex = 0;
             this.richTextBoxSommarioTracce.Text = "";
+            this.richTextBoxSommarioTracce.DoubleClick += new System.EventHandler(this.richTextBoxSommarioTracce_DoubleClick);
             // 
             // butAggiorna
             // 

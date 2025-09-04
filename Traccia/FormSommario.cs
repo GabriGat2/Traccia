@@ -229,5 +229,10 @@ namespace Traccia
         {
             MostraListaTracce();
         }
+
+        private void richTextBoxSommarioTracce_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
