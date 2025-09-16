@@ -34,6 +34,11 @@ namespace Traccia
         /// </summary>
         private CMessaggio msg = null;
         /// <summary>
+        /// Traccia selezionata
+        /// </summary>
+        public string PathTracciaSelezionata { get => pathTracciaSelezionata;}
+        private string pathTracciaSelezionata = null;
+        /// <summary>
         /// Costruttore 
         /// </summary>
         public FormSommario(ref CArchivioTraccia traccia)
@@ -53,58 +58,15 @@ namespace Traccia
         /// </summary>
         private void InizializzaClasse()
         {
-            //// Definisce il gestore dei messaggi
-            //msg = new CMessaggio(ref richTextBoxOutput);
+            // Invalida traccia selezionata
+            pathTracciaSelezionata = null;
 
-            //// Aggiorna la casella con il path dell'area archivio
-            //textBoxDirectoryBase.Text = Escursione.AreaArchivio.PathBase;
+            // stampa il nome dell'escursione
+            string nomeEscursione = Escursione.Nome;
+            this.Text = "Sommario delle tracce dell'escursione: " + nomeEscursione;
 
-            //// Segnal data non impostata
-            //DataImpostata = false;
-
-            //// aggiorna i campi luogo
-            //textBoxLuogo.Text = Traccia.Escursione.Luogo;
-            //textBoxLuogoID.Text = Traccia.Escursione.LuogoID;
-
-            //// Controlla lo stato della Escursione
-            //if (Escursione.StatoOk())
-            //{
-            //    // disabilita aggiornamento traccia
-            //    AbilitazioneAggiornamentoEscursione = false;
-
-            //    // disabilita in scittura del caselle di impostazione del nome dell'escursione
-            //    dateTimePicker1.Enabled = false;
-            //    textBoxPrefisso.Enabled = false;
-            //    textBoxNome.Enabled = false;
-
-            //    // aggiorna i campi
-            //    dateTimePicker1.Value = Escursione.GetData();
-            //    textBoxPrefisso.Text = Escursione.Prefisso;
-            //    textBoxNome.Text = Escursione.NomeParziale;
-
-            //    // Aggiorna il nome dell'archivio
-            //    textBoxArchivio.Text = Escursione.Nome;
-            //    textBoxArchivio.BackColor = Escursione.Colore;
-
-            //    // Aggiorna il path dell'archivio
-            //    textBoxPathArchivio.Text = Escursione.Path;
-            //    textBoxPathArchivio.BackColor = Escursione.Colore;
-
-            //    // Disabilita bottone crea escursione 
-            //    butCrea.Enabled = false;
-
-            //    // Abilita bottone archivia traccia
-            //    butArchiviaTraccia.Enabled = true;
-            //}
-            //else
-            //{
-            //    // disabilita aggiornamento traccia
-            //    AbilitazioneAggiornamentoEscursione = true;
-
-            //    // Abilita bottone archivia traccia
-            //    butArchiviaTraccia.Enabled = false;
-            //}
-
+            // Aggiorna la lista delle tracce
+            MostraListaTracce();
         }
         /// <summary>
         /// Selezione e Modifica una traccia
@@ -120,6 +82,43 @@ namespace Traccia
 
             // crea la lista dell tracce
             string[] tracce = Directory.GetFiles(pathTracce);
+
+            // Aggiorna l'albero delle tracce
+            AggiornaAlberoTracce(ref tracce);
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Mostra la lista delle tracce
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAggiorna_Click(object sender, EventArgs e)
+        {
+            MostraListaTracce();
+        }
+        /// <summary>
+        /// Aggiorna l'albero delle tracce
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore AggiornaAlberoTracce(ref string[] tracce)
+        {
+            // esito
+            GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK;
+            // data
+            string data = string.Empty;
+            string dataAttiva = string.Empty;
+            // nodo data
+            TreeNode nodoData = null;
+
+            // Invalida traccia selezionata
+            pathTracciaSelezionata = null;
+
+            // inizia aggiornamnto
+            treeViewSommarioTracce.BeginUpdate();
+
+            // Azzeera Tree view
+            treeViewSommarioTracce.Nodes.Clear();
 
             // stampa il nome delle tracce
             foreach (string pathNomeTraccia in tracce)
@@ -143,96 +142,96 @@ namespace Traccia
                 // controlla se è cambita la data
                 if (data != dataAttiva)
                 {
-                    dataAttiva = data;
+                    // Aggiunge il primo nodo
+                    nodoData = new TreeNode(data);
+                    treeViewSommarioTracce.Nodes.Add(nodoData);
 
-                    // stampa la data  della traccia
-                    richTextBoxSommarioTracce.AppendText("\n");
-                    richTextBoxSommarioTracce.AppendText(data);
-                    richTextBoxSommarioTracce.AppendText("\n");
+
+                    dataAttiva = data;
                 }
 
-                // stampa il nome della traccia
-                richTextBoxSommarioTracce.AppendText(nomeTraccia);
-                richTextBoxSommarioTracce.AppendText("\n");
+                // Aggiunge il nodo della traccia
+                TreeNode nodo = new TreeNode(nomeTraccia);
+                nodo.Tag = pathNomeTraccia;
+                nodoData.Nodes.Add(nodo);
             }
 
-            richTextBoxSommarioTracce.ScrollToCaret();
+            // termina aggiornamnto
+            treeViewSommarioTracce.EndUpdate();
 
-
-
-            //// Seleziona una traccia
-            //OpenFileDialog dlg = new OpenFileDialog();
-            //dlg.InitialDirectory = Traccia.GetPathInfo();
-            //dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //dlg.FilterIndex = 1;
-            //dlg.RestoreDirectory = true;
-
-            //if (dlg.ShowDialog() != DialogResult.OK)
-            //{
-            //    return GstErrori.EErrore.E0001_NOK;
-            //}
-
-            //// Estrae il nome del file info
-            //string pathFileInfo = dlg.FileName;
-
-            //// Legge il file info della traccia
-            //GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
-            //if (esito != GstErrori.EErrore.E0000_OK)
-            //    return esito;
-
-            //// Apre la dialo della traccia
-            //FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
-            //dlgT.ShowDialog();
-
-
-            return GstErrori.EErrore.E0000_OK;
+            return esito;
         }
         /// <summary>
-        /// Selezione e Modifica una traccia
+        /// Estra il tag selezionato
         /// </summary>
         /// <returns></returns>
-        private GstErrori.EErrore ModificaTraccia()
+        private GstErrori.EErrore EstraeTag()
         {
-            // Seleziona una traccia
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = Traccia.GetPathInfo();
-            dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            dlg.FilterIndex = 1;
-            dlg.RestoreDirectory = true;
-
-            if (dlg.ShowDialog() != DialogResult.OK)
-            {
+            // recuprea il nodo selezionato
+            TreeNode nodo = treeViewSommarioTracce.SelectedNode;
+            if (nodo == null)
                 return GstErrori.EErrore.E0001_NOK;
-            }
 
-            // Estrae il nome del file info
-            string pathFileInfo = dlg.FileName;
+            // recupera l'ID del nodo
+            if (nodo.Tag == null)
+                return GstErrori.EErrore.E0001_NOK;
+            string pathTraccia = (string)nodo.Tag;
 
-            // Legge il file info della traccia
-            GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
-            if (esito != GstErrori.EErrore.E0000_OK)
-                return esito;
+            // stampa i dati completi dell'identita del lugo selezionato
+            textBoxPathTraccia.Text = pathTraccia;
 
-            // Apre la dialo della traccia
-            FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
-            dlgT.ShowDialog();
-
+            // Assegna la traccia selezionata
+            pathTracciaSelezionata = pathTraccia;
 
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Mostra la lista delle tracce
+        /// Seleziona traccia
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void butAggiorna_Click(object sender, EventArgs e)
+        private void treeViewSommarioTracce_MouseClick(object sender, MouseEventArgs e)
         {
-            MostraListaTracce();
+            EstraeTag();
         }
-
-        private void richTextBoxSommarioTracce_DoubleClick(object sender, EventArgs e)
+        /// <summary>
+        /// Seleziona traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewSommarioTracce_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            EstraeTag();
+        }
+        /// <summary>
+        /// Chiude la dialog
+        /// </summary>
+        /// <param name="reso"></param>
+        private void ChiudeDialog(bool reso)
+        {
+            if (reso && (pathTracciaSelezionata != null))
+                this.DialogResult = DialogResult.OK;
+            else 
+                this.DialogResult = DialogResult.No;
 
+            this.Close();
+        }
+        /// <summary>
+        /// Chiude dialog con la richiesta di aprire una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butApri_Click(object sender, EventArgs e)
+        {
+            ChiudeDialog(true);        }
+        /// <summary>
+        /// Chiude la dialog senza la richiesta di maprire una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butAnnulla_Click(object sender, EventArgs e)
+        {
+            ChiudeDialog(false);
         }
     }
 }

@@ -28,60 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxSommarioTracce = new System.Windows.Forms.GroupBox();
-            this.richTextBoxSommarioTracce = new System.Windows.Forms.RichTextBox();
-            this.butAggiorna = new System.Windows.Forms.Button();
-            this.groupBoxSommarioTracce.SuspendLayout();
+            this.groupBoxSommarioDelleTracce2 = new System.Windows.Forms.GroupBox();
+            this.treeViewSommarioTracce = new System.Windows.Forms.TreeView();
+            this.textBoxPathTraccia = new System.Windows.Forms.TextBox();
+            this.butApri = new System.Windows.Forms.Button();
+            this.butAnnulla = new System.Windows.Forms.Button();
+            this.groupBoxSommarioDelleTracce2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBoxSommarioTracce
+            // groupBoxSommarioDelleTracce2
             // 
-            this.groupBoxSommarioTracce.Controls.Add(this.richTextBoxSommarioTracce);
-            this.groupBoxSommarioTracce.Location = new System.Drawing.Point(259, 85);
-            this.groupBoxSommarioTracce.Name = "groupBoxSommarioTracce";
-            this.groupBoxSommarioTracce.Size = new System.Drawing.Size(644, 330);
-            this.groupBoxSommarioTracce.TabIndex = 0;
-            this.groupBoxSommarioTracce.TabStop = false;
-            this.groupBoxSommarioTracce.Text = "Sommario delle tracce";
+            this.groupBoxSommarioDelleTracce2.Controls.Add(this.treeViewSommarioTracce);
+            this.groupBoxSommarioDelleTracce2.Location = new System.Drawing.Point(12, 15);
+            this.groupBoxSommarioDelleTracce2.Name = "groupBoxSommarioDelleTracce2";
+            this.groupBoxSommarioDelleTracce2.Size = new System.Drawing.Size(1052, 461);
+            this.groupBoxSommarioDelleTracce2.TabIndex = 2;
+            this.groupBoxSommarioDelleTracce2.TabStop = false;
+            this.groupBoxSommarioDelleTracce2.Text = "Sommario dell tracce";
             // 
-            // richTextBoxSommarioTracce
+            // treeViewSommarioTracce
             // 
-            this.richTextBoxSommarioTracce.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxSommarioTracce.Location = new System.Drawing.Point(3, 16);
-            this.richTextBoxSommarioTracce.Name = "richTextBoxSommarioTracce";
-            this.richTextBoxSommarioTracce.Size = new System.Drawing.Size(638, 311);
-            this.richTextBoxSommarioTracce.TabIndex = 0;
-            this.richTextBoxSommarioTracce.Text = "";
-            this.richTextBoxSommarioTracce.DoubleClick += new System.EventHandler(this.richTextBoxSommarioTracce_DoubleClick);
+            this.treeViewSommarioTracce.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewSommarioTracce.Location = new System.Drawing.Point(3, 16);
+            this.treeViewSommarioTracce.Name = "treeViewSommarioTracce";
+            this.treeViewSommarioTracce.Size = new System.Drawing.Size(1046, 442);
+            this.treeViewSommarioTracce.TabIndex = 0;
+            this.treeViewSommarioTracce.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioTracce_MouseClick);
+            this.treeViewSommarioTracce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioTracce_MouseDoubleClick);
             // 
-            // butAggiorna
+            // textBoxPathTraccia
             // 
-            this.butAggiorna.Location = new System.Drawing.Point(12, 50);
-            this.butAggiorna.Name = "butAggiorna";
-            this.butAggiorna.Size = new System.Drawing.Size(75, 23);
-            this.butAggiorna.TabIndex = 1;
-            this.butAggiorna.Text = "Aggiorna";
-            this.butAggiorna.UseVisualStyleBackColor = true;
-            this.butAggiorna.Click += new System.EventHandler(this.butAggiorna_Click);
+            this.textBoxPathTraccia.Location = new System.Drawing.Point(108, 485);
+            this.textBoxPathTraccia.Name = "textBoxPathTraccia";
+            this.textBoxPathTraccia.Size = new System.Drawing.Size(953, 20);
+            this.textBoxPathTraccia.TabIndex = 3;
+            // 
+            // butApri
+            // 
+            this.butApri.Location = new System.Drawing.Point(15, 483);
+            this.butApri.Name = "butApri";
+            this.butApri.Size = new System.Drawing.Size(75, 23);
+            this.butApri.TabIndex = 4;
+            this.butApri.Text = "Apri";
+            this.butApri.UseVisualStyleBackColor = true;
+            this.butApri.Click += new System.EventHandler(this.butApri_Click);
+            // 
+            // butAnnulla
+            // 
+            this.butAnnulla.Location = new System.Drawing.Point(15, 509);
+            this.butAnnulla.Name = "butAnnulla";
+            this.butAnnulla.Size = new System.Drawing.Size(75, 23);
+            this.butAnnulla.TabIndex = 5;
+            this.butAnnulla.Text = "Annulla";
+            this.butAnnulla.UseVisualStyleBackColor = true;
+            this.butAnnulla.Click += new System.EventHandler(this.butAnnulla_Click);
             // 
             // FormSommario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 544);
-            this.Controls.Add(this.butAggiorna);
-            this.Controls.Add(this.groupBoxSommarioTracce);
+            this.ClientSize = new System.Drawing.Size(1080, 544);
+            this.Controls.Add(this.butAnnulla);
+            this.Controls.Add(this.butApri);
+            this.Controls.Add(this.textBoxPathTraccia);
+            this.Controls.Add(this.groupBoxSommarioDelleTracce2);
             this.Name = "FormSommario";
-            this.Text = "FormSommario";
-            this.groupBoxSommarioTracce.ResumeLayout(false);
+            this.Text = "Sommario delle tracce";
+            this.groupBoxSommarioDelleTracce2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBoxSommarioTracce;
-        private System.Windows.Forms.RichTextBox richTextBoxSommarioTracce;
-        private System.Windows.Forms.Button butAggiorna;
+        private System.Windows.Forms.GroupBox groupBoxSommarioDelleTracce2;
+        private System.Windows.Forms.TreeView treeViewSommarioTracce;
+        private System.Windows.Forms.TextBox textBoxPathTraccia;
+        private System.Windows.Forms.Button butApri;
+        private System.Windows.Forms.Button butAnnulla;
     }
 }

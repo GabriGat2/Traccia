@@ -322,27 +322,38 @@ namespace Traccia
         /// <returns></returns>
         private GstErrori.EErrore ModificaTraccia()
         {
-            // Seleziona una traccia
-            OpenFileDialog dlg = new OpenFileDialog(); 
-            dlg.InitialDirectory = Traccia.GetPathInfo();
-            dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            dlg.FilterIndex = 1;
-            dlg.RestoreDirectory = true;
-
-            if (dlg.ShowDialog() != DialogResult.OK)
-            {
+            /// apre il sommario delle tracce per selezionare una traccia
+            FormSommario dlg = new FormSommario(ref Traccia);
+            dlg.ShowDialog();
+            if (dlg.DialogResult != DialogResult.OK)
                 return GstErrori.EErrore.E0001_NOK;
-            }
-            
+            else if (dlg.PathTracciaSelezionata == null)
+                return GstErrori.EErrore.E0001_NOK;
+
+
+            //// Seleziona una traccia
+            //OpenFileDialog dlg = new OpenFileDialog(); 
+            //dlg.InitialDirectory = Traccia.GetPathInfo();
+            //dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //dlg.FilterIndex = 1;
+            //dlg.RestoreDirectory = true;
+
+            //if (dlg.ShowDialog() != DialogResult.OK)
+            //{
+            //    return GstErrori.EErrore.E0001_NOK;
+            //}
+
             // Estrae il nome del file info
-            string pathFileInfo = dlg.FileName;
+            string pathFileInfo = dlg.PathTracciaSelezionata;
+
+            //string pathFileInfo = dlg.FileName;
 
             // Legge il file info della traccia
             GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
-            // Apre la dialo della traccia
+            // Apre la dialog della traccia
             FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
             dlgT.ShowDialog();
 
@@ -510,6 +521,8 @@ namespace Traccia
         {
             FormSommario dlg = new FormSommario(ref Traccia);
             dlg.ShowDialog();
+            DialogResult result = dlg.DialogResult;
+            //if (dlg.DialogResult = DialogResult.OK
         }
     }
 }
