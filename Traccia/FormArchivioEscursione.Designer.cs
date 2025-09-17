@@ -63,7 +63,6 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butSommario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -384,7 +383,6 @@
             // 
             // groupBoxComandi
             // 
-            this.groupBoxComandi.Controls.Add(this.butSommario);
             this.groupBoxComandi.Controls.Add(this.butEscurzioneTraccia);
             this.groupBoxComandi.Controls.Add(this.butLuogo);
             this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
@@ -484,16 +482,6 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
-            // butSommario
-            // 
-            this.butSommario.Location = new System.Drawing.Point(239, 18);
-            this.butSommario.Name = "butSommario";
-            this.butSommario.Size = new System.Drawing.Size(46, 23);
-            this.butSommario.TabIndex = 17;
-            this.butSommario.Text = "Sommario";
-            this.butSommario.UseVisualStyleBackColor = true;
-            this.butSommario.Click += new System.EventHandler(this.butSommario_Click);
-            // 
             // FormArchivioEscursione
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,6 +552,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxLuogo;
         private System.Windows.Forms.Button butEscurzioneTraccia;
-        private System.Windows.Forms.Button butSommario;
     }
 }

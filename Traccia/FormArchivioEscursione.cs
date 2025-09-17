@@ -512,17 +512,5 @@ namespace Traccia
             dlg.ShowDialog();
 
         }
-        /// <summary>
-        /// Apre il sommario delle tracce dell'escursione
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void butSommario_Click(object sender, EventArgs e)
-        {
-            FormSommario dlg = new FormSommario(ref Traccia);
-            dlg.ShowDialog();
-            DialogResult result = dlg.DialogResult;
-            //if (dlg.DialogResult = DialogResult.OK
-        }
     }
 }
