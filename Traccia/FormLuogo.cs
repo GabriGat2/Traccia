@@ -350,24 +350,6 @@ namespace Traccia
             this.Close();
         }
         /// <summary>
-        /// Seleziona luogo
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewIdentita_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            EstraeTag();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewIdentita_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            EstraeTag();
-        }
-        /// <summary>
         /// Legge un file di indentità
         /// </summary>
         /// <param name="filename"></param>
@@ -492,6 +474,14 @@ namespace Traccia
                 return GstErrori.EErrore.E0005_Exception;
             }
         }
-
+        /// <summary>
+        /// Seleziona luogo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewIdentita_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            EstraeTag();
+        }
     }
 }

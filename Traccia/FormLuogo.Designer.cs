@@ -466,8 +466,7 @@
             this.treeViewIdentita.Name = "treeViewIdentita";
             this.treeViewIdentita.Size = new System.Drawing.Size(314, 542);
             this.treeViewIdentita.TabIndex = 0;
-            this.treeViewIdentita.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseClick);
-            this.treeViewIdentita.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewIdentita_NodeMouseDoubleClick);
+            this.treeViewIdentita.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewIdentita_AfterSelect);
             // 
             // FormLuogo
             // 
