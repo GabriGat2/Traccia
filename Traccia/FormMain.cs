@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Traccia
 {
-    public partial class FormMain: Form
+    public partial class FormMain : Form
     {
         /// <summary>
         /// Area Archivio
@@ -55,7 +55,7 @@ namespace Traccia
             Escursione.AreaArchivio = AreaArchivio;
 
             // Crea la classe Traccia
-            Traccia = new CArchivioTraccia();   
+            Traccia = new CArchivioTraccia();
 
             // Assegna Archivio Escursione
             Traccia.Escursione = Escursione;
@@ -81,9 +81,9 @@ namespace Traccia
             if (Escursione.StatoOk())
             {
                 // Chiede se deve continuare
-                if  (!   GstErrori.StampaMessaggioAvviso
+                if (!GstErrori.StampaMessaggioAvviso
                         (
-                            GstErrori.EErrore.E1324_EscursionePresente, 
+                            GstErrori.EErrore.E1324_EscursionePresente,
                             "Una escursione è il elaborazione, vuoi terminare l'elaborazione?"
                         )
                     )
@@ -120,7 +120,7 @@ namespace Traccia
         /// <param name="e"></param>
         private void butCreaAreaArchivio_Click(object sender, EventArgs e)
         {
-            FormAreaArchivio dlg = new FormAreaArchivio(ref AreaArchivio); 
+            FormAreaArchivio dlg = new FormAreaArchivio(ref AreaArchivio);
             dlg.ShowDialog();
 
             // verifica se la directory esiste
@@ -168,7 +168,7 @@ namespace Traccia
 
             textBoxNomeAreaArchivio.BackColor = AreaArchivio.Colore;
             textBoxPathAreaArchivio.BackColor = AreaArchivio.Colore;
-         }
+        }
         /// <summary>
         /// Apre la dialog per l'archiviazione di una traccia
         /// </summary>
@@ -183,7 +183,7 @@ namespace Traccia
                 return;
             }
 
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);  
+            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);
             dlg.ShowDialog();
         }
         /// <summary>
@@ -193,30 +193,8 @@ namespace Traccia
         /// <param name="e"></param>
         private void butEscursione_Click(object sender, EventArgs e)
         {
-            // seleziona la direcory base
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
-
-            // disabilita la possibilita di creare una nuova directory
-            dlg.ShowNewFolderButton = false;
-
-            // imposta la descrizione
-            dlg.Description = "Seleziona la direcory dell'escursione";
-
-            // imposta l'indirizzo dell'archivio escursioni
-            dlg.SelectedPath = Escursione.GetPathArchivoEscursioni();
-
-            // esegue la dialog per selezionare il path dell'escursione
-            if (dlg.ShowDialog() != DialogResult.OK)
-                return;
-            
-            // salva il path reso
-            string path = dlg.SelectedPath;
-
-            // Assegna il nome dell'escursione
-            Escursione.SetNome(path);
-
-            // Apre il form Archivio Escursione
-            OpenArchivioEscursione();
+            // Seleziona una escursione e apre la dialog per modificarla
+            ModificaEscursione();
         }
         /// <summary>
         /// Attiva il form per la gestione dei prefissi
@@ -225,14 +203,14 @@ namespace Traccia
         /// <param name="e"></param>
         private void butIdentita_Click(object sender, EventArgs e)
         {
-            FormIdentita dlg = new FormIdentita(ref Traccia);  
-            dlg.ShowDialog();   
+            FormIdentita dlg = new FormIdentita(ref Traccia);
+            dlg.ShowDialog();
         }
 
         private void butLuogo_Click(object sender, EventArgs e)
         {
             FormLuogo dlg = new FormLuogo(ref Traccia, "");
-            dlg.ShowDialog();   
+            dlg.ShowDialog();
         }
         /// <summary>
         /// Avvia explorer dal path specificato
@@ -268,6 +246,31 @@ namespace Traccia
 
             // recupera il path dell'escursione e avvia explore
             ApreExplorer(textBoxPathAreaArchivio.Text);
+        }
+        /// <summary>
+        /// Selezione e Modifica una escursione
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore ModificaEscursione()
+        {
+            // apre la dialog con il sommario delle escursioni
+            FormSommarioEscursioni dlg = new FormSommarioEscursioni(ref Escursione);
+            dlg.ShowDialog();
+            if (dlg.DialogResult != DialogResult.OK)
+                return GstErrori.EErrore.E0001_NOK;
+            else if (dlg.PathEscursioneSelezionata == null)
+                return GstErrori.EErrore.E0001_NOK;
+
+            // Estrae path della escursione selezionata
+            string pathEscursione = dlg.PathEscursioneSelezionata;
+
+            // Assegna il nome dell'escursione
+            Escursione.SetNome(pathEscursione);
+
+            // Apre il form Archivio Escursione
+            OpenArchivioEscursione();
+
+            return GstErrori.EErrore.E0000_OK;
         }
     }
 }
