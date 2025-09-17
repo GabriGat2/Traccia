@@ -80,8 +80,7 @@
             this.treeViewSommarioEscursioni.Name = "treeViewSommarioEscursioni";
             this.treeViewSommarioEscursioni.Size = new System.Drawing.Size(1046, 442);
             this.treeViewSommarioEscursioni.TabIndex = 0;
-            this.treeViewSommarioEscursioni.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioEscursioni_MouseClick);
-            this.treeViewSommarioEscursioni.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioEscursioni_MouseDoubleClick);
+            this.treeViewSommarioEscursioni.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSommarioEscursioni_AfterSelect);
             // 
             // FormSommarioEscursioni
             // 

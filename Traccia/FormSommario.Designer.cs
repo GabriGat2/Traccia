@@ -53,8 +53,7 @@
             this.treeViewSommarioTracce.Name = "treeViewSommarioTracce";
             this.treeViewSommarioTracce.Size = new System.Drawing.Size(1046, 442);
             this.treeViewSommarioTracce.TabIndex = 0;
-            this.treeViewSommarioTracce.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioTracce_MouseClick);
-            this.treeViewSommarioTracce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewSommarioTracce_MouseDoubleClick);
+            this.treeViewSommarioTracce.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSommarioTracce_AfterSelect);
             // 
             // textBoxPathTraccia
             // 

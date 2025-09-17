@@ -173,24 +173,6 @@ namespace Traccia
             ChiudeDialog(false); 
         }
         /// <summary>
-        /// Selezione escursione
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewSommarioEscursioni_MouseClick(object sender, MouseEventArgs e)
-        {
-            EstraeTag();
-        }
-        /// <summary>
-        /// Selezione escursione
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewSommarioEscursioni_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            EstraeTag();
-        }
-        /// <summary>
         /// Estra il tag selezionato
         /// </summary>
         /// <returns></returns>
@@ -207,13 +189,21 @@ namespace Traccia
             string pathEscursione = (string)nodo.Tag;
 
             // stampa il path dell'escursione
-            textBoxPathEscursione.Text = pathEscursione;
+            textBoxPathEscursione.Text = nodo.Text;
 
             // Assegna la traccia selezionata
             pathEscursioneSelezionata = pathEscursione;
 
             return GstErrori.EErrore.E0000_OK;
         }
-
+        /// <summary>
+        /// Seleziona escursione
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewSommarioEscursioni_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            EstraeTag();
+        }
     }
 }

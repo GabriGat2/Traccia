@@ -156,6 +156,9 @@ namespace Traccia
                 nodoData.Nodes.Add(nodo);
             }
 
+            // Espandi il sommario
+            treeViewSommarioTracce.ExpandAll();
+
             // termina aggiornamnto
             treeViewSommarioTracce.EndUpdate();
 
@@ -178,30 +181,12 @@ namespace Traccia
             string pathTraccia = (string)nodo.Tag;
 
             // stampa i dati completi dell'identita del lugo selezionato
-            textBoxPathTraccia.Text = pathTraccia;
+            textBoxPathTraccia.Text = nodo.Text;//  pathTraccia;
 
             // Assegna la traccia selezionata
             pathTracciaSelezionata = pathTraccia;
 
             return GstErrori.EErrore.E0000_OK;
-        }
-        /// <summary>
-        /// Seleziona traccia
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewSommarioTracce_MouseClick(object sender, MouseEventArgs e)
-        {
-            EstraeTag();
-        }
-        /// <summary>
-        /// Seleziona traccia
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeViewSommarioTracce_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            EstraeTag();
         }
         /// <summary>
         /// Chiude la dialog
@@ -232,6 +217,15 @@ namespace Traccia
         private void butAnnulla_Click(object sender, EventArgs e)
         {
             ChiudeDialog(false);
+        }
+        /// <summary>
+        /// Seleziona traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeViewSommarioTracce_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            EstraeTag();
         }
     }
 }
