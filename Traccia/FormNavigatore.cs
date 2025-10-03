@@ -114,7 +114,8 @@ namespace Traccia
         /// </summary>
         private GstErrori.EErrore AggiornaContatori()
         {
-            ucFiles.Aggiorna();
+            // ucFiles.Aggiorna();
+            ucFiles.AggiornaEsteso(Traccia.Nome);
 
             return GstErrori.EErrore.E0000_OK;
         }

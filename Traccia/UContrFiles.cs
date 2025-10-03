@@ -72,6 +72,36 @@ namespace Traccia
             textBoxResoconto.Text = srcList.Length.ToString();
         }
         /// <summary>
+        /// Aggiorna visualizzando i file totali e quelli relativi alla traccia
+        /// </summary>
+        /// <param name="nomeTraccia"></param>
+        public void AggiornaEsteso(string nomeTraccia)
+        {
+            string[] tracciaList = null;
+            string[] srcList = null;
+
+            // Disponibili
+            tracciaList = Directory.GetFiles(pathDisponibili, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathDisponibili, "*.*");
+            textBoxDisponibili.Text = tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Stampe
+            tracciaList = Directory.GetFiles(pathStampe, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathStampe, "*.*");
+            textBoxStampe.Text = tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Tracce
+            tracciaList = Directory.GetFiles(pathTracce, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathTracce, "*.*");
+            textBoxTracce.Text = tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Resoconto
+            tracciaList = Directory.GetFiles(pathResoconto, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathResoconto, "*.*");
+            textBoxResoconto.Text = tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+        }
+
+        /// <summary>
         /// Avvia explorer dal path specificato
         /// </summary>
         /// <param name="path"></param>
