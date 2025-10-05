@@ -107,28 +107,6 @@ namespace Traccia
                 string nomeTraccia = ((campiPathNomeEscursione[campiPathNomeEscursione.Length - 1]).Split('.'))[0];
 
 
-                //// estrae la data della traccia
-                //string[] campiNomeTraccia = nomeTraccia.Split('_');
-                //// rimuove la data della traccia
-                //string[] campiDataTraccia = campiNomeTraccia[0].Split('-');
-                //// ricompone la data
-                //if (campiDataTraccia.Length <= 3)
-                //    data = campiDataTraccia[0];
-                //else
-                //    data = campiDataTraccia[0] + '-' + campiDataTraccia[1] + '-' + campiDataTraccia[2];
-
-
-                //// controlla se è cambita la data
-                //if (data != dataAttiva)
-                //{
-                //    // Aggiunge il primo nodo
-                //    nodoData = new TreeNode(data);
-                //    treeViewSommarioTracce.Nodes.Add(nodoData);
-
-
-                //    dataAttiva = data;
-                //}
-
                 // Aggiunge il nodo della traccia
                 TreeNode nodo = new TreeNode(nomeTraccia);
                 nodo.Tag = pathNomeEscursione;

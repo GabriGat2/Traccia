@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Traccia
 {
@@ -38,6 +39,10 @@ namespace Traccia
         /// </summary>
         public string PathTracciaSelezionata { get => pathTracciaSelezionata;}
         private string pathTracciaSelezionata = null;
+        /// <summary>
+        /// Speratore per path
+        /// </summary>
+        protected const string SeparaDir = "\\";
         /// <summary>
         /// Costruttore 
         /// </summary>
@@ -111,6 +116,9 @@ namespace Traccia
             // nodo data
             TreeNode nodoData = null;
 
+            // Salva il path della traccia
+            string pathTracciaOriginale = Traccia.GetFileNameInfo();
+
             // Invalida traccia selezionata
             pathTracciaSelezionata = null;
 
@@ -150,10 +158,20 @@ namespace Traccia
                     dataAttiva = data;
                 }
 
+                // Estrae i dati della traccia che sara agginto al nome dela traccia
+                string datiTraccia = EstraeDatiTraccia(pathNomeTraccia, nomeTraccia);
+                string nomeTracciaSpaziato = datiTraccia + "        " + nomeTraccia;
+                
                 // Aggiunge il nodo della traccia
-                TreeNode nodo = new TreeNode(nomeTraccia);
+                TreeNode nodo = new TreeNode(nomeTracciaSpaziato);
                 nodo.Tag = pathNomeTraccia;
                 nodoData.Nodes.Add(nodo);
+
+                //// aggiunge il nodo con i dati della traccia
+                //TreeNode nodoDati = new TreeNode(datiTracciaSpaziato);
+                ////nodo.Tag = pathNomeTraccia;
+                //nodo.Nodes.Add(nodoDati);
+
             }
 
             // Espandi il sommario
@@ -162,8 +180,87 @@ namespace Traccia
             // termina aggiornamnto
             treeViewSommarioTracce.EndUpdate();
 
+            // ripristina il file info della traccia originale
+            Traccia.LeggeFileInfo(pathTracciaOriginale);
+
             return esito;
         }
+        /// <summary>
+        /// Estrae i dati della traccia
+        /// </summary>
+        /// <param name="nomeTraccia"></param>
+        /// <returns></returns>
+        private string EstraeDatiTraccia(string pathNomeTraccia, string nomeTraccia, bool compresso = true)
+        {
+            // Legge il file info della traccia
+            GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathNomeTraccia);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return "";
+
+            // compone il path degli oggetti
+            // -----------------------------
+            // Stampe
+            string pathStampe = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Stampe");
+
+            // Tracce
+            string pathTracce = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Tracce");
+
+            // Resoconto
+            string pathResoconto = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Resoconto");
+
+            // Info
+            string pathInfo = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
+
+
+
+            // estrae il numero degli oggetti
+            // -----------------------------
+            string[] tracciaList = null;
+            string[] srcList = null;
+            string datiTraccia = "";
+
+            // estra le informazioni di memorizzazione
+            if (Traccia.OptGiorno)
+                if (compresso)
+                    datiTraccia += "G ";
+                else
+                    datiTraccia += "";
+
+            if (Traccia.OptSingola)
+                if (compresso)
+                    datiTraccia += "S ";
+                else
+                    datiTraccia += "";
+
+
+            // Stampe
+            tracciaList = Directory.GetFiles(pathStampe, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathStampe, "*.*");
+            if (compresso)
+                datiTraccia += "   " + tracciaList.Length.ToString();
+            else
+                datiTraccia += "    Stampe: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Tracce
+            tracciaList = Directory.GetFiles(pathTracce, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathTracce, "*.*");
+            if (compresso)
+                datiTraccia += "   " + tracciaList.Length.ToString();
+            else
+                datiTraccia += "    Tracce: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Resoconto
+            tracciaList = Directory.GetFiles(pathResoconto, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathResoconto, "*.*");
+            if (compresso)
+                datiTraccia += "   " + tracciaList.Length.ToString();
+            else
+                datiTraccia += "    Resoconto: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            return datiTraccia;
+
+        }
+
         /// <summary>
         /// Estra il tag selezionato
         /// </summary>
@@ -180,8 +277,12 @@ namespace Traccia
                 return GstErrori.EErrore.E0001_NOK;
             string pathTraccia = (string)nodo.Tag;
 
+            // Estra il nome della traccia
+            string[] campiPathNomeTraccia = pathTraccia.Split('\\');
+            string nomeTraccia = ((campiPathNomeTraccia[campiPathNomeTraccia.Length - 1]).Split('.'))[0];
+
             // stampa i dati completi dell'identita del lugo selezionato
-            textBoxPathTraccia.Text = nodo.Text;//  pathTraccia;
+            textBoxPathTraccia.Text = nomeTraccia;
 
             // Assegna la traccia selezionata
             pathTracciaSelezionata = pathTraccia;
