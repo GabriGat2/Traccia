@@ -63,6 +63,7 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.butRinominaTraccia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -383,6 +384,7 @@
             // 
             // groupBoxComandi
             // 
+            this.groupBoxComandi.Controls.Add(this.butRinominaTraccia);
             this.groupBoxComandi.Controls.Add(this.butEscurzioneTraccia);
             this.groupBoxComandi.Controls.Add(this.butLuogo);
             this.groupBoxComandi.Controls.Add(this.butModificaTraccia);
@@ -482,6 +484,16 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
+            // butRinominaTraccia
+            // 
+            this.butRinominaTraccia.Location = new System.Drawing.Point(657, 37);
+            this.butRinominaTraccia.Name = "butRinominaTraccia";
+            this.butRinominaTraccia.Size = new System.Drawing.Size(111, 23);
+            this.butRinominaTraccia.TabIndex = 17;
+            this.butRinominaTraccia.Text = "Rinomina Traccia";
+            this.butRinominaTraccia.UseVisualStyleBackColor = true;
+            this.butRinominaTraccia.Click += new System.EventHandler(this.butRinominaTraccia_Click);
+            // 
             // FormArchivioEscursione
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,5 +564,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxLuogo;
         private System.Windows.Forms.Button butEscurzioneTraccia;
+        private System.Windows.Forms.Button butRinominaTraccia;
     }
 }

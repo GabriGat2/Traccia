@@ -330,19 +330,6 @@ namespace Traccia
             else if (dlg.PathTracciaSelezionata == null)
                 return GstErrori.EErrore.E0001_NOK;
 
-
-            //// Seleziona una traccia
-            //OpenFileDialog dlg = new OpenFileDialog(); 
-            //dlg.InitialDirectory = Traccia.GetPathInfo();
-            //dlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //dlg.FilterIndex = 1;
-            //dlg.RestoreDirectory = true;
-
-            //if (dlg.ShowDialog() != DialogResult.OK)
-            //{
-            //    return GstErrori.EErrore.E0001_NOK;
-            //}
-
             // Estrae il nome del file info
             string pathFileInfo = dlg.PathTracciaSelezionata;
 
@@ -512,5 +499,46 @@ namespace Traccia
             dlg.ShowDialog();
 
         }
+        /// <summary>
+        /// Rinomina o sposta una traccia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butRinominaTraccia_Click(object sender, EventArgs e)
+        {
+            RinominaTraccia();
+        }
+        /// <summary>
+        /// Rinomina o sposta Traccia
+        /// </summary>
+        /// <returns></returns>
+        private GstErrori.EErrore RinominaTraccia()
+        {
+            /// apre il sommario delle tracce per selezionare una traccia
+            FormSommarioEstesa dlg = new FormSommarioEstesa(ref Traccia);
+            dlg.ShowDialog();
+            //if (dlg.DialogResult != DialogResult.OK)
+            //    return GstErrori.EErrore.E0001_NOK;
+            //else if (dlg.PathTracciaSelezionata == null)
+            //    return GstErrori.EErrore.E0001_NOK;
+
+            //// Estrae il nome del file info
+            //string pathFileInfo = dlg.PathTracciaSelezionata;
+
+            ////string pathFileInfo = dlg.FileName;
+
+            //// Legge il file info della traccia
+            //GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
+            //if (esito != GstErrori.EErrore.E0000_OK)
+            //    return esito;
+
+            //// Apre la dialog della traccia
+            //FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
+            //dlgT.ShowDialog();
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
     }
 }

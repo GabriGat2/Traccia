@@ -46,6 +46,11 @@ namespace Traccia
         /// <summary>
         /// Costruttore 
         /// </summary>
+        public FormSommario()
+        {
+            // Esegue inizializzazioni
+            InitializeComponent();
+        }
         public FormSommario(ref CArchivioTraccia traccia)
         {
             // Assegna Archivio traccia
