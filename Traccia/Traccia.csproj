@@ -80,6 +80,13 @@
     <Compile Include="CArchivioDirectoryBase.cs" />
     <Compile Include="CArchivioDirectoryEscursione.cs" />
     <Compile Include="CArchivioDirectoryTraccia.cs" />
+    <Compile Include="CArchivioPercorso.cs" />
+    <Compile Include="FormArchivioTracciaModifica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchivioTracciaModifica.Designer.cs">
+      <DependentUpon>FormArchivioTracciaModifica.cs</DependentUpon>
+    </Compile>
     <Compile Include="CAreaArchivio.cs" />
     <Compile Include="CArchivioDirectory.cs" />
     <Compile Include="CArchivioEscursione.cs" />
@@ -90,11 +97,11 @@
     <Compile Include="CIstruzione.cs" />
     <Compile Include="CMessaggio.cs" />
     <Compile Include="CIdentita.cs" />
-    <Compile Include="FormArchivoTraccia.cs">
+    <Compile Include="FormArchivioTraccia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormArchivoTraccia.Designer.cs">
-      <DependentUpon>FormArchivoTraccia.cs</DependentUpon>
+    <Compile Include="FormArchivioTraccia.Designer.cs">
+      <DependentUpon>FormArchivioTraccia.cs</DependentUpon>
     </Compile>
     <Compile Include="FormArchivioEscursione.cs">
       <SubType>Form</SubType>
@@ -138,6 +145,12 @@
     <Compile Include="FormNavigatore.Designer.cs">
       <DependentUpon>FormNavigatore.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPercorso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPercorso.Designer.cs">
+      <DependentUpon>FormPercorso.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSommario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,8 +190,11 @@
     <Compile Include="UserControlFoto.Designer.cs">
       <DependentUpon>UserControlFoto.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormArchivoTraccia.resx">
-      <DependentUpon>FormArchivoTraccia.cs</DependentUpon>
+    <EmbeddedResource Include="FormArchivioTracciaModifica.resx">
+      <DependentUpon>FormArchivioTracciaModifica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArchivioTraccia.resx">
+      <DependentUpon>FormArchivioTraccia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormArchivioEscursione.resx">
       <DependentUpon>FormArchivioEscursione.cs</DependentUpon>
@@ -200,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNavigatore.resx">
       <DependentUpon>FormNavigatore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPercorso.resx">
+      <DependentUpon>FormPercorso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSommario.resx">
       <DependentUpon>FormSommario.cs</DependentUpon>

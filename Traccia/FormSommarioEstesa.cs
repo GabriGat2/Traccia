@@ -12,6 +12,10 @@ namespace Traccia
 {
     public partial class FormSommarioEstesa : FormSommario
     {
+        public FormSommarioEstesa() : base()
+        {
+            InitializeComponent();
+        }
         public FormSommarioEstesa(ref CArchivioTraccia traccia) : base(ref traccia)
         {
             InitializeComponent();

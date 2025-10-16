@@ -73,7 +73,7 @@ namespace Traccia
             if (FileInfoEsiste())
                 return GstErrori.EErrore.E1347_TracciaEsiste;
 
-            // veriifca se la directory base esiste
+            // verifca se la directory base esiste
             switch (Stato)
             {
                 case EArchivioStato.ArchivioNonEsiste:
@@ -132,7 +132,7 @@ namespace Traccia
         /// Modo di archiviazione ottenuto codificando le opzioni
         /// </summary>
         /// <returns></returns>
-        private EModoArchiviazione ModoArchiviazione()
+        protected EModoArchiviazione ModoArchiviazione()
         {
             EModoArchiviazione modo;
 
@@ -343,6 +343,28 @@ namespace Traccia
 
             return esito;
         }
+        /// <summary>
+        /// Copia i dati della classe
+        /// </summary>
+        /// <returns></returns>
+        public GstErrori.EErrore Copia(CArchivioTraccia archivioSrc)
+        {
+            // copia i dati della classe AreaArchivio
+            Escursione = new CArchivioEscursione();
+            GstErrori.EErrore esito = Escursione.Copia(archivioSrc.Escursione);
 
+            Nome = archivioSrc.Nome;
+            PathBase = archivioSrc.PathBase;
+           
+            Mezzo = archivioSrc.Mezzo;
+
+            OptGiorno = archivioSrc.OptGiorno;  
+            OptSingola = archivioSrc.OptSingola;
+
+            Luogo = archivioSrc.Luogo;
+            LuogoID = archivioSrc.LuogoID;
+
+            return GstErrori.EErrore.E0000_OK;
+        }
     }
 }

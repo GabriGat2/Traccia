@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Traccia
 {
-    public partial class FormArchivoTraccia : Form
+    public partial class FormArchivioTraccia : Form
     {
         /// <summary>
         /// Archivio Traccia
@@ -36,10 +37,25 @@ namespace Traccia
         /// </summary>
         private bool PrenotaCreaTraccia = false;
         /// <summary>
-        /// Costruttore
+        /// Costruttore 1
         /// </summary>
         /// <param name="traccia"></param>
-        public FormArchivoTraccia(ref CArchivioTraccia traccia, bool modifica, bool crea = false)
+        public FormArchivioTraccia()
+        {
+            // Assegna Archivio traccia
+            Traccia = null;
+
+            InitializeComponent();
+            //InizializzaClasse(false);
+
+            // prenota creazione traccia
+            PrenotaCreaTraccia = false;
+        }
+        /// <summary>
+        /// Costruttore 2
+        /// </summary>
+        /// <param name="traccia"></param>
+        public FormArchivioTraccia(ref CArchivioTraccia traccia, bool modifica, bool crea = false)
         {
             // Assegna Archivio traccia
             Traccia = traccia;
@@ -128,7 +144,18 @@ namespace Traccia
                 comboBoxLettera.SelectedIndex = SelezionaLetteraDisponibileNelGiorno(data) - 'A';
             }
 
-            // inizializza opzioni
+            // inizializza il mezzo
+            if (tracciaEsiste)
+            {
+                int index = comboBoxMezzo.FindString(Traccia.Mezzo);
+                comboBoxMezzo.SelectedIndex = index;
+            }
+            else
+            {
+                comboBoxMezzo.SelectedIndex = 0;
+            }
+
+                // inizializza opzioni
             checkBoxGiorno.Checked = Traccia.OptGiorno;
             checkBoxSingola.Checked = Traccia.OptSingola;
 

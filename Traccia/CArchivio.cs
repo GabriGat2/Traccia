@@ -438,5 +438,14 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Copia i dati della classe
+        /// </summary>
+        /// <returns></returns>
+        public GstErrori.EErrore Copia(CArchivio archivioSrc)
+        {
+            return GstErrori.EErrore.E0001_NOK;
+        }
+
     }
 }

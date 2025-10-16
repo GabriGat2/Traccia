@@ -113,6 +113,23 @@ namespace Traccia
         {
             return false;
         }
+        /// <summary>
+        /// Copia i dati della classe
+        /// </summary>
+        /// <returns></returns>
+        public GstErrori.EErrore Copia(CAreaArchivio archivioSrc)
+        {
+            Nome = archivioSrc.Nome;
+            PathBase = archivioSrc.PathBase;
+
+            Luogo = archivioSrc.Luogo;
+            LuogoID = archivioSrc.LuogoID;
+
+            //Identita = archivioSrc.Identita;
+            //Directory = archivioSrc.Directory;
+            return GstErrori.EErrore.E0000_OK;
+        }
+
 
     }
 }

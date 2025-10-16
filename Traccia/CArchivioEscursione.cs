@@ -194,5 +194,25 @@ namespace Traccia
 
             return esito;
         }
+        /// <summary>
+        /// Copia i dati della classe
+        /// </summary>
+        /// <returns></returns>
+        public GstErrori.EErrore Copia(CArchivioEscursione archivioSrc)
+        {
+            // copia i dati della classe AreaArchvio
+            AreaArchivio = new CAreaArchivio();
+            GstErrori.EErrore esito = AreaArchivio.Copia(archivioSrc.AreaArchivio);
+
+            Nome = archivioSrc.Nome;
+            PathBase = archivioSrc.PathBase;
+                       
+            Luogo = archivioSrc.Luogo;
+            LuogoID = archivioSrc.LuogoID;
+
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
     }
 }

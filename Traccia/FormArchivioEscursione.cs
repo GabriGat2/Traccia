@@ -304,7 +304,7 @@ namespace Traccia
                 return;
             }
 
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);
+            FormArchivioTraccia dlg = new FormArchivioTraccia(ref Traccia, false);
             dlg.ShowDialog();
         }
         /// <summary>
@@ -341,7 +341,7 @@ namespace Traccia
                 return esito;
 
             // Apre la dialog della traccia
-            FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
+            FormArchivioTraccia dlgT = new FormArchivioTraccia(ref Traccia, true);
             dlgT.ShowDialog();
 
 
@@ -495,7 +495,7 @@ namespace Traccia
             }
 
             // Attiva la dialog della traccia
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false, true);
+            FormArchivioTraccia dlg = new FormArchivioTraccia(ref Traccia, false, true);
             dlg.ShowDialog();
 
         }
@@ -515,30 +515,45 @@ namespace Traccia
         private GstErrori.EErrore RinominaTraccia()
         {
             /// apre il sommario delle tracce per selezionare una traccia
-            FormSommarioEstesa dlg = new FormSommarioEstesa(ref Traccia);
+            FormSommario dlg = new FormSommario(ref Traccia);
             dlg.ShowDialog();
-            //if (dlg.DialogResult != DialogResult.OK)
-            //    return GstErrori.EErrore.E0001_NOK;
-            //else if (dlg.PathTracciaSelezionata == null)
-            //    return GstErrori.EErrore.E0001_NOK;
+            if (dlg.DialogResult != DialogResult.OK)
+                return GstErrori.EErrore.E0001_NOK;
+            else if (dlg.PathTracciaSelezionata == null)
+                return GstErrori.EErrore.E0001_NOK;
 
-            //// Estrae il nome del file info
-            //string pathFileInfo = dlg.PathTracciaSelezionata;
+            // Estrae il nome del file info
+            string pathFileInfo = dlg.PathTracciaSelezionata;
 
-            ////string pathFileInfo = dlg.FileName;
+            // Legge il file info della traccia
+            GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
 
-            //// Legge il file info della traccia
-            //GstErrori.EErrore esito = Traccia.LeggeFileInfo(pathFileInfo);
-            //if (esito != GstErrori.EErrore.E0000_OK)
-            //    return esito;
-
-            //// Apre la dialog della traccia
-            //FormArchivoTraccia dlgT = new FormArchivoTraccia(ref Traccia, true);
-            //dlgT.ShowDialog();
+            // Apre la dialog della traccia
+            FormArchivioTracciaModifica dlgT = new FormArchivioTracciaModifica(ref Traccia, true);
+            dlgT.ShowDialog();
 
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Crea un nuovo percorso di riferimento
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butNuovoPercorso_Click(object sender, EventArgs e)
+        {
+            // verifica l'esistenza dell'Escursione
+            if (!Escursione.StatoOk())
+            {
+                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1312_PathEscursioneErrato, Escursione.Path);
+                return;
+            }
 
+            //FormPercorso dlg = new FormPercorso(ref Traccia, false);
+            FormPercorso dlg = new FormPercorso();
+            dlg.ShowDialog();
+        }
     }
 }

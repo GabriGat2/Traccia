@@ -190,7 +190,7 @@ namespace Traccia
         /// <returns></returns>
         private UInt64 GetIdLocale(UInt64 vID, int vLivello)
         {
-            // estrae il li9vello dell'identità
+            // estrae il livello dell'identità
             uint liv = (uint)vLivello - 1;
 
             // esegue la divizione

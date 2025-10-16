@@ -1,6 +1,6 @@
 ﻿namespace Traccia
 {
-    partial class FormArchivoTraccia
+    partial class FormArchivioTraccia
     {
         /// <summary>
         /// Required designer variable.

@@ -183,7 +183,7 @@ namespace Traccia
                 return;
             }
 
-            FormArchivoTraccia dlg = new FormArchivoTraccia(ref Traccia, false);
+            FormArchivioTraccia dlg = new FormArchivioTraccia(ref Traccia, false);
             dlg.ShowDialog();
         }
         /// <summary>
