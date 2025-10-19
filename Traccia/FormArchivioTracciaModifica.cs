@@ -38,6 +38,10 @@ namespace Traccia
         /// </summary>
         private bool PrenotaCreaTraccia = false;
         /// <summary>
+        /// Speratore per path
+        /// </summary>
+        protected const string SeparaDir = "\\";
+        /// <summary>
         /// Costruttore 1
         /// </summary>
         /// <param name="traccia"></param>
@@ -169,26 +173,31 @@ namespace Traccia
             checkBoxGiorno.Checked = Traccia.OptGiorno;
             checkBoxSingola.Checked = Traccia.OptSingola;
 
-            // Bottoni abilitati quando la traccia NON esiste
+            // Bottoni abilitati quando la traccia NON esiste (prima di rinominarla)
             butCreaTraccia.Enabled = !tracciaEsiste || true; //  DEBUG_AG;
             butCreaTraccia.Visible = !tracciaEsiste || true; //  DEBUG_AG;
+            butCreaTraccia.Text = "Rinomina";
+
+
 
             // Bottoni abilitati quando la traccia esiste
             butNuovaTraccia.Enabled = tracciaEsiste && false; //  DEBUG_AG
-            butNuovaTraccia.Visible = tracciaEsiste || true; //  DEBUG_AG;
+            butNuovaTraccia.Visible = tracciaEsiste && false; //  DEBUG_AG;
 
             butFoto.Enabled = tracciaEsiste && false; //  DEBUG_AG
             butNavigatore.Enabled = tracciaEsiste || true; //  DEBUG_AG;
 
             butFoto.Visible = tracciaEsiste;
             butNavigatore.Visible = tracciaEsiste;
+            butLuogo.Visible = tracciaEsiste;
 
             butFoto.Enabled = false; // DEBUG_AG
             butNavigatore.Enabled = false; // DEBUG_AG
+            butLuogo.Enabled = false; // DEBUG_AG
 
             // Bottoni sempre abilitati
             butModificaTraccia.Enabled = true && false; // DEBUG_AG
-            butModificaTraccia.Visible = true;
+            butModificaTraccia.Visible = true && false; // DEBUG_AG
 
             // Campi di impostazione del nome
             dateTimePicker1.Enabled = !tracciaEsiste || true; // DEBUG_AG
@@ -459,6 +468,18 @@ namespace Traccia
             msg.Stampa("La generazione dell'archivio: " + Traccia.Nome);
             msg.StampaConEsito("è stata  eseguita", "è FALLITA!", esito, false);
 
+            if (esito == GstErrori.EErrore.E0000_OK)
+            {
+                // modifica l'abilitazione dei button
+                butCreaTraccia.Enabled = false;
+                butCreaTraccia.Visible = false;
+
+                butLuogo.Enabled = true;
+                butFoto.Enabled = true;
+                butNavigatore.Enabled = true;
+            }
+
+
             return esito;
         }
         /// <summary>
@@ -469,70 +490,164 @@ namespace Traccia
         {
             GstErrori.EErrore esito;
 
-            //// crea l'archivio della traccia 
-            //esito = Traccia.CreaDirectoryArchivio();
-            //if (esito != GstErrori.EErrore.E0000_OK)
-            //    return esito;
+            // crea l'archivio della traccia 
+            esito = Traccia.CreaDirectoryArchivio();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
 
-            //// Crea il file con le informazioni di luogo
-            //esito = Traccia.ScriveFileLuogo();
+            // Crea il file con le informazioni di luogo
+            esito = Traccia.ScriveFileLuogo();
 
-            //// Abilita i campi segnalando che la traccia esiste
-            //AbilitaCampi(true);
+            // Abilita i campi segnalando che la traccia esiste
+            AbilitaCampi(true);
 
-            //// Stampa il file delle Info
-            //Traccia.ScriveFileInfo();
+            // Stampa il file delle Info
+            Traccia.ScriveFileInfo();
 
-            //// Aggiornamento traccia
-            //AggiornaNomeTraccia();
+            // Aggiornamento traccia
+            AggiornaNomeTraccia();
 
 
-            // Copia le info
-            string pathInfoSrc = TracciaSave.GetPathTracciaInfo();
-            string NomeTracciaSrc = TracciaSave.Nome;
-            string [] listaSrc = Directory.GetFiles(pathInfoSrc, "*" + NomeTracciaSrc + "*.*"); 
+            // Estrae il nome della traccia sorgente
+            string nomeTracciaSrc = TracciaSave.Nome;
 
-            string pathInfoDst = Traccia.GetPathTracciaInfo();
-            string NomeTracciaDst = Traccia.Nome;
+            // Estrae il nome della traccia destinazione
+            string nomeTracciaDst = Traccia.Nome;
 
-            int cntErrori = 0;
 
-            foreach (var pathSrc in listaSrc)
+
+            string pathSrc;
+            string pathDst;
+
+            // Info
+            // ---------------------------------------------------------
+
+            // estre la directory TracciaSave (SRC): Info
+            pathSrc = TracciaSave.Path + SeparaDir + TracciaSave.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
+
+            // estre la directory Traccia (DST): Info
+            pathDst = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
+
+            // Esegue lo spostamento e la rinomina dei file info
+            esito = SpostaFileTraccia(nomeTracciaSrc, nomeTracciaDst, pathSrc, pathDst);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Stampe
+            // ---------------------------------------------------------
+
+            // estre la directory TracciaSave (SRC): Info
+            pathSrc = TracciaSave.Path + SeparaDir + TracciaSave.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Stampe");
+
+            // estre la directory Traccia (DST): Info
+            pathDst = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Stampe");
+
+            // Esegue lo spostamento e la rinomina dei file info
+            esito = SpostaFileTraccia(nomeTracciaSrc, nomeTracciaDst, pathSrc, pathDst);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Tracce
+            // ---------------------------------------------------------
+
+            // estre la directory TracciaSave (SRC): Info
+            pathSrc = TracciaSave.Path + SeparaDir + TracciaSave.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Tracce");
+
+            // estre la directory Traccia (DST): Info
+            pathDst = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Tracce");
+
+            // Esegue lo spostamento e la rinomina dei file info
+            esito = SpostaFileTraccia(nomeTracciaSrc, nomeTracciaDst, pathSrc, pathDst);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Resoconto
+            // ---------------------------------------------------------
+
+            // estre la directory TracciaSave (SRC): Info
+            pathSrc = TracciaSave.Path + SeparaDir + TracciaSave.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Resoconto");
+
+            // estre la directory Traccia (DST): Info
+            pathDst = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Resoconto");
+
+            // Esegue lo spostamento e la rinomina dei file info
+            esito = SpostaFileTraccia(nomeTracciaSrc, nomeTracciaDst, pathSrc, pathDst);
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
+
+            // Elimina il file info della traccia Save
+            string pathInfoTraccaSrc = TracciaSave.GetPathFileInfoTraccia();
+            try
             {
-                // recupera il nome del file dal path sorgente
-                string [] campi = pathSrc.Split('\\');
-                string nomeSrc = campi[campi.Length - 1];
-
-                // Crea il nome di destinazione
-                string nomeDst = nomeSrc.Replace(NomeTracciaSrc, NomeTracciaDst);
-
-                // Crea il path destinazione
-                string pathDst = pathSrc.Replace(nomeSrc, nomeDst);
-
-
-                // Copia il file nella directory di destinazione cambiandogli il nome
-                try 
-                {
-                    File.Copy(pathSrc, pathDst, true);
-                }
-                catch
-                {
-                    cntErrori++;
-                }
-
-
-                // cancella il file sorgente
-                int pippo = 0;
-
-                XXXXXX
-
+                File.Delete(pathInfoTraccaSrc);
             }
-
-
-
+            catch
+            {
+                return GstErrori.EErrore.E1359_FileNonCancellato;
+            }
 
             return GstErrori.EErrore.E0000_OK;
         }
+        /// <summary>
+        /// Sposta i file dalla tracciaSave (SRC) a Traccia (DST)
+        /// </summary>
+        /// <param name="nomeSrc"></param>
+        /// <param name="nomeDst"></param>
+        /// <param name="pathSrc"></param>
+        /// <param name="pathDst"></param>
+        /// <returns></returns>
+        private GstErrori.EErrore SpostaFileTraccia(string nomeTracciaSrc, string nomeTracciaDst, string pathDirSrc, string pathDirDst)
+        {
+            int cntErrori = 0;
+
+            // Compone la lista dei file contenuti nella directory Info dorgente
+            string[] listaSrc = Directory.GetFiles(pathDirSrc, "*" + nomeTracciaSrc + "*.*");
+
+            // elabora i file contenuti nella traccia sorgente
+            foreach (var pathFileSrc in listaSrc)
+            {
+                // recupera il nome del file dal path sorgente
+                string[] campi = pathFileSrc.Split('\\');
+                string nomeFileSrc = campi[campi.Length - 1];
+
+                // Crea il nome del file di destinazione
+                string nomeFileDst = nomeFileSrc.Replace(nomeTracciaSrc, nomeTracciaDst);
+
+                // Crea il path del file di destinazione
+                //string pathFileDst = pathFileSrc.Replace(nomeFileSrc, nomeFileDst);
+                string pathFileDst = pathDirDst + "\\" + nomeFileDst;
+
+
+                // Copia il file nella directory di destinazione cambiandogli il nome
+                try
+                {
+                    File.Copy(pathFileSrc, pathFileDst, true);
+                }
+                catch
+                {
+                    return GstErrori.EErrore.E1358_FileCopiato;
+                }
+
+                // cancella il file sorgente
+                try
+                {
+                    File.Delete(pathFileSrc);
+                }
+                catch
+                {
+                    return GstErrori.EErrore.E1359_FileNonCancellato;
+                }
+            }
+
+            return GstErrori.EErrore.E0000_OK;
+        }
+
+
+
         /// <summary>
         /// Il valore selezionato in Combobox mezzo è cambiato, aggiorna il nome della traccia
         /// </summary>

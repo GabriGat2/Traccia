@@ -188,6 +188,16 @@ namespace Traccia
             GstErrori.EErrore esito = Escursione.Info.ScriveFileInfoTraccia(pathInfo);
         }
         /// <summary>
+        ///  Rende il path del file info della traccia
+        /// </summary>
+        /// <returns></returns>
+        public string GetPathFileInfoTraccia()
+        {
+            // compone il path del file info
+            string pathInfo = GetPathInfo() + SeparaDir + Nome + ".txt";
+            return pathInfo;
+        }
+        /// <summary>
         /// Rende il path della directory Info delle tracce
         /// </summary>
         /// <returns></returns>

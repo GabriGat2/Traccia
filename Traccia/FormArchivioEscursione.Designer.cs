@@ -55,6 +55,7 @@
             this.groupBoxDescrizione = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBoxComandi = new System.Windows.Forms.GroupBox();
+            this.butNuovoPercorso = new System.Windows.Forms.Button();
             this.butRinominaTraccia = new System.Windows.Forms.Button();
             this.butEscurzioneTraccia = new System.Windows.Forms.Button();
             this.butLuogo = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
-            this.butNuovoPercorso = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -219,6 +219,7 @@
             // 
             // splitContainer3
             // 
+            this.splitContainer3.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Margin = new System.Windows.Forms.Padding(2);
@@ -364,6 +365,7 @@
             // 
             // splitContainer4
             // 
+            this.splitContainer4.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
@@ -379,7 +381,7 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.groupBoxOutput);
             this.splitContainer4.Size = new System.Drawing.Size(796, 273);
-            this.splitContainer4.SplitterDistance = 60;
+            this.splitContainer4.SplitterDistance = 80;
             this.splitContainer4.SplitterWidth = 3;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -398,14 +400,24 @@
             this.groupBoxComandi.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxComandi.Name = "groupBoxComandi";
             this.groupBoxComandi.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxComandi.Size = new System.Drawing.Size(796, 60);
+            this.groupBoxComandi.Size = new System.Drawing.Size(796, 80);
             this.groupBoxComandi.TabIndex = 0;
             this.groupBoxComandi.TabStop = false;
             this.groupBoxComandi.Text = "Comandi";
             // 
+            // butNuovoPercorso
+            // 
+            this.butNuovoPercorso.Location = new System.Drawing.Point(540, 47);
+            this.butNuovoPercorso.Name = "butNuovoPercorso";
+            this.butNuovoPercorso.Size = new System.Drawing.Size(111, 23);
+            this.butNuovoPercorso.TabIndex = 18;
+            this.butNuovoPercorso.Text = "Nuova Percorso";
+            this.butNuovoPercorso.UseVisualStyleBackColor = true;
+            this.butNuovoPercorso.Click += new System.EventHandler(this.butNuovoPercorso_Click);
+            // 
             // butRinominaTraccia
             // 
-            this.butRinominaTraccia.Location = new System.Drawing.Point(657, 37);
+            this.butRinominaTraccia.Location = new System.Drawing.Point(657, 47);
             this.butRinominaTraccia.Name = "butRinominaTraccia";
             this.butRinominaTraccia.Size = new System.Drawing.Size(111, 23);
             this.butRinominaTraccia.TabIndex = 17;
@@ -481,7 +493,7 @@
             this.groupBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxOutput.Name = "groupBoxOutput";
             this.groupBoxOutput.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxOutput.Size = new System.Drawing.Size(796, 210);
+            this.groupBoxOutput.Size = new System.Drawing.Size(796, 190);
             this.groupBoxOutput.TabIndex = 0;
             this.groupBoxOutput.TabStop = false;
             this.groupBoxOutput.Text = "Output";
@@ -492,19 +504,9 @@
             this.richTextBoxOutput.Location = new System.Drawing.Point(2, 15);
             this.richTextBoxOutput.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
-            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 193);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(792, 173);
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
-            // 
-            // butNuovoPercorso
-            // 
-            this.butNuovoPercorso.Location = new System.Drawing.Point(540, 37);
-            this.butNuovoPercorso.Name = "butNuovoPercorso";
-            this.butNuovoPercorso.Size = new System.Drawing.Size(111, 23);
-            this.butNuovoPercorso.TabIndex = 18;
-            this.butNuovoPercorso.Text = "Nuova Percorso";
-            this.butNuovoPercorso.UseVisualStyleBackColor = true;
-            this.butNuovoPercorso.Click += new System.EventHandler(this.butNuovoPercorso_Click);
             // 
             // FormArchivioEscursione
             // 
