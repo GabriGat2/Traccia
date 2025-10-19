@@ -413,7 +413,6 @@
             this.butNuovoPercorso.TabIndex = 18;
             this.butNuovoPercorso.Text = "Nuova Percorso";
             this.butNuovoPercorso.UseVisualStyleBackColor = true;
-            this.butNuovoPercorso.Click += new System.EventHandler(this.butNuovoPercorso_Click);
             // 
             // butRinominaTraccia
             // 

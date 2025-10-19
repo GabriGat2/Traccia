@@ -537,23 +537,5 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
-        /// <summary>
-        /// Crea un nuovo percorso di riferimento
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void butNuovoPercorso_Click(object sender, EventArgs e)
-        {
-            // verifica l'esistenza dell'Escursione
-            if (!Escursione.StatoOk())
-            {
-                GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E1312_PathEscursioneErrato, Escursione.Path);
-                return;
-            }
-
-            //FormPercorso dlg = new FormPercorso(ref Traccia, false);
-            FormPercorso dlg = new FormPercorso();
-            dlg.ShowDialog();
-        }
-    }
+     }
 }
