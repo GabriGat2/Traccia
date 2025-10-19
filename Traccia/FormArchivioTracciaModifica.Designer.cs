@@ -643,6 +643,7 @@
             // 
             // butModificaTraccia
             // 
+            this.butModificaTraccia.Enabled = false;
             this.butModificaTraccia.Location = new System.Drawing.Point(219, 18);
             this.butModificaTraccia.Name = "butModificaTraccia";
             this.butModificaTraccia.Size = new System.Drawing.Size(101, 23);
@@ -677,12 +678,13 @@
             this.butCreaTraccia.Name = "butCreaTraccia";
             this.butCreaTraccia.Size = new System.Drawing.Size(101, 23);
             this.butCreaTraccia.TabIndex = 13;
-            this.butCreaTraccia.Text = "Crea Traccia";
+            this.butCreaTraccia.Text = "Rinomina Traccia";
             this.butCreaTraccia.UseVisualStyleBackColor = true;
             this.butCreaTraccia.Click += new System.EventHandler(this.butCreaTraccia_Click);
             // 
             // butNuovaTraccia
             // 
+            this.butNuovaTraccia.Enabled = false;
             this.butNuovaTraccia.Location = new System.Drawing.Point(112, 18);
             this.butNuovaTraccia.Name = "butNuovaTraccia";
             this.butNuovaTraccia.Size = new System.Drawing.Size(101, 23);

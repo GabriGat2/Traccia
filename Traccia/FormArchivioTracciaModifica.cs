@@ -578,12 +578,18 @@ namespace Traccia
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
+            // Confronta il nome dei file info delle traccia per verificare che non siano uguali
+            string pathInfoTracciaSrc = TracciaSave.GetPathFileInfoTraccia().ToLower();
+            string pathInfoTracciaDst = Traccia.GetPathFileInfoTraccia().ToLower();
+            if (pathInfoTracciaSrc.Equals(pathInfoTracciaDst))
+            {
+                return GstErrori.EErrore.E0000_OK;
+            }
 
             // Elimina il file info della traccia Save
-            string pathInfoTraccaSrc = TracciaSave.GetPathFileInfoTraccia();
             try
             {
-                File.Delete(pathInfoTraccaSrc);
+                File.Delete(pathInfoTracciaSrc);
             }
             catch
             {
