@@ -28,11 +28,24 @@ namespace Traccia
         /// Nome parziale
         /// </summary>
         public string NomeParziale { get => GetCampo(2); }
+
+        /// <summary>
+        /// Opzione per l'aganizzzazione delle tracce per giorno
+        /// </summary>
+        public bool EOptGiorno { get => eOptGiorno; set => eOptGiorno = value; }        
+        private bool eOptGiorno;
+        /// <summary>
+        /// opzione per l'aganizzzazione delle tracce singolarmente
+        /// </summary>
+        public bool EOptSingola { get => eOptSingola; set => eOptSingola= value; } 
+        private bool eOptSingola;
         /// <summary>
         /// Costruttore
         /// </summary>
         public void CAreaEscursione()
         {
+            eOptSingola = false;
+            eOptGiorno = false;
             InizializzaClasse();
         }
         /// <summary>
@@ -116,15 +129,16 @@ namespace Traccia
             return esito;
         }
         /// <summary>
-        /// Legge un file info traccia
+        /// Legge il file info traccia
         /// </summary>
-        /// <param name="pathFileInfo"></param>
         /// <returns></returns>
-        public GstErrori.EErrore LeggeFileInfo(string pathFileInfo)
+        public GstErrori.EErrore LeggeFileInfo()
         {
             // pulisce la traccia
-            //ClearEscursione();
+            ClearEscursione();
 
+            // compone il path del file info
+            string pathFileInfo = GetPathFileInfo();
 
             // Legge il file info della traccia specificata
             GstErrori.EErrore esito = Info.LeggeFileInfoEscursione(pathFileInfo);
@@ -135,7 +149,32 @@ namespace Traccia
             Luogo = Info.Escursione.Get("Luogo");
             LuogoID = Info.Escursione.Get("LuogoID");
 
+            // Estrae i campi di dell opzioni
+            string sOptGiorno = Info.Escursione.Get("OptGiorno");
+            if (sOptGiorno != string.Empty) 
+                EOptGiorno = Convert.ToBoolean(sOptGiorno);
+            else 
+                EOptGiorno = false;
+
+            string sEOptSingola = Info.Escursione.Get("OptSingola");
+            if (sEOptSingola != string.Empty)
+                EOptSingola = Convert.ToBoolean(sEOptSingola);
+            else
+                EOptSingola = false;
+
             return GstErrori.EErrore.E0000_OK;
+        }
+        /// <summary>
+        /// Azzera i campi dell'escursione prima di leggere il file info
+        /// </summary>
+
+        private void ClearEscursione()
+        {
+            Luogo = "";
+            LuogoID = "";
+
+            EOptGiorno = false;
+            EOptSingola = false;
         }
         /// <summary>
         /// Scrive le informazioni Info Escursione
@@ -149,6 +188,10 @@ namespace Traccia
             bEsito = Info.Escursione.Set("Nome", Nome);
             bEsito = Info.Escursione.Set("Luogo", Luogo);
             bEsito = Info.Escursione.Set("LuogoID", LuogoID);
+
+            bEsito = Info.Escursione.Set("OptGiorno", EOptGiorno.ToString());
+            bEsito = Info.Escursione.Set("OptSingola", EOptSingola.ToString());
+
             return bEsito;
         }
         /// <summary>
@@ -160,10 +203,22 @@ namespace Traccia
             bool bEsito = ScriveInfo();
 
             // compone il path del file info
-            string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
+            //string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
+            string pathInfo = GetPathFileInfo();
 
             GstErrori.EErrore esito = Info.ScriveFileInfoEscursione(pathInfo);
         }
+        /// <summary>
+        /// Rende il path del file info della escursione
+        /// </summary>
+        /// <returns></returns>
+        public String GetPathFileInfo()
+        {
+            // compone il path del file info
+            string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
+            return pathInfo;
+        }
+
         /// <summary>
         /// Scrive il file luogo
         /// </summary>

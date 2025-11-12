@@ -407,7 +407,7 @@ namespace Traccia
         /// <returns></returns>
         protected virtual bool GetGruppoInfo(out List<CInfoCampo> gruppoInfo)
         {
-            StampaErroreOverride("GetGruppoInfoo");
+            StampaErroreOverride("GetGruppoInfo");
             gruppoInfo = null;
             return false;
         }
@@ -595,6 +595,9 @@ namespace Traccia
             GruppoInfo.Add(new CInfoCampo("Nome", ""));
             GruppoInfo.Add(new CInfoCampo("Luogo", ""));
             GruppoInfo.Add(new CInfoCampo("LuogoID", ""));
+
+            GruppoInfo.Add(new CInfoCampo("OptGiorno", "false"));
+            GruppoInfo.Add(new CInfoCampo("OptSingola", "false"));
         }
         /// Recupera il gruppo delle informazioni
         /// </summary>

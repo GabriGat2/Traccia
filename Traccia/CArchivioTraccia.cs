@@ -31,18 +31,18 @@ namespace Traccia
         /// <summary>
         /// Opzione per l'aganizzzazione delle tracce per giorno
         /// </summary>
-        private bool optGiorno;
         public bool OptGiorno { get => optGiorno; set => AggiornaOptGiorno(value); }
+        private bool optGiorno; 
         private void AggiornaOptGiorno(bool value)
         {
             optGiorno = value;
             Aggiorna();
         }
         /// <summary>
-        /// pzione per l'aganizzzazione delle tracce singolarmente
+        /// opzione per l'aganizzzazione delle tracce singolarmente
         /// </summary>
-        private bool optSingola;
         public bool OptSingola { get => optSingola; set => AggiornaOptSingola(value); }
+        private bool optSingola; 
         private void AggiornaOptSingola(bool value)
         {
             optSingola = value;
@@ -51,9 +51,8 @@ namespace Traccia
         /// <summary>
         /// Mezzo
         /// </summary>
+        public string Mezzo { get => mezzo; set => mezzo = value; } 
         public string mezzo;
-        public string Mezzo { get => mezzo; set => mezzo = value; }
-
 
 
         /// Verifica lo stato del parent

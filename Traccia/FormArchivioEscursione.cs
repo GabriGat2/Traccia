@@ -69,6 +69,10 @@ namespace Traccia
             textBoxLuogo.Text = Traccia.Escursione.Luogo;
             textBoxLuogoID.Text = Traccia.Escursione.LuogoID;
 
+            // aggiorna i campi pozione
+            checkBoxGiorno.Checked = Traccia.Escursione.EOptGiorno;
+            checkBoxSingola.Checked = Traccia.Escursione.EOptSingola;
+
             // Controlla lo stato della Escursione
             if (Escursione.StatoOk())
             {
@@ -537,5 +541,23 @@ namespace Traccia
 
             return GstErrori.EErrore.E0000_OK;
         }
-     }
+        /// <summary>
+        /// Il valore dell'opzione giorno è cambiata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxGiorno_CheckedChanged(object sender, EventArgs e)
+        {
+            Escursione.EOptGiorno = checkBoxGiorno.Checked;
+        }
+        /// <summary>
+        /// Il valore dell'opzione gsingola è cambiata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxSingola_CheckedChanged(object sender, EventArgs e)
+        {
+            Escursione.EOptSingola = checkBoxSingola.Checked;
+        }
+    }
 }

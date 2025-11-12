@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -97,7 +98,7 @@ namespace Traccia
             if (comboBoxMezzo.Items.Count > 0)
                 comboBoxMezzo.SelectedIndex = 0;
 
-            // Impone il sigla dell'escursione
+            // Impone la sigla dell'escursione
             textBoxPrefisso.Text = Traccia.Escursione.Prefisso;
             textBoxPrefisso.Enabled = false;
 
@@ -155,9 +156,18 @@ namespace Traccia
                 comboBoxMezzo.SelectedIndex = 0;
             }
 
-                // inizializza opzioni
-            checkBoxGiorno.Checked = Traccia.OptGiorno;
-            checkBoxSingola.Checked = Traccia.OptSingola;
+            // inizializza opzioni
+            if (!tracciaEsiste)
+            {
+                checkBoxGiorno.Checked = Traccia.Escursione.EOptGiorno;
+                checkBoxSingola.Checked = Traccia.Escursione.EOptSingola;
+            }
+            else
+            {
+                checkBoxGiorno.Checked = Traccia.OptGiorno;
+                checkBoxSingola.Checked = Traccia.OptSingola;
+            }
+
 
             // Bottoni abilitati quando la traccia NON esiste
             butCreaTraccia.Enabled = !tracciaEsiste;
@@ -787,8 +797,8 @@ namespace Traccia
             textBoxNome.Text = NomeTracciaProposto(false);
 
             // Disabilita le opzioni
-            Traccia.OptSingola = false;
-            Traccia.OptGiorno = false;
+            Traccia.OptSingola = Traccia.Escursione.EOptSingola;
+            Traccia.OptGiorno = Traccia.Escursione.EOptGiorno;
 
             checkBoxGiorno.Checked = Traccia.OptGiorno;
             checkBoxSingola.Checked = Traccia.OptSingola;

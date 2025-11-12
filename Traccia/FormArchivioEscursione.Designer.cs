@@ -65,6 +65,8 @@
             this.butAggiorna = new System.Windows.Forms.Button();
             this.groupBoxOutput = new System.Windows.Forms.GroupBox();
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
+            this.checkBoxSingola = new System.Windows.Forms.CheckBox();
+            this.checkBoxGiorno = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -240,6 +242,8 @@
             // 
             // groupBoxArchivio
             // 
+            this.groupBoxArchivio.Controls.Add(this.checkBoxSingola);
+            this.groupBoxArchivio.Controls.Add(this.checkBoxGiorno);
             this.groupBoxArchivio.Controls.Add(this.label9);
             this.groupBoxArchivio.Controls.Add(this.textBoxLuogo);
             this.groupBoxArchivio.Controls.Add(this.label8);
@@ -507,6 +511,28 @@
             this.richTextBoxOutput.TabIndex = 0;
             this.richTextBoxOutput.Text = "";
             // 
+            // checkBoxSingola
+            // 
+            this.checkBoxSingola.AutoSize = true;
+            this.checkBoxSingola.Location = new System.Drawing.Point(371, 43);
+            this.checkBoxSingola.Name = "checkBoxSingola";
+            this.checkBoxSingola.Size = new System.Drawing.Size(61, 17);
+            this.checkBoxSingola.TabIndex = 19;
+            this.checkBoxSingola.Text = "Singola";
+            this.checkBoxSingola.UseVisualStyleBackColor = true;
+            this.checkBoxSingola.CheckedChanged += new System.EventHandler(this.checkBoxSingola_CheckedChanged);
+            // 
+            // checkBoxGiorno
+            // 
+            this.checkBoxGiorno.AutoSize = true;
+            this.checkBoxGiorno.Location = new System.Drawing.Point(371, 17);
+            this.checkBoxGiorno.Name = "checkBoxGiorno";
+            this.checkBoxGiorno.Size = new System.Drawing.Size(57, 17);
+            this.checkBoxGiorno.TabIndex = 18;
+            this.checkBoxGiorno.Text = "Giorno";
+            this.checkBoxGiorno.UseVisualStyleBackColor = true;
+            this.checkBoxGiorno.CheckedChanged += new System.EventHandler(this.checkBoxGiorno_CheckedChanged);
+            // 
             // FormArchivioEscursione
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,5 +605,7 @@
         private System.Windows.Forms.Button butEscurzioneTraccia;
         private System.Windows.Forms.Button butRinominaTraccia;
         private System.Windows.Forms.Button butNuovoPercorso;
+        private System.Windows.Forms.CheckBox checkBoxSingola;
+        private System.Windows.Forms.CheckBox checkBoxGiorno;
     }
 }

@@ -168,6 +168,8 @@ namespace Traccia
 
             textBoxNomeAreaArchivio.BackColor = AreaArchivio.Colore;
             textBoxPathAreaArchivio.BackColor = AreaArchivio.Colore;
+
+            this.groupBoxArchivio.Enabled = (AreaArchivio.Colore != Color.Red);
         }
         /// <summary>
         /// Apre la dialog per l'archiviazione di una traccia
@@ -266,6 +268,9 @@ namespace Traccia
 
             // Assegna il nome dell'escursione
             Escursione.SetNome(pathEscursione);
+
+            // Legge il file Info
+            Escursione.LeggeFileInfo();
 
             // Apre il form Archivio Escursione
             OpenArchivioEscursione();
