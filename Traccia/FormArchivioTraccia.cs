@@ -782,7 +782,7 @@ namespace Traccia
             return GstErrori.EErrore.E0000_OK;
         }
         /// <summary>
-        /// Crea in automativo la traccia
+        /// Crea in automatico la traccia
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
