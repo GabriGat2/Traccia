@@ -216,6 +216,11 @@ namespace Traccia
             // Info
             string pathInfo = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("Info");
 
+            // Foto Jpeg
+            string pathJpeg = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("JPEG");
+
+            // Foto Heic
+            string pathHeic = Traccia.Path + SeparaDir + Traccia.Escursione.AreaArchivio.Directory.Traccia.GetSubPath("HEIC");
 
 
             // estrae il numero degli oggetti
@@ -261,6 +266,23 @@ namespace Traccia
                 datiTraccia += "   " + tracciaList.Length.ToString();
             else
                 datiTraccia += "    Resoconto: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Foto JPEG
+            tracciaList = Directory.GetFiles(pathJpeg, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathJpeg, "*.*");
+            if (compresso)
+                datiTraccia += "   " + srcList.Length.ToString("00");
+            else
+                datiTraccia += "    Foto JPEG: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
+            // Foto HEIC
+            tracciaList = Directory.GetFiles(pathHeic, nomeTraccia + "*.*");
+            srcList = Directory.GetFiles(pathHeic, "*.*");
+            if (compresso)
+                datiTraccia += "   " + srcList.Length.ToString("00");
+            else
+                datiTraccia += "    Foto Heic: " + tracciaList.Length.ToString() + " / " + srcList.Length.ToString();
+
 
             return datiTraccia;
 
