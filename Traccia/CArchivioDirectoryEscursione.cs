@@ -21,6 +21,8 @@ namespace Traccia
             DirArchivio.Add(new DirectoryParziale("Altro", "20-Altro"));
 
             DirArchivio.Add(new DirectoryParziale("Archivi", "30-Archivio"));
+
+            DirArchivio.Add(new DirectoryParziale("Archivi", "40-Sommario"));
         }
         /// <summary>
         /// Recupera la struttura delle directory dell'archivio
