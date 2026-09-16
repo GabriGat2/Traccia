@@ -51,10 +51,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1A743C2BDDCD85CBEFBF43C904E1C873405DE94E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CC9182BE937CF95ADCD7845C00DBE91695AEBA29</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Traccia_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Traccia_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -237,6 +237,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Traccia_1_TemporaryKey.pfx" />
     <None Include="Traccia_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

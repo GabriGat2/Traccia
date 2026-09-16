@@ -316,6 +316,14 @@ namespace Traccia
             return GstErrori.EErrore.E0001_NOK;
         }
         /// <summary>
+        /// Crea le directory variabili dell'archivio
+        /// </summary>
+        /// <returns></returns>
+        public virtual GstErrori.EErrore CreaDirectoryVariabili()
+        {
+            return GstErrori.EErrore.E0001_NOK;
+        }
+        /// <summary>
         /// Scrive il file luogo
         /// </summary>
         /// <returns></returns>
