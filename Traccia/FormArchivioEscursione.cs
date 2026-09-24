@@ -267,6 +267,11 @@ namespace Traccia
             if (esito != GstErrori.EErrore.E0000_OK)
                 return esito;
 
+            // crea directory variabili dell'archivio escursione
+            esito = Escursione.CreaDirectoryVariabili();
+            if (esito != GstErrori.EErrore.E0000_OK)
+                return esito;
+
             // Crea il file con le informazioni di luogo
             esito = Escursione.ScriveFileLuogo();
 

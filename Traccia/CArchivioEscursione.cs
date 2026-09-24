@@ -218,7 +218,74 @@ namespace Traccia
             string pathInfo = Path + SeparaDir + AreaArchivio.Directory.Escursione.GetSubPath("Info") + SeparaDir + Nome + ".txt";
             return pathInfo;
         }
+        /// <summary>
+        /// Crea le directory variabili dell'escursione
+        /// </summary>
+        /// <returns></returns>
+        public override GstErrori.EErrore CreaDirectoryVariabili()
+        {
+            string pathFilename = AreaArchivio.GetPathComune() + SeparaDir + "EscursioniListaDirVariabili.txt";
 
+
+            return LeggeFileDirectoryVariabili(Path, pathFilename);
+        }
+        /// <summary>
+        /// Legge il file delle directory vatiabili e le crea
+        /// </summary>
+        /// <param name="pathArchivio">Path del archivio</param>
+        /// <param name="pathFilename">Path del nome del file di testo che contiene la lista delle directory variabili</param>
+        /// <returns></returns>
+        private GstErrori.EErrore LeggeFileDirectoryVariabili(string pathArchivio, string pathFilename)
+        {
+            GstErrori.EErrore esito = GstErrori.EErrore.E0000_OK;
+
+            // verifica se esite il file da leggere
+            if (!File.Exists(pathFilename))
+            {
+                return GstErrori.EErrore.E1350_FileNonEsiste;
+            }
+            else
+            {
+                // apre il file identità
+                StreamReader sr = new StreamReader(pathFilename);
+
+                try
+                {
+                    // legge la prima linea del file
+                    string linea = sr.ReadLine();
+
+                    // continua a leggere finchè non ragiunge EOF
+                    while (linea != null)
+                    {
+                        // compone il path della directory
+                        string path = pathArchivio + SeparaDir + linea;
+
+                        // crea la directory
+                        DirectoryInfo dir = Directory.CreateDirectory(path);
+                        if (! dir.Exists)
+                        {
+                            esito = GstErrori.EErrore.E1334_DirectoryCreazioneFallita;
+                            break; 
+                        }
+
+                        // legge una nuova linea
+                        linea = sr.ReadLine();
+                    } // end while
+                }
+                catch (Exception e)
+                {
+                    GstErrori.StampaMessaggioErrore(GstErrori.EErrore.E0005_Exception, "Exception: " + e.Message);
+                    sr.Close();
+                    return GstErrori.EErrore.E0005_Exception;
+                }
+
+
+                // Chiude il file in lettura
+                sr.Close();
+            }
+
+            return esito;
+        }
         /// <summary>
         /// Scrive il file luogo
         /// </summary>
